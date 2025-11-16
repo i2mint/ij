@@ -4,11 +4,19 @@ A bidirectional diagramming system that enables seamless movement between
 natural language, visual diagrams, and code.
 """
 
+from .analyzers import PythonCodeAnalyzer
 from .core import DiagramIR, Edge, EdgeType, Node, NodeType
 from .converters import EnhancedTextConverter, SimpleTextConverter
 from .graph_ops import GraphOperations
 from .parsers import MermaidParser
 from .renderers import D2Renderer, GraphvizRenderer, MermaidRenderer, PlantUMLRenderer
+
+# LLMConverter is optional (requires openai package)
+try:
+    from .converters import LLMConverter
+    _has_llm = True
+except ImportError:
+    _has_llm = False
 
 __version__ = "0.1.1"
 
@@ -26,7 +34,11 @@ __all__ = [
     "GraphvizRenderer",
     "MermaidParser",
     "GraphOperations",
+    "PythonCodeAnalyzer",
 ]
+
+if _has_llm:
+    __all__.append("LLMConverter")
 
 
 def text_to_mermaid(text: str, title: str = None, direction: str = "TD") -> str:

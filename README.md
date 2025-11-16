@@ -22,6 +22,14 @@ Idea Junction (ij) is a bidirectional diagramming system that enables seamless m
 - **Enhanced Text Converter**: Support for conditionals, parallel flows, and loops
 - **Format Conversion**: Convert between Mermaid, PlantUML, D2, and Graphviz
 
+### Phase 3 (AI & Code Analysis) ✅
+- **AI/LLM Integration**: Natural language to diagrams using OpenAI API (10-20x faster)
+- **Python Code Analysis**: Reverse engineer flowcharts from Python functions
+- **Call Graph Generation**: Visualize function dependencies
+- **Class Diagrams**: Generate from Python classes with inheritance
+- **Iterative Refinement**: Conversational diagram improvement with AI
+- **Hybrid Workflows**: Combine code analysis with AI enhancement
+
 ## Installation
 
 ```bash
@@ -182,7 +190,15 @@ python examples/phase2_features.py
 - Format conversion workflows
 - Complex workflow examples
 
-See [PHASE2.md](PHASE2.md) for complete Phase 2 documentation.
+**Phase 3 Examples:**
+- Python code → flowchart diagrams
+- Call graph generation
+- Class diagram generation
+- AI-powered natural language → diagram
+- Iterative refinement with AI
+- Hybrid code + AI workflows
+
+See [PHASE2.md](PHASE2.md) and [PHASE3.md](PHASE3.md) for complete documentation.
 
 ## Viewing Diagrams
 
@@ -217,12 +233,19 @@ pytest tests/ -v
 
 All tests should pass:
 ```
-52 passed in 0.57s
+71 passed in 1.41s
 ```
 
 Test breakdown:
 - Phase 1: 26 tests (core, renderers, converters, graph operations)
 - Phase 2: 26 tests (parsers, new renderers, enhanced converter)
+- Phase 3: 19 tests (AI mocks, Python analyzer, +2 optional real API tests)
+
+**Note:** AI tests use mocks by default. For real OpenAI API tests:
+```bash
+export OPENAI_API_KEY=your-key
+pytest tests/test_llm_converter.py -v  # Includes real API tests
+```
 
 ### Code Quality
 
@@ -253,14 +276,24 @@ ruff format ij/
 - [x] Comprehensive tests (52 total tests)
 - [x] Multi-format examples
 
-### Phase 3 (Future)
-- [ ] AI/LLM integration for natural language understanding
+### Phase 3 (AI & Code Analysis) ✅
+- [x] AI/LLM integration with OpenAI API
+- [x] Python code-to-diagram reverse engineering
+- [x] Function flowchart generation
+- [x] Call graph visualization
+- [x] Class diagram generation
+- [x] Iterative refinement with AI
+- [x] Comprehensive tests (71 total tests, including AI mocks)
+- [x] Optional real API tests
+
+### Phase 4 (Future)
 - [ ] Visual editor integration
 - [ ] Real-time collaboration (CRDT-based)
-- [ ] Code-to-diagram reverse engineering (Python, Java, etc.)
-- [ ] Multiple diagram views from single source
+- [ ] Java/JavaScript code analysis
 - [ ] Additional parsers (PlantUML, D2 → IR)
 - [ ] Web-based interactive editor
+- [ ] Local LLM support (Ollama, etc.)
+- [ ] Sequence diagram generation
 
 ## Research Foundation
 
