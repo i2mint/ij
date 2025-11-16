@@ -8,8 +8,16 @@ from .analyzers import PythonCodeAnalyzer
 from .core import DiagramIR, Edge, EdgeType, Node, NodeType
 from .converters import EnhancedTextConverter, SimpleTextConverter
 from .graph_ops import GraphOperations
-from .parsers import MermaidParser
-from .renderers import D2Renderer, GraphvizRenderer, MermaidRenderer, PlantUMLRenderer
+from .parsers import D2Parser, MermaidParser
+from .transforms import DiagramTransforms
+from .renderers import (
+    D2Renderer,
+    GraphvizRenderer,
+    InteractionAnalyzer,
+    MermaidRenderer,
+    PlantUMLRenderer,
+    SequenceDiagramRenderer,
+)
 
 # LLMConverter is optional (requires openai package)
 try:
@@ -32,9 +40,13 @@ __all__ = [
     "PlantUMLRenderer",
     "D2Renderer",
     "GraphvizRenderer",
+    "SequenceDiagramRenderer",
+    "InteractionAnalyzer",
     "MermaidParser",
+    "D2Parser",
     "GraphOperations",
     "PythonCodeAnalyzer",
+    "DiagramTransforms",
 ]
 
 if _has_llm:

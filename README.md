@@ -30,6 +30,16 @@ Idea Junction (ij) is a bidirectional diagramming system that enables seamless m
 - **Iterative Refinement**: Conversational diagram improvement with AI
 - **Hybrid Workflows**: Combine code analysis with AI enhancement
 
+### Phase 4 (Advanced Features) ✅
+- **Bidirectional D2**: Parse and render D2 diagrams (complete format support)
+- **Sequence Diagrams**: Generate Mermaid sequence diagrams for interactions
+- **Interaction Analysis**: Extract sequence diagrams from code and text
+- **Diagram Transformations**: Simplify, filter, merge, and optimize diagrams
+- **Cycle Detection**: Find circular dependencies and loops
+- **Subgraph Extraction**: Extract relevant portions of large diagrams
+- **Multi-Format Workflows**: Seamlessly convert between all supported formats
+- **Statistics & Analysis**: Comprehensive diagram metrics and insights
+
 ## Installation
 
 ```bash
