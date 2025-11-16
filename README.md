@@ -6,12 +6,21 @@ Idea Junction (ij) is a bidirectional diagramming system that enables seamless m
 
 ## Features
 
-- **Text-to-Diagram Conversion**: Convert simple text descriptions into Mermaid diagrams
+### Phase 1 (Core) ✅
+- **Text-to-Diagram Conversion**: Convert simple text descriptions into diagrams
 - **Intermediate Representation (IR)**: AST-like structure for bidirectional conversion
 - **Graph Analysis**: Powered by NetworkX for path finding, cycle detection, and graph manipulation
-- **Multiple Formats**: Currently supports Mermaid (GitHub-native), extensible to PlantUML, D2, and more
+- **Mermaid Support**: Full rendering support for GitHub-native diagrams
 - **CLI & Python API**: Use as a command-line tool or integrate into your Python projects
 - **Type-Safe**: Full type hints and validation
+
+### Phase 2 (Bidirectional & Multi-Format) ✅
+- **Mermaid Parser**: Parse Mermaid diagrams back to IR (true bidirectional conversion)
+- **PlantUML Renderer**: Export to PlantUML for enterprise UML diagrams
+- **D2 Renderer**: Export to D2 (Terrastruct) for modern, beautiful diagrams
+- **Graphviz Renderer**: Export to DOT format with multiple layout engines
+- **Enhanced Text Converter**: Support for conditionals, parallel flows, and loops
+- **Format Conversion**: Convert between Mermaid, PlantUML, D2, and Graphviz
 
 ## Installation
 
@@ -150,16 +159,30 @@ Keywords like "Start", "End", "decide", "database" automatically set the correct
 See the [examples/](examples/) directory for comprehensive usage examples:
 
 ```bash
+# Phase 1: Basic features
 python examples/basic_usage.py
+
+# Phase 2: Bidirectional conversion and multiple formats
+python examples/phase2_features.py
 ```
 
-Examples include:
+**Phase 1 Examples:**
 - Simple text-to-diagram conversion
 - Manual diagram creation
 - Graph analysis (path finding, topological sort)
 - Different diagram directions
 - Natural language processing
 - Saving diagrams to files
+
+**Phase 2 Examples:**
+- Bidirectional conversion (Mermaid ↔ IR)
+- Multi-format rendering (Mermaid, PlantUML, D2, Graphviz)
+- Enhanced text conversion with conditionals
+- Parallel flows and loops
+- Format conversion workflows
+- Complex workflow examples
+
+See [PHASE2.md](PHASE2.md) for complete Phase 2 documentation.
 
 ## Viewing Diagrams
 
@@ -194,8 +217,12 @@ pytest tests/ -v
 
 All tests should pass:
 ```
-26 passed in 0.37s
+52 passed in 0.57s
 ```
+
+Test breakdown:
+- Phase 1: 26 tests (core, renderers, converters, graph operations)
+- Phase 2: 26 tests (parsers, new renderers, enhanced converter)
 
 ### Code Quality
 
@@ -209,27 +236,31 @@ ruff format ij/
 
 ## Roadmap
 
-### Phase 1 (Current) ✅
+### Phase 1 (Core Foundation) ✅
 - [x] Core DiagramIR architecture
 - [x] Mermaid renderer
 - [x] NetworkX integration
 - [x] CLI interface
 - [x] Basic text-to-diagram conversion
-- [x] Comprehensive tests
+- [x] Comprehensive tests (26 tests)
 
-### Phase 2 (Next)
-- [ ] Diagram parser (Mermaid → IR)
-- [ ] PlantUML renderer
-- [ ] D2 renderer
-- [ ] Enhanced NLP for text conversion
-- [ ] Graphviz renderer
+### Phase 2 (Bidirectional & Multi-Format) ✅
+- [x] Mermaid parser (Mermaid → IR bidirectional)
+- [x] PlantUML renderer
+- [x] D2 renderer
+- [x] Graphviz/DOT renderer
+- [x] Enhanced text converter (conditionals, parallel, loops)
+- [x] Comprehensive tests (52 total tests)
+- [x] Multi-format examples
 
 ### Phase 3 (Future)
-- [ ] AI/LLM integration for natural language
+- [ ] AI/LLM integration for natural language understanding
 - [ ] Visual editor integration
 - [ ] Real-time collaboration (CRDT-based)
-- [ ] Code-to-diagram reverse engineering
+- [ ] Code-to-diagram reverse engineering (Python, Java, etc.)
 - [ ] Multiple diagram views from single source
+- [ ] Additional parsers (PlantUML, D2 → IR)
+- [ ] Web-based interactive editor
 
 ## Research Foundation
 

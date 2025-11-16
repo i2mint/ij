@@ -5,9 +5,10 @@ natural language, visual diagrams, and code.
 """
 
 from .core import DiagramIR, Edge, EdgeType, Node, NodeType
-from .converters import SimpleTextConverter
+from .converters import EnhancedTextConverter, SimpleTextConverter
 from .graph_ops import GraphOperations
-from .renderers import MermaidRenderer
+from .parsers import MermaidParser
+from .renderers import D2Renderer, GraphvizRenderer, MermaidRenderer, PlantUMLRenderer
 
 __version__ = "0.1.1"
 
@@ -18,7 +19,12 @@ __all__ = [
     "NodeType",
     "EdgeType",
     "SimpleTextConverter",
+    "EnhancedTextConverter",
     "MermaidRenderer",
+    "PlantUMLRenderer",
+    "D2Renderer",
+    "GraphvizRenderer",
+    "MermaidParser",
     "GraphOperations",
 ]
 
