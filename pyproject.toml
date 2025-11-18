@@ -12,7 +12,10 @@ readme = "README.md"
 requires-python = ">=3.10"
 keywords = []
 authors = []
-dependencies = []
+dependencies = [
+    "networkx>=3.0",
+    "graphviz>=0.20",
+]
 
 [project.license]
 text = "mit"
@@ -20,6 +23,9 @@ text = "mit"
 [project.urls]
 Homepage = "https://github.com/i2mint/ij"
 Repository = "https://github.com/i2mint/ij"
+
+[project.scripts]
+ij = "ij.cli:main"
 
 [project.optional-dependencies]
 dev = [
@@ -30,6 +36,9 @@ dev = [
 docs = [
     "sphinx>=6.0",
     "sphinx-rtd-theme>=1.0",
+]
+ai = [
+    "openai>=1.0.0",
 ]
 
 [tool.ruff]
