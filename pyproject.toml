@@ -6,11 +6,11 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ij"
-version = "0.1.1"
-description = "Idea Junction - Connect of vague ideas and evolve them to fully functional systems"
+version = "0.2.0"
+description = "Idea Junction - Bidirectional diagramming system with AI, code analysis, and multi-format support"
 readme = "README.md"
 requires-python = ">=3.10"
-keywords = []
+keywords = ["diagrams", "flowcharts", "visualization", "mermaid", "d2", "plantuml", "ai"]
 authors = []
 dependencies = [
     "networkx>=3.0",
@@ -26,6 +26,7 @@ Repository = "https://github.com/i2mint/ij"
 
 [project.scripts]
 ij = "ij.cli:main"
+ij2 = "ij.cli_enhanced:main"
 
 [project.optional-dependencies]
 dev = [
@@ -39,6 +40,18 @@ docs = [
 ]
 ai = [
     "openai>=1.0.0",
+]
+export = [
+    "playwright>=1.40.0",
+]
+database = [
+    "sqlalchemy>=2.0.0",
+]
+full = [
+    "openai>=1.0.0",
+    "playwright>=1.40.0",
+    "sqlalchemy>=2.0.0",
+    "pyyaml>=6.0",
 ]
 
 [tool.ruff]
