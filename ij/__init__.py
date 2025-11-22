@@ -4,6 +4,7 @@ A bidirectional diagramming system that enables seamless movement between
 natural language, visual diagrams, and code.
 """
 
+# Core
 from .analyzers import PythonCodeAnalyzer
 from .core import DiagramIR, Edge, EdgeType, Node, NodeType
 from .converters import EnhancedTextConverter, SimpleTextConverter
@@ -19,6 +20,29 @@ from .renderers import (
     SequenceDiagramRenderer,
 )
 
+# New modules
+from .validation import DiagramValidator, DiagramLinter, ValidationResult
+from .git_integration import DiagramDiff, DiagramHistory
+from .diagrams import ERDiagram, Entity, Field, Cardinality, StateMachine, State
+from .export import ImageExporter, quick_export
+from .layout import LayoutEngine, ForceDirectedLayout, HierarchicalLayout
+from .plugins import PluginManager, register_plugin, register_transform
+from .viewer import ViewerServer, serve_diagram
+
+# Optional analyzers
+try:
+    from .analyzers.typescript import TypeScriptAnalyzer, analyze_package_json
+    _has_typescript = True
+except ImportError:
+    _has_typescript = False
+
+# Optional importers
+try:
+    from . import importers
+    _has_importers = True
+except ImportError:
+    _has_importers = False
+
 # LLMConverter is optional (requires openai package)
 try:
     from .converters import LLMConverter
@@ -26,9 +50,10 @@ try:
 except ImportError:
     _has_llm = False
 
-__version__ = "0.1.1"
+__version__ = "0.2.0"
 
 __all__ = [
+    # Core
     "DiagramIR",
     "Node",
     "Edge",
@@ -47,10 +72,46 @@ __all__ = [
     "GraphOperations",
     "PythonCodeAnalyzer",
     "DiagramTransforms",
+    # Validation
+    "DiagramValidator",
+    "DiagramLinter",
+    "ValidationResult",
+    # Git integration
+    "DiagramDiff",
+    "DiagramHistory",
+    # Diagrams
+    "ERDiagram",
+    "Entity",
+    "Field",
+    "Cardinality",
+    "StateMachine",
+    "State",
+    # Export
+    "ImageExporter",
+    "quick_export",
+    # Layout
+    "LayoutEngine",
+    "ForceDirectedLayout",
+    "HierarchicalLayout",
+    # Plugins
+    "PluginManager",
+    "register_plugin",
+    "register_transform",
+    # Viewer
+    "ViewerServer",
+    "serve_diagram",
+    # Convenience
+    "text_to_mermaid",
 ]
 
 if _has_llm:
     __all__.append("LLMConverter")
+
+if _has_typescript:
+    __all__.extend(["TypeScriptAnalyzer", "analyze_package_json"])
+
+if _has_importers:
+    __all__.append("importers")
 
 
 def text_to_mermaid(text: str, title: str = None, direction: str = "TD") -> str:
