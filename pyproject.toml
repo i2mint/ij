@@ -1,7 +1,5 @@
 [build-system]
-requires = [
-    "hatchling",
-]
+requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
@@ -11,12 +9,17 @@ description = "Idea Junction - Connect of vague ideas and evolve them to fully f
 
 readme = "README.md"
 requires-python = ">=3.10"
-keywords = ["diagrams", "flowcharts", "visualization", "mermaid", "d2", "plantuml", "ai"]
-authors = []
-dependencies = [
-    "networkx>=3.0",
-    "graphviz>=0.20",
+keywords = [
+    "diagrams",
+    "flowcharts",
+    "visualization",
+    "mermaid",
+    "d2",
+    "plantuml",
+    "ai",
 ]
+authors = []
+dependencies = ["networkx>=3.0", "graphviz>=0.20"]
 
 [project.license]
 text = "mit"
@@ -30,24 +33,11 @@ ij = "ij.cli:main"
 ij2 = "ij.cli_enhanced:main"
 
 [project.optional-dependencies]
-dev = [
-    "pytest>=7.0",
-    "pytest-cov>=4.0",
-    "ruff>=0.1.0",
-]
-docs = [
-    "sphinx>=6.0",
-    "sphinx-rtd-theme>=1.0",
-]
-ai = [
-    "openai>=1.0.0",
-]
-export = [
-    "playwright>=1.40.0",
-]
-database = [
-    "sqlalchemy>=2.0.0",
-]
+dev = ["pytest>=7.0", "pytest-cov>=4.0", "ruff>=0.1.0"]
+docs = ["sphinx>=6.0", "sphinx-rtd-theme>=1.0"]
+ai = ["openai>=1.0.0"]
+export = ["playwright>=1.40.0"]
+database = ["sqlalchemy>=2.0.0"]
 full = [
     "openai>=1.0.0",
     "playwright>=1.40.0",
@@ -70,35 +60,18 @@ exclude = [
 ]
 
 [tool.ruff.lint]
-select = [
-    "D100",
-]
-ignore = [
-    "D203",
-    "E501",
-    "B905",
-]
+select = ["D100"]
+ignore = ["D203", "E501", "B905"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
 [tool.ruff.lint.per-file-ignores]
-"tests/*" = [
-    "D",
-]
-"examples/*" = [
-    "D",
-]
-"scrap/*" = [
-    "D",
-]
+"**/tests/*" = ["D"]
+"**/examples/*" = ["D"]
+"**/scrap/*" = ["D"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-testpaths = [
-    "tests",
-]
-doctest_optionflags = [
-    "NORMALIZE_WHITESPACE",
-    "ELLIPSIS",
-]
+testpaths = ["tests"]
+doctest_optionflags = ["NORMALIZE_WHITESPACE", "ELLIPSIS"]
