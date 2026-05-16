@@ -106,15 +106,15 @@ class GraphvizRenderer:
 
         # Style based on node type
         if node.node_type == NodeType.START:
-            style = 'style=filled, fillcolor=lightgreen'
+            style = "style=filled, fillcolor=lightgreen"
         elif node.node_type == NodeType.END:
-            style = 'style=filled, fillcolor=lightcoral'
+            style = "style=filled, fillcolor=lightcoral"
         elif node.node_type == NodeType.DECISION:
-            style = 'style=filled, fillcolor=lightyellow'
+            style = "style=filled, fillcolor=lightyellow"
         elif node.node_type == NodeType.DATA:
-            style = 'style=filled, fillcolor=lightblue'
+            style = "style=filled, fillcolor=lightblue"
         else:
-            style = 'style=filled, fillcolor=lightgray'
+            style = "style=filled, fillcolor=lightgray"
 
         return f'{node.id} [label="{label}", shape={shape}, {style}];'
 
@@ -122,11 +122,11 @@ class GraphvizRenderer:
         """Render a single edge to DOT syntax."""
         # Determine edge style
         if edge.edge_type == EdgeType.BIDIRECTIONAL:
-            edge_attrs = 'dir=both'
+            edge_attrs = "dir=both"
         elif edge.edge_type == EdgeType.CONDITIONAL:
-            edge_attrs = 'style=dashed'
+            edge_attrs = "style=dashed"
         else:
-            edge_attrs = ''
+            edge_attrs = ""
 
         if edge.label:
             # Edge with label
@@ -138,9 +138,9 @@ class GraphvizRenderer:
         else:
             # Simple edge
             if edge_attrs:
-                return f'{edge.source} {edge_op} {edge.target} [{edge_attrs}];'
+                return f"{edge.source} {edge_op} {edge.target} [{edge_attrs}];"
             else:
-                return f'{edge.source} {edge_op} {edge.target};'
+                return f"{edge.source} {edge_op} {edge.target};"
 
     def render_to_file(self, diagram: DiagramIR, filename: str) -> None:
         """Render diagram and save to file.

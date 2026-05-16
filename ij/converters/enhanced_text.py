@@ -244,9 +244,7 @@ class EnhancedTextConverter:
 
             prev_node = node
 
-    def _create_node(
-        self, label: str, node_type: Optional[NodeType] = None
-    ) -> Node:
+    def _create_node(self, label: str, node_type: Optional[NodeType] = None) -> Node:
         """Create a node with unique ID."""
         # Check if we've already created this node
         if label in self.nodes_created:
@@ -295,9 +293,7 @@ class EnhancedTextConverter:
             word in text_lower for word in ["database", "store", "save", "persist"]
         ):
             return NodeType.DATA
-        elif any(
-            word in text_lower for word in ["subprocess", "subroutine", "call"]
-        ):
+        elif any(word in text_lower for word in ["subprocess", "subroutine", "call"]):
             return NodeType.SUBPROCESS
 
         # Use position as hint

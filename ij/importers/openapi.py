@@ -97,7 +97,9 @@ def from_openapi(spec: Union[str, Dict], title: Optional[str] = None) -> Diagram
     return diagram
 
 
-def from_openapi_to_sequence(spec: Union[str, Dict], flow: str = "default") -> DiagramIR:
+def from_openapi_to_sequence(
+    spec: Union[str, Dict], flow: str = "default"
+) -> DiagramIR:
     """Create sequence diagram from OpenAPI spec showing request flow.
 
     Args:
@@ -124,10 +126,20 @@ def from_openapi_to_sequence(spec: Union[str, Dict], flow: str = "default") -> D
     diagram.add_edge(Edge(source="client", target="api", label="Request"))
     diagram.add_edge(Edge(source="api", target="database", label="Query"))
     diagram.add_edge(
-        Edge(source="database", target="api", label="Result", edge_type=EdgeType.CONDITIONAL)
+        Edge(
+            source="database",
+            target="api",
+            label="Result",
+            edge_type=EdgeType.CONDITIONAL,
+        )
     )
     diagram.add_edge(
-        Edge(source="api", target="client", label="Response", edge_type=EdgeType.CONDITIONAL)
+        Edge(
+            source="api",
+            target="client",
+            label="Response",
+            edge_type=EdgeType.CONDITIONAL,
+        )
     )
 
     return diagram

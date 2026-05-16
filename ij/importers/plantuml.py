@@ -50,9 +50,7 @@ def from_plantuml(plantuml_code: str, title: Optional[str] = None) -> DiagramIR:
         # Parse start node
         if line == "start":
             node_id = "start"
-            diagram.add_node(
-                Node(id=node_id, label="Start", node_type=NodeType.START)
-            )
+            diagram.add_node(Node(id=node_id, label="Start", node_type=NodeType.START))
             node_map["start"] = node_id
 
         # Parse stop/end node

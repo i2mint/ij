@@ -269,7 +269,9 @@ class ViewerServer:
 
         url = f"http://localhost:{self.port}"
         print(f"🚀 Server running at {url}")
-        print(f"📊 Viewing diagram with {len(diagram.nodes)} nodes, {len(diagram.edges)} edges")
+        print(
+            f"📊 Viewing diagram with {len(diagram.nodes)} nodes, {len(diagram.edges)} edges"
+        )
         print("🔄 Auto-refresh enabled (updates every 2 seconds)")
         print("⏹️  Press Ctrl+C to stop\n")
 

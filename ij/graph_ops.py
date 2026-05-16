@@ -161,7 +161,9 @@ class GraphOperations:
         return set(nx.articulation_points(G.to_undirected()))
 
     @staticmethod
-    def simplify_diagram(diagram: DiagramIR, remove_redundant: bool = True) -> DiagramIR:
+    def simplify_diagram(
+        diagram: DiagramIR, remove_redundant: bool = True
+    ) -> DiagramIR:
         """Simplify diagram by removing redundant edges and nodes.
 
         Args:

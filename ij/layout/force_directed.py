@@ -73,7 +73,9 @@ class ForceDirectedLayout:
 
                     dx = pos_a[0] - pos_b[0]
                     dy = pos_a[1] - pos_b[1]
-                    distance = math.sqrt(dx * dx + dy * dy) + 0.01  # Avoid division by zero
+                    distance = (
+                        math.sqrt(dx * dx + dy * dy) + 0.01
+                    )  # Avoid division by zero
 
                     # Repulsion force
                     force = self.c_repulsion / (distance * distance)

@@ -101,9 +101,7 @@ class D2Parser:
                     i += 1
 
                 node_type = self.SHAPE_TO_TYPE.get(shape, NodeType.PROCESS)
-                self.nodes[node_id] = Node(
-                    id=node_id, label=label, node_type=node_type
-                )
+                self.nodes[node_id] = Node(id=node_id, label=label, node_type=node_type)
                 continue
 
             # Check for simple node
@@ -152,7 +150,9 @@ class D2Parser:
 
         return diagram
 
-    def _parse_edge_line(self, line: str) -> Optional[Tuple[str, str, Optional[str], EdgeType]]:
+    def _parse_edge_line(
+        self, line: str
+    ) -> Optional[Tuple[str, str, Optional[str], EdgeType]]:
         """Parse an edge line.
 
         Returns: (source, target, label, edge_type) or None
@@ -168,9 +168,7 @@ class D2Parser:
             )
 
         # Edge with dashed style: n1 -> n2 {style.stroke-dash: 3}
-        match = re.match(
-            r'(\w+)\s*->\s*(\w+)\s*\{[^}]*stroke-dash[^}]*\}', line
-        )
+        match = re.match(r"(\w+)\s*->\s*(\w+)\s*\{[^}]*stroke-dash[^}]*\}", line)
         if match:
             return (
                 match.group(1),
@@ -180,7 +178,7 @@ class D2Parser:
             )
 
         # Simple edge: n1 -> n2
-        match = re.match(r'(\w+)\s*->\s*(\w+)', line)
+        match = re.match(r"(\w+)\s*->\s*(\w+)", line)
         if match:
             return (
                 match.group(1),
@@ -190,7 +188,7 @@ class D2Parser:
             )
 
         # Bidirectional: n1 <-> n2
-        match = re.match(r'(\w+)\s*<->\s*(\w+)', line)
+        match = re.match(r"(\w+)\s*<->\s*(\w+)", line)
         if match:
             return (
                 match.group(1),

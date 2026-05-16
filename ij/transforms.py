@@ -252,7 +252,9 @@ class DiagramTransforms:
         return new_diagram
 
     @staticmethod
-    def merge_diagrams(diagrams: List[DiagramIR], title: Optional[str] = None) -> DiagramIR:
+    def merge_diagrams(
+        diagrams: List[DiagramIR], title: Optional[str] = None
+    ) -> DiagramIR:
         """Merge multiple diagrams into one.
 
         Args:
@@ -438,8 +440,12 @@ class DiagramTransforms:
             "edge_count": len(diagram.edges),
             "node_types": dict(node_type_counts),
             "edge_types": dict(edge_type_counts),
-            "max_incoming_degree": max(incoming_degree.values()) if incoming_degree else 0,
-            "max_outgoing_degree": max(outgoing_degree.values()) if outgoing_degree else 0,
+            "max_incoming_degree": max(incoming_degree.values())
+            if incoming_degree
+            else 0,
+            "max_outgoing_degree": max(outgoing_degree.values())
+            if outgoing_degree
+            else 0,
             "isolated_nodes": len(
                 [
                     n

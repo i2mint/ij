@@ -82,7 +82,9 @@ class PluginManager:
             self.hooks[event] = []
         self.hooks[event].append(func)
 
-    def execute_plugin(self, plugin_name: str, diagram: DiagramIR, **kwargs) -> DiagramIR:
+    def execute_plugin(
+        self, plugin_name: str, diagram: DiagramIR, **kwargs
+    ) -> DiagramIR:
         """Execute a plugin on a diagram.
 
         Args:
@@ -99,7 +101,9 @@ class PluginManager:
         plugin = self.plugins[plugin_name]
         return plugin.process(diagram, **kwargs)
 
-    def apply_transform(self, transform_name: str, diagram: DiagramIR, **kwargs) -> DiagramIR:
+    def apply_transform(
+        self, transform_name: str, diagram: DiagramIR, **kwargs
+    ) -> DiagramIR:
         """Apply a registered transform.
 
         Args:

@@ -116,9 +116,7 @@ class SequenceDiagramRenderer:
         }
         return arrow_map.get(edge_type, "->>")
 
-    def render_with_notes(
-        self, diagram: DiagramIR, notes: Dict[str, List[str]]
-    ) -> str:
+    def render_with_notes(self, diagram: DiagramIR, notes: Dict[str, List[str]]) -> str:
         """Render sequence diagram with notes.
 
         Args:
@@ -186,9 +184,7 @@ class InteractionAnalyzer:
         """Initialize analyzer."""
         pass
 
-    def analyze_function_calls(
-        self, caller: str, code: str
-    ) -> DiagramIR:
+    def analyze_function_calls(self, caller: str, code: str) -> DiagramIR:
         """Analyze function calls to create a sequence diagram.
 
         Args:
@@ -287,7 +283,11 @@ class InteractionAnalyzer:
                 if match:
                     source = match.group(1)
                     target = match.group(2)
-                    message = match.group(3) if len(match.groups()) > 2 and match.group(3) else ""
+                    message = (
+                        match.group(3)
+                        if len(match.groups()) > 2 and match.group(3)
+                        else ""
+                    )
 
                     # Add participants if not exists
                     if not any(n.id == source for n in diagram.nodes):

@@ -42,9 +42,7 @@ class Transition:
 class StateMachine:
     """Finite State Machine diagram."""
 
-    def __init__(
-        self, name: str = "StateMachine", initial_state: Optional[str] = None
-    ):
+    def __init__(self, name: str = "StateMachine", initial_state: Optional[str] = None):
         """Initialize state machine.
 
         Args:
@@ -246,9 +244,7 @@ class StateMachine:
         # Check for undefined states in transitions
         for trans in self.transitions:
             if trans.from_state not in all_states:
-                issues.append(
-                    f"Transition from undefined state: {trans.from_state}"
-                )
+                issues.append(f"Transition from undefined state: {trans.from_state}")
             if trans.to_state not in all_states:
                 issues.append(f"Transition to undefined state: {trans.to_state}")
 
@@ -412,7 +408,9 @@ class StateMachineBuilder:
             if line.upper().startswith("STATE "):
                 parts = line.split()
                 state_name = parts[1]
-                state_type = StateType.FINAL if "FINAL" in line.upper() else StateType.NORMAL
+                state_type = (
+                    StateType.FINAL if "FINAL" in line.upper() else StateType.NORMAL
+                )
                 sm.add_state(state_name, state_type=state_type)
 
             elif line.upper().startswith("INITIAL "):

@@ -203,7 +203,7 @@ Output the updated Mermaid code."""
         # Build few-shot prompt
         examples_text = "\n\n".join(
             [
-                f"Example {i+1}:\nDescription: {ex['description']}\n\nMermaid:\n{ex['mermaid']}"
+                f"Example {i + 1}:\nDescription: {ex['description']}\n\nMermaid:\n{ex['mermaid']}"
                 for i, ex in enumerate(examples)
             ]
         )

@@ -95,9 +95,7 @@ class SimpleTextConverter:
         text_lower = text.lower()
 
         # Check for explicit keywords
-        if any(
-            word in text_lower for word in ["start", "begin", "initialize", "open"]
-        ):
+        if any(word in text_lower for word in ["start", "begin", "initialize", "open"]):
             return NodeType.START
         elif any(word in text_lower for word in ["end", "finish", "complete", "close"]):
             return NodeType.END

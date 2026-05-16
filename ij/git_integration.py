@@ -369,7 +369,11 @@ class DiagramHistory:
             if changes.has_changes:
                 lines.append(f"\n{prev_name} → {curr_name}:")
                 lines.append(f"  Changes: {changes.total_changes}")
-                lines.append(f"    Nodes: +{len(changes.added_nodes)} -{len(changes.removed_nodes)} ~{len(changes.modified_nodes)}")
-                lines.append(f"    Edges: +{len(changes.added_edges)} -{len(changes.removed_edges)}")
+                lines.append(
+                    f"    Nodes: +{len(changes.added_nodes)} -{len(changes.removed_nodes)} ~{len(changes.modified_nodes)}"
+                )
+                lines.append(
+                    f"    Edges: +{len(changes.added_edges)} -{len(changes.removed_edges)}"
+                )
 
         return "\n".join(lines)

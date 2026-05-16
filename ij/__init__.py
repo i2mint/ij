@@ -32,6 +32,7 @@ from .viewer import ViewerServer, serve_diagram
 # Optional analyzers
 try:
     from .analyzers.typescript import TypeScriptAnalyzer, analyze_package_json
+
     _has_typescript = True
 except ImportError:
     _has_typescript = False
@@ -39,6 +40,7 @@ except ImportError:
 # Optional importers
 try:
     from . import importers
+
     _has_importers = True
 except ImportError:
     _has_importers = False
@@ -46,6 +48,7 @@ except ImportError:
 # LLMConverter is optional (requires openai package)
 try:
     from .converters import LLMConverter
+
     _has_llm = True
 except ImportError:
     _has_llm = False

@@ -123,9 +123,7 @@ def from_drawio_xml(xml_content: str) -> DiagramIR:
     import tempfile
 
     # Write to temp file and use main function
-    with tempfile.NamedTemporaryFile(
-        mode="w", suffix=".drawio", delete=False
-    ) as f:
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".drawio", delete=False) as f:
         f.write(xml_content)
         temp_path = f.name
 

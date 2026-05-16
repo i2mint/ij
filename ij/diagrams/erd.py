@@ -146,7 +146,7 @@ class ERDiagram:
                     constraints.append("NOT NULL")
 
                 if constraints:
-                    field_line += f" \"{', '.join(constraints)}\""
+                    field_line += f' "{", ".join(constraints)}"'
 
                 lines.append(field_line)
             lines.append("    }")
@@ -345,7 +345,9 @@ class ERDBuilder:
 
             for line in field_lines:
                 # Skip constraints
-                if line.upper().startswith(("PRIMARY KEY", "FOREIGN KEY", "CONSTRAINT")):
+                if line.upper().startswith(
+                    ("PRIMARY KEY", "FOREIGN KEY", "CONSTRAINT")
+                ):
                     continue
 
                 # Parse field: name type [constraints]

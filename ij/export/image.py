@@ -221,7 +221,9 @@ class ImageExporter:
                 elif self.format == "pdf":
                     page.pdf(path=output_path)
                 else:  # SVG - extract the rendered SVG
-                    svg_content = page.eval_on_selector(".mermaid svg", "el => el.outerHTML")
+                    svg_content = page.eval_on_selector(
+                        ".mermaid svg", "el => el.outerHTML"
+                    )
                     Path(output_path).write_text(svg_content)
 
                 browser.close()

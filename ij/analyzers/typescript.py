@@ -61,7 +61,9 @@ class TypeScriptAnalyzer:
 
         # Find function
         if function_name:
-            pattern = rf"(?:function\s+{function_name}|const\s+{function_name}\s*=.*?=>)"
+            pattern = (
+                rf"(?:function\s+{function_name}|const\s+{function_name}\s*=.*?=>)"
+            )
         else:
             pattern = r"(?:function\s+\w+|const\s+\w+\s*=.*?=>)"
 
@@ -172,10 +174,10 @@ class TypeScriptAnalyzer:
             node_id = f"import_{node_counter}"
             node_counter += 1
 
-            diagram.add_node(Node(id=node_id, label=module_name, node_type=NodeType.DATA))
-            diagram.add_edge(
-                Edge(source=node_id, target="module", label="import")
+            diagram.add_node(
+                Node(id=node_id, label=module_name, node_type=NodeType.DATA)
             )
+            diagram.add_edge(Edge(source=node_id, target="module", label="import"))
 
         # Find exports
         export_pattern = r"export\s+(?:default\s+)?(\w+)"
@@ -187,9 +189,7 @@ class TypeScriptAnalyzer:
             diagram.add_node(
                 Node(id=node_id, label=export_name, node_type=NodeType.END)
             )
-            diagram.add_edge(
-                Edge(source="module", target=node_id, label="export")
-            )
+            diagram.add_edge(Edge(source="module", target=node_id, label="export"))
 
         return diagram
 
@@ -241,9 +241,7 @@ class TypeScriptAnalyzer:
                 diagram.add_node(
                     Node(id=node_id, label=component, node_type=NodeType.PROCESS)
                 )
-                diagram.add_edge(
-                    Edge(source="root", target=node_id, label="renders")
-                )
+                diagram.add_edge(Edge(source="root", target=node_id, label="renders"))
 
         return diagram
 
@@ -320,12 +318,8 @@ def analyze_package_json(file_path: str) -> DiagramIR:
     for dep_name in deps.keys():
         node_id = f"dep_{node_counter}"
         node_counter += 1
-        diagram.add_node(
-            Node(id=node_id, label=dep_name, node_type=NodeType.PROCESS)
-        )
-        diagram.add_edge(
-            Edge(source="root", target=node_id, label="depends on")
-        )
+        diagram.add_node(Node(id=node_id, label=dep_name, node_type=NodeType.PROCESS))
+        diagram.add_edge(Edge(source="root", target=node_id, label="depends on"))
 
     # Add dev dependencies
     dev_deps = package_data.get("devDependencies", {})

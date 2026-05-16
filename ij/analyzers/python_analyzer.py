@@ -169,9 +169,7 @@ class PythonCodeAnalyzer:
 
         # Analyze calls in each function
         for func_name, func_def in functions.items():
-            caller_node = self._get_or_create_function_node(
-                func_name, diagram
-            )
+            caller_node = self._get_or_create_function_node(func_name, diagram)
 
             # Find all function calls
             for node in ast.walk(func_def):
@@ -212,9 +210,7 @@ class PythonCodeAnalyzer:
             return self._analyze_call(stmt.value, prev_node, diagram)
         else:
             # Generic statement
-            node = self._create_node(
-                self._stmt_to_string(stmt), NodeType.PROCESS
-            )
+            node = self._create_node(self._stmt_to_string(stmt), NodeType.PROCESS)
             diagram.add_node(node)
             diagram.add_edge(Edge(source=prev_node.id, target=node.id))
             return node
@@ -256,7 +252,9 @@ class PythonCodeAnalyzer:
         # In a real implementation, you might want to merge branches
         return last_true if last_true != decision_node else last_false
 
-    def _analyze_while(self, stmt: ast.While, prev_node: Node, diagram: DiagramIR) -> Node:
+    def _analyze_while(
+        self, stmt: ast.While, prev_node: Node, diagram: DiagramIR
+    ) -> Node:
         """Analyze a while loop."""
         condition = self._expr_to_string(stmt.test)
         decision_node = self._create_node(condition, NodeType.DECISION)
@@ -306,7 +304,9 @@ class PythonCodeAnalyzer:
 
         return loop_node
 
-    def _analyze_return(self, stmt: ast.Return, prev_node: Node, diagram: DiagramIR) -> Node:
+    def _analyze_return(
+        self, stmt: ast.Return, prev_node: Node, diagram: DiagramIR
+    ) -> Node:
         """Analyze a return statement."""
         if stmt.value:
             label = f"Return {self._expr_to_string(stmt.value)}"
@@ -318,7 +318,9 @@ class PythonCodeAnalyzer:
         diagram.add_edge(Edge(source=prev_node.id, target=node.id))
         return node
 
-    def _analyze_call(self, call: ast.Call, prev_node: Node, diagram: DiagramIR) -> Node:
+    def _analyze_call(
+        self, call: ast.Call, prev_node: Node, diagram: DiagramIR
+    ) -> Node:
         """Analyze a function call."""
         func_name = self._expr_to_string(call.func)
         args = [self._expr_to_string(arg) for arg in call.args]

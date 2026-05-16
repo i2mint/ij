@@ -388,7 +388,9 @@ def main():
     convert_parser.add_argument("input", help="Input file")
     convert_parser.add_argument("-o", "--output", help="Output file (default: stdout)")
     convert_parser.add_argument(
-        "--from", dest="from_format", help="Input format (auto-detected if not specified)"
+        "--from",
+        dest="from_format",
+        help="Input format (auto-detected if not specified)",
     )
     convert_parser.add_argument(
         "--to", dest="to_format", help="Output format (auto-detected from extension)"
@@ -432,7 +434,9 @@ def main():
     diff_parser = subparsers.add_parser("diff", help="Compare two diagrams")
     diff_parser.add_argument("file1", help="First diagram")
     diff_parser.add_argument("file2", help="Second diagram")
-    diff_parser.add_argument("-v", "--verbose", action="store_true", help="Show details")
+    diff_parser.add_argument(
+        "-v", "--verbose", action="store_true", help="Show details"
+    )
 
     # Extract command
     extract_parser = subparsers.add_parser("extract", help="Extract a subgraph")
