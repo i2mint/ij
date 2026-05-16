@@ -1,0 +1,4 @@
+ij.diagrams.erd
+===============
+.. automodule:: ij.diagrams.erd
+   :members:

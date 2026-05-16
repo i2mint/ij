@@ -1,0 +1,425 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ij.plugins.plugin_manager &mdash; ij 0.1.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=fd825880"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ij
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij.html">ij</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers.html">ij.analyzers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers/python_analyzer.html">ij.analyzers.python_analyzer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers/typescript.html">ij.analyzers.typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/cli.html">ij.cli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/cli_enhanced.html">ij.cli_enhanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters.html">ij.converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/enhanced_text.html">ij.converters.enhanced_text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/llm_converter.html">ij.converters.llm_converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/text_to_ir.html">ij.converters.text_to_ir</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/core.html">ij.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams.html">ij.diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams/erd.html">ij.diagrams.erd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams/state_machine.html">ij.diagrams.state_machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/export.html">ij.export</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/export/image.html">ij.export.image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/git_integration.html">ij.git_integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/graph_ops.html">ij.graph_ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers.html">ij.importers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/database.html">ij.importers.database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/drawio.html">ij.importers.drawio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/openapi.html">ij.importers.openapi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/plantuml.html">ij.importers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout.html">ij.layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/force_directed.html">ij.layout.force_directed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/hierarchical.html">ij.layout.hierarchical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/layout_engine.html">ij.layout.layout_engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers.html">ij.parsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers/d2.html">ij.parsers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers/mermaid.html">ij.parsers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/plugins.html">ij.plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/plugins/plugin_manager.html">ij.plugins.plugin_manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers.html">ij.renderers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/d2.html">ij.renderers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/graphviz.html">ij.renderers.graphviz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/mermaid.html">ij.renderers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/plantuml.html">ij.renderers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/sequence.html">ij.renderers.sequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/transforms.html">ij.transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/validation.html">ij.validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/viewer.html">ij.viewer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/viewer/server.html">ij.viewer.server</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ij</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../ij.html">ij</a></li>
+      <li class="breadcrumb-item active">ij.plugins.plugin_manager</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ij.plugins.plugin_manager</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Plugin manager for extensible functionality.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">importlib.util</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..core</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiagramIR</span>
+
+
+<div class="viewcode-block" id="Plugin">
+<a class="viewcode-back" href="../../../module_docs/ij/plugins/plugin_manager.html#ij.Plugin">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Plugin</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for plugins.&quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;base_plugin&quot;</span>
+    <span class="n">version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;1.0.0&quot;</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+<div class="viewcode-block" id="Plugin.initialize">
+<a class="viewcode-back" href="../../../module_docs/ij/plugins/plugin_manager.html#ij.Plugin.initialize">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize plugin (called once when loaded).&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="Plugin.process">
+<a class="viewcode-back" href="../../../module_docs/ij/plugins/plugin_manager.html#ij.Plugin.process">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DiagramIR</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process diagram (override in subclass).&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">diagram</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="PluginManager">
+<a class="viewcode-back" href="../../../module_docs/ij/plugins/plugin_manager.html#ij.PluginManager">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PluginManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Manage and execute plugins.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize plugin manager.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plugins</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Plugin</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hooks</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+
+<div class="viewcode-block" id="PluginManager.register_plugin">
+<a class="viewcode-back" href="../../../module_docs/ij/plugins/plugin_manager.html#ij.PluginManager.register_plugin">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">register_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="n">Plugin</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Register a plugin.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            plugin: Plugin instance to register</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; class MyPlugin(Plugin):</span>
+<span class="sd">            ...     name = &quot;my_plugin&quot;</span>
+<span class="sd">            ...     def process(self, diagram, **kwargs):</span>
+<span class="sd">            ...         # Transform diagram</span>
+<span class="sd">            ...         return diagram</span>
+<span class="sd">            &gt;&gt;&gt; manager = PluginManager()</span>
+<span class="sd">            &gt;&gt;&gt; manager.register_plugin(MyPlugin())</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">plugin</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plugins</span><span class="p">[</span><span class="n">plugin</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">plugin</span></div>
+
+
+<div class="viewcode-block" id="PluginManager.register_transform">
+<a class="viewcode-back" href="../../../module_docs/ij/plugins/plugin_manager.html#ij.PluginManager.register_transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">register_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Register a transform function.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name: Transform name</span>
+<span class="sd">            func: Transform function (diagram, **kwargs) -&gt; diagram</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; def highlight_critical(diagram, start, end):</span>
+<span class="sd">            ...     # Highlight path from start to end</span>
+<span class="sd">            ...     return diagram</span>
+<span class="sd">            &gt;&gt;&gt; manager.register_transform(&#39;highlight-critical&#39;, highlight_critical)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span></div>
+
+
+<div class="viewcode-block" id="PluginManager.register_hook">
+<a class="viewcode-back" href="../../../module_docs/ij/plugins/plugin_manager.html#ij.PluginManager.register_hook">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">register_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Register a hook for an event.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            event: Event name (&#39;pre_render&#39;, &#39;post_parse&#39;, etc.)</span>
+<span class="sd">            func: Hook function</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; def on_render(diagram):</span>
+<span class="sd">            ...     print(f&quot;Rendering {len(diagram.nodes)} nodes&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; manager.register_hook(&#39;pre_render&#39;, on_render)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">event</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hooks</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hooks</span><span class="p">[</span><span class="n">event</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hooks</span><span class="p">[</span><span class="n">event</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">func</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PluginManager.execute_plugin">
+<a class="viewcode-back" href="../../../module_docs/ij/plugins/plugin_manager.html#ij.PluginManager.execute_plugin">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">execute_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DiagramIR</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute a plugin on a diagram.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            plugin_name: Name of plugin to execute</span>
+<span class="sd">            diagram: DiagramIR to process</span>
+<span class="sd">            **kwargs: Plugin-specific arguments</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Transformed DiagramIR</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">plugin_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugins</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Plugin not found: </span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">plugin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugins</span><span class="p">[</span><span class="n">plugin_name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">plugin</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">diagram</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PluginManager.apply_transform">
+<a class="viewcode-back" href="../../../module_docs/ij/plugins/plugin_manager.html#ij.PluginManager.apply_transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transform_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DiagramIR</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply a registered transform.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            transform_name: Name of transform</span>
+<span class="sd">            diagram: DiagramIR to transform</span>
+<span class="sd">            **kwargs: Transform arguments</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Transformed DiagramIR</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">transform_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Transform not found: </span><span class="si">{</span><span class="n">transform_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">transform</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="p">[</span><span class="n">transform_name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">transform</span><span class="p">(</span><span class="n">diagram</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PluginManager.trigger_hooks">
+<a class="viewcode-back" href="../../../module_docs/ij/plugins/plugin_manager.html#ij.PluginManager.trigger_hooks">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">trigger_hooks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Trigger all hooks for an event.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            event: Event name</span>
+<span class="sd">            *args: Event arguments</span>
+<span class="sd">            **kwargs: Event keyword arguments</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hooks</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="p">[]):</span>
+            <span class="n">hook</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PluginManager.load_plugin_file">
+<a class="viewcode-back" href="../../../module_docs/ij/plugins/plugin_manager.html#ij.PluginManager.load_plugin_file">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_plugin_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load plugin from a Python file.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            file_path: Path to plugin file</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; manager.load_plugin_file(&#39;plugins/my_plugin.py&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Plugin file not found: </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Load module</span>
+        <span class="n">spec</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">spec_from_file_location</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">stem</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">spec</span> <span class="ow">and</span> <span class="n">spec</span><span class="o">.</span><span class="n">loader</span><span class="p">:</span>
+            <span class="n">module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">module_from_spec</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span>
+            <span class="n">spec</span><span class="o">.</span><span class="n">loader</span><span class="o">.</span><span class="n">exec_module</span><span class="p">(</span><span class="n">module</span><span class="p">)</span>
+
+            <span class="c1"># Find Plugin subclasses in module</span>
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getmembers</span><span class="p">(</span><span class="n">module</span><span class="p">):</span>
+                <span class="k">if</span> <span class="p">(</span>
+                    <span class="n">inspect</span><span class="o">.</span><span class="n">isclass</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+                    <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Plugin</span><span class="p">)</span>
+                    <span class="ow">and</span> <span class="n">obj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">Plugin</span>
+                <span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">register_plugin</span><span class="p">(</span><span class="n">obj</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="PluginManager.load_plugins_directory">
+<a class="viewcode-back" href="../../../module_docs/ij/plugins/plugin_manager.html#ij.PluginManager.load_plugins_directory">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_plugins_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load all plugins from a directory.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            directory: Directory containing plugin files</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; manager.load_plugins_directory(&#39;~/.ij/plugins&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dir_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span><span class="o">.</span><span class="n">expanduser</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">dir_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span>
+
+        <span class="k">for</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="n">dir_path</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.py&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">file_path</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">load_plugin_file</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">file_path</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error loading plugin </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PluginManager.list_plugins">
+<a class="viewcode-back" href="../../../module_docs/ij/plugins/plugin_manager.html#ij.PluginManager.list_plugins">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">list_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List all registered plugins.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List of plugin information dictionaries</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">plugin</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="n">plugin</span><span class="o">.</span><span class="n">version</span><span class="p">,</span>
+                <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">plugin</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="k">for</span> <span class="n">plugin</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="PluginManager.list_transforms">
+<a class="viewcode-back" href="../../../module_docs/ij/plugins/plugin_manager.html#ij.PluginManager.list_transforms">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">list_transforms</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List all registered transforms.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div>
+</div>
+
+
+
+<span class="c1"># Global plugin manager instance</span>
+<span class="n">_global_manager</span> <span class="o">=</span> <span class="n">PluginManager</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="register_plugin">
+<a class="viewcode-back" href="../../../module_docs/ij/plugins/plugin_manager.html#ij.register_plugin">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">register_plugin</span><span class="p">(</span><span class="n">plugin</span><span class="p">:</span> <span class="n">Plugin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Register plugin with global manager.&quot;&quot;&quot;</span>
+    <span class="n">_global_manager</span><span class="o">.</span><span class="n">register_plugin</span><span class="p">(</span><span class="n">plugin</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="register_transform">
+<a class="viewcode-back" href="../../../module_docs/ij/plugins/plugin_manager.html#ij.register_transform">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">register_transform</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator to register a transform function.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; @register_transform(&#39;my-transform&#39;)</span>
+<span class="sd">        ... def my_transform(diagram, **kwargs):</span>
+<span class="sd">        ...     return diagram</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+        <span class="n">_global_manager</span><span class="o">.</span><span class="n">register_transform</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">func</span>
+
+    <span class="k">return</span> <span class="n">decorator</span></div>
+
+
+
+<div class="viewcode-block" id="get_global_manager">
+<a class="viewcode-back" href="../../../module_docs/ij/plugins/plugin_manager.html#ij.get_global_manager">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_global_manager</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">PluginManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the global plugin manager.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_global_manager</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright NO COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

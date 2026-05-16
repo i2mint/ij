@@ -1,0 +1,384 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ij.core &mdash; ij 0.1.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=fd825880"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ij.diagrams" href="diagrams.html" />
+    <link rel="prev" title="ij.converters.text_to_ir" href="converters/text_to_ir.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ij
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ij.html">ij</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analyzers.html">ij.analyzers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analyzers/python_analyzer.html">ij.analyzers.python_analyzer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analyzers/typescript.html">ij.analyzers.typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">ij.cli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli_enhanced.html">ij.cli_enhanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="converters.html">ij.converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="converters/enhanced_text.html">ij.converters.enhanced_text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="converters/llm_converter.html">ij.converters.llm_converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="converters/text_to_ir.html">ij.converters.text_to_ir</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ij.core</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ij.core.DiagramIR"><code class="docutils literal notranslate"><span class="pre">DiagramIR</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ij.core.DiagramIR.nodes"><code class="docutils literal notranslate"><span class="pre">DiagramIR.nodes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.core.DiagramIR.edges"><code class="docutils literal notranslate"><span class="pre">DiagramIR.edges</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.core.DiagramIR.metadata"><code class="docutils literal notranslate"><span class="pre">DiagramIR.metadata</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.core.DiagramIR.add_edge"><code class="docutils literal notranslate"><span class="pre">DiagramIR.add_edge()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.core.DiagramIR.add_node"><code class="docutils literal notranslate"><span class="pre">DiagramIR.add_node()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.core.DiagramIR.get_node"><code class="docutils literal notranslate"><span class="pre">DiagramIR.get_node()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.core.DiagramIR.validate"><code class="docutils literal notranslate"><span class="pre">DiagramIR.validate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ij.core.Edge"><code class="docutils literal notranslate"><span class="pre">Edge</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ij.core.Edge.source"><code class="docutils literal notranslate"><span class="pre">Edge.source</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.core.Edge.target"><code class="docutils literal notranslate"><span class="pre">Edge.target</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.core.Edge.label"><code class="docutils literal notranslate"><span class="pre">Edge.label</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.core.Edge.edge_type"><code class="docutils literal notranslate"><span class="pre">Edge.edge_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.core.Edge.metadata"><code class="docutils literal notranslate"><span class="pre">Edge.metadata</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ij.core.EdgeType"><code class="docutils literal notranslate"><span class="pre">EdgeType</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ij.core.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ij.core.Node.id"><code class="docutils literal notranslate"><span class="pre">Node.id</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.core.Node.label"><code class="docutils literal notranslate"><span class="pre">Node.label</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.core.Node.node_type"><code class="docutils literal notranslate"><span class="pre">Node.node_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.core.Node.metadata"><code class="docutils literal notranslate"><span class="pre">Node.metadata</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ij.core.NodeType"><code class="docutils literal notranslate"><span class="pre">NodeType</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams.html">ij.diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/erd.html">ij.diagrams.erd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/state_machine.html">ij.diagrams.state_machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export.html">ij.export</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export/image.html">ij.export.image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git_integration.html">ij.git_integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph_ops.html">ij.graph_ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importers.html">ij.importers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importers/database.html">ij.importers.database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importers/drawio.html">ij.importers.drawio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importers/openapi.html">ij.importers.openapi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importers/plantuml.html">ij.importers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layout.html">ij.layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layout/force_directed.html">ij.layout.force_directed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layout/hierarchical.html">ij.layout.hierarchical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layout/layout_engine.html">ij.layout.layout_engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parsers.html">ij.parsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parsers/d2.html">ij.parsers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parsers/mermaid.html">ij.parsers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">ij.plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins/plugin_manager.html">ij.plugins.plugin_manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderers.html">ij.renderers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderers/d2.html">ij.renderers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderers/graphviz.html">ij.renderers.graphviz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderers/mermaid.html">ij.renderers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderers/plantuml.html">ij.renderers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderers/sequence.html">ij.renderers.sequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms.html">ij.transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">ij.validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viewer.html">ij.viewer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viewer/server.html">ij.viewer.server</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ij</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ij.core</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/module_docs/ij/core.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-ij.core">
+<span id="ij-core"></span><h1>ij.core<a class="headerlink" href="#module-ij.core" title="Link to this heading"></a></h1>
+<p>Core data structures for Idea Junction.</p>
+<p>This module provides the intermediate representation (IR) for diagrams,
+following the recommendation from research to use AST-like structures
+for bidirectional conversion between text, diagrams, and code.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="ij.core.DiagramIR">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ij.core.</span></span><span class="sig-name descname"><span class="pre">DiagramIR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#ij.core.Node" title="ij.core.Node"><span class="pre">Node</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#ij.core.Edge" title="ij.core.Edge"><span class="pre">Edge</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">~typing.Any]</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ij/core.html#DiagramIR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.core.DiagramIR" title="Link to this definition"></a></dt>
+<dd><p>Intermediate Representation for diagrams.</p>
+<p>This serves as the central data structure that can be:
+- Generated from natural language
+- Converted to various diagram formats (Mermaid, PlantUML, D2)
+- Manipulated programmatically
+- Parsed back from diagram syntax</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ij.core.DiagramIR.nodes">
+<span class="sig-name descname"><span class="pre">nodes</span></span><a class="headerlink" href="#ij.core.DiagramIR.nodes" title="Link to this definition"></a></dt>
+<dd><p>List of nodes in the diagram</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="#ij.core.Node" title="ij.core.Node">ij.core.Node</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ij.core.DiagramIR.edges">
+<span class="sig-name descname"><span class="pre">edges</span></span><a class="headerlink" href="#ij.core.DiagramIR.edges" title="Link to this definition"></a></dt>
+<dd><p>List of edges connecting nodes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="#ij.core.Edge" title="ij.core.Edge">ij.core.Edge</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ij.core.DiagramIR.metadata">
+<span class="sig-name descname"><span class="pre">metadata</span></span><a class="headerlink" href="#ij.core.DiagramIR.metadata" title="Link to this definition"></a></dt>
+<dd><p>Diagram-level properties (title, description, etc.)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.core.DiagramIR.add_edge">
+<span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ij.core.Edge" title="ij.core.Edge"><span class="pre">Edge</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/ij/core.html#DiagramIR.add_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.core.DiagramIR.add_edge" title="Link to this definition"></a></dt>
+<dd><p>Add an edge to the diagram.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.core.DiagramIR.add_node">
+<span class="sig-name descname"><span class="pre">add_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ij.core.Node" title="ij.core.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/ij/core.html#DiagramIR.add_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.core.DiagramIR.add_node" title="Link to this definition"></a></dt>
+<dd><p>Add a node to the diagram.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.core.DiagramIR.get_node">
+<span class="sig-name descname"><span class="pre">get_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#ij.core.Node" title="ij.core.Node"><span class="pre">Node</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/ij/core.html#DiagramIR.get_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.core.DiagramIR.get_node" title="Link to this definition"></a></dt>
+<dd><p>Get a node by ID.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.core.DiagramIR.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/ij/core.html#DiagramIR.validate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.core.DiagramIR.validate" title="Link to this definition"></a></dt>
+<dd><p>Validate the diagram structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the diagram is valid, False otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ij.core.Edge">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ij.core.</span></span><span class="sig-name descname"><span class="pre">Edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ij.core.EdgeType" title="ij.core.EdgeType"><span class="pre">EdgeType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">EdgeType.DIRECT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">~typing.Any]</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ij/core.html#Edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.core.Edge" title="Link to this definition"></a></dt>
+<dd><p>Represents an edge in the diagram IR.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ij.core.Edge.source">
+<span class="sig-name descname"><span class="pre">source</span></span><a class="headerlink" href="#ij.core.Edge.source" title="Link to this definition"></a></dt>
+<dd><p>Source node ID</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ij.core.Edge.target">
+<span class="sig-name descname"><span class="pre">target</span></span><a class="headerlink" href="#ij.core.Edge.target" title="Link to this definition"></a></dt>
+<dd><p>Target node ID</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ij.core.Edge.label">
+<span class="sig-name descname"><span class="pre">label</span></span><a class="headerlink" href="#ij.core.Edge.label" title="Link to this definition"></a></dt>
+<dd><p>Optional edge label</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ij.core.Edge.edge_type">
+<span class="sig-name descname"><span class="pre">edge_type</span></span><a class="headerlink" href="#ij.core.Edge.edge_type" title="Link to this definition"></a></dt>
+<dd><p>Type of edge</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#ij.core.EdgeType" title="ij.core.EdgeType">ij.core.EdgeType</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ij.core.Edge.metadata">
+<span class="sig-name descname"><span class="pre">metadata</span></span><a class="headerlink" href="#ij.core.Edge.metadata" title="Link to this definition"></a></dt>
+<dd><p>Additional properties for extensibility</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ij.core.EdgeType">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ij.core.</span></span><span class="sig-name descname"><span class="pre">EdgeType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ij/core.html#EdgeType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.core.EdgeType" title="Link to this definition"></a></dt>
+<dd><p>Types of edges connecting nodes.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ij.core.Node">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ij.core.</span></span><span class="sig-name descname"><span class="pre">Node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ij.core.NodeType" title="ij.core.NodeType"><span class="pre">NodeType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">NodeType.PROCESS</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">~typing.Any]</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ij/core.html#Node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.core.Node" title="Link to this definition"></a></dt>
+<dd><p>Represents a node in the diagram IR.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ij.core.Node.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#ij.core.Node.id" title="Link to this definition"></a></dt>
+<dd><p>Unique identifier for the node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ij.core.Node.label">
+<span class="sig-name descname"><span class="pre">label</span></span><a class="headerlink" href="#ij.core.Node.label" title="Link to this definition"></a></dt>
+<dd><p>Display label/text</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ij.core.Node.node_type">
+<span class="sig-name descname"><span class="pre">node_type</span></span><a class="headerlink" href="#ij.core.Node.node_type" title="Link to this definition"></a></dt>
+<dd><p>Type of node (process, decision, etc.)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#ij.core.NodeType" title="ij.core.NodeType">ij.core.NodeType</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ij.core.Node.metadata">
+<span class="sig-name descname"><span class="pre">metadata</span></span><a class="headerlink" href="#ij.core.Node.metadata" title="Link to this definition"></a></dt>
+<dd><p>Additional properties for extensibility</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ij.core.NodeType">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ij.core.</span></span><span class="sig-name descname"><span class="pre">NodeType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ij/core.html#NodeType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.core.NodeType" title="Link to this definition"></a></dt>
+<dd><p>Types of nodes in a diagram.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="converters/text_to_ir.html" class="btn btn-neutral float-left" title="ij.converters.text_to_ir" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="diagrams.html" class="btn btn-neutral float-right" title="ij.diagrams" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright NO COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

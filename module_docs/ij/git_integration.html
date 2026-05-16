@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ij.git_integration &mdash; ij 0.1.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=fd825880"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ij.graph_ops" href="graph_ops.html" />
+    <link rel="prev" title="ij.export.image" href="export/image.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ij
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ij.html">ij</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analyzers.html">ij.analyzers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analyzers/python_analyzer.html">ij.analyzers.python_analyzer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analyzers/typescript.html">ij.analyzers.typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">ij.cli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli_enhanced.html">ij.cli_enhanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="converters.html">ij.converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="converters/enhanced_text.html">ij.converters.enhanced_text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="converters/llm_converter.html">ij.converters.llm_converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="converters/text_to_ir.html">ij.converters.text_to_ir</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core.html">ij.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams.html">ij.diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/erd.html">ij.diagrams.erd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/state_machine.html">ij.diagrams.state_machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export.html">ij.export</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export/image.html">ij.export.image</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ij.git_integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ij.git_integration.DiagramChanges"><code class="docutils literal notranslate"><span class="pre">DiagramChanges</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ij.git_integration.DiagramChanges.has_changes"><code class="docutils literal notranslate"><span class="pre">DiagramChanges.has_changes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.git_integration.DiagramChanges.total_changes"><code class="docutils literal notranslate"><span class="pre">DiagramChanges.total_changes</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ij.git_integration.DiagramDiff"><code class="docutils literal notranslate"><span class="pre">DiagramDiff</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ij.git_integration.DiagramDiff.compare"><code class="docutils literal notranslate"><span class="pre">DiagramDiff.compare()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.git_integration.DiagramDiff.compare_files"><code class="docutils literal notranslate"><span class="pre">DiagramDiff.compare_files()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.git_integration.DiagramDiff.generate_diff_report"><code class="docutils literal notranslate"><span class="pre">DiagramDiff.generate_diff_report()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.git_integration.DiagramDiff.merge"><code class="docutils literal notranslate"><span class="pre">DiagramDiff.merge()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ij.git_integration.DiagramHistory"><code class="docutils literal notranslate"><span class="pre">DiagramHistory</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ij.git_integration.DiagramHistory.add_version"><code class="docutils literal notranslate"><span class="pre">DiagramHistory.add_version()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.git_integration.DiagramHistory.compare_versions"><code class="docutils literal notranslate"><span class="pre">DiagramHistory.compare_versions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.git_integration.DiagramHistory.get_changelog"><code class="docutils literal notranslate"><span class="pre">DiagramHistory.get_changelog()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.git_integration.DiagramHistory.get_version"><code class="docutils literal notranslate"><span class="pre">DiagramHistory.get_version()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.git_integration.DiagramHistory.list_versions"><code class="docutils literal notranslate"><span class="pre">DiagramHistory.list_versions()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="graph_ops.html">ij.graph_ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importers.html">ij.importers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importers/database.html">ij.importers.database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importers/drawio.html">ij.importers.drawio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importers/openapi.html">ij.importers.openapi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importers/plantuml.html">ij.importers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layout.html">ij.layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layout/force_directed.html">ij.layout.force_directed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layout/hierarchical.html">ij.layout.hierarchical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layout/layout_engine.html">ij.layout.layout_engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parsers.html">ij.parsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parsers/d2.html">ij.parsers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parsers/mermaid.html">ij.parsers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">ij.plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins/plugin_manager.html">ij.plugins.plugin_manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderers.html">ij.renderers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderers/d2.html">ij.renderers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderers/graphviz.html">ij.renderers.graphviz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderers/mermaid.html">ij.renderers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderers/plantuml.html">ij.renderers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderers/sequence.html">ij.renderers.sequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms.html">ij.transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">ij.validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viewer.html">ij.viewer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viewer/server.html">ij.viewer.server</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ij</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ij.git_integration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/module_docs/ij/git_integration.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-ij.git_integration">
+<span id="ij-git-integration"></span><h1>ij.git_integration<a class="headerlink" href="#module-ij.git_integration" title="Link to this heading"></a></h1>
+<p>Git integration for diagram version control and diffing.</p>
+<p>Provides tools for comparing diagrams, merging changes, and tracking history.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="ij.git_integration.DiagramChanges">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ij.git_integration.</span></span><span class="sig-name descname"><span class="pre">DiagramChanges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">added_nodes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="core.html#ij.core.Node" title="ij.core.Node"><span class="pre">Node</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">removed_nodes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="core.html#ij.core.Node" title="ij.core.Node"><span class="pre">Node</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modified_nodes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">~ij.core.Node]]</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">added_edges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="core.html#ij.core.Edge" title="ij.core.Edge"><span class="pre">Edge</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">removed_edges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="core.html#ij.core.Edge" title="ij.core.Edge"><span class="pre">Edge</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modified_edges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Edge</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">~ij.core.Edge]]</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ij/git_integration.html#DiagramChanges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.git_integration.DiagramChanges" title="Link to this definition"></a></dt>
+<dd><p>Changes between two diagrams.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="ij.git_integration.DiagramChanges.has_changes">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">has_changes</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#ij.git_integration.DiagramChanges.has_changes" title="Link to this definition"></a></dt>
+<dd><p>Check if there are any changes.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ij.git_integration.DiagramChanges.total_changes">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">total_changes</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#ij.git_integration.DiagramChanges.total_changes" title="Link to this definition"></a></dt>
+<dd><p>Count total number of changes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ij.git_integration.DiagramDiff">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ij.git_integration.</span></span><span class="sig-name descname"><span class="pre">DiagramDiff</span></span><a class="reference internal" href="../../_modules/ij/git_integration.html#DiagramDiff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.git_integration.DiagramDiff" title="Link to this definition"></a></dt>
+<dd><p>Compare and diff diagrams.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.git_integration.DiagramDiff.compare">
+<span class="sig-name descname"><span class="pre">compare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diagram1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">diagram2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#ij.git_integration.DiagramChanges" title="ij.git_integration.DiagramChanges"><span class="pre">DiagramChanges</span></a></span></span><a class="reference internal" href="../../_modules/ij/git_integration.html#DiagramDiff.compare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.git_integration.DiagramDiff.compare" title="Link to this definition"></a></dt>
+<dd><p>Compare two diagrams.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>diagram1</strong> – Original diagram</p></li>
+<li><p><strong>diagram2</strong> – Modified diagram</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DiagramChanges describing differences</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">differ</span> <span class="o">=</span> <span class="n">DiagramDiff</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">changes</span> <span class="o">=</span> <span class="n">differ</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="n">old_diagram</span><span class="p">,</span> <span class="n">new_diagram</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Added: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">changes</span><span class="o">.</span><span class="n">added_nodes</span><span class="p">)</span><span class="si">}</span><span class="s2"> nodes&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.git_integration.DiagramDiff.compare_files">
+<span class="sig-name descname"><span class="pre">compare_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#ij.git_integration.DiagramChanges" title="ij.git_integration.DiagramChanges"><span class="pre">DiagramChanges</span></a></span></span><a class="reference internal" href="../../_modules/ij/git_integration.html#DiagramDiff.compare_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.git_integration.DiagramDiff.compare_files" title="Link to this definition"></a></dt>
+<dd><p>Compare two diagram files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file1</strong> – Path to first diagram</p></li>
+<li><p><strong>file2</strong> – Path to second diagram</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DiagramChanges describing differences</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.git_integration.DiagramDiff.generate_diff_report">
+<span class="sig-name descname"><span class="pre">generate_diff_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">changes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ij.git_integration.DiagramChanges" title="ij.git_integration.DiagramChanges"><span class="pre">DiagramChanges</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/ij/git_integration.html#DiagramDiff.generate_diff_report"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.git_integration.DiagramDiff.generate_diff_report" title="Link to this definition"></a></dt>
+<dd><p>Generate human-readable diff report.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>changes</strong> – DiagramChanges to report</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Formatted diff report string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.git_integration.DiagramDiff.merge">
+<span class="sig-name descname"><span class="pre">merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">branch1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">branch2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">strategy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'union'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></span><a class="reference internal" href="../../_modules/ij/git_integration.html#DiagramDiff.merge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.git_integration.DiagramDiff.merge" title="Link to this definition"></a></dt>
+<dd><p>Merge two diagram versions with a common base.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>base</strong> – Common ancestor diagram</p></li>
+<li><p><strong>branch1</strong> – First modified version</p></li>
+<li><p><strong>branch2</strong> – Second modified version</p></li>
+<li><p><strong>strategy</strong> – Merge strategy (‘union’, ‘intersection’, ‘ours’, ‘theirs’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Merged DiagramIR</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">differ</span> <span class="o">=</span> <span class="n">DiagramDiff</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merged</span> <span class="o">=</span> <span class="n">differ</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">branch1</span><span class="p">,</span> <span class="n">branch2</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;union&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ij.git_integration.DiagramHistory">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ij.git_integration.</span></span><span class="sig-name descname"><span class="pre">DiagramHistory</span></span><a class="reference internal" href="../../_modules/ij/git_integration.html#DiagramHistory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.git_integration.DiagramHistory" title="Link to this definition"></a></dt>
+<dd><p>Track diagram history and changes over time.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.git_integration.DiagramHistory.add_version">
+<span class="sig-name descname"><span class="pre">add_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diagram</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ij/git_integration.html#DiagramHistory.add_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.git_integration.DiagramHistory.add_version" title="Link to this definition"></a></dt>
+<dd><p>Add a version to history.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Version name/identifier</p></li>
+<li><p><strong>diagram</strong> – DiagramIR snapshot</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.git_integration.DiagramHistory.compare_versions">
+<span class="sig-name descname"><span class="pre">compare_versions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#ij.git_integration.DiagramChanges" title="ij.git_integration.DiagramChanges"><span class="pre">DiagramChanges</span></a></span></span><a class="reference internal" href="../../_modules/ij/git_integration.html#DiagramHistory.compare_versions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.git_integration.DiagramHistory.compare_versions" title="Link to this definition"></a></dt>
+<dd><p>Compare two versions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name1</strong> – First version name</p></li>
+<li><p><strong>name2</strong> – Second version name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DiagramChanges between versions</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.git_integration.DiagramHistory.get_changelog">
+<span class="sig-name descname"><span class="pre">get_changelog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/ij/git_integration.html#DiagramHistory.get_changelog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.git_integration.DiagramHistory.get_changelog" title="Link to this definition"></a></dt>
+<dd><p>Generate changelog across all versions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Formatted changelog string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.git_integration.DiagramHistory.get_version">
+<span class="sig-name descname"><span class="pre">get_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/ij/git_integration.html#DiagramHistory.get_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.git_integration.DiagramHistory.get_version" title="Link to this definition"></a></dt>
+<dd><p>Get a specific version.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – Version name</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DiagramIR if found, None otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.git_integration.DiagramHistory.list_versions">
+<span class="sig-name descname"><span class="pre">list_versions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/ij/git_integration.html#DiagramHistory.list_versions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.git_integration.DiagramHistory.list_versions" title="Link to this definition"></a></dt>
+<dd><p>List all version names.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="export/image.html" class="btn btn-neutral float-left" title="ij.export.image" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="graph_ops.html" class="btn btn-neutral float-right" title="ij.graph_ops" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright NO COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

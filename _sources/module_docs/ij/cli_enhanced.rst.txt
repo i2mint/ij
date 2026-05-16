@@ -1,0 +1,4 @@
+ij.cli_enhanced
+===============
+.. automodule:: ij.cli_enhanced
+   :members:

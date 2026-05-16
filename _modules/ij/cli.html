@@ -1,0 +1,232 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ij.cli &mdash; ij 0.1.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=fd825880"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ij
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij.html">ij</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/analyzers.html">ij.analyzers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/analyzers/python_analyzer.html">ij.analyzers.python_analyzer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/analyzers/typescript.html">ij.analyzers.typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/cli.html">ij.cli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/cli_enhanced.html">ij.cli_enhanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/converters.html">ij.converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/converters/enhanced_text.html">ij.converters.enhanced_text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/converters/llm_converter.html">ij.converters.llm_converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/converters/text_to_ir.html">ij.converters.text_to_ir</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/core.html">ij.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/diagrams.html">ij.diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/diagrams/erd.html">ij.diagrams.erd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/diagrams/state_machine.html">ij.diagrams.state_machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/export.html">ij.export</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/export/image.html">ij.export.image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/git_integration.html">ij.git_integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/graph_ops.html">ij.graph_ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/importers.html">ij.importers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/importers/database.html">ij.importers.database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/importers/drawio.html">ij.importers.drawio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/importers/openapi.html">ij.importers.openapi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/importers/plantuml.html">ij.importers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/layout.html">ij.layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/layout/force_directed.html">ij.layout.force_directed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/layout/hierarchical.html">ij.layout.hierarchical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/layout/layout_engine.html">ij.layout.layout_engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/parsers.html">ij.parsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/parsers/d2.html">ij.parsers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/parsers/mermaid.html">ij.parsers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/plugins.html">ij.plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/plugins/plugin_manager.html">ij.plugins.plugin_manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/renderers.html">ij.renderers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/renderers/d2.html">ij.renderers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/renderers/graphviz.html">ij.renderers.graphviz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/renderers/mermaid.html">ij.renderers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/renderers/plantuml.html">ij.renderers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/renderers/sequence.html">ij.renderers.sequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/transforms.html">ij.transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/validation.html">ij.validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/viewer.html">ij.viewer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/viewer/server.html">ij.viewer.server</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ij</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../ij.html">ij</a></li>
+      <li class="breadcrumb-item active">ij.cli</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ij.cli</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Command-line interface for Idea Junction.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleTextConverter</span><span class="p">,</span> <span class="n">MermaidRenderer</span>
+
+
+<div class="viewcode-block" id="main">
+<a class="viewcode-back" href="../../module_docs/ij/cli.html#ij.cli.main">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Main CLI entry point.&quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Idea Junction - Convert ideas to diagrams&quot;</span><span class="p">,</span>
+        <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawDescriptionHelpFormatter</span><span class="p">,</span>
+        <span class="n">epilog</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Examples:</span>
+<span class="s2">  # Convert text to Mermaid diagram</span>
+<span class="s2">  ij &quot;Start -&gt; Process data -&gt; Make decision -&gt; End&quot;</span>
+
+<span class="s2">  # Save to file</span>
+<span class="s2">  ij &quot;Start -&gt; Process -&gt; End&quot; -o diagram.mmd</span>
+
+<span class="s2">  # Read from file</span>
+<span class="s2">  ij -f input.txt -o output.mmd</span>
+
+<span class="s2">  # Specify direction</span>
+<span class="s2">  ij &quot;Step 1 -&gt; Step 2 -&gt; Step 3&quot; -d LR</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Text description of the process/flow (or use -f)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-f&quot;</span><span class="p">,</span> <span class="s2">&quot;--file&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Read text from file&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;--output&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Output file (default: stdout)&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-d&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--direction&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;TD&quot;</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;TD&quot;</span><span class="p">,</span> <span class="s2">&quot;LR&quot;</span><span class="p">,</span> <span class="s2">&quot;BT&quot;</span><span class="p">,</span> <span class="s2">&quot;RL&quot;</span><span class="p">],</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Diagram direction (TD=top-down, LR=left-right, etc.)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-t&quot;</span><span class="p">,</span> <span class="s2">&quot;--title&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Diagram title&quot;</span><span class="p">)</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="c1"># Get input text</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">file</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">file</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: File &#39;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">file</span><span class="si">}</span><span class="s2">&#39; not found&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">text</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">print_help</span><span class="p">()</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Convert text to diagram</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">converter</span> <span class="o">=</span> <span class="n">SimpleTextConverter</span><span class="p">()</span>
+        <span class="n">diagram</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+
+        <span class="n">renderer</span> <span class="o">=</span> <span class="n">MermaidRenderer</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">direction</span><span class="p">)</span>
+        <span class="n">mermaid_output</span> <span class="o">=</span> <span class="n">renderer</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">diagram</span><span class="p">)</span>
+
+        <span class="c1"># Output</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
+            <span class="n">Path</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">mermaid_output</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Diagram saved to </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">mermaid_output</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></div>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright NO COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

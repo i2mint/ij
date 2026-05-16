@@ -1,0 +1,4 @@
+ij.plugins.plugin_manager
+=========================
+.. automodule:: ij.plugins.plugin_manager
+   :members:

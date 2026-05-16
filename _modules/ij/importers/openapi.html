@@ -1,0 +1,287 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ij.importers.openapi &mdash; ij 0.1.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=fd825880"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ij
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij.html">ij</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers.html">ij.analyzers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers/python_analyzer.html">ij.analyzers.python_analyzer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers/typescript.html">ij.analyzers.typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/cli.html">ij.cli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/cli_enhanced.html">ij.cli_enhanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters.html">ij.converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/enhanced_text.html">ij.converters.enhanced_text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/llm_converter.html">ij.converters.llm_converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/text_to_ir.html">ij.converters.text_to_ir</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/core.html">ij.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams.html">ij.diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams/erd.html">ij.diagrams.erd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams/state_machine.html">ij.diagrams.state_machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/export.html">ij.export</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/export/image.html">ij.export.image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/git_integration.html">ij.git_integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/graph_ops.html">ij.graph_ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers.html">ij.importers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/database.html">ij.importers.database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/drawio.html">ij.importers.drawio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/openapi.html">ij.importers.openapi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/plantuml.html">ij.importers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout.html">ij.layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/force_directed.html">ij.layout.force_directed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/hierarchical.html">ij.layout.hierarchical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/layout_engine.html">ij.layout.layout_engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers.html">ij.parsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers/d2.html">ij.parsers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers/mermaid.html">ij.parsers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/plugins.html">ij.plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/plugins/plugin_manager.html">ij.plugins.plugin_manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers.html">ij.renderers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/d2.html">ij.renderers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/graphviz.html">ij.renderers.graphviz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/mermaid.html">ij.renderers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/plantuml.html">ij.renderers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/sequence.html">ij.renderers.sequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/transforms.html">ij.transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/validation.html">ij.validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/viewer.html">ij.viewer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/viewer/server.html">ij.viewer.server</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ij</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../ij.html">ij</a></li>
+      <li class="breadcrumb-item active">ij.importers.openapi</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ij.importers.openapi</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Import diagrams from OpenAPI specifications.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..core</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiagramIR</span><span class="p">,</span> <span class="n">Edge</span><span class="p">,</span> <span class="n">EdgeType</span><span class="p">,</span> <span class="n">Node</span><span class="p">,</span> <span class="n">NodeType</span>
+
+
+<div class="viewcode-block" id="from_openapi">
+<a class="viewcode-back" href="../../../module_docs/ij/importers/openapi.html#ij.importers.from_openapi">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">from_openapi</span><span class="p">(</span><span class="n">spec</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">],</span> <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DiagramIR</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import diagram from OpenAPI specification.</span>
+
+<span class="sd">    Creates a diagram showing API endpoints and their relationships.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        spec: Path to OpenAPI file or dict specification</span>
+<span class="sd">        title: Optional diagram title</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        DiagramIR representing API structure</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; diagram = from_openapi(&#39;openapi.yaml&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; diagram = from_openapi({&#39;openapi&#39;: &#39;3.0.0&#39;, ...})</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        Requires pyyaml for YAML files: pip install pyyaml</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+    <span class="c1"># Load spec if it&#39;s a file path</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">spec</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">spec_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">spec_path</span><span class="o">.</span><span class="n">suffix</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;.yaml&quot;</span><span class="p">,</span> <span class="s2">&quot;.yml&quot;</span><span class="p">]:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+
+                <span class="n">spec_dict</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">spec_path</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
+            <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+                    <span class="s2">&quot;PyYAML required for YAML files. Install with: pip install pyyaml&quot;</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># JSON</span>
+            <span class="n">spec_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">spec_path</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">spec_dict</span> <span class="o">=</span> <span class="n">spec</span>
+
+    <span class="c1"># Create diagram</span>
+    <span class="n">diagram_title</span> <span class="o">=</span> <span class="n">title</span> <span class="ow">or</span> <span class="n">spec_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;info&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;API&quot;</span><span class="p">)</span>
+    <span class="n">diagram</span> <span class="o">=</span> <span class="n">DiagramIR</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">diagram_title</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;api&quot;</span><span class="p">})</span>
+
+    <span class="c1"># Add API info node</span>
+    <span class="n">api_version</span> <span class="o">=</span> <span class="n">spec_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;info&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">,</span> <span class="s2">&quot;1.0&quot;</span><span class="p">)</span>
+    <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span>
+        <span class="n">Node</span><span class="p">(</span>
+            <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;api_root&quot;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">diagram_title</span><span class="si">}</span><span class="s2"> v</span><span class="si">{</span><span class="n">api_version</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">node_type</span><span class="o">=</span><span class="n">NodeType</span><span class="o">.</span><span class="n">START</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Group endpoints by tags</span>
+    <span class="n">paths</span> <span class="o">=</span> <span class="n">spec_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;paths&quot;</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="n">tag_groups</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">path_item</span> <span class="ow">in</span> <span class="n">paths</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;get&quot;</span><span class="p">,</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span><span class="p">,</span> <span class="s2">&quot;delete&quot;</span><span class="p">,</span> <span class="s2">&quot;patch&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">path_item</span><span class="p">:</span>
+                <span class="n">operation</span> <span class="o">=</span> <span class="n">path_item</span><span class="p">[</span><span class="n">method</span><span class="p">]</span>
+                <span class="n">operation_id</span> <span class="o">=</span> <span class="n">operation</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;operationId&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                <span class="c1"># Get tags</span>
+                <span class="n">tags</span> <span class="o">=</span> <span class="n">operation</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">])</span>
+                <span class="n">tag</span> <span class="o">=</span> <span class="n">tags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">tags</span> <span class="k">else</span> <span class="s2">&quot;default&quot;</span>
+
+                <span class="k">if</span> <span class="n">tag</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tag_groups</span><span class="p">:</span>
+                    <span class="n">tag_groups</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="n">tag_groups</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">operation_id</span><span class="p">,</span> <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="n">method</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">path</span><span class="p">}</span>
+                <span class="p">)</span>
+
+    <span class="c1"># Create nodes for tags</span>
+    <span class="k">for</span> <span class="n">tag_name</span><span class="p">,</span> <span class="n">operations</span> <span class="ow">in</span> <span class="n">tag_groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">tag_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;tag_</span><span class="si">{</span><span class="n">tag_name</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span>
+            <span class="n">Node</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">tag_id</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">tag_name</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span> <span class="n">node_type</span><span class="o">=</span><span class="n">NodeType</span><span class="o">.</span><span class="n">DECISION</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;api_root&quot;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">tag_id</span><span class="p">))</span>
+
+        <span class="c1"># Create nodes for operations</span>
+        <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">operations</span><span class="p">:</span>
+            <span class="n">node_id</span> <span class="o">=</span> <span class="n">op</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">op</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">op</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">node_id</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="n">NodeType</span><span class="o">.</span><span class="n">PROCESS</span><span class="p">))</span>
+            <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">tag_id</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">node_id</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">diagram</span></div>
+
+
+
+<div class="viewcode-block" id="from_openapi_to_sequence">
+<a class="viewcode-back" href="../../../module_docs/ij/importers/openapi.html#ij.importers.from_openapi_to_sequence">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">from_openapi_to_sequence</span><span class="p">(</span><span class="n">spec</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">],</span> <span class="n">flow</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DiagramIR</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create sequence diagram from OpenAPI spec showing request flow.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        spec: Path to OpenAPI file or dict</span>
+<span class="sd">        flow: Flow to diagram (e.g., &#39;auth&#39;, &#39;crud&#39;)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        DiagramIR as sequence diagram</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; diagram = from_openapi_to_sequence(&#39;api.yaml&#39;, flow=&#39;auth&#39;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># This would create a sequence diagram showing client -&gt; API -&gt; services flow</span>
+    <span class="c1"># Implementation would parse the OpenAPI spec and create participant interactions</span>
+    <span class="c1"># For now, return a basic implementation</span>
+    <span class="n">diagram</span> <span class="o">=</span> <span class="n">DiagramIR</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;sequence&quot;</span><span class="p">})</span>
+
+    <span class="c1"># Add basic participants</span>
+    <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;client&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Client&quot;</span><span class="p">))</span>
+    <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;api&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;API&quot;</span><span class="p">))</span>
+    <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;database&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Database&quot;</span><span class="p">))</span>
+
+    <span class="c1"># Add sample flow</span>
+    <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;client&quot;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">&quot;api&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Request&quot;</span><span class="p">))</span>
+    <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;api&quot;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">&quot;database&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Query&quot;</span><span class="p">))</span>
+    <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span>
+        <span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;database&quot;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">&quot;api&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Result&quot;</span><span class="p">,</span> <span class="n">edge_type</span><span class="o">=</span><span class="n">EdgeType</span><span class="o">.</span><span class="n">CONDITIONAL</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span>
+        <span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;api&quot;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">&quot;client&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Response&quot;</span><span class="p">,</span> <span class="n">edge_type</span><span class="o">=</span><span class="n">EdgeType</span><span class="o">.</span><span class="n">CONDITIONAL</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">diagram</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright NO COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

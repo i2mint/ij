@@ -1,0 +1,625 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ij.diagrams.state_machine &mdash; ij 0.1.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=fd825880"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ij
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij.html">ij</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers.html">ij.analyzers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers/python_analyzer.html">ij.analyzers.python_analyzer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers/typescript.html">ij.analyzers.typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/cli.html">ij.cli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/cli_enhanced.html">ij.cli_enhanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters.html">ij.converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/enhanced_text.html">ij.converters.enhanced_text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/llm_converter.html">ij.converters.llm_converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/text_to_ir.html">ij.converters.text_to_ir</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/core.html">ij.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams.html">ij.diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams/erd.html">ij.diagrams.erd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams/state_machine.html">ij.diagrams.state_machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/export.html">ij.export</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/export/image.html">ij.export.image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/git_integration.html">ij.git_integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/graph_ops.html">ij.graph_ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers.html">ij.importers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/database.html">ij.importers.database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/drawio.html">ij.importers.drawio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/openapi.html">ij.importers.openapi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/plantuml.html">ij.importers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout.html">ij.layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/force_directed.html">ij.layout.force_directed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/hierarchical.html">ij.layout.hierarchical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/layout_engine.html">ij.layout.layout_engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers.html">ij.parsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers/d2.html">ij.parsers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers/mermaid.html">ij.parsers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/plugins.html">ij.plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/plugins/plugin_manager.html">ij.plugins.plugin_manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers.html">ij.renderers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/d2.html">ij.renderers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/graphviz.html">ij.renderers.graphviz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/mermaid.html">ij.renderers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/plantuml.html">ij.renderers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/sequence.html">ij.renderers.sequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/transforms.html">ij.transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/validation.html">ij.validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/viewer.html">ij.viewer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/viewer/server.html">ij.viewer.server</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ij</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../ij.html">ij</a></li>
+      <li class="breadcrumb-item active">ij.diagrams.state_machine</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ij.diagrams.state_machine</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;State Machine diagram support.</span>
+
+<span class="sd">Provides tools for creating and rendering finite state machines.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span>
+
+
+<div class="viewcode-block" id="StateType">
+<a class="viewcode-back" href="../../../module_docs/ij/diagrams/state_machine.html#ij.StateType">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">StateType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Type of state.&quot;&quot;&quot;</span>
+
+    <span class="n">NORMAL</span> <span class="o">=</span> <span class="s2">&quot;normal&quot;</span>
+    <span class="n">INITIAL</span> <span class="o">=</span> <span class="s2">&quot;initial&quot;</span>
+    <span class="n">FINAL</span> <span class="o">=</span> <span class="s2">&quot;final&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="State">
+<a class="viewcode-back" href="../../../module_docs/ij/diagrams/state_machine.html#ij.State">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">State</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A state in a state machine.&quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">state_type</span><span class="p">:</span> <span class="n">StateType</span> <span class="o">=</span> <span class="n">StateType</span><span class="o">.</span><span class="n">NORMAL</span>
+    <span class="n">on_enter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">on_exit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">metadata</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="Transition">
+<a class="viewcode-back" href="../../../module_docs/ij/diagrams/state_machine.html#ij.Transition">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Transition</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A transition between states.&quot;&quot;&quot;</span>
+
+    <span class="n">from_state</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">to_state</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">trigger</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">condition</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">action</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">metadata</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="StateMachine">
+<a class="viewcode-back" href="../../../module_docs/ij/diagrams/state_machine.html#ij.StateMachine">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">StateMachine</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finite State Machine diagram.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;StateMachine&quot;</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize state machine.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name: State machine name</span>
+<span class="sd">            initial_state: Name of initial state</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_state</span> <span class="o">=</span> <span class="n">initial_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">State</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transitions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Transition</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="StateMachine.add_state">
+<a class="viewcode-back" href="../../../module_docs/ij/diagrams/state_machine.html#ij.StateMachine.add_state">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_state</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">state_type</span><span class="p">:</span> <span class="n">StateType</span> <span class="o">=</span> <span class="n">StateType</span><span class="o">.</span><span class="n">NORMAL</span><span class="p">,</span>
+        <span class="n">on_enter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_exit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a state to the machine.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name: State name</span>
+<span class="sd">            state_type: Type of state (NORMAL, INITIAL, FINAL)</span>
+<span class="sd">            on_enter: Action to perform on entering state</span>
+<span class="sd">            on_exit: Action to perform on exiting state</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">State</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">state_type</span><span class="o">=</span><span class="n">state_type</span><span class="p">,</span> <span class="n">on_enter</span><span class="o">=</span><span class="n">on_enter</span><span class="p">,</span> <span class="n">on_exit</span><span class="o">=</span><span class="n">on_exit</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+
+        <span class="c1"># Set as initial if specified</span>
+        <span class="k">if</span> <span class="n">state_type</span> <span class="o">==</span> <span class="n">StateType</span><span class="o">.</span><span class="n">INITIAL</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">initial_state</span> <span class="o">=</span> <span class="n">name</span></div>
+
+
+<div class="viewcode-block" id="StateMachine.add_transition">
+<a class="viewcode-back" href="../../../module_docs/ij/diagrams/state_machine.html#ij.StateMachine.add_transition">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_transition</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">from_state</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">trigger</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">to_state</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">condition</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">action</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a transition between states.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            from_state: Source state name</span>
+<span class="sd">            trigger: Event that triggers the transition</span>
+<span class="sd">            to_state: Target state name</span>
+<span class="sd">            condition: Optional condition guard</span>
+<span class="sd">            action: Optional action to perform during transition</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">transition</span> <span class="o">=</span> <span class="n">Transition</span><span class="p">(</span>
+            <span class="n">from_state</span><span class="o">=</span><span class="n">from_state</span><span class="p">,</span>
+            <span class="n">to_state</span><span class="o">=</span><span class="n">to_state</span><span class="p">,</span>
+            <span class="n">trigger</span><span class="o">=</span><span class="n">trigger</span><span class="p">,</span>
+            <span class="n">condition</span><span class="o">=</span><span class="n">condition</span><span class="p">,</span>
+            <span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transitions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">transition</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="StateMachine.to_mermaid">
+<a class="viewcode-back" href="../../../module_docs/ij/diagrams/state_machine.html#ij.StateMachine.to_mermaid">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_mermaid</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Render state machine as Mermaid state diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Mermaid state diagram syntax</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;stateDiagram-v2&quot;</span><span class="p">]</span>
+
+        <span class="c1"># Add initial state marker</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_state</span><span class="p">:</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    [*] --&gt; </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_state</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Add state definitions with actions</span>
+        <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">on_enter</span> <span class="ow">or</span> <span class="n">state</span><span class="o">.</span><span class="n">on_exit</span><span class="p">:</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    state </span><span class="si">{</span><span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> </span><span class="se">{{</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">on_enter</span><span class="p">:</span>
+                    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;        entry: </span><span class="si">{</span><span class="n">state</span><span class="o">.</span><span class="n">on_enter</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">on_exit</span><span class="p">:</span>
+                    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;        exit: </span><span class="si">{</span><span class="n">state</span><span class="o">.</span><span class="n">on_exit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;    }&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Add transitions</span>
+        <span class="k">for</span> <span class="n">trans</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transitions</span><span class="p">:</span>
+            <span class="c1"># Build label</span>
+            <span class="n">label_parts</span> <span class="o">=</span> <span class="p">[</span><span class="n">trans</span><span class="o">.</span><span class="n">trigger</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">trans</span><span class="o">.</span><span class="n">condition</span><span class="p">:</span>
+                <span class="n">label_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">condition</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">trans</span><span class="o">.</span><span class="n">action</span><span class="p">:</span>
+                <span class="n">label_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;/ </span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">action</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">label_parts</span><span class="p">)</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    </span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">from_state</span><span class="si">}</span><span class="s2"> --&gt; </span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">to_state</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Add final state markers</span>
+        <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">state_type</span> <span class="o">==</span> <span class="n">StateType</span><span class="o">.</span><span class="n">FINAL</span><span class="p">:</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    </span><span class="si">{</span><span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> --&gt; [*]&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="StateMachine.to_plantuml">
+<a class="viewcode-back" href="../../../module_docs/ij/diagrams/state_machine.html#ij.StateMachine.to_plantuml">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_plantuml</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Render state machine as PlantUML state diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            PlantUML syntax</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;@startuml&quot;</span><span class="p">]</span>
+        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;title </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Add initial state</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_state</span><span class="p">:</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[*] --&gt; </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_state</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Add states with actions</span>
+        <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">on_enter</span> <span class="ow">or</span> <span class="n">state</span><span class="o">.</span><span class="n">on_exit</span><span class="p">:</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;state </span><span class="si">{</span><span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> </span><span class="se">{{</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">on_enter</span><span class="p">:</span>
+                    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> : entry / </span><span class="si">{</span><span class="n">state</span><span class="o">.</span><span class="n">on_enter</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">on_exit</span><span class="p">:</span>
+                    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> : exit / </span><span class="si">{</span><span class="n">state</span><span class="o">.</span><span class="n">on_exit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;}&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Add transitions</span>
+        <span class="k">for</span> <span class="n">trans</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transitions</span><span class="p">:</span>
+            <span class="n">label_parts</span> <span class="o">=</span> <span class="p">[</span><span class="n">trans</span><span class="o">.</span><span class="n">trigger</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">trans</span><span class="o">.</span><span class="n">condition</span><span class="p">:</span>
+                <span class="n">label_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">condition</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">trans</span><span class="o">.</span><span class="n">action</span><span class="p">:</span>
+                <span class="n">label_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;/ </span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">action</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">label_parts</span><span class="p">)</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">from_state</span><span class="si">}</span><span class="s2"> --&gt; </span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">to_state</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Add final states</span>
+        <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">state_type</span> <span class="o">==</span> <span class="n">StateType</span><span class="o">.</span><span class="n">FINAL</span><span class="p">:</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> --&gt; [*]&quot;</span><span class="p">)</span>
+
+        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;@enduml&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="StateMachine.to_d2">
+<a class="viewcode-back" href="../../../module_docs/ij/diagrams/state_machine.html#ij.StateMachine.to_d2">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_d2</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Render state machine as D2 diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            D2 syntax</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;# </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">]</span>
+
+        <span class="c1"># Add states</span>
+        <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="p">:</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="s2">&quot;oval&quot;</span> <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">state_type</span> <span class="o">!=</span> <span class="n">StateType</span><span class="o">.</span><span class="n">NORMAL</span> <span class="k">else</span> <span class="s2">&quot;rectangle&quot;</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="se">{{</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  shape: </span><span class="si">{</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">on_enter</span><span class="p">:</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  entry: </span><span class="si">{</span><span class="n">state</span><span class="o">.</span><span class="n">on_enter</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">on_exit</span><span class="p">:</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  exit: </span><span class="si">{</span><span class="n">state</span><span class="o">.</span><span class="n">on_exit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;}&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Add transitions</span>
+        <span class="k">for</span> <span class="n">trans</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transitions</span><span class="p">:</span>
+            <span class="n">label_parts</span> <span class="o">=</span> <span class="p">[</span><span class="n">trans</span><span class="o">.</span><span class="n">trigger</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">trans</span><span class="o">.</span><span class="n">condition</span><span class="p">:</span>
+                <span class="n">label_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">condition</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">trans</span><span class="o">.</span><span class="n">action</span><span class="p">:</span>
+                <span class="n">label_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;/ </span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">action</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">label_parts</span><span class="p">)</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">from_state</span><span class="si">}</span><span class="s1"> -&gt; </span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">to_state</span><span class="si">}</span><span class="s1">: &quot;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="StateMachine.validate">
+<a class="viewcode-back" href="../../../module_docs/ij/diagrams/state_machine.html#ij.StateMachine.validate">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate state machine for common issues.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List of validation issues (empty if valid)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">issues</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Check for initial state</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_state</span><span class="p">:</span>
+            <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;No initial state defined&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Check for unreachable states</span>
+        <span class="n">reachable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_reachable_states</span><span class="p">()</span>
+        <span class="n">all_states</span> <span class="o">=</span> <span class="p">{</span><span class="n">s</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="p">}</span>
+        <span class="n">unreachable</span> <span class="o">=</span> <span class="n">all_states</span> <span class="o">-</span> <span class="n">reachable</span>
+
+        <span class="k">if</span> <span class="n">unreachable</span><span class="p">:</span>
+            <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unreachable states: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">unreachable</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Check for undefined states in transitions</span>
+        <span class="k">for</span> <span class="n">trans</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transitions</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">trans</span><span class="o">.</span><span class="n">from_state</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">all_states</span><span class="p">:</span>
+                <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Transition from undefined state: </span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">from_state</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">trans</span><span class="o">.</span><span class="n">to_state</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">all_states</span><span class="p">:</span>
+                <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Transition to undefined state: </span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">to_state</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Check for duplicate transitions</span>
+        <span class="n">trans_sigs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">trans</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transitions</span><span class="p">:</span>
+            <span class="n">sig</span> <span class="o">=</span> <span class="p">(</span><span class="n">trans</span><span class="o">.</span><span class="n">from_state</span><span class="p">,</span> <span class="n">trans</span><span class="o">.</span><span class="n">trigger</span><span class="p">,</span> <span class="n">trans</span><span class="o">.</span><span class="n">to_state</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">sig</span> <span class="ow">in</span> <span class="n">trans_sigs</span><span class="p">:</span>
+                <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Duplicate transition: </span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">from_state</span><span class="si">}</span><span class="s2"> --</span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">trigger</span><span class="si">}</span><span class="s2">--&gt; </span><span class="si">{</span><span class="n">trans</span><span class="o">.</span><span class="n">to_state</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+            <span class="n">trans_sigs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">issues</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_reachable_states</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get all states reachable from initial state.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_state</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="n">reachable</span> <span class="o">=</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_state</span><span class="p">}</span>
+        <span class="n">changed</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">while</span> <span class="n">changed</span><span class="p">:</span>
+            <span class="n">changed</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">for</span> <span class="n">trans</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transitions</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">trans</span><span class="o">.</span><span class="n">from_state</span> <span class="ow">in</span> <span class="n">reachable</span> <span class="ow">and</span> <span class="n">trans</span><span class="o">.</span><span class="n">to_state</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">reachable</span><span class="p">:</span>
+                    <span class="n">reachable</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">trans</span><span class="o">.</span><span class="n">to_state</span><span class="p">)</span>
+                    <span class="n">changed</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">return</span> <span class="n">reachable</span>
+
+<div class="viewcode-block" id="StateMachine.get_triggers_from_state">
+<a class="viewcode-back" href="../../../module_docs/ij/diagrams/state_machine.html#ij.StateMachine.get_triggers_from_state">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_triggers_from_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get all possible triggers from a given state.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            state_name: State name</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List of trigger names</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">trigger</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transitions</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">from_state</span> <span class="o">==</span> <span class="n">state_name</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="StateMachine.simulate">
+<a class="viewcode-back" href="../../../module_docs/ij/diagrams/state_machine.html#ij.StateMachine.simulate">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">simulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">events</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Simulate state machine execution.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            initial_state: Starting state</span>
+<span class="sd">            events: List of trigger events</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List of states visited (including initial)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">current_state</span> <span class="o">=</span> <span class="n">initial_state</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="n">current_state</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">events</span><span class="p">:</span>
+            <span class="c1"># Find matching transition</span>
+            <span class="n">next_state</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">for</span> <span class="n">trans</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transitions</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">trans</span><span class="o">.</span><span class="n">from_state</span> <span class="o">==</span> <span class="n">current_state</span> <span class="ow">and</span> <span class="n">trans</span><span class="o">.</span><span class="n">trigger</span> <span class="o">==</span> <span class="n">event</span><span class="p">:</span>
+                    <span class="n">next_state</span> <span class="o">=</span> <span class="n">trans</span><span class="o">.</span><span class="n">to_state</span>
+                    <span class="k">break</span>
+
+            <span class="k">if</span> <span class="n">next_state</span><span class="p">:</span>
+                <span class="n">current_state</span> <span class="o">=</span> <span class="n">next_state</span>
+                <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_state</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Invalid transition</span>
+                <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;error: no transition for </span><span class="si">{</span><span class="n">event</span><span class="si">}</span><span class="s2"> from </span><span class="si">{</span><span class="n">current_state</span><span class="si">}</span><span class="s2">&gt;&quot;</span><span class="p">)</span>
+                <span class="k">break</span>
+
+        <span class="k">return</span> <span class="n">path</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="StateMachineBuilder">
+<a class="viewcode-back" href="../../../module_docs/ij/diagrams/state_machine.html#ij.StateMachineBuilder">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">StateMachineBuilder</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Builder for creating state machines from various sources.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="StateMachineBuilder.from_dict">
+<a class="viewcode-back" href="../../../module_docs/ij/diagrams/state_machine.html#ij.StateMachineBuilder.from_dict">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_dict</span><span class="p">(</span><span class="n">spec</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StateMachine</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create state machine from dictionary specification.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            spec: Dictionary describing states and transitions</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            StateMachine instance</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; spec = {</span>
+<span class="sd">            ...     &quot;name&quot;: &quot;DoorLock&quot;,</span>
+<span class="sd">            ...     &quot;initial&quot;: &quot;locked&quot;,</span>
+<span class="sd">            ...     &quot;states&quot;: {</span>
+<span class="sd">            ...         &quot;locked&quot;: {&quot;type&quot;: &quot;initial&quot;},</span>
+<span class="sd">            ...         &quot;unlocked&quot;: {},</span>
+<span class="sd">            ...         &quot;error&quot;: {&quot;type&quot;: &quot;final&quot;}</span>
+<span class="sd">            ...     },</span>
+<span class="sd">            ...     &quot;transitions&quot;: [</span>
+<span class="sd">            ...         {&quot;from&quot;: &quot;locked&quot;, &quot;trigger&quot;: &quot;unlock&quot;, &quot;to&quot;: &quot;unlocked&quot;},</span>
+<span class="sd">            ...         {&quot;from&quot;: &quot;unlocked&quot;, &quot;trigger&quot;: &quot;lock&quot;, &quot;to&quot;: &quot;locked&quot;}</span>
+<span class="sd">            ...     ]</span>
+<span class="sd">            ... }</span>
+<span class="sd">            &gt;&gt;&gt; sm = StateMachineBuilder.from_dict(spec)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;StateMachine&quot;</span><span class="p">)</span>
+        <span class="n">initial</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;initial&quot;</span><span class="p">)</span>
+
+        <span class="n">sm</span> <span class="o">=</span> <span class="n">StateMachine</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">initial_state</span><span class="o">=</span><span class="n">initial</span><span class="p">)</span>
+
+        <span class="c1"># Add states</span>
+        <span class="k">for</span> <span class="n">state_name</span><span class="p">,</span> <span class="n">state_props</span> <span class="ow">in</span> <span class="n">spec</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;states&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">state_type_str</span> <span class="o">=</span> <span class="n">state_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="s2">&quot;normal&quot;</span><span class="p">)</span>
+            <span class="n">state_type</span> <span class="o">=</span> <span class="n">StateType</span><span class="p">(</span><span class="n">state_type_str</span><span class="p">)</span>
+
+            <span class="n">sm</span><span class="o">.</span><span class="n">add_state</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="n">state_name</span><span class="p">,</span>
+                <span class="n">state_type</span><span class="o">=</span><span class="n">state_type</span><span class="p">,</span>
+                <span class="n">on_enter</span><span class="o">=</span><span class="n">state_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_enter&quot;</span><span class="p">),</span>
+                <span class="n">on_exit</span><span class="o">=</span><span class="n">state_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;on_exit&quot;</span><span class="p">),</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Add transitions</span>
+        <span class="k">for</span> <span class="n">trans_def</span> <span class="ow">in</span> <span class="n">spec</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;transitions&quot;</span><span class="p">,</span> <span class="p">[]):</span>
+            <span class="n">sm</span><span class="o">.</span><span class="n">add_transition</span><span class="p">(</span>
+                <span class="n">from_state</span><span class="o">=</span><span class="n">trans_def</span><span class="p">[</span><span class="s2">&quot;from&quot;</span><span class="p">],</span>
+                <span class="n">trigger</span><span class="o">=</span><span class="n">trans_def</span><span class="p">[</span><span class="s2">&quot;trigger&quot;</span><span class="p">],</span>
+                <span class="n">to_state</span><span class="o">=</span><span class="n">trans_def</span><span class="p">[</span><span class="s2">&quot;to&quot;</span><span class="p">],</span>
+                <span class="n">condition</span><span class="o">=</span><span class="n">trans_def</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;condition&quot;</span><span class="p">),</span>
+                <span class="n">action</span><span class="o">=</span><span class="n">trans_def</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;action&quot;</span><span class="p">),</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">sm</span></div>
+
+
+<div class="viewcode-block" id="StateMachineBuilder.from_code">
+<a class="viewcode-back" href="../../../module_docs/ij/diagrams/state_machine.html#ij.StateMachineBuilder.from_code">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_code</span><span class="p">(</span><span class="n">code</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StateMachine</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract state machine from simple DSL.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            code: State machine DSL code</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            StateMachine instance</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; code = &#39;&#39;&#39;</span>
+<span class="sd">            ... INITIAL locked</span>
+<span class="sd">            ... STATE unlocked</span>
+<span class="sd">            ... STATE error FINAL</span>
+<span class="sd">            ...</span>
+<span class="sd">            ... locked --unlock--&gt; unlocked</span>
+<span class="sd">            ... unlocked --lock--&gt; locked</span>
+<span class="sd">            ... &#39;&#39;&#39;</span>
+<span class="sd">            &gt;&gt;&gt; sm = StateMachineBuilder.from_code(code)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sm</span> <span class="o">=</span> <span class="n">StateMachine</span><span class="p">()</span>
+
+        <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">code</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+            <span class="c1"># Parse STATE declarations</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;STATE &quot;</span><span class="p">):</span>
+                <span class="n">parts</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+                <span class="n">state_name</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">state_type</span> <span class="o">=</span> <span class="n">StateType</span><span class="o">.</span><span class="n">FINAL</span> <span class="k">if</span> <span class="s2">&quot;FINAL&quot;</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">else</span> <span class="n">StateType</span><span class="o">.</span><span class="n">NORMAL</span>
+                <span class="n">sm</span><span class="o">.</span><span class="n">add_state</span><span class="p">(</span><span class="n">state_name</span><span class="p">,</span> <span class="n">state_type</span><span class="o">=</span><span class="n">state_type</span><span class="p">)</span>
+
+            <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;INITIAL &quot;</span><span class="p">):</span>
+                <span class="n">state_name</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">sm</span><span class="o">.</span><span class="n">add_state</span><span class="p">(</span><span class="n">state_name</span><span class="p">,</span> <span class="n">state_type</span><span class="o">=</span><span class="n">StateType</span><span class="o">.</span><span class="n">INITIAL</span><span class="p">)</span>
+                <span class="n">sm</span><span class="o">.</span><span class="n">initial_state</span> <span class="o">=</span> <span class="n">state_name</span>
+
+            <span class="c1"># Parse transitions: from --trigger--&gt; to</span>
+            <span class="k">elif</span> <span class="s2">&quot;--&quot;</span> <span class="ow">in</span> <span class="n">line</span> <span class="ow">and</span> <span class="s2">&quot;--&gt;&quot;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+
+                <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\w+)\s+--(\w+)--&gt;\s+(\w+)&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                    <span class="n">from_state</span><span class="p">,</span> <span class="n">trigger</span><span class="p">,</span> <span class="n">to_state</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+                    <span class="n">sm</span><span class="o">.</span><span class="n">add_transition</span><span class="p">(</span><span class="n">from_state</span><span class="p">,</span> <span class="n">trigger</span><span class="p">,</span> <span class="n">to_state</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">sm</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright NO COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+ij.renderers.mermaid
+====================
+.. automodule:: ij.renderers.mermaid
+   :members:

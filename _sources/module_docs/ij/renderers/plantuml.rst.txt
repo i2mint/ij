@@ -1,0 +1,4 @@
+ij.renderers.plantuml
+=====================
+.. automodule:: ij.renderers.plantuml
+   :members:

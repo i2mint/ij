@@ -1,0 +1,4 @@
+ij.viewer
+=========
+.. automodule:: ij.viewer
+   :members:

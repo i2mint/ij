@@ -1,0 +1,375 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ij.transforms &mdash; ij 0.1.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=fd825880"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ij.validation" href="validation.html" />
+    <link rel="prev" title="ij.renderers.sequence" href="renderers/sequence.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ij
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ij.html">ij</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analyzers.html">ij.analyzers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analyzers/python_analyzer.html">ij.analyzers.python_analyzer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analyzers/typescript.html">ij.analyzers.typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">ij.cli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli_enhanced.html">ij.cli_enhanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="converters.html">ij.converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="converters/enhanced_text.html">ij.converters.enhanced_text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="converters/llm_converter.html">ij.converters.llm_converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="converters/text_to_ir.html">ij.converters.text_to_ir</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core.html">ij.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams.html">ij.diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/erd.html">ij.diagrams.erd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams/state_machine.html">ij.diagrams.state_machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export.html">ij.export</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export/image.html">ij.export.image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git_integration.html">ij.git_integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph_ops.html">ij.graph_ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importers.html">ij.importers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importers/database.html">ij.importers.database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importers/drawio.html">ij.importers.drawio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importers/openapi.html">ij.importers.openapi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importers/plantuml.html">ij.importers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layout.html">ij.layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layout/force_directed.html">ij.layout.force_directed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layout/hierarchical.html">ij.layout.hierarchical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layout/layout_engine.html">ij.layout.layout_engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parsers.html">ij.parsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parsers/d2.html">ij.parsers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parsers/mermaid.html">ij.parsers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">ij.plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins/plugin_manager.html">ij.plugins.plugin_manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderers.html">ij.renderers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderers/d2.html">ij.renderers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderers/graphviz.html">ij.renderers.graphviz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderers/mermaid.html">ij.renderers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderers/plantuml.html">ij.renderers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderers/sequence.html">ij.renderers.sequence</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ij.transforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ij.transforms.DiagramTransforms"><code class="docutils literal notranslate"><span class="pre">DiagramTransforms</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ij.transforms.DiagramTransforms.apply_node_filter"><code class="docutils literal notranslate"><span class="pre">DiagramTransforms.apply_node_filter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.transforms.DiagramTransforms.extract_subgraph"><code class="docutils literal notranslate"><span class="pre">DiagramTransforms.extract_subgraph()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.transforms.DiagramTransforms.filter_by_node_type"><code class="docutils literal notranslate"><span class="pre">DiagramTransforms.filter_by_node_type()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.transforms.DiagramTransforms.find_cycles"><code class="docutils literal notranslate"><span class="pre">DiagramTransforms.find_cycles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.transforms.DiagramTransforms.get_statistics"><code class="docutils literal notranslate"><span class="pre">DiagramTransforms.get_statistics()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.transforms.DiagramTransforms.merge_diagrams"><code class="docutils literal notranslate"><span class="pre">DiagramTransforms.merge_diagrams()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.transforms.DiagramTransforms.merge_sequential_nodes"><code class="docutils literal notranslate"><span class="pre">DiagramTransforms.merge_sequential_nodes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.transforms.DiagramTransforms.reverse_edges"><code class="docutils literal notranslate"><span class="pre">DiagramTransforms.reverse_edges()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.transforms.DiagramTransforms.simplify"><code class="docutils literal notranslate"><span class="pre">DiagramTransforms.simplify()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">ij.validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viewer.html">ij.viewer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viewer/server.html">ij.viewer.server</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ij</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ij.transforms</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/module_docs/ij/transforms.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-ij.transforms">
+<span id="ij-transforms"></span><h1>ij.transforms<a class="headerlink" href="#module-ij.transforms" title="Link to this heading"></a></h1>
+<p>Diagram transformation and optimization utilities.</p>
+<p>Provides operations for manipulating, simplifying, and optimizing diagrams.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="ij.transforms.DiagramTransforms">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ij.transforms.</span></span><span class="sig-name descname"><span class="pre">DiagramTransforms</span></span><a class="reference internal" href="../../_modules/ij/transforms.html#DiagramTransforms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.transforms.DiagramTransforms" title="Link to this definition"></a></dt>
+<dd><p>Transform and optimize diagram structures.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.transforms.DiagramTransforms.apply_node_filter">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">apply_node_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diagram</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">predicate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="core.html#ij.core.Node" title="ij.core.Node"><span class="pre">Node</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></span><a class="reference internal" href="../../_modules/ij/transforms.html#DiagramTransforms.apply_node_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.transforms.DiagramTransforms.apply_node_filter" title="Link to this definition"></a></dt>
+<dd><p>Filter nodes using a custom predicate function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>diagram</strong> – DiagramIR to filter</p></li>
+<li><p><strong>predicate</strong> – Function that returns True for nodes to keep</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Filtered DiagramIR</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Keep only nodes with labels containing &quot;error&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filtered</span> <span class="o">=</span> <span class="n">DiagramTransforms</span><span class="o">.</span><span class="n">apply_node_filter</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">diagram</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span> <span class="ow">in</span> <span class="n">n</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.transforms.DiagramTransforms.extract_subgraph">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">extract_subgraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diagram</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_node_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></span><a class="reference internal" href="../../_modules/ij/transforms.html#DiagramTransforms.extract_subgraph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.transforms.DiagramTransforms.extract_subgraph" title="Link to this definition"></a></dt>
+<dd><p>Extract subgraph starting from a root node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>diagram</strong> – Source DiagramIR</p></li>
+<li><p><strong>root_node_id</strong> – ID of root node</p></li>
+<li><p><strong>max_depth</strong> – Maximum depth to traverse (None = unlimited)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DiagramIR containing subgraph</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Extract subgraph from node &#39;start&#39; with depth 2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">subgraph</span> <span class="o">=</span> <span class="n">DiagramTransforms</span><span class="o">.</span><span class="n">extract_subgraph</span><span class="p">(</span><span class="n">diagram</span><span class="p">,</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.transforms.DiagramTransforms.filter_by_node_type">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">filter_by_node_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diagram</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="core.html#ij.core.NodeType" title="ij.core.NodeType"><span class="pre">NodeType</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></span><a class="reference internal" href="../../_modules/ij/transforms.html#DiagramTransforms.filter_by_node_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.transforms.DiagramTransforms.filter_by_node_type" title="Link to this definition"></a></dt>
+<dd><p>Filter diagram by node types.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>diagram</strong> – DiagramIR to filter</p></li>
+<li><p><strong>node_types</strong> – List of NodeTypes to filter</p></li>
+<li><p><strong>keep</strong> – If True, keep only these types; if False, remove these types</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Filtered DiagramIR</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Keep only PROCESS nodes</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filtered</span> <span class="o">=</span> <span class="n">DiagramTransforms</span><span class="o">.</span><span class="n">filter_by_node_type</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">diagram</span><span class="p">,</span> <span class="p">[</span><span class="n">NodeType</span><span class="o">.</span><span class="n">PROCESS</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="kc">True</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.transforms.DiagramTransforms.find_cycles">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">find_cycles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diagram</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/ij/transforms.html#DiagramTransforms.find_cycles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.transforms.DiagramTransforms.find_cycles" title="Link to this definition"></a></dt>
+<dd><p>Find all cycles in the diagram.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>diagram</strong> – DiagramIR to analyze</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of cycles, where each cycle is a list of node IDs</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cycles</span> <span class="o">=</span> <span class="n">DiagramTransforms</span><span class="o">.</span><span class="n">find_cycles</span><span class="p">(</span><span class="n">diagram</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">cycles</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">cycles</span><span class="p">)</span><span class="si">}</span><span class="s2"> cycles&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.transforms.DiagramTransforms.get_statistics">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diagram</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="../../_modules/ij/transforms.html#DiagramTransforms.get_statistics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.transforms.DiagramTransforms.get_statistics" title="Link to this definition"></a></dt>
+<dd><p>Get statistics about the diagram.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>diagram</strong> – DiagramIR to analyze</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary containing diagram statistics</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">stats</span> <span class="o">=</span> <span class="n">DiagramTransforms</span><span class="o">.</span><span class="n">get_statistics</span><span class="p">(</span><span class="n">diagram</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nodes: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;node_count&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, Edges: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;edge_count&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.transforms.DiagramTransforms.merge_diagrams">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">merge_diagrams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diagrams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></span><a class="reference internal" href="../../_modules/ij/transforms.html#DiagramTransforms.merge_diagrams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.transforms.DiagramTransforms.merge_diagrams" title="Link to this definition"></a></dt>
+<dd><p>Merge multiple diagrams into one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>diagrams</strong> – List of DiagramIR to merge</p></li>
+<li><p><strong>title</strong> – Optional title for merged diagram</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Merged DiagramIR</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">diagram1</span> <span class="o">=</span> <span class="n">DiagramIR</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">diagram2</span> <span class="o">=</span> <span class="n">DiagramIR</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merged</span> <span class="o">=</span> <span class="n">DiagramTransforms</span><span class="o">.</span><span class="n">merge_diagrams</span><span class="p">([</span><span class="n">diagram1</span><span class="p">,</span> <span class="n">diagram2</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.transforms.DiagramTransforms.merge_sequential_nodes">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">merge_sequential_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diagram</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">separator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'</span> <span class="pre">→</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></span><a class="reference internal" href="../../_modules/ij/transforms.html#DiagramTransforms.merge_sequential_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.transforms.DiagramTransforms.merge_sequential_nodes" title="Link to this definition"></a></dt>
+<dd><p>Merge sequential nodes into single nodes.</p>
+<p>Combines nodes that form a linear sequence with no branching.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>diagram</strong> – DiagramIR to transform</p></li>
+<li><p><strong>separator</strong> – String to join labels</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DiagramIR with merged nodes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.transforms.DiagramTransforms.reverse_edges">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">reverse_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diagram</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></span><a class="reference internal" href="../../_modules/ij/transforms.html#DiagramTransforms.reverse_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.transforms.DiagramTransforms.reverse_edges" title="Link to this definition"></a></dt>
+<dd><p>Reverse all edge directions in the diagram.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>diagram</strong> – DiagramIR to reverse</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DiagramIR with reversed edges</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">reversed_diagram</span> <span class="o">=</span> <span class="n">DiagramTransforms</span><span class="o">.</span><span class="n">reverse_edges</span><span class="p">(</span><span class="n">diagram</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ij.transforms.DiagramTransforms.simplify">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">simplify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diagram</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_isolated</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></span><a class="reference internal" href="../../_modules/ij/transforms.html#DiagramTransforms.simplify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.transforms.DiagramTransforms.simplify" title="Link to this definition"></a></dt>
+<dd><p>Simplify diagram by removing redundant nodes and edges.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>diagram</strong> – DiagramIR to simplify</p></li>
+<li><p><strong>remove_isolated</strong> – Remove nodes with no connections</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Simplified DiagramIR</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">ij</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiagramIR</span><span class="p">,</span> <span class="n">Node</span><span class="p">,</span> <span class="n">Edge</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">diagram</span> <span class="o">=</span> <span class="n">DiagramIR</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;isolated&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Isolated&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">simplified</span> <span class="o">=</span> <span class="n">DiagramTransforms</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">diagram</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">simplified</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>  <span class="c1"># isolated node removed</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="renderers/sequence.html" class="btn btn-neutral float-left" title="ij.renderers.sequence" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="validation.html" class="btn btn-neutral float-right" title="ij.validation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright NO COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

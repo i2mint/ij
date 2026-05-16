@@ -1,0 +1,473 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ij.renderers.sequence &mdash; ij 0.1.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=fd825880"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ij
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij.html">ij</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers.html">ij.analyzers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers/python_analyzer.html">ij.analyzers.python_analyzer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers/typescript.html">ij.analyzers.typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/cli.html">ij.cli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/cli_enhanced.html">ij.cli_enhanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters.html">ij.converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/enhanced_text.html">ij.converters.enhanced_text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/llm_converter.html">ij.converters.llm_converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/text_to_ir.html">ij.converters.text_to_ir</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/core.html">ij.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams.html">ij.diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams/erd.html">ij.diagrams.erd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams/state_machine.html">ij.diagrams.state_machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/export.html">ij.export</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/export/image.html">ij.export.image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/git_integration.html">ij.git_integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/graph_ops.html">ij.graph_ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers.html">ij.importers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/database.html">ij.importers.database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/drawio.html">ij.importers.drawio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/openapi.html">ij.importers.openapi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/plantuml.html">ij.importers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout.html">ij.layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/force_directed.html">ij.layout.force_directed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/hierarchical.html">ij.layout.hierarchical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/layout_engine.html">ij.layout.layout_engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers.html">ij.parsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers/d2.html">ij.parsers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers/mermaid.html">ij.parsers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/plugins.html">ij.plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/plugins/plugin_manager.html">ij.plugins.plugin_manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers.html">ij.renderers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/d2.html">ij.renderers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/graphviz.html">ij.renderers.graphviz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/mermaid.html">ij.renderers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/plantuml.html">ij.renderers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/sequence.html">ij.renderers.sequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/transforms.html">ij.transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/validation.html">ij.validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/viewer.html">ij.viewer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/viewer/server.html">ij.viewer.server</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ij</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../ij.html">ij</a></li>
+      <li class="breadcrumb-item active">ij.renderers.sequence</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ij.renderers.sequence</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Sequence diagram renderer for Mermaid format.</span>
+
+<span class="sd">Renders DiagramIR as Mermaid sequence diagrams for showing interactions</span>
+<span class="sd">and message flows between participants over time.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">ast</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Set</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..core</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiagramIR</span><span class="p">,</span> <span class="n">Edge</span><span class="p">,</span> <span class="n">EdgeType</span><span class="p">,</span> <span class="n">Node</span>
+
+
+<div class="viewcode-block" id="SequenceDiagramRenderer">
+<a class="viewcode-back" href="../../../module_docs/ij/renderers/sequence.html#ij.SequenceDiagramRenderer">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SequenceDiagramRenderer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Render DiagramIR as Mermaid sequence diagram.</span>
+
+<span class="sd">    Maps DiagramIR concepts to sequence diagrams:</span>
+<span class="sd">    - Nodes -&gt; Participants</span>
+<span class="sd">    - Edges -&gt; Messages between participants</span>
+<span class="sd">    - Edge labels -&gt; Message content</span>
+<span class="sd">    - EdgeType.DIRECT -&gt; Solid arrows (synchronous)</span>
+<span class="sd">    - EdgeType.CONDITIONAL -&gt; Dashed arrows (asynchronous/return)</span>
+<span class="sd">    - EdgeType.BIDIRECTIONAL -&gt; Bidirectional arrows</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize renderer.&quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+<div class="viewcode-block" id="SequenceDiagramRenderer.render">
+<a class="viewcode-back" href="../../../module_docs/ij/renderers/sequence.html#ij.SequenceDiagramRenderer.render">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Render DiagramIR as Mermaid sequence diagram.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            diagram: DiagramIR to render</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Mermaid sequence diagram syntax</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; from ij import DiagramIR, Node, Edge</span>
+<span class="sd">            &gt;&gt;&gt; diagram = DiagramIR()</span>
+<span class="sd">            &gt;&gt;&gt; diagram.add_node(Node(id=&quot;user&quot;, label=&quot;User&quot;))</span>
+<span class="sd">            &gt;&gt;&gt; diagram.add_node(Node(id=&quot;api&quot;, label=&quot;API&quot;))</span>
+<span class="sd">            &gt;&gt;&gt; diagram.add_edge(Edge(source=&quot;user&quot;, target=&quot;api&quot;, label=&quot;Request&quot;))</span>
+<span class="sd">            &gt;&gt;&gt; renderer = SequenceDiagramRenderer()</span>
+<span class="sd">            &gt;&gt;&gt; print(renderer.render(diagram))</span>
+<span class="sd">            sequenceDiagram</span>
+<span class="sd">                participant user as User</span>
+<span class="sd">                participant api as API</span>
+<span class="sd">                user-&gt;&gt;api: Request</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">diagram</span><span class="o">.</span><span class="n">validate</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid diagram structure&quot;</span><span class="p">)</span>
+
+        <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sequenceDiagram&quot;</span><span class="p">]</span>
+
+        <span class="c1"># Add title if present</span>
+        <span class="k">if</span> <span class="s2">&quot;title&quot;</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">metadata</span><span class="p">:</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    title </span><span class="si">{</span><span class="n">diagram</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Collect all participants (nodes)</span>
+        <span class="n">participants</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_collect_participants</span><span class="p">(</span><span class="n">diagram</span><span class="p">)</span>
+
+        <span class="c1"># Declare participants</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">id</span> <span class="ow">in</span> <span class="n">participants</span><span class="p">:</span>
+                <span class="c1"># Use label if different from id, otherwise just id</span>
+                <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">label</span> <span class="ow">and</span> <span class="n">node</span><span class="o">.</span><span class="n">label</span> <span class="o">!=</span> <span class="n">node</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+                    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    participant </span><span class="si">{</span><span class="n">node</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2"> as </span><span class="si">{</span><span class="n">node</span><span class="o">.</span><span class="n">label</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    participant </span><span class="si">{</span><span class="n">node</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Add messages (edges)</span>
+        <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
+            <span class="n">arrow</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_arrow_type</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">edge_type</span><span class="p">)</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="n">edge</span><span class="o">.</span><span class="n">label</span> <span class="k">if</span> <span class="n">edge</span><span class="o">.</span><span class="n">label</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    </span><span class="si">{</span><span class="n">edge</span><span class="o">.</span><span class="n">source</span><span class="si">}{</span><span class="n">arrow</span><span class="si">}{</span><span class="n">edge</span><span class="o">.</span><span class="n">target</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_collect_participants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Collect all participant IDs from nodes and edges.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            diagram: DiagramIR to analyze</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Set of participant IDs</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">participants</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="c1"># Add all nodes</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+            <span class="n">participants</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+        <span class="c1"># Add any participants referenced in edges that aren&#39;t in nodes</span>
+        <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
+            <span class="n">participants</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">source</span><span class="p">)</span>
+            <span class="n">participants</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">participants</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_arrow_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge_type</span><span class="p">:</span> <span class="n">EdgeType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get Mermaid arrow type for edge type.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            edge_type: EdgeType to convert</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Mermaid arrow syntax</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">arrow_map</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">EdgeType</span><span class="o">.</span><span class="n">DIRECT</span><span class="p">:</span> <span class="s2">&quot;-&gt;&gt;&quot;</span><span class="p">,</span>  <span class="c1"># Solid arrow (synchronous)</span>
+            <span class="n">EdgeType</span><span class="o">.</span><span class="n">CONDITIONAL</span><span class="p">:</span> <span class="s2">&quot;--&gt;&gt;&quot;</span><span class="p">,</span>  <span class="c1"># Dashed arrow (asynchronous/return)</span>
+            <span class="n">EdgeType</span><span class="o">.</span><span class="n">BIDIRECTIONAL</span><span class="p">:</span> <span class="s2">&quot;&lt;&lt;-&gt;&gt;&quot;</span><span class="p">,</span>  <span class="c1"># Bidirectional</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">arrow_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">edge_type</span><span class="p">,</span> <span class="s2">&quot;-&gt;&gt;&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="SequenceDiagramRenderer.render_with_notes">
+<a class="viewcode-back" href="../../../module_docs/ij/renderers/sequence.html#ij.SequenceDiagramRenderer.render_with_notes">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render_with_notes</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span><span class="p">,</span> <span class="n">notes</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Render sequence diagram with notes.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            diagram: DiagramIR to render</span>
+<span class="sd">            notes: Dict mapping participant IDs to list of notes</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Mermaid sequence diagram with notes</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; notes = {&quot;user&quot;: [&quot;Note about user&quot;], &quot;api&quot;: [&quot;API note&quot;]}</span>
+<span class="sd">            &gt;&gt;&gt; renderer.render_with_notes(diagram, notes)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">diagram</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Insert notes after participant declarations</span>
+        <span class="n">insert_index</span> <span class="o">=</span> <span class="nb">len</span><span class="p">([</span><span class="n">l</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lines</span> <span class="k">if</span> <span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;participant&quot;</span><span class="p">)])</span>
+        <span class="k">if</span> <span class="s2">&quot;title&quot;</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">metadata</span><span class="p">:</span>
+            <span class="n">insert_index</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># Account for title line</span>
+        <span class="n">insert_index</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># Account for sequenceDiagram line</span>
+
+        <span class="n">note_lines</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">participant_id</span><span class="p">,</span> <span class="n">participant_notes</span> <span class="ow">in</span> <span class="n">notes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">participant_notes</span><span class="p">:</span>
+                <span class="n">note_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    Note over </span><span class="si">{</span><span class="n">participant_id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">note</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Insert notes</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[:</span><span class="n">insert_index</span><span class="p">]</span> <span class="o">+</span> <span class="n">note_lines</span> <span class="o">+</span> <span class="n">lines</span><span class="p">[</span><span class="n">insert_index</span><span class="p">:]</span>
+
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SequenceDiagramRenderer.render_with_activations">
+<a class="viewcode-back" href="../../../module_docs/ij/renderers/sequence.html#ij.SequenceDiagramRenderer.render_with_activations">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render_with_activations</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span><span class="p">,</span> <span class="n">activations</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Render sequence diagram with participant activations.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            diagram: DiagramIR to render</span>
+<span class="sd">            activations: List of (participant_id, &quot;activate&quot;/&quot;deactivate&quot;) tuples</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Mermaid sequence diagram with activations</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; activations = [(&quot;api&quot;, &quot;activate&quot;), (&quot;api&quot;, &quot;deactivate&quot;)]</span>
+<span class="sd">            &gt;&gt;&gt; renderer.render_with_activations(diagram, activations)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">diagram</span><span class="p">)</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Add activations at the end</span>
+        <span class="k">for</span> <span class="n">participant_id</span><span class="p">,</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">activations</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="s2">&quot;activate&quot;</span><span class="p">:</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    activate </span><span class="si">{</span><span class="n">participant_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s2">&quot;deactivate&quot;</span><span class="p">:</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    deactivate </span><span class="si">{</span><span class="n">participant_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="InteractionAnalyzer">
+<a class="viewcode-back" href="../../../module_docs/ij/renderers/sequence.html#ij.InteractionAnalyzer">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">InteractionAnalyzer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Analyze code or text to identify interaction patterns for sequence diagrams.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize analyzer.&quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+<div class="viewcode-block" id="InteractionAnalyzer.analyze_function_calls">
+<a class="viewcode-back" href="../../../module_docs/ij/renderers/sequence.html#ij.InteractionAnalyzer.analyze_function_calls">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">analyze_function_calls</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">caller</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">code</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DiagramIR</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Analyze function calls to create a sequence diagram.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            caller: The calling function/component name</span>
+<span class="sd">            code: Python code to analyze</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DiagramIR representing the call sequence</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; analyzer = InteractionAnalyzer()</span>
+<span class="sd">            &gt;&gt;&gt; code = &#39;&#39;&#39;</span>
+<span class="sd">            ... api.authenticate(user)</span>
+<span class="sd">            ... db.query(user_id)</span>
+<span class="sd">            ... cache.store(result)</span>
+<span class="sd">            ... &#39;&#39;&#39;</span>
+<span class="sd">            &gt;&gt;&gt; diagram = analyzer.analyze_function_calls(&quot;client&quot;, code)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">..core</span><span class="w"> </span><span class="kn">import</span> <span class="n">Edge</span><span class="p">,</span> <span class="n">Node</span>
+
+        <span class="n">diagram</span> <span class="o">=</span> <span class="n">DiagramIR</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;sequence&quot;</span><span class="p">})</span>
+
+        <span class="c1"># Add caller as first participant</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">caller</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">caller</span><span class="p">))</span>
+
+        <span class="c1"># Parse the code</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">tree</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">SyntaxError</span><span class="p">:</span>
+            <span class="c1"># If it&#39;s not valid Python, return empty diagram</span>
+            <span class="k">return</span> <span class="n">diagram</span>
+
+        <span class="c1"># Find all function calls of the form object.method()</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">ast</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Call</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">func</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Attribute</span><span class="p">):</span>
+                    <span class="c1"># This is a method call like obj.method()</span>
+                    <span class="n">obj_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_object_name</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+                    <span class="n">method_name</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="n">attr</span>
+
+                    <span class="c1"># Add participant if not exists</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">obj_name</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">nodes</span><span class="p">):</span>
+                        <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">obj_name</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">obj_name</span><span class="p">))</span>
+
+                    <span class="c1"># Add message</span>
+                    <span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">method_name</span><span class="si">}</span><span class="s2">()&quot;</span>
+                    <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span>
+                        <span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">caller</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">obj_name</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">message</span><span class="p">)</span>
+                    <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">diagram</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_object_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">expr</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract object name from AST node.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Name</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">id</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Attribute</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_object_name</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="n">attr</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;unknown&quot;</span>
+
+<div class="viewcode-block" id="InteractionAnalyzer.from_text_description">
+<a class="viewcode-back" href="../../../module_docs/ij/renderers/sequence.html#ij.InteractionAnalyzer.from_text_description">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_text_description</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DiagramIR</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create sequence diagram from text description.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            text: Natural language description of interactions</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DiagramIR representing the interaction sequence</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; analyzer = InteractionAnalyzer()</span>
+<span class="sd">            &gt;&gt;&gt; text = &quot;User sends request to API. API queries Database. Database returns data to API. API responds to User.&quot;</span>
+<span class="sd">            &gt;&gt;&gt; diagram = analyzer.from_text_description(text)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">..core</span><span class="w"> </span><span class="kn">import</span> <span class="n">Edge</span><span class="p">,</span> <span class="n">Node</span>
+
+        <span class="n">diagram</span> <span class="o">=</span> <span class="n">DiagramIR</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;sequence&quot;</span><span class="p">})</span>
+
+        <span class="c1"># Simple pattern matching for &quot;A sends/queries/calls/requests B&quot;</span>
+        <span class="c1"># Pattern: &quot;Subject verb Object&quot; or &quot;Subject verb message to Object&quot;</span>
+        <span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="sa">r</span><span class="s2">&quot;(\w+)\s+(?:sends?|queries?|calls?|requests?|asks?)\s+(?:to\s+)?(\w+)(?:\s*:\s*(.+?)(?:\.|$))?&quot;</span><span class="p">,</span>
+            <span class="sa">r</span><span class="s2">&quot;(\w+)\s+(?:responds?|returns?|replies?)\s+(?:to\s+)?(\w+)(?:\s*:\s*(.+?)(?:\.|$))?&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+
+        <span class="n">sentences</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+            <span class="n">sentence</span> <span class="o">=</span> <span class="n">sentence</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">sentence</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">patterns</span><span class="p">:</span>
+                <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">sentence</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                    <span class="n">source</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="n">target</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+                    <span class="n">message</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+
+                    <span class="c1"># Add participants if not exists</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">source</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">nodes</span><span class="p">):</span>
+                        <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">source</span><span class="p">))</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">target</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">nodes</span><span class="p">):</span>
+                        <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">target</span><span class="p">))</span>
+
+                    <span class="c1"># Add message</span>
+                    <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span>
+                        <span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">message</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+                    <span class="p">)</span>
+                    <span class="k">break</span>
+
+        <span class="k">return</span> <span class="n">diagram</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright NO COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+ij.renderers.d2
+===============
+.. automodule:: ij.renderers.d2
+   :members:

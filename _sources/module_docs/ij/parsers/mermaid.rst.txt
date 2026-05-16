@@ -1,0 +1,4 @@
+ij.parsers.mermaid
+==================
+.. automodule:: ij.parsers.mermaid
+   :members:

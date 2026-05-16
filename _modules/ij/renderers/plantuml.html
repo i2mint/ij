@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ij.renderers.plantuml &mdash; ij 0.1.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=fd825880"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ij
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij.html">ij</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers.html">ij.analyzers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers/python_analyzer.html">ij.analyzers.python_analyzer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers/typescript.html">ij.analyzers.typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/cli.html">ij.cli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/cli_enhanced.html">ij.cli_enhanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters.html">ij.converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/enhanced_text.html">ij.converters.enhanced_text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/llm_converter.html">ij.converters.llm_converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/text_to_ir.html">ij.converters.text_to_ir</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/core.html">ij.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams.html">ij.diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams/erd.html">ij.diagrams.erd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams/state_machine.html">ij.diagrams.state_machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/export.html">ij.export</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/export/image.html">ij.export.image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/git_integration.html">ij.git_integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/graph_ops.html">ij.graph_ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers.html">ij.importers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/database.html">ij.importers.database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/drawio.html">ij.importers.drawio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/openapi.html">ij.importers.openapi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/plantuml.html">ij.importers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout.html">ij.layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/force_directed.html">ij.layout.force_directed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/hierarchical.html">ij.layout.hierarchical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/layout_engine.html">ij.layout.layout_engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers.html">ij.parsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers/d2.html">ij.parsers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers/mermaid.html">ij.parsers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/plugins.html">ij.plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/plugins/plugin_manager.html">ij.plugins.plugin_manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers.html">ij.renderers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/d2.html">ij.renderers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/graphviz.html">ij.renderers.graphviz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/mermaid.html">ij.renderers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/plantuml.html">ij.renderers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/sequence.html">ij.renderers.sequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/transforms.html">ij.transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/validation.html">ij.validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/viewer.html">ij.viewer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/viewer/server.html">ij.viewer.server</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ij</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../ij.html">ij</a></li>
+      <li class="breadcrumb-item active">ij.renderers.plantuml</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ij.renderers.plantuml</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;PlantUML diagram renderer.</span>
+
+<span class="sd">Converts DiagramIR to PlantUML syntax, supporting activity diagrams</span>
+<span class="sd">which are ideal for process flows.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..core</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiagramIR</span><span class="p">,</span> <span class="n">EdgeType</span><span class="p">,</span> <span class="n">NodeType</span>
+
+
+<div class="viewcode-block" id="PlantUMLRenderer">
+<a class="viewcode-back" href="../../../module_docs/ij/renderers/plantuml.html#ij.PlantUMLRenderer">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PlantUMLRenderer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Renders DiagramIR to PlantUML activity diagram syntax.</span>
+
+<span class="sd">    PlantUML is the enterprise standard for comprehensive UML diagrams</span>
+<span class="sd">    with support for 25+ diagram types.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Map node types to PlantUML syntax</span>
+    <span class="n">NODE_SYNTAX</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeType</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">NodeType</span><span class="o">.</span><span class="n">START</span><span class="p">:</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span>
+        <span class="n">NodeType</span><span class="o">.</span><span class="n">END</span><span class="p">:</span> <span class="s2">&quot;stop&quot;</span><span class="p">,</span>
+        <span class="n">NodeType</span><span class="o">.</span><span class="n">PROCESS</span><span class="p">:</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span>
+        <span class="n">NodeType</span><span class="o">.</span><span class="n">DECISION</span><span class="p">:</span> <span class="s2">&quot;if&quot;</span><span class="p">,</span>
+        <span class="n">NodeType</span><span class="o">.</span><span class="n">DATA</span><span class="p">:</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span>  <span class="c1"># Use note for data</span>
+        <span class="n">NodeType</span><span class="o">.</span><span class="n">SUBPROCESS</span><span class="p">:</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span>
+        <span class="n">NodeType</span><span class="o">.</span><span class="n">CUSTOM</span><span class="p">:</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">use_skinparam</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize renderer.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            use_skinparam: Whether to include modern styling</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_skinparam</span> <span class="o">=</span> <span class="n">use_skinparam</span>
+
+<div class="viewcode-block" id="PlantUMLRenderer.render">
+<a class="viewcode-back" href="../../../module_docs/ij/renderers/plantuml.html#ij.PlantUMLRenderer.render">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Render a DiagramIR to PlantUML syntax.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            diagram: The diagram to render</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            PlantUML syntax as a string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">diagram</span><span class="o">.</span><span class="n">validate</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid diagram structure&quot;</span><span class="p">)</span>
+
+        <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;@startuml&quot;</span><span class="p">]</span>
+
+        <span class="c1"># Add title if present</span>
+        <span class="k">if</span> <span class="s2">&quot;title&quot;</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">metadata</span><span class="p">:</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;title </span><span class="si">{</span><span class="n">diagram</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Add modern styling</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_skinparam</span><span class="p">:</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;skinparam ActivityFontSize 14&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;skinparam ActivityBorderColor #2C3E50&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;skinparam ActivityBackgroundColor #ECF0F1&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Build a graph structure to understand flow</span>
+        <span class="n">node_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">nodes</span><span class="p">}</span>
+        <span class="n">edges_from</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">edge</span><span class="o">.</span><span class="n">source</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">edges_from</span><span class="p">:</span>
+                <span class="n">edges_from</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">source</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">edges_from</span><span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">source</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+
+        <span class="c1"># Track rendered nodes to avoid duplicates</span>
+        <span class="n">rendered</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="c1"># Render in topological order if possible</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">..graph_ops</span><span class="w"> </span><span class="kn">import</span> <span class="n">GraphOperations</span>
+
+        <span class="n">order</span> <span class="o">=</span> <span class="n">GraphOperations</span><span class="o">.</span><span class="n">topological_sort</span><span class="p">(</span><span class="n">diagram</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">order</span><span class="p">:</span>
+            <span class="c1"># If there are cycles, just use node order</span>
+            <span class="n">order</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">nodes</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">node_id</span> <span class="ow">in</span> <span class="n">order</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">node_id</span> <span class="ow">in</span> <span class="n">rendered</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">node</span> <span class="o">=</span> <span class="n">node_map</span><span class="p">[</span><span class="n">node_id</span><span class="p">]</span>
+            <span class="n">node_syntax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">node_syntax</span><span class="p">:</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node_syntax</span><span class="p">)</span>
+                <span class="n">rendered</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node_id</span><span class="p">)</span>
+
+            <span class="c1"># Render edges from this node</span>
+            <span class="k">if</span> <span class="n">node_id</span> <span class="ow">in</span> <span class="n">edges_from</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">edges_from</span><span class="p">[</span><span class="n">node_id</span><span class="p">]:</span>
+                    <span class="n">edge_syntax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_edge</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span> <span class="n">node_map</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">edge_syntax</span><span class="p">:</span>
+                        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge_syntax</span><span class="p">)</span>
+
+        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;@enduml&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_render_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Render a single node to PlantUML syntax.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">node_type</span> <span class="o">==</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">START</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;start&quot;</span>
+        <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">node_type</span> <span class="o">==</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">END</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;stop&quot;</span>
+        <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">node_type</span> <span class="o">==</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">DECISION</span><span class="p">:</span>
+            <span class="c1"># Decision nodes are rendered with edges</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">node_type</span> <span class="o">==</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">DATA</span><span class="p">:</span>
+            <span class="c1"># Render as activity with note</span>
+            <span class="n">sanitized_label</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">:&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;:</span><span class="si">{</span><span class="n">sanitized_label</span><span class="si">}</span><span class="s2">;</span><span class="se">\n</span><span class="s2">note right: Data storage&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Regular activity</span>
+            <span class="n">sanitized_label</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">:&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;:</span><span class="si">{</span><span class="n">sanitized_label</span><span class="si">}</span><span class="s2">;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_render_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">,</span> <span class="n">node_map</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Render an edge (primarily for decisions).&quot;&quot;&quot;</span>
+        <span class="n">source_node</span> <span class="o">=</span> <span class="n">node_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">source</span><span class="p">)</span>
+        <span class="n">target_node</span> <span class="o">=</span> <span class="n">node_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">source_node</span> <span class="ow">and</span> <span class="n">source_node</span><span class="o">.</span><span class="n">node_type</span> <span class="o">==</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">DECISION</span><span class="p">:</span>
+            <span class="c1"># This is a decision branch</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="n">edge</span><span class="o">.</span><span class="n">label</span> <span class="k">if</span> <span class="n">edge</span><span class="o">.</span><span class="n">label</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">target_label</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">target_node</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">:&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">target_node</span> <span class="k">else</span> <span class="n">edge</span><span class="o">.</span><span class="n">target</span>
+            <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">label</span><span class="p">:</span>
+                <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;if (</span><span class="si">{</span><span class="n">source_node</span><span class="o">.</span><span class="n">label</span><span class="si">}</span><span class="s2">) then (</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">)</span><span class="se">\n</span><span class="s2">  :</span><span class="si">{</span><span class="n">target_label</span><span class="si">}</span><span class="s2">;</span><span class="se">\n</span><span class="s2">endif&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">return</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="PlantUMLRenderer.render_to_file">
+<a class="viewcode-back" href="../../../module_docs/ij/renderers/plantuml.html#ij.PlantUMLRenderer.render_to_file">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render_to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Render diagram and save to file.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            diagram: The diagram to render</span>
+<span class="sd">            filename: Path to output file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">diagram</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">content</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright NO COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

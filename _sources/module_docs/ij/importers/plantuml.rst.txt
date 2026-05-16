@@ -1,0 +1,4 @@
+ij.importers.plantuml
+=====================
+.. automodule:: ij.importers.plantuml
+   :members:

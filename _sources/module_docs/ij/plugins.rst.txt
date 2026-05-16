@@ -1,0 +1,4 @@
+ij.plugins
+==========
+.. automodule:: ij.plugins
+   :members:

@@ -1,0 +1,4 @@
+ij.parsers.d2
+=============
+.. automodule:: ij.parsers.d2
+   :members:

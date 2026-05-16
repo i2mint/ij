@@ -1,0 +1,4 @@
+ij.diagrams
+===========
+.. automodule:: ij.diagrams
+   :members:

@@ -1,0 +1,668 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ij.cli_enhanced &mdash; ij 0.1.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=fd825880"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ij
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij.html">ij</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/analyzers.html">ij.analyzers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/analyzers/python_analyzer.html">ij.analyzers.python_analyzer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/analyzers/typescript.html">ij.analyzers.typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/cli.html">ij.cli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/cli_enhanced.html">ij.cli_enhanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/converters.html">ij.converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/converters/enhanced_text.html">ij.converters.enhanced_text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/converters/llm_converter.html">ij.converters.llm_converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/converters/text_to_ir.html">ij.converters.text_to_ir</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/core.html">ij.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/diagrams.html">ij.diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/diagrams/erd.html">ij.diagrams.erd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/diagrams/state_machine.html">ij.diagrams.state_machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/export.html">ij.export</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/export/image.html">ij.export.image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/git_integration.html">ij.git_integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/graph_ops.html">ij.graph_ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/importers.html">ij.importers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/importers/database.html">ij.importers.database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/importers/drawio.html">ij.importers.drawio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/importers/openapi.html">ij.importers.openapi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/importers/plantuml.html">ij.importers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/layout.html">ij.layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/layout/force_directed.html">ij.layout.force_directed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/layout/hierarchical.html">ij.layout.hierarchical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/layout/layout_engine.html">ij.layout.layout_engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/parsers.html">ij.parsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/parsers/d2.html">ij.parsers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/parsers/mermaid.html">ij.parsers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/plugins.html">ij.plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/plugins/plugin_manager.html">ij.plugins.plugin_manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/renderers.html">ij.renderers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/renderers/d2.html">ij.renderers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/renderers/graphviz.html">ij.renderers.graphviz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/renderers/mermaid.html">ij.renderers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/renderers/plantuml.html">ij.renderers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/renderers/sequence.html">ij.renderers.sequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/transforms.html">ij.transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/validation.html">ij.validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/viewer.html">ij.viewer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ij/viewer/server.html">ij.viewer.server</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ij</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../ij.html">ij</a></li>
+      <li class="breadcrumb-item active">ij.cli_enhanced</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ij.cli_enhanced</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Enhanced command-line interface for Idea Junction.</span>
+
+<span class="sd">Provides subcommands for conversion, validation, diff, and more.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">D2Parser</span><span class="p">,</span>
+    <span class="n">D2Renderer</span><span class="p">,</span>
+    <span class="n">DiagramIR</span><span class="p">,</span>
+    <span class="n">DiagramTransforms</span><span class="p">,</span>
+    <span class="n">GraphvizRenderer</span><span class="p">,</span>
+    <span class="n">MermaidParser</span><span class="p">,</span>
+    <span class="n">MermaidRenderer</span><span class="p">,</span>
+    <span class="n">PlantUMLRenderer</span><span class="p">,</span>
+    <span class="n">SimpleTextConverter</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="get_parser_for_format">
+<a class="viewcode-back" href="../../module_docs/ij/cli_enhanced.html#ij.cli_enhanced.get_parser_for_format">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_parser_for_format</span><span class="p">(</span><span class="n">format_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get parser instance for a format.&quot;&quot;&quot;</span>
+    <span class="n">parsers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;mermaid&quot;</span><span class="p">:</span> <span class="n">MermaidParser</span><span class="p">,</span>
+        <span class="s2">&quot;mmd&quot;</span><span class="p">:</span> <span class="n">MermaidParser</span><span class="p">,</span>
+        <span class="s2">&quot;d2&quot;</span><span class="p">:</span> <span class="n">D2Parser</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">parser_class</span> <span class="o">=</span> <span class="n">parsers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">format_name</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">parser_class</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">parser_class</span><span class="p">()</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No parser available for format: </span><span class="si">{</span><span class="n">format_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_renderer_for_format">
+<a class="viewcode-back" href="../../module_docs/ij/cli_enhanced.html#ij.cli_enhanced.get_renderer_for_format">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_renderer_for_format</span><span class="p">(</span><span class="n">format_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get renderer instance for a format.&quot;&quot;&quot;</span>
+    <span class="n">renderers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;mermaid&quot;</span><span class="p">:</span> <span class="n">MermaidRenderer</span><span class="p">,</span>
+        <span class="s2">&quot;mmd&quot;</span><span class="p">:</span> <span class="n">MermaidRenderer</span><span class="p">,</span>
+        <span class="s2">&quot;d2&quot;</span><span class="p">:</span> <span class="n">D2Renderer</span><span class="p">,</span>
+        <span class="s2">&quot;plantuml&quot;</span><span class="p">:</span> <span class="n">PlantUMLRenderer</span><span class="p">,</span>
+        <span class="s2">&quot;puml&quot;</span><span class="p">:</span> <span class="n">PlantUMLRenderer</span><span class="p">,</span>
+        <span class="s2">&quot;graphviz&quot;</span><span class="p">:</span> <span class="n">GraphvizRenderer</span><span class="p">,</span>
+        <span class="s2">&quot;dot&quot;</span><span class="p">:</span> <span class="n">GraphvizRenderer</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">renderer_class</span> <span class="o">=</span> <span class="n">renderers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">format_name</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">renderer_class</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">renderer_class</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No renderer available for format: </span><span class="si">{</span><span class="n">format_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="detect_format">
+<a class="viewcode-back" href="../../module_docs/ij/cli_enhanced.html#ij.cli_enhanced.detect_format">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">detect_format</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Detect format from file extension.&quot;&quot;&quot;</span>
+    <span class="n">ext</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">suffix</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">format_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;.mmd&quot;</span><span class="p">:</span> <span class="s2">&quot;mermaid&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;.mermaid&quot;</span><span class="p">:</span> <span class="s2">&quot;mermaid&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;.d2&quot;</span><span class="p">:</span> <span class="s2">&quot;d2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;.puml&quot;</span><span class="p">:</span> <span class="s2">&quot;plantuml&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;.plantuml&quot;</span><span class="p">:</span> <span class="s2">&quot;plantuml&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;.dot&quot;</span><span class="p">:</span> <span class="s2">&quot;graphviz&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;.gv&quot;</span><span class="p">:</span> <span class="s2">&quot;graphviz&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">format_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ext</span><span class="p">,</span> <span class="s2">&quot;mermaid&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="cmd_convert">
+<a class="viewcode-back" href="../../module_docs/ij/cli_enhanced.html#ij.cli_enhanced.cmd_convert">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">cmd_convert</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert between diagram formats.&quot;&quot;&quot;</span>
+    <span class="c1"># Determine input format</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">from_format</span><span class="p">:</span>
+        <span class="n">input_format</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">from_format</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">input_format</span> <span class="o">=</span> <span class="n">detect_format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">)</span>
+
+    <span class="c1"># Determine output format</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">to_format</span><span class="p">:</span>
+        <span class="n">output_format</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">to_format</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
+        <span class="n">output_format</span> <span class="o">=</span> <span class="n">detect_format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">output_format</span> <span class="o">=</span> <span class="s2">&quot;mermaid&quot;</span>
+
+    <span class="c1"># Read input</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">input_text</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: Input file &#39;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="si">}</span><span class="s2">&#39; not found&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Parse input</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">parser</span> <span class="o">=</span> <span class="n">get_parser_for_format</span><span class="p">(</span><span class="n">input_format</span><span class="p">)</span>
+        <span class="n">diagram</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">input_text</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="c1"># Try text converter as fallback</span>
+        <span class="n">converter</span> <span class="o">=</span> <span class="n">SimpleTextConverter</span><span class="p">()</span>
+        <span class="n">diagram</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">input_text</span><span class="p">)</span>
+
+    <span class="c1"># Render output</span>
+    <span class="n">renderer_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">direction</span><span class="p">:</span>
+        <span class="n">renderer_kwargs</span><span class="p">[</span><span class="s2">&quot;direction&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">direction</span>
+
+    <span class="n">renderer</span> <span class="o">=</span> <span class="n">get_renderer_for_format</span><span class="p">(</span><span class="n">output_format</span><span class="p">,</span> <span class="o">**</span><span class="n">renderer_kwargs</span><span class="p">)</span>
+    <span class="n">output_text</span> <span class="o">=</span> <span class="n">renderer</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">diagram</span><span class="p">)</span>
+
+    <span class="c1"># Write output</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
+        <span class="n">Path</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">output_text</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Converted </span><span class="si">{</span><span class="n">input_format</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">output_format</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">output_text</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="cmd_validate">
+<a class="viewcode-back" href="../../module_docs/ij/cli_enhanced.html#ij.cli_enhanced.cmd_validate">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">cmd_validate</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate diagram files.&quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiagramValidator</span>
+
+    <span class="n">validator</span> <span class="o">=</span> <span class="n">DiagramValidator</span><span class="p">()</span>
+
+    <span class="c1"># Collect files</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">files</span><span class="p">:</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+            <span class="n">files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s2">&quot;*&quot;</span> <span class="ow">in</span> <span class="n">pattern</span> <span class="ow">or</span> <span class="s2">&quot;?&quot;</span> <span class="ow">in</span> <span class="n">pattern</span><span class="p">:</span>
+            <span class="c1"># Glob pattern</span>
+            <span class="n">files</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">pattern</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">files</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No files found to validate&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">total_issues</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        <span class="c1"># Parse file</span>
+        <span class="n">format_name</span> <span class="o">=</span> <span class="n">detect_format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">file_path</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">parser</span> <span class="o">=</span> <span class="n">get_parser_for_format</span><span class="p">(</span><span class="n">format_name</span><span class="p">)</span>
+            <span class="n">input_text</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
+            <span class="n">diagram</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">input_text</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">: Parse error - </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">total_issues</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># Validate</span>
+        <span class="n">rules</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">no_orphans</span><span class="p">:</span>
+            <span class="n">rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;no-orphaned-nodes&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">no_cycles</span><span class="p">:</span>
+            <span class="n">rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;no-cycles&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">require_start_end</span><span class="p">:</span>
+            <span class="n">rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;require-start-end&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">max_nodes</span><span class="p">:</span>
+            <span class="n">rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;max-nodes-</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">max_nodes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">max_edges</span><span class="p">:</span>
+            <span class="n">rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;max-edges-</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">max_edges</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">rules</span><span class="p">:</span>
+            <span class="n">rules</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;no-orphaned-nodes&quot;</span><span class="p">,</span> <span class="s2">&quot;no-cycles&quot;</span><span class="p">]</span>  <span class="c1"># Default rules</span>
+
+        <span class="n">results</span> <span class="o">=</span> <span class="n">validator</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">diagram</span><span class="p">,</span> <span class="n">rules</span><span class="o">=</span><span class="n">rules</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">results</span><span class="o">.</span><span class="n">is_valid</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">: Valid&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">issues</span><span class="p">)</span><span class="si">}</span><span class="s2"> issue(s)&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">issue</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">issues</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   </span><span class="si">{</span><span class="n">issue</span><span class="o">.</span><span class="n">severity</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">issue</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">total_issues</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">total_issues</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="cmd_stats">
+<a class="viewcode-back" href="../../module_docs/ij/cli_enhanced.html#ij.cli_enhanced.cmd_stats">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">cmd_stats</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Show diagram statistics.&quot;&quot;&quot;</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">file</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">file_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: File &#39;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">file</span><span class="si">}</span><span class="s2">&#39; not found&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Parse file</span>
+    <span class="n">format_name</span> <span class="o">=</span> <span class="n">detect_format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">file_path</span><span class="p">))</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">get_parser_for_format</span><span class="p">(</span><span class="n">format_name</span><span class="p">)</span>
+    <span class="n">input_text</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
+    <span class="n">diagram</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">input_text</span><span class="p">)</span>
+
+    <span class="c1"># Get statistics</span>
+    <span class="n">stats</span> <span class="o">=</span> <span class="n">DiagramTransforms</span><span class="o">.</span><span class="n">get_statistics</span><span class="p">(</span><span class="n">diagram</span><span class="p">)</span>
+
+    <span class="c1"># Display</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Statistics for </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Nodes: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;node_count&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Edges: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;edge_count&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Isolated nodes: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;isolated_nodes&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Has cycles: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;has_cycles&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Max incoming degree: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;max_incoming_degree&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Max outgoing degree: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;max_outgoing_degree&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">stats</span><span class="p">[</span><span class="s2">&quot;node_types&quot;</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Node types:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">node_type</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">stats</span><span class="p">[</span><span class="s2">&quot;node_types&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    </span><span class="si">{</span><span class="n">node_type</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">stats</span><span class="p">[</span><span class="s2">&quot;edge_types&quot;</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Edge types:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">edge_type</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">stats</span><span class="p">[</span><span class="s2">&quot;edge_types&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    </span><span class="si">{</span><span class="n">edge_type</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="cmd_simplify">
+<a class="viewcode-back" href="../../module_docs/ij/cli_enhanced.html#ij.cli_enhanced.cmd_simplify">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">cmd_simplify</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Simplify a diagram.&quot;&quot;&quot;</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">file_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: File &#39;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="si">}</span><span class="s2">&#39; not found&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Parse</span>
+    <span class="n">format_name</span> <span class="o">=</span> <span class="n">detect_format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">file_path</span><span class="p">))</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">get_parser_for_format</span><span class="p">(</span><span class="n">format_name</span><span class="p">)</span>
+    <span class="n">input_text</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
+    <span class="n">diagram</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">input_text</span><span class="p">)</span>
+
+    <span class="c1"># Simplify</span>
+    <span class="n">simplified</span> <span class="o">=</span> <span class="n">DiagramTransforms</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span>
+        <span class="n">diagram</span><span class="p">,</span> <span class="n">remove_isolated</span><span class="o">=</span><span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">keep_isolated</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Render</span>
+    <span class="n">output_format</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">format</span> <span class="ow">or</span> <span class="n">format_name</span>
+    <span class="n">renderer</span> <span class="o">=</span> <span class="n">get_renderer_for_format</span><span class="p">(</span><span class="n">output_format</span><span class="p">)</span>
+    <span class="n">output_text</span> <span class="o">=</span> <span class="n">renderer</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">simplified</span><span class="p">)</span>
+
+    <span class="c1"># Write</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
+        <span class="n">Path</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">output_text</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Simplified diagram saved to </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Before: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">diagram</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span><span class="si">}</span><span class="s2"> nodes, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">diagram</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span><span class="si">}</span><span class="s2"> edges&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;   After:  </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">simplified</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span><span class="si">}</span><span class="s2"> nodes, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">simplified</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span><span class="si">}</span><span class="s2"> edges&quot;</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">output_text</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="cmd_diff">
+<a class="viewcode-back" href="../../module_docs/ij/cli_enhanced.html#ij.cli_enhanced.cmd_diff">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">cmd_diff</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Show differences between two diagrams.&quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.git_integration</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiagramDiff</span>
+
+    <span class="c1"># Parse both files</span>
+    <span class="n">file1</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">file1</span><span class="p">)</span>
+    <span class="n">file2</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">file2</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">file1</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: File &#39;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">file1</span><span class="si">}</span><span class="s2">&#39; not found&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">file2</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: File &#39;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">file2</span><span class="si">}</span><span class="s2">&#39; not found&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">differ</span> <span class="o">=</span> <span class="n">DiagramDiff</span><span class="p">()</span>
+    <span class="n">changes</span> <span class="o">=</span> <span class="n">differ</span><span class="o">.</span><span class="n">compare_files</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">file1</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">file2</span><span class="p">))</span>
+
+    <span class="c1"># Display changes</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Comparing </span><span class="si">{</span><span class="n">file1</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">file2</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Added nodes: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">changes</span><span class="o">.</span><span class="n">added_nodes</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Removed nodes: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">changes</span><span class="o">.</span><span class="n">removed_nodes</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Modified nodes: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">changes</span><span class="o">.</span><span class="n">modified_nodes</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Added edges: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">changes</span><span class="o">.</span><span class="n">added_edges</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Removed edges: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">changes</span><span class="o">.</span><span class="n">removed_edges</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">changes</span><span class="o">.</span><span class="n">added_nodes</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Added nodes:&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">changes</span><span class="o">.</span><span class="n">added_nodes</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  + </span><span class="si">{</span><span class="n">node</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">node</span><span class="o">.</span><span class="n">label</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">changes</span><span class="o">.</span><span class="n">removed_nodes</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Removed nodes:&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">changes</span><span class="o">.</span><span class="n">removed_nodes</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">node</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">node</span><span class="o">.</span><span class="n">label</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">changes</span><span class="o">.</span><span class="n">modified_nodes</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Modified nodes:&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">old_node</span><span class="p">,</span> <span class="n">new_node</span> <span class="ow">in</span> <span class="n">changes</span><span class="o">.</span><span class="n">modified_nodes</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ~ </span><span class="si">{</span><span class="n">old_node</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">old_node</span><span class="o">.</span><span class="n">label</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">new_node</span><span class="o">.</span><span class="n">label</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="cmd_extract">
+<a class="viewcode-back" href="../../module_docs/ij/cli_enhanced.html#ij.cli_enhanced.cmd_extract">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">cmd_extract</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract a subgraph.&quot;&quot;&quot;</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">file_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: File &#39;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="si">}</span><span class="s2">&#39; not found&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Parse</span>
+    <span class="n">format_name</span> <span class="o">=</span> <span class="n">detect_format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">file_path</span><span class="p">))</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">get_parser_for_format</span><span class="p">(</span><span class="n">format_name</span><span class="p">)</span>
+    <span class="n">input_text</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
+    <span class="n">diagram</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">input_text</span><span class="p">)</span>
+
+    <span class="c1"># Extract</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">subgraph</span> <span class="o">=</span> <span class="n">DiagramTransforms</span><span class="o">.</span><span class="n">extract_subgraph</span><span class="p">(</span>
+            <span class="n">diagram</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">depth</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Render</span>
+    <span class="n">output_format</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">format</span> <span class="ow">or</span> <span class="n">format_name</span>
+    <span class="n">renderer</span> <span class="o">=</span> <span class="n">get_renderer_for_format</span><span class="p">(</span><span class="n">output_format</span><span class="p">)</span>
+    <span class="n">output_text</span> <span class="o">=</span> <span class="n">renderer</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">subgraph</span><span class="p">)</span>
+
+    <span class="c1"># Write</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
+        <span class="n">Path</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">output_text</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Subgraph extracted to </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Extracted </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">subgraph</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span><span class="si">}</span><span class="s2"> nodes, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">subgraph</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span><span class="si">}</span><span class="s2"> edges&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">output_text</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="cmd_watch">
+<a class="viewcode-back" href="../../module_docs/ij/cli_enhanced.html#ij.cli_enhanced.cmd_watch">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">cmd_watch</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Watch files for changes and auto-convert.&quot;&quot;&quot;</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;👀 Watching </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="si">}</span><span class="s2"> for changes...&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Output: </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   Press Ctrl+C to stop&quot;</span><span class="p">)</span>
+
+    <span class="n">input_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">)</span>
+    <span class="n">last_mtime</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">input_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="n">current_mtime</span> <span class="o">=</span> <span class="n">input_path</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_mtime</span>
+                <span class="k">if</span> <span class="n">current_mtime</span> <span class="o">&gt;</span> <span class="n">last_mtime</span><span class="p">:</span>
+                    <span class="n">last_mtime</span> <span class="o">=</span> <span class="n">current_mtime</span>
+
+                    <span class="c1"># Convert</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">input_format</span> <span class="o">=</span> <span class="n">detect_format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">)</span>
+                        <span class="n">output_format</span> <span class="o">=</span> <span class="p">(</span>
+                            <span class="n">detect_format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">)</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span> <span class="k">else</span> <span class="s2">&quot;mermaid&quot;</span>
+                        <span class="p">)</span>
+
+                        <span class="n">input_text</span> <span class="o">=</span> <span class="n">input_path</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
+                        <span class="n">parser</span> <span class="o">=</span> <span class="n">get_parser_for_format</span><span class="p">(</span><span class="n">input_format</span><span class="p">)</span>
+                        <span class="n">diagram</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">input_text</span><span class="p">)</span>
+
+                        <span class="n">renderer</span> <span class="o">=</span> <span class="n">get_renderer_for_format</span><span class="p">(</span><span class="n">output_format</span><span class="p">)</span>
+                        <span class="n">output_text</span> <span class="o">=</span> <span class="n">renderer</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">diagram</span><span class="p">)</span>
+
+                        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
+                            <span class="n">Path</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">output_text</span><span class="p">)</span>
+                            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🔄 Converted at </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="nb">print</span><span class="p">(</span><span class="n">output_text</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">interval</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">👋 Stopped watching&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="main">
+<a class="viewcode-back" href="../../module_docs/ij/cli_enhanced.html#ij.cli_enhanced.main">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Enhanced CLI entry point.&quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Idea Junction - Bidirectional Diagramming System&quot;</span><span class="p">,</span>
+        <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawDescriptionHelpFormatter</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">subparsers</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_subparsers</span><span class="p">(</span><span class="n">dest</span><span class="o">=</span><span class="s2">&quot;command&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Available commands&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Convert command</span>
+    <span class="n">convert_parser</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+        <span class="s2">&quot;convert&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Convert between diagram formats&quot;</span>
+    <span class="p">)</span>
+    <span class="n">convert_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Input file&quot;</span><span class="p">)</span>
+    <span class="n">convert_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;--output&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Output file (default: stdout)&quot;</span><span class="p">)</span>
+    <span class="n">convert_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--from&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;from_format&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Input format (auto-detected if not specified)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">convert_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--to&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;to_format&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Output format (auto-detected from extension)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">convert_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-d&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--direction&quot;</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;TD&quot;</span><span class="p">,</span> <span class="s2">&quot;LR&quot;</span><span class="p">,</span> <span class="s2">&quot;BT&quot;</span><span class="p">,</span> <span class="s2">&quot;RL&quot;</span><span class="p">],</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Diagram direction&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Validate command</span>
+    <span class="n">validate_parser</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;validate&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Validate diagram files&quot;</span><span class="p">)</span>
+    <span class="n">validate_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;files&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Files to validate&quot;</span><span class="p">)</span>
+    <span class="n">validate_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--no-orphans&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Disallow orphaned nodes&quot;</span>
+    <span class="p">)</span>
+    <span class="n">validate_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--no-cycles&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Disallow cycles&quot;</span>
+    <span class="p">)</span>
+    <span class="n">validate_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--require-start-end&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Require START and END nodes&quot;</span>
+    <span class="p">)</span>
+    <span class="n">validate_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--max-nodes&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Maximum node count&quot;</span><span class="p">)</span>
+    <span class="n">validate_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--max-edges&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Maximum edge count&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Stats command</span>
+    <span class="n">stats_parser</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;stats&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Show diagram statistics&quot;</span><span class="p">)</span>
+    <span class="n">stats_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;file&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Diagram file&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Simplify command</span>
+    <span class="n">simplify_parser</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;simplify&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Simplify a diagram&quot;</span><span class="p">)</span>
+    <span class="n">simplify_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Input file&quot;</span><span class="p">)</span>
+    <span class="n">simplify_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;--output&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Output file&quot;</span><span class="p">)</span>
+    <span class="n">simplify_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--format&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Output format&quot;</span><span class="p">)</span>
+    <span class="n">simplify_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--keep-isolated&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Keep isolated nodes&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Diff command</span>
+    <span class="n">diff_parser</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;diff&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Compare two diagrams&quot;</span><span class="p">)</span>
+    <span class="n">diff_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;file1&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;First diagram&quot;</span><span class="p">)</span>
+    <span class="n">diff_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;file2&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Second diagram&quot;</span><span class="p">)</span>
+    <span class="n">diff_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="s2">&quot;--verbose&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Show details&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Extract command</span>
+    <span class="n">extract_parser</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;extract&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Extract a subgraph&quot;</span><span class="p">)</span>
+    <span class="n">extract_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Input file&quot;</span><span class="p">)</span>
+    <span class="n">extract_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Root node ID&quot;</span><span class="p">)</span>
+    <span class="n">extract_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;--output&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Output file&quot;</span><span class="p">)</span>
+    <span class="n">extract_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--format&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Output format&quot;</span><span class="p">)</span>
+    <span class="n">extract_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--depth&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Maximum depth&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Watch command</span>
+    <span class="n">watch_parser</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+        <span class="s2">&quot;watch&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Watch file for changes and auto-convert&quot;</span>
+    <span class="p">)</span>
+    <span class="n">watch_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Input file to watch&quot;</span><span class="p">)</span>
+    <span class="n">watch_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;--output&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Output file&quot;</span><span class="p">)</span>
+    <span class="n">watch_parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--interval&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Check interval in seconds&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">command</span><span class="p">:</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">print_help</span><span class="p">()</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Dispatch to command handlers</span>
+    <span class="n">commands</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;convert&quot;</span><span class="p">:</span> <span class="n">cmd_convert</span><span class="p">,</span>
+        <span class="s2">&quot;validate&quot;</span><span class="p">:</span> <span class="n">cmd_validate</span><span class="p">,</span>
+        <span class="s2">&quot;stats&quot;</span><span class="p">:</span> <span class="n">cmd_stats</span><span class="p">,</span>
+        <span class="s2">&quot;simplify&quot;</span><span class="p">:</span> <span class="n">cmd_simplify</span><span class="p">,</span>
+        <span class="s2">&quot;diff&quot;</span><span class="p">:</span> <span class="n">cmd_diff</span><span class="p">,</span>
+        <span class="s2">&quot;extract&quot;</span><span class="p">:</span> <span class="n">cmd_extract</span><span class="p">,</span>
+        <span class="s2">&quot;watch&quot;</span><span class="p">:</span> <span class="n">cmd_watch</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">handler</span> <span class="o">=</span> <span class="n">commands</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">command</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">handler</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">handler</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;--debug&quot;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">:</span>
+                <span class="k">raise</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">print_help</span><span class="p">()</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></div>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright NO COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

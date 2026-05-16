@@ -1,0 +1,4 @@
+ij.layout.force_directed
+========================
+.. automodule:: ij.layout.force_directed
+   :members:

@@ -1,0 +1,46 @@
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   module_docs/ij
+   module_docs/ij/analyzers
+   module_docs/ij/analyzers/python_analyzer
+   module_docs/ij/analyzers/typescript
+   module_docs/ij/cli
+   module_docs/ij/cli_enhanced
+   module_docs/ij/converters
+   module_docs/ij/converters/enhanced_text
+   module_docs/ij/converters/llm_converter
+   module_docs/ij/converters/text_to_ir
+   module_docs/ij/core
+   module_docs/ij/diagrams
+   module_docs/ij/diagrams/erd
+   module_docs/ij/diagrams/state_machine
+   module_docs/ij/export
+   module_docs/ij/export/image
+   module_docs/ij/git_integration
+   module_docs/ij/graph_ops
+   module_docs/ij/importers
+   module_docs/ij/importers/database
+   module_docs/ij/importers/drawio
+   module_docs/ij/importers/openapi
+   module_docs/ij/importers/plantuml
+   module_docs/ij/layout
+   module_docs/ij/layout/force_directed
+   module_docs/ij/layout/hierarchical
+   module_docs/ij/layout/layout_engine
+   module_docs/ij/parsers
+   module_docs/ij/parsers/d2
+   module_docs/ij/parsers/mermaid
+   module_docs/ij/plugins
+   module_docs/ij/plugins/plugin_manager
+   module_docs/ij/renderers
+   module_docs/ij/renderers/d2
+   module_docs/ij/renderers/graphviz
+   module_docs/ij/renderers/mermaid
+   module_docs/ij/renderers/plantuml
+   module_docs/ij/renderers/sequence
+   module_docs/ij/transforms
+   module_docs/ij/validation
+   module_docs/ij/viewer
+   module_docs/ij/viewer/server

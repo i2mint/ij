@@ -1,0 +1,4 @@
+ij.converters.text_to_ir
+========================
+.. automodule:: ij.converters.text_to_ir
+   :members:

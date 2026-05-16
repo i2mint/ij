@@ -1,0 +1,533 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ij.analyzers.python_analyzer &mdash; ij 0.1.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=fd825880"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ij
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij.html">ij</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers.html">ij.analyzers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers/python_analyzer.html">ij.analyzers.python_analyzer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers/typescript.html">ij.analyzers.typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/cli.html">ij.cli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/cli_enhanced.html">ij.cli_enhanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters.html">ij.converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/enhanced_text.html">ij.converters.enhanced_text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/llm_converter.html">ij.converters.llm_converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/text_to_ir.html">ij.converters.text_to_ir</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/core.html">ij.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams.html">ij.diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams/erd.html">ij.diagrams.erd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams/state_machine.html">ij.diagrams.state_machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/export.html">ij.export</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/export/image.html">ij.export.image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/git_integration.html">ij.git_integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/graph_ops.html">ij.graph_ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers.html">ij.importers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/database.html">ij.importers.database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/drawio.html">ij.importers.drawio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/openapi.html">ij.importers.openapi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/plantuml.html">ij.importers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout.html">ij.layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/force_directed.html">ij.layout.force_directed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/hierarchical.html">ij.layout.hierarchical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/layout_engine.html">ij.layout.layout_engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers.html">ij.parsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers/d2.html">ij.parsers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers/mermaid.html">ij.parsers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/plugins.html">ij.plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/plugins/plugin_manager.html">ij.plugins.plugin_manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers.html">ij.renderers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/d2.html">ij.renderers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/graphviz.html">ij.renderers.graphviz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/mermaid.html">ij.renderers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/plantuml.html">ij.renderers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/sequence.html">ij.renderers.sequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/transforms.html">ij.transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/validation.html">ij.validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/viewer.html">ij.viewer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/viewer/server.html">ij.viewer.server</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ij</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../ij.html">ij</a></li>
+      <li class="breadcrumb-item active">ij.analyzers.python_analyzer</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ij.analyzers.python_analyzer</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Python code analyzer for reverse engineering diagrams.</span>
+
+<span class="sd">Analyzes Python code to generate flowcharts, call graphs, and class diagrams</span>
+<span class="sd">following research recommendations for code-to-diagram generation.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">ast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..core</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiagramIR</span><span class="p">,</span> <span class="n">Edge</span><span class="p">,</span> <span class="n">EdgeType</span><span class="p">,</span> <span class="n">Node</span><span class="p">,</span> <span class="n">NodeType</span>
+
+
+<div class="viewcode-block" id="PythonCodeAnalyzer">
+<a class="viewcode-back" href="../../../module_docs/ij/analyzers/python_analyzer.html#ij.PythonCodeAnalyzer">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PythonCodeAnalyzer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Analyze Python code to generate diagrams.</span>
+
+<span class="sd">    Supports:</span>
+<span class="sd">    - Function call graphs</span>
+<span class="sd">    - Control flow diagrams</span>
+<span class="sd">    - Class relationship diagrams</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize analyzer.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+<div class="viewcode-block" id="PythonCodeAnalyzer.analyze_function">
+<a class="viewcode-back" href="../../../module_docs/ij/analyzers/python_analyzer.html#ij.PythonCodeAnalyzer.analyze_function">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">analyze_function</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">function_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DiagramIR</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Analyze a Python function to create a flowchart.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            code: Python source code</span>
+<span class="sd">            function_name: Specific function to analyze (None = first function)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DiagramIR representation of the function&#39;s control flow</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; code = &#39;&#39;&#39;</span>
+<span class="sd">            ... def process_order(order):</span>
+<span class="sd">            ...     if order.is_valid():</span>
+<span class="sd">            ...         save_to_database(order)</span>
+<span class="sd">            ...         send_confirmation(order)</span>
+<span class="sd">            ...     else:</span>
+<span class="sd">            ...         send_error_notification(order)</span>
+<span class="sd">            ... &#39;&#39;&#39;</span>
+<span class="sd">            &gt;&gt;&gt; analyzer = PythonCodeAnalyzer()</span>
+<span class="sd">            &gt;&gt;&gt; diagram = analyzer.analyze_function(code)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+        <span class="c1"># Find the target function</span>
+        <span class="n">func_def</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">ast</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">FunctionDef</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">function_name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">node</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">function_name</span><span class="p">:</span>
+                    <span class="n">func_def</span> <span class="o">=</span> <span class="n">node</span>
+                    <span class="k">break</span>
+
+        <span class="k">if</span> <span class="n">func_def</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Function </span><span class="si">{</span><span class="n">function_name</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;not found&#39;</span><span class="si">}</span><span class="s2"> in provided code&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">diagram</span> <span class="o">=</span> <span class="n">DiagramIR</span><span class="p">(</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Control Flow: </span><span class="si">{</span><span class="n">func_def</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Create start node</span>
+        <span class="n">start_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_node</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Start </span><span class="si">{</span><span class="n">func_def</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">START</span><span class="p">)</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">start_node</span><span class="p">)</span>
+
+        <span class="c1"># Analyze function body</span>
+        <span class="n">last_node</span> <span class="o">=</span> <span class="n">start_node</span>
+        <span class="k">for</span> <span class="n">stmt</span> <span class="ow">in</span> <span class="n">func_def</span><span class="o">.</span><span class="n">body</span><span class="p">:</span>
+            <span class="n">last_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_analyze_statement</span><span class="p">(</span><span class="n">stmt</span><span class="p">,</span> <span class="n">last_node</span><span class="p">,</span> <span class="n">diagram</span><span class="p">)</span>
+
+        <span class="c1"># Create end node</span>
+        <span class="n">end_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_node</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;End </span><span class="si">{</span><span class="n">func_def</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">END</span><span class="p">)</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">end_node</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">last_node</span><span class="p">:</span>
+            <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">last_node</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">end_node</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">diagram</span></div>
+
+
+<div class="viewcode-block" id="PythonCodeAnalyzer.analyze_class">
+<a class="viewcode-back" href="../../../module_docs/ij/analyzers/python_analyzer.html#ij.PythonCodeAnalyzer.analyze_class">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">analyze_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DiagramIR</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Analyze a Python class to create a class diagram.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            code: Python source code</span>
+<span class="sd">            class_name: Specific class to analyze (None = first class)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DiagramIR representation of the class structure</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+        <span class="c1"># Find the target class</span>
+        <span class="n">class_def</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">ast</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">ClassDef</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">class_name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">node</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">class_name</span><span class="p">:</span>
+                    <span class="n">class_def</span> <span class="o">=</span> <span class="n">node</span>
+                    <span class="k">break</span>
+
+        <span class="k">if</span> <span class="n">class_def</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Class </span><span class="si">{</span><span class="n">class_name</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;not found&#39;</span><span class="si">}</span><span class="s2"> in provided code&quot;</span><span class="p">)</span>
+
+        <span class="n">diagram</span> <span class="o">=</span> <span class="n">DiagramIR</span><span class="p">(</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Class: </span><span class="si">{</span><span class="n">class_def</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;class&quot;</span><span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Class node</span>
+        <span class="n">methods</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">attributes</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">class_def</span><span class="o">.</span><span class="n">body</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">FunctionDef</span><span class="p">):</span>
+                <span class="n">methods</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Assign</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">item</span><span class="o">.</span><span class="n">targets</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Name</span><span class="p">):</span>
+                        <span class="n">attributes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+        <span class="n">class_label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">class_def</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="se">\\</span><span class="s2">n&quot;</span>
+        <span class="k">if</span> <span class="n">attributes</span><span class="p">:</span>
+            <span class="n">class_label</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;Attributes: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span><span class="si">}</span><span class="se">\\</span><span class="s2">n&quot;</span>
+        <span class="k">if</span> <span class="n">methods</span><span class="p">:</span>
+            <span class="n">class_label</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;Methods: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">methods</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">methods</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+                <span class="n">class_label</span> <span class="o">+=</span> <span class="s2">&quot;...&quot;</span>
+
+        <span class="n">class_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_node</span><span class="p">(</span><span class="n">class_label</span><span class="p">,</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">PROCESS</span><span class="p">)</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">class_node</span><span class="p">)</span>
+
+        <span class="c1"># Add inheritance relationships</span>
+        <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">class_def</span><span class="o">.</span><span class="n">bases</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Name</span><span class="p">):</span>
+                <span class="n">base_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_node</span><span class="p">(</span><span class="n">base</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">PROCESS</span><span class="p">)</span>
+                <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">base_node</span><span class="p">)</span>
+                <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span>
+                    <span class="n">Edge</span><span class="p">(</span>
+                        <span class="n">source</span><span class="o">=</span><span class="n">base_node</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                        <span class="n">target</span><span class="o">=</span><span class="n">class_node</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;inherits&quot;</span><span class="p">,</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">diagram</span></div>
+
+
+<div class="viewcode-block" id="PythonCodeAnalyzer.analyze_module_calls">
+<a class="viewcode-back" href="../../../module_docs/ij/analyzers/python_analyzer.html#ij.PythonCodeAnalyzer.analyze_module_calls">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">analyze_module_calls</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DiagramIR</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Analyze function calls in a module to create a call graph.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            code: Python source code</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DiagramIR representation of function call relationships</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+        <span class="n">diagram</span> <span class="o">=</span> <span class="n">DiagramIR</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Call Graph&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;calls&quot;</span><span class="p">})</span>
+
+        <span class="c1"># Extract all function definitions</span>
+        <span class="n">functions</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">ast</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">FunctionDef</span><span class="p">):</span>
+                <span class="n">functions</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span>
+
+        <span class="c1"># Analyze calls in each function</span>
+        <span class="k">for</span> <span class="n">func_name</span><span class="p">,</span> <span class="n">func_def</span> <span class="ow">in</span> <span class="n">functions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">caller_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_or_create_function_node</span><span class="p">(</span>
+                <span class="n">func_name</span><span class="p">,</span> <span class="n">diagram</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Find all function calls</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">ast</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">func_def</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Call</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">func</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Name</span><span class="p">):</span>
+                        <span class="n">callee_name</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="n">id</span>  <span class="c1"># Use .id for ast.Name</span>
+                        <span class="n">callee_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_or_create_function_node</span><span class="p">(</span>
+                            <span class="n">callee_name</span><span class="p">,</span> <span class="n">diagram</span>
+                        <span class="p">)</span>
+                        <span class="c1"># Add edge if not already present</span>
+                        <span class="n">edge_exists</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span>
+                            <span class="n">e</span><span class="o">.</span><span class="n">source</span> <span class="o">==</span> <span class="n">caller_node</span><span class="o">.</span><span class="n">id</span> <span class="ow">and</span> <span class="n">e</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="n">callee_node</span><span class="o">.</span><span class="n">id</span>
+                            <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">edges</span>
+                        <span class="p">)</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">edge_exists</span><span class="p">:</span>
+                            <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span>
+                                <span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">caller_node</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">callee_node</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+                            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">diagram</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_analyze_statement</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">stmt</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">stmt</span><span class="p">,</span> <span class="n">prev_node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Analyze a single statement and add to diagram.</span>
+
+<span class="sd">        Returns the last node created.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stmt</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">If</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_analyze_if</span><span class="p">(</span><span class="n">stmt</span><span class="p">,</span> <span class="n">prev_node</span><span class="p">,</span> <span class="n">diagram</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stmt</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">While</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_analyze_while</span><span class="p">(</span><span class="n">stmt</span><span class="p">,</span> <span class="n">prev_node</span><span class="p">,</span> <span class="n">diagram</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stmt</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">For</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_analyze_for</span><span class="p">(</span><span class="n">stmt</span><span class="p">,</span> <span class="n">prev_node</span><span class="p">,</span> <span class="n">diagram</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stmt</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Return</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_analyze_return</span><span class="p">(</span><span class="n">stmt</span><span class="p">,</span> <span class="n">prev_node</span><span class="p">,</span> <span class="n">diagram</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stmt</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Expr</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stmt</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Call</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_analyze_call</span><span class="p">(</span><span class="n">stmt</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">prev_node</span><span class="p">,</span> <span class="n">diagram</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Generic statement</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_node</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_stmt_to_string</span><span class="p">(</span><span class="n">stmt</span><span class="p">),</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">PROCESS</span>
+            <span class="p">)</span>
+            <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">prev_node</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">node</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_analyze_if</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stmt</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">If</span><span class="p">,</span> <span class="n">prev_node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Analyze an if statement.&quot;&quot;&quot;</span>
+        <span class="c1"># Decision node</span>
+        <span class="n">condition</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expr_to_string</span><span class="p">(</span><span class="n">stmt</span><span class="o">.</span><span class="n">test</span><span class="p">)</span>
+        <span class="n">decision_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_node</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">DECISION</span><span class="p">)</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">decision_node</span><span class="p">)</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">prev_node</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">decision_node</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+
+        <span class="c1"># True branch</span>
+        <span class="n">last_true</span> <span class="o">=</span> <span class="n">decision_node</span>
+        <span class="k">for</span> <span class="n">body_stmt</span> <span class="ow">in</span> <span class="n">stmt</span><span class="o">.</span><span class="n">body</span><span class="p">:</span>
+            <span class="n">last_true</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_analyze_statement</span><span class="p">(</span><span class="n">body_stmt</span><span class="p">,</span> <span class="n">last_true</span><span class="p">,</span> <span class="n">diagram</span><span class="p">)</span>
+
+        <span class="c1"># Update edge to decision to have &quot;Yes&quot; label</span>
+        <span class="k">if</span> <span class="n">last_true</span> <span class="o">!=</span> <span class="n">decision_node</span><span class="p">:</span>
+            <span class="c1"># Find and update the first edge from decision</span>
+            <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">edge</span><span class="o">.</span><span class="n">source</span> <span class="o">==</span> <span class="n">decision_node</span><span class="o">.</span><span class="n">id</span> <span class="ow">and</span> <span class="n">edge</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="n">last_true</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+                    <span class="n">edge</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Yes&quot;</span>
+                    <span class="k">break</span>
+
+        <span class="c1"># False branch</span>
+        <span class="n">last_false</span> <span class="o">=</span> <span class="n">decision_node</span>
+        <span class="k">if</span> <span class="n">stmt</span><span class="o">.</span><span class="n">orelse</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">else_stmt</span> <span class="ow">in</span> <span class="n">stmt</span><span class="o">.</span><span class="n">orelse</span><span class="p">:</span>
+                <span class="n">last_false</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_analyze_statement</span><span class="p">(</span><span class="n">else_stmt</span><span class="p">,</span> <span class="n">last_false</span><span class="p">,</span> <span class="n">diagram</span><span class="p">)</span>
+            <span class="c1"># Update edge to have &quot;No&quot; label</span>
+            <span class="k">if</span> <span class="n">last_false</span> <span class="o">!=</span> <span class="n">decision_node</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">edge</span><span class="o">.</span><span class="n">source</span> <span class="o">==</span> <span class="n">decision_node</span><span class="o">.</span><span class="n">id</span> <span class="ow">and</span> <span class="n">edge</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="n">last_false</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+                        <span class="n">edge</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;No&quot;</span>
+                        <span class="k">break</span>
+
+        <span class="c1"># For simplicity, return the last node from true branch</span>
+        <span class="c1"># In a real implementation, you might want to merge branches</span>
+        <span class="k">return</span> <span class="n">last_true</span> <span class="k">if</span> <span class="n">last_true</span> <span class="o">!=</span> <span class="n">decision_node</span> <span class="k">else</span> <span class="n">last_false</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_analyze_while</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stmt</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">While</span><span class="p">,</span> <span class="n">prev_node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Analyze a while loop.&quot;&quot;&quot;</span>
+        <span class="n">condition</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expr_to_string</span><span class="p">(</span><span class="n">stmt</span><span class="o">.</span><span class="n">test</span><span class="p">)</span>
+        <span class="n">decision_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_node</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">DECISION</span><span class="p">)</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">decision_node</span><span class="p">)</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">prev_node</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">decision_node</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+
+        <span class="c1"># Loop body</span>
+        <span class="n">last_body</span> <span class="o">=</span> <span class="n">decision_node</span>
+        <span class="k">for</span> <span class="n">body_stmt</span> <span class="ow">in</span> <span class="n">stmt</span><span class="o">.</span><span class="n">body</span><span class="p">:</span>
+            <span class="n">last_body</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_analyze_statement</span><span class="p">(</span><span class="n">body_stmt</span><span class="p">,</span> <span class="n">last_body</span><span class="p">,</span> <span class="n">diagram</span><span class="p">)</span>
+
+        <span class="c1"># Loop back</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span>
+            <span class="n">Edge</span><span class="p">(</span>
+                <span class="n">source</span><span class="o">=</span><span class="n">last_body</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                <span class="n">target</span><span class="o">=</span><span class="n">decision_node</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                <span class="n">edge_type</span><span class="o">=</span><span class="n">EdgeType</span><span class="o">.</span><span class="n">CONDITIONAL</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Continue&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">decision_node</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_analyze_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stmt</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">For</span><span class="p">,</span> <span class="n">prev_node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Analyze a for loop.&quot;&quot;&quot;</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expr_to_string</span><span class="p">(</span><span class="n">stmt</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+        <span class="n">iter_expr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expr_to_string</span><span class="p">(</span><span class="n">stmt</span><span class="o">.</span><span class="n">iter</span><span class="p">)</span>
+        <span class="n">loop_label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;For </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2"> in </span><span class="si">{</span><span class="n">iter_expr</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="n">loop_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_node</span><span class="p">(</span><span class="n">loop_label</span><span class="p">,</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">DECISION</span><span class="p">)</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">loop_node</span><span class="p">)</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">prev_node</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">loop_node</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+
+        <span class="c1"># Loop body</span>
+        <span class="n">last_body</span> <span class="o">=</span> <span class="n">loop_node</span>
+        <span class="k">for</span> <span class="n">body_stmt</span> <span class="ow">in</span> <span class="n">stmt</span><span class="o">.</span><span class="n">body</span><span class="p">:</span>
+            <span class="n">last_body</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_analyze_statement</span><span class="p">(</span><span class="n">body_stmt</span><span class="p">,</span> <span class="n">last_body</span><span class="p">,</span> <span class="n">diagram</span><span class="p">)</span>
+
+        <span class="c1"># Loop back</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span>
+            <span class="n">Edge</span><span class="p">(</span>
+                <span class="n">source</span><span class="o">=</span><span class="n">last_body</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                <span class="n">target</span><span class="o">=</span><span class="n">loop_node</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                <span class="n">edge_type</span><span class="o">=</span><span class="n">EdgeType</span><span class="o">.</span><span class="n">CONDITIONAL</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">loop_node</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_analyze_return</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stmt</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">Return</span><span class="p">,</span> <span class="n">prev_node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Analyze a return statement.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">stmt</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Return </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_expr_to_string</span><span class="p">(</span><span class="n">stmt</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Return&quot;</span>
+
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_node</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">PROCESS</span><span class="p">)</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">prev_node</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">node</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_analyze_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">call</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">Call</span><span class="p">,</span> <span class="n">prev_node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Analyze a function call.&quot;&quot;&quot;</span>
+        <span class="n">func_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expr_to_string</span><span class="p">(</span><span class="n">call</span><span class="o">.</span><span class="n">func</span><span class="p">)</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_expr_to_string</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">call</span><span class="o">.</span><span class="n">args</span><span class="p">]</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">func_name</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">args</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">)&quot;</span>
+
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_node</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">PROCESS</span><span class="p">)</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">prev_node</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">node</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">node_type</span><span class="p">:</span> <span class="n">NodeType</span> <span class="o">=</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">PROCESS</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a node with unique ID.&quot;&quot;&quot;</span>
+        <span class="n">node_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">node_counter</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">Node</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">node_id</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="n">node_type</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_or_create_function_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get existing function node or create new one.&quot;&quot;&quot;</span>
+        <span class="c1"># Check if node exists</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">label</span> <span class="o">==</span> <span class="n">func_name</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">node</span>
+
+        <span class="c1"># Create new node</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_node</span><span class="p">(</span><span class="n">func_name</span><span class="p">,</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">SUBPROCESS</span><span class="p">)</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">node</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_expr_to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">expr</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert AST expression to string.&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ast</span><span class="o">.</span><span class="n">unparse</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="c1"># Python &lt; 3.9 fallback</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Name</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">expr</span><span class="o">.</span><span class="n">id</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Constant</span><span class="p">):</span>
+                <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Attribute</span><span class="p">):</span>
+                <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_expr_to_string</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">expr</span><span class="o">.</span><span class="n">attr</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Call</span><span class="p">):</span>
+                <span class="n">func</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expr_to_string</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">func</span><span class="p">)</span>
+                <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">func</span><span class="si">}</span><span class="s2">(...)&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;&lt;expr&gt;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_stmt_to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stmt</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">stmt</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert AST statement to string.&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ast</span><span class="o">.</span><span class="n">unparse</span><span class="p">(</span><span class="n">stmt</span><span class="p">)[:</span><span class="mi">50</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stmt</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright NO COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

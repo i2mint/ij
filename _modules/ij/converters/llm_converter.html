@@ -1,0 +1,386 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ij.converters.llm_converter &mdash; ij 0.1.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=fd825880"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ij
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij.html">ij</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers.html">ij.analyzers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers/python_analyzer.html">ij.analyzers.python_analyzer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/analyzers/typescript.html">ij.analyzers.typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/cli.html">ij.cli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/cli_enhanced.html">ij.cli_enhanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters.html">ij.converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/enhanced_text.html">ij.converters.enhanced_text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/llm_converter.html">ij.converters.llm_converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/converters/text_to_ir.html">ij.converters.text_to_ir</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/core.html">ij.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams.html">ij.diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams/erd.html">ij.diagrams.erd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/diagrams/state_machine.html">ij.diagrams.state_machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/export.html">ij.export</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/export/image.html">ij.export.image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/git_integration.html">ij.git_integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/graph_ops.html">ij.graph_ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers.html">ij.importers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/database.html">ij.importers.database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/drawio.html">ij.importers.drawio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/openapi.html">ij.importers.openapi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/importers/plantuml.html">ij.importers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout.html">ij.layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/force_directed.html">ij.layout.force_directed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/hierarchical.html">ij.layout.hierarchical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/layout/layout_engine.html">ij.layout.layout_engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers.html">ij.parsers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers/d2.html">ij.parsers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/parsers/mermaid.html">ij.parsers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/plugins.html">ij.plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/plugins/plugin_manager.html">ij.plugins.plugin_manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers.html">ij.renderers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/d2.html">ij.renderers.d2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/graphviz.html">ij.renderers.graphviz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/mermaid.html">ij.renderers.mermaid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/plantuml.html">ij.renderers.plantuml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/renderers/sequence.html">ij.renderers.sequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/transforms.html">ij.transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/validation.html">ij.validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/viewer.html">ij.viewer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ij/viewer/server.html">ij.viewer.server</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ij</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../ij.html">ij</a></li>
+      <li class="breadcrumb-item active">ij.converters.llm_converter</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ij.converters.llm_converter</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;AI/LLM-based text to diagram converter.</span>
+
+<span class="sd">Uses OpenAI API for intelligent natural language understanding and</span>
+<span class="sd">diagram generation. Follows research recommendations for AI-powered</span>
+<span class="sd">diagram generation (10-20x faster initial drafts).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">openai</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">openai</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..core</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiagramIR</span><span class="p">,</span> <span class="n">Edge</span><span class="p">,</span> <span class="n">EdgeType</span><span class="p">,</span> <span class="n">Node</span><span class="p">,</span> <span class="n">NodeType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">MermaidParser</span>
+
+
+<div class="viewcode-block" id="LLMConverter">
+<a class="viewcode-back" href="../../../module_docs/ij/converters/llm_converter.html#ij.LLMConverter">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">LLMConverter</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;AI-powered text to diagram converter using LLMs.</span>
+
+<span class="sd">    Uses OpenAI API with carefully crafted prompts to generate diagrams</span>
+<span class="sd">    from natural language descriptions. Supports iterative refinement.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">SYSTEM_PROMPT</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;You are an expert at converting natural language descriptions into Mermaid flowchart diagrams.</span>
+
+<span class="s2">When given a description, create a clear, well-structured Mermaid flowchart that accurately represents the process or system described.</span>
+
+<span class="s2">Guidelines:</span>
+<span class="s2">1. Use appropriate node types:</span>
+<span class="s2">   - ([...]) for start/end nodes</span>
+<span class="s2">   - [...] for process steps</span>
+<span class="s2">   - {...} for decisions</span>
+<span class="s2">   - [(...)] for data/storage</span>
+<span class="s2">2. Use meaningful node IDs (e.g., &#39;start&#39;, &#39;check_user&#39;, &#39;save_data&#39;)</span>
+<span class="s2">3. Add clear labels to decision edges (e.g., |Yes|, |No|)</span>
+<span class="s2">4. Keep the diagram focused and avoid unnecessary complexity</span>
+<span class="s2">5. Use flowchart TD (top-down) or LR (left-right) as appropriate</span>
+
+<span class="s2">Output ONLY the Mermaid code, no explanations or markdown code blocks.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">api_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize LLM converter.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            api_key: OpenAI API key (defaults to OPENAI_API_KEY env var)</span>
+<span class="sd">            model: Model to use (gpt-4o-mini is cheap and effective)</span>
+<span class="sd">            temperature: Sampling temperature (lower = more deterministic)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">api_key</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span> <span class="o">=</span> <span class="n">temperature</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;OpenAI API key required. Set OPENAI_API_KEY environment variable &quot;</span>
+                <span class="s2">&quot;or pass api_key parameter.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">openai</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+                <span class="s2">&quot;OpenAI library required for LLM conversion. &quot;</span>
+                <span class="s2">&quot;Install with: pip install openai&quot;</span>
+            <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">api_key</span><span class="p">)</span>
+
+<div class="viewcode-block" id="LLMConverter.convert">
+<a class="viewcode-back" href="../../../module_docs/ij/converters/llm_converter.html#ij.LLMConverter.convert">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">convert</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;TD&quot;</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DiagramIR</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert natural language to DiagramIR using LLM.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            text: Natural language description</span>
+<span class="sd">            title: Optional diagram title</span>
+<span class="sd">            direction: Diagram direction (TD, LR, etc.)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DiagramIR representation</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; converter = LLMConverter()</span>
+<span class="sd">            &gt;&gt;&gt; diagram = converter.convert(</span>
+<span class="sd">            ...     &quot;A user logs into the system. If authentication succeeds, &quot;</span>
+<span class="sd">            ...     &quot;they see the dashboard. Otherwise, they see an error message.&quot;</span>
+<span class="sd">            ... )</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Build user prompt</span>
+        <span class="n">user_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Create a Mermaid flowchart for:</span><span class="se">\n\n</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">if</span> <span class="n">title</span><span class="p">:</span>
+            <span class="n">user_prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Title: </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">if</span> <span class="n">direction</span> <span class="o">!=</span> <span class="s2">&quot;TD&quot;</span><span class="p">:</span>
+            <span class="n">user_prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Use direction: </span><span class="si">{</span><span class="n">direction</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="c1"># Call OpenAI API</span>
+        <span class="n">mermaid_code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_mermaid</span><span class="p">(</span><span class="n">user_prompt</span><span class="p">)</span>
+
+        <span class="c1"># Parse the generated Mermaid to DiagramIR</span>
+        <span class="n">parser</span> <span class="o">=</span> <span class="n">MermaidParser</span><span class="p">()</span>
+        <span class="n">diagram</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">mermaid_code</span><span class="p">)</span>
+
+        <span class="c1"># Add title if provided</span>
+        <span class="k">if</span> <span class="n">title</span> <span class="ow">and</span> <span class="s2">&quot;title&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">metadata</span><span class="p">:</span>
+            <span class="n">diagram</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">title</span>
+
+        <span class="k">return</span> <span class="n">diagram</span></div>
+
+
+<div class="viewcode-block" id="LLMConverter.refine">
+<a class="viewcode-back" href="../../../module_docs/ij/converters/llm_converter.html#ij.LLMConverter.refine">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">refine</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span><span class="p">,</span> <span class="n">feedback</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">current_mermaid</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DiagramIR</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Refine an existing diagram based on feedback.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            diagram: Current diagram</span>
+<span class="sd">            feedback: User feedback/instructions</span>
+<span class="sd">            current_mermaid: Current Mermaid representation</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Refined DiagramIR</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; diagram = converter.convert(&quot;User login process&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; from ij.renderers import MermaidRenderer</span>
+<span class="sd">            &gt;&gt;&gt; mermaid = MermaidRenderer().render(diagram)</span>
+<span class="sd">            &gt;&gt;&gt; refined = converter.refine(</span>
+<span class="sd">            ...     diagram,</span>
+<span class="sd">            ...     &quot;Add a step for password reset if login fails&quot;,</span>
+<span class="sd">            ...     mermaid</span>
+<span class="sd">            ... )</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">user_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Current diagram:</span>
+<span class="s2">```mermaid</span>
+<span class="si">{</span><span class="n">current_mermaid</span><span class="si">}</span>
+<span class="s2">```</span>
+
+<span class="s2">Please modify it based on this feedback:</span>
+<span class="si">{</span><span class="n">feedback</span><span class="si">}</span>
+
+<span class="s2">Output the updated Mermaid code.&quot;&quot;&quot;</span>
+
+        <span class="c1"># Generate refined version</span>
+        <span class="n">mermaid_code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_mermaid</span><span class="p">(</span><span class="n">user_prompt</span><span class="p">)</span>
+
+        <span class="c1"># Parse back to DiagramIR</span>
+        <span class="n">parser</span> <span class="o">=</span> <span class="n">MermaidParser</span><span class="p">()</span>
+        <span class="n">refined_diagram</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">mermaid_code</span><span class="p">)</span>
+
+        <span class="c1"># Preserve metadata</span>
+        <span class="n">refined_diagram</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">diagram</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">refined_diagram</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_mermaid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Call OpenAI API to generate Mermaid code.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            user_prompt: User&#39;s prompt</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Generated Mermaid code</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+                <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">SYSTEM_PROMPT</span><span class="p">},</span>
+                <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">user_prompt</span><span class="p">},</span>
+            <span class="p">],</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">temperature</span><span class="p">,</span>
+            <span class="n">max_tokens</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">mermaid_code</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+        <span class="c1"># Clean up if wrapped in code blocks</span>
+        <span class="k">if</span> <span class="n">mermaid_code</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;```&quot;</span><span class="p">):</span>
+            <span class="n">lines</span> <span class="o">=</span> <span class="n">mermaid_code</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="c1"># Remove first line (```mermaid or ```) and last line (```)</span>
+            <span class="n">mermaid_code</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">mermaid_code</span>
+
+<div class="viewcode-block" id="LLMConverter.convert_with_examples">
+<a class="viewcode-back" href="../../../module_docs/ij/converters/llm_converter.html#ij.LLMConverter.convert_with_examples">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">convert_with_examples</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">examples</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span> <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DiagramIR</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert with few-shot examples for better quality.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            text: Natural language description</span>
+<span class="sd">            examples: List of {&quot;description&quot;: &quot;...&quot;, &quot;mermaid&quot;: &quot;...&quot;} examples</span>
+<span class="sd">            title: Optional diagram title</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DiagramIR representation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Build few-shot prompt</span>
+        <span class="n">examples_text</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="sa">f</span><span class="s2">&quot;Example </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="s2">Description: </span><span class="si">{</span><span class="n">ex</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">Mermaid:</span><span class="se">\n</span><span class="si">{</span><span class="n">ex</span><span class="p">[</span><span class="s1">&#39;mermaid&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ex</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">examples</span><span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="n">user_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="si">{</span><span class="n">examples_text</span><span class="si">}</span>
+
+<span class="s2">Now create a diagram for:</span>
+<span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">title</span><span class="p">:</span>
+            <span class="n">user_prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Title: </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="n">mermaid_code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_mermaid</span><span class="p">(</span><span class="n">user_prompt</span><span class="p">)</span>
+        <span class="n">parser</span> <span class="o">=</span> <span class="n">MermaidParser</span><span class="p">()</span>
+        <span class="n">diagram</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">mermaid_code</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">title</span><span class="p">:</span>
+            <span class="n">diagram</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">title</span>
+
+        <span class="k">return</span> <span class="n">diagram</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright NO COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
