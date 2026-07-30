@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ij.git_integration &mdash; ij 0.1.4 documentation</title>
+  <title>ij.git_integration &mdash; ij 0.1.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=fd825880"></script>
+      <script src="../../_static/documentation_options.js?v=59fadc99"></script>
       <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../_static/toggleprompt.js?v=d7ede5d2"></script>
@@ -521,8 +521,12 @@
             <span class="k">if</span> <span class="n">changes</span><span class="o">.</span><span class="n">has_changes</span><span class="p">:</span>
                 <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">prev_name</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">curr_name</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
                 <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Changes: </span><span class="si">{</span><span class="n">changes</span><span class="o">.</span><span class="n">total_changes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    Nodes: +</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">changes</span><span class="o">.</span><span class="n">added_nodes</span><span class="p">)</span><span class="si">}</span><span class="s2"> -</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">changes</span><span class="o">.</span><span class="n">removed_nodes</span><span class="p">)</span><span class="si">}</span><span class="s2"> ~</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">changes</span><span class="o">.</span><span class="n">modified_nodes</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    Edges: +</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">changes</span><span class="o">.</span><span class="n">added_edges</span><span class="p">)</span><span class="si">}</span><span class="s2"> -</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">changes</span><span class="o">.</span><span class="n">removed_edges</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;    Nodes: +</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">changes</span><span class="o">.</span><span class="n">added_nodes</span><span class="p">)</span><span class="si">}</span><span class="s2"> -</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">changes</span><span class="o">.</span><span class="n">removed_nodes</span><span class="p">)</span><span class="si">}</span><span class="s2"> ~</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">changes</span><span class="o">.</span><span class="n">modified_nodes</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;    Edges: +</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">changes</span><span class="o">.</span><span class="n">added_edges</span><span class="p">)</span><span class="si">}</span><span class="s2"> -</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">changes</span><span class="o">.</span><span class="n">removed_edges</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
 
         <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span></div>
 </div>
@@ -536,7 +540,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright NO COPYRIGHT.</p>
+    <p></p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

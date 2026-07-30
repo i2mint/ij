@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ij.converters.enhanced_text &mdash; ij 0.1.4 documentation</title>
+  <title>ij.converters.enhanced_text &mdash; ij 0.1.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=fd825880"></script>
+      <script src="../../../_static/documentation_options.js?v=59fadc99"></script>
       <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
@@ -367,9 +367,7 @@
 
             <span class="n">prev_node</span> <span class="o">=</span> <span class="n">node</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_create_node</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">node_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">NodeType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">node_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">NodeType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a node with unique ID.&quot;&quot;&quot;</span>
         <span class="c1"># Check if we&#39;ve already created this node</span>
         <span class="k">if</span> <span class="n">label</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_created</span><span class="p">:</span>
@@ -418,9 +416,7 @@
             <span class="n">word</span> <span class="ow">in</span> <span class="n">text_lower</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;database&quot;</span><span class="p">,</span> <span class="s2">&quot;store&quot;</span><span class="p">,</span> <span class="s2">&quot;save&quot;</span><span class="p">,</span> <span class="s2">&quot;persist&quot;</span><span class="p">]</span>
         <span class="p">):</span>
             <span class="k">return</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">DATA</span>
-        <span class="k">elif</span> <span class="nb">any</span><span class="p">(</span>
-            <span class="n">word</span> <span class="ow">in</span> <span class="n">text_lower</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;subprocess&quot;</span><span class="p">,</span> <span class="s2">&quot;subroutine&quot;</span><span class="p">,</span> <span class="s2">&quot;call&quot;</span><span class="p">]</span>
-        <span class="p">):</span>
+        <span class="k">elif</span> <span class="nb">any</span><span class="p">(</span><span class="n">word</span> <span class="ow">in</span> <span class="n">text_lower</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;subprocess&quot;</span><span class="p">,</span> <span class="s2">&quot;subroutine&quot;</span><span class="p">,</span> <span class="s2">&quot;call&quot;</span><span class="p">]):</span>
             <span class="k">return</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">SUBPROCESS</span>
 
         <span class="c1"># Use position as hint</span>
@@ -440,7 +436,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright NO COPYRIGHT.</p>
+    <p></p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

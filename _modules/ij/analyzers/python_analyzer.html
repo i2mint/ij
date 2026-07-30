@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ij.analyzers.python_analyzer &mdash; ij 0.1.4 documentation</title>
+  <title>ij.analyzers.python_analyzer &mdash; ij 0.1.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=fd825880"></script>
+      <script src="../../../_static/documentation_options.js?v=59fadc99"></script>
       <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
@@ -297,9 +297,7 @@
 
         <span class="c1"># Analyze calls in each function</span>
         <span class="k">for</span> <span class="n">func_name</span><span class="p">,</span> <span class="n">func_def</span> <span class="ow">in</span> <span class="n">functions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">caller_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_or_create_function_node</span><span class="p">(</span>
-                <span class="n">func_name</span><span class="p">,</span> <span class="n">diagram</span>
-            <span class="p">)</span>
+            <span class="n">caller_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_or_create_function_node</span><span class="p">(</span><span class="n">func_name</span><span class="p">,</span> <span class="n">diagram</span><span class="p">)</span>
 
             <span class="c1"># Find all function calls</span>
             <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">ast</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">func_def</span><span class="p">):</span>
@@ -341,9 +339,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_analyze_call</span><span class="p">(</span><span class="n">stmt</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">prev_node</span><span class="p">,</span> <span class="n">diagram</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># Generic statement</span>
-            <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_node</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_stmt_to_string</span><span class="p">(</span><span class="n">stmt</span><span class="p">),</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">PROCESS</span>
-            <span class="p">)</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_node</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_stmt_to_string</span><span class="p">(</span><span class="n">stmt</span><span class="p">),</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">PROCESS</span><span class="p">)</span>
             <span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
             <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">prev_node</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
             <span class="k">return</span> <span class="n">node</span>
@@ -385,7 +381,9 @@
         <span class="c1"># In a real implementation, you might want to merge branches</span>
         <span class="k">return</span> <span class="n">last_true</span> <span class="k">if</span> <span class="n">last_true</span> <span class="o">!=</span> <span class="n">decision_node</span> <span class="k">else</span> <span class="n">last_false</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_analyze_while</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stmt</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">While</span><span class="p">,</span> <span class="n">prev_node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_analyze_while</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">stmt</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">While</span><span class="p">,</span> <span class="n">prev_node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Analyze a while loop.&quot;&quot;&quot;</span>
         <span class="n">condition</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expr_to_string</span><span class="p">(</span><span class="n">stmt</span><span class="o">.</span><span class="n">test</span><span class="p">)</span>
         <span class="n">decision_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_node</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">DECISION</span><span class="p">)</span>
@@ -435,7 +433,9 @@
 
         <span class="k">return</span> <span class="n">loop_node</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_analyze_return</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stmt</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">Return</span><span class="p">,</span> <span class="n">prev_node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_analyze_return</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">stmt</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">Return</span><span class="p">,</span> <span class="n">prev_node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Analyze a return statement.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">stmt</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
             <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Return </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_expr_to_string</span><span class="p">(</span><span class="n">stmt</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -447,7 +447,9 @@
         <span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">prev_node</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">node</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_analyze_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">call</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">Call</span><span class="p">,</span> <span class="n">prev_node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_analyze_call</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">call</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">Call</span><span class="p">,</span> <span class="n">prev_node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">diagram</span><span class="p">:</span> <span class="n">DiagramIR</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Analyze a function call.&quot;&quot;&quot;</span>
         <span class="n">func_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expr_to_string</span><span class="p">(</span><span class="n">call</span><span class="o">.</span><span class="n">func</span><span class="p">)</span>
         <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_expr_to_string</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">call</span><span class="o">.</span><span class="n">args</span><span class="p">]</span>
@@ -510,7 +512,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright NO COPYRIGHT.</p>
+    <p></p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

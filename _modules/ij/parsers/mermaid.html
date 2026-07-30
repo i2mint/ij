@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ij.parsers.mermaid &mdash; ij 0.1.4 documentation</title>
+  <title>ij.parsers.mermaid &mdash; ij 0.1.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=fd825880"></script>
+      <script src="../../../_static/documentation_options.js?v=59fadc99"></script>
       <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
@@ -119,11 +119,28 @@
 <span></span><span class="sd">&quot;&quot;&quot;Mermaid diagram parser.</span>
 
 <span class="sd">Converts Mermaid syntax back to DiagramIR, enabling bidirectional conversion.</span>
+
+<span class="sd">Lines the parser cannot interpret are *reported* rather than dropped: each one</span>
+<span class="sd">is recorded in ``MermaidParser.unparsed_lines`` and raised as a</span>
+<span class="sd">``MermaidParseWarning`` (or, with ``strict=True``, a ``ValueError``). Silently</span>
+<span class="sd">discarding them used to turn generator drift into a silently wrong diagram --</span>
+<span class="sd">e.g. an LLM emitting ``check_user --|Yes|--&gt; show_dashboard`` instead of</span>
+<span class="sd">``check_user --&gt;|Yes| show_dashboard`` cost both the edge and the</span>
+<span class="sd">``check_user{...}`` decision node it referenced, with no signal at all.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
+
 <span class="kn">from</span><span class="w"> </span><span class="nn">..core</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiagramIR</span><span class="p">,</span> <span class="n">Edge</span><span class="p">,</span> <span class="n">EdgeType</span><span class="p">,</span> <span class="n">Node</span><span class="p">,</span> <span class="n">NodeType</span>
+
+
+<div class="viewcode-block" id="MermaidParseWarning">
+<a class="viewcode-back" href="../../../module_docs/ij/parsers/mermaid.html#ij.MermaidParseWarning">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MermaidParseWarning</span><span class="p">(</span><span class="ne">UserWarning</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Warns that a Mermaid line could not be interpreted and was skipped.&quot;&quot;&quot;</span></div>
+
 
 
 <div class="viewcode-block" id="MermaidParser">
@@ -132,53 +149,110 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parses Mermaid flowchart syntax to DiagramIR.</span>
 
 <span class="sd">    Supports basic flowchart syntax including:</span>
-<span class="sd">    - Node definitions with various shapes</span>
-<span class="sd">    - Edge connections with labels</span>
+<span class="sd">    - Node definitions with various shapes, standalone or inline on an edge line</span>
+<span class="sd">    - Edge connections with labels, including chained edges</span>
 <span class="sd">    - Title metadata</span>
+
+<span class="sd">    A line matching none of the above is reported instead of being dropped:</span>
+<span class="sd">    see ``unparsed_lines`` and the ``strict`` argument.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        strict: Whether an unparseable line raises instead of warning</span>
+<span class="sd">        nodes: Nodes found by the last parse, keyed by node id</span>
+<span class="sd">        edges: Edges found by the last parse</span>
+<span class="sd">        metadata: Diagram-level metadata (title, direction) from the last parse</span>
+<span class="sd">        unparsed_lines: Lines the last parse could not interpret</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1"># Pattern for flowchart declaration</span>
-    <span class="n">FLOWCHART_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;flowchart\s+(TD|LR|BT|RL)&quot;</span><span class="p">)</span>
+    <span class="c1"># Pattern for flowchart declaration (&#39;graph&#39; is Mermaid&#39;s legacy synonym)</span>
+    <span class="n">FLOWCHART_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?:flowchart|graph)\s+(TD|LR|BT|RL)&quot;</span><span class="p">)</span>
 
     <span class="c1"># Pattern for title</span>
     <span class="n">TITLE_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;title:\s*(.+)&quot;</span><span class="p">)</span>
 
+    <span class="c1"># Valid Mermaid lines that carry no IR content (comments, subgraph</span>
+    <span class="c1"># bookkeeping, styling directives). Recognized explicitly so that they are</span>
+    <span class="c1"># skipped quietly instead of being reported as unparseable.</span>
+    <span class="n">IGNORED_LINE_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+        <span class="sa">r</span><span class="s2">&quot;^(?:&quot;</span>
+        <span class="sa">r</span><span class="s2">&quot;</span><span class="si">%%</span><span class="s2">&quot;</span>  <span class="c1"># comment</span>
+        <span class="sa">r</span><span class="s2">&quot;|(?:subgraph|direction|style|classDef|class|click|linkStyle)\s&quot;</span>
+        <span class="sa">r</span><span class="s2">&quot;|end\s*$&quot;</span>  <span class="c1"># subgraph terminator</span>
+        <span class="sa">r</span><span class="s2">&quot;)&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Node shapes, in match order: (opening delimiter, closing delimiter, type).</span>
+    <span class="c1"># Single source of truth for both NODE_PATTERNS and ENDPOINT_PATTERN.</span>
+    <span class="n">NODE_SHAPES</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;([&quot;</span><span class="p">,</span> <span class="s2">&quot;])&quot;</span><span class="p">,</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">START</span><span class="p">),</span>  <span class="c1"># Stadium: n1([Label])</span>
+        <span class="p">(</span><span class="s2">&quot;{&quot;</span><span class="p">,</span> <span class="s2">&quot;}&quot;</span><span class="p">,</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">DECISION</span><span class="p">),</span>  <span class="c1"># Rhombus: n1{Label}</span>
+        <span class="p">(</span><span class="s2">&quot;[(&quot;</span><span class="p">,</span> <span class="s2">&quot;)]&quot;</span><span class="p">,</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">DATA</span><span class="p">),</span>  <span class="c1"># Cylindrical: n1[(Label)]</span>
+        <span class="p">(</span><span class="s2">&quot;[[&quot;</span><span class="p">,</span> <span class="s2">&quot;]]&quot;</span><span class="p">,</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">SUBPROCESS</span><span class="p">),</span>  <span class="c1"># Subroutine: n1[[Label]]</span>
+        <span class="p">(</span><span class="s2">&quot;[&quot;</span><span class="p">,</span> <span class="s2">&quot;]&quot;</span><span class="p">,</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">PROCESS</span><span class="p">),</span>  <span class="c1"># Rectangle: n1[Label]</span>
+    <span class="p">]</span>
+
     <span class="c1"># Pattern for node with shape</span>
     <span class="n">NODE_PATTERNS</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="c1"># Stadium shape: n1([Label])</span>
-        <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\w+)\(\[(.+?)\]\)&quot;</span><span class="p">),</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">START</span><span class="p">),</span>
-        <span class="c1"># Rhombus: n1{Label}</span>
-        <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\w+)\{(.+?)\}&quot;</span><span class="p">),</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">DECISION</span><span class="p">),</span>
-        <span class="c1"># Cylindrical: n1[(Label)]</span>
-        <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\w+)\[\((.+?)\)\]&quot;</span><span class="p">),</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">DATA</span><span class="p">),</span>
-        <span class="c1"># Subroutine: n1[[Label]]</span>
-        <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\w+)\[\[(.+?)\]\]&quot;</span><span class="p">),</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">SUBPROCESS</span><span class="p">),</span>
-        <span class="c1"># Rectangle: n1[Label]</span>
-        <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\w+)\[(.+?)\]&quot;</span><span class="p">),</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">PROCESS</span><span class="p">),</span>
-    <span class="p">]</span>
-
-    <span class="c1"># Pattern for edges</span>
-    <span class="n">EDGE_PATTERNS</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="c1"># With label: n1 --&gt;|label| n2</span>
         <span class="p">(</span>
-            <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\w+)\s+(--&gt;|&lt;--&gt;|-\.-&gt;)\s*\|([^|]+)\|\s*(\w+)&quot;</span><span class="p">),</span>
-            <span class="s2">&quot;labeled&quot;</span><span class="p">,</span>
-        <span class="p">),</span>
-        <span class="c1"># Simple: n1 --&gt; n2</span>
-        <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\w+)\s+(--&gt;|&lt;--&gt;|-\.-&gt;)\s+(\w+)&quot;</span><span class="p">),</span> <span class="s2">&quot;simple&quot;</span><span class="p">),</span>
+            <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">rf</span><span class="s2">&quot;(\w+)</span><span class="si">{</span><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">opening</span><span class="p">)</span><span class="si">}</span><span class="s2">(.+?)</span><span class="si">{</span><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">closing</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span>
+            <span class="n">node_type</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">opening</span><span class="p">,</span> <span class="n">closing</span><span class="p">,</span> <span class="n">node_type</span> <span class="ow">in</span> <span class="n">NODE_SHAPES</span>
     <span class="p">]</span>
 
+    <span class="c1"># A node id carrying no shape; Mermaid allows a bare `n1` on its own line</span>
+    <span class="n">BARE_ID_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\w+&quot;</span><span class="p">)</span>
+
+    <span class="c1"># One endpoint of an edge: a node id with an optional inline shape, as in</span>
+    <span class="c1"># `check_user{Is user authenticated?}`</span>
+    <span class="n">ENDPOINT_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+        <span class="sa">r</span><span class="s2">&quot;\w+(?:&quot;</span>
+        <span class="o">+</span> <span class="s2">&quot;|&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">opening</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.+?&quot;</span> <span class="o">+</span> <span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">closing</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">opening</span><span class="p">,</span> <span class="n">closing</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">NODE_SHAPES</span>
+        <span class="p">)</span>
+        <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;)?&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Link arrows, longest first so the alternation below is unambiguous</span>
     <span class="n">ARROW_TO_EDGE_TYPE</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;--&gt;&quot;</span><span class="p">:</span> <span class="n">EdgeType</span><span class="o">.</span><span class="n">DIRECT</span><span class="p">,</span>
-        <span class="s2">&quot;-.-&gt;&quot;</span><span class="p">:</span> <span class="n">EdgeType</span><span class="o">.</span><span class="n">CONDITIONAL</span><span class="p">,</span>
         <span class="s2">&quot;&lt;--&gt;&quot;</span><span class="p">:</span> <span class="n">EdgeType</span><span class="o">.</span><span class="n">BIDIRECTIONAL</span><span class="p">,</span>
+        <span class="s2">&quot;-.-&gt;&quot;</span><span class="p">:</span> <span class="n">EdgeType</span><span class="o">.</span><span class="n">CONDITIONAL</span><span class="p">,</span>
+        <span class="s2">&quot;--&gt;&quot;</span><span class="p">:</span> <span class="n">EdgeType</span><span class="o">.</span><span class="n">DIRECT</span><span class="p">,</span>
     <span class="p">}</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize parser.&quot;&quot;&quot;</span>
+    <span class="n">_ARROWS</span> <span class="o">=</span> <span class="s2">&quot;|&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">arrow</span><span class="p">)</span> <span class="k">for</span> <span class="n">arrow</span> <span class="ow">in</span> <span class="n">ARROW_TO_EDGE_TYPE</span><span class="p">)</span>
+
+    <span class="c1"># An edge link: an arrow with an optional `|label|`. Used with re.split, so</span>
+    <span class="c1"># an edge line becomes [endpoint, arrow, label, endpoint, arrow, label, ...]</span>
+    <span class="n">LINK_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">rf</span><span class="s2">&quot;\s*(</span><span class="si">{</span><span class="n">_ARROWS</span><span class="si">}</span><span class="s2">)(?:\|([^|]*)\|)?\s*&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Non-canonical link spellings, normalized to the `ARROW|label|` form before</span>
+    <span class="c1"># parsing. The first is *invalid* Mermaid but a frequent LLM drift (observed</span>
+    <span class="c1"># from gpt-4o-mini: `check_user --|Yes|--&gt; show_dashboard`); the other two</span>
+    <span class="c1"># are valid Mermaid alternatives to `--&gt;|label|`.</span>
+    <span class="n">LINK_NORMALIZATIONS</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;--\|([^|]*)\|(--&gt;|-\.-&gt;)&quot;</span><span class="p">),</span> <span class="sa">r</span><span class="s2">&quot;\2|\1|&quot;</span><span class="p">),</span>  <span class="c1"># a --|L|--&gt; b</span>
+        <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;--\s+([^|&gt;]+?)\s+(--&gt;)&quot;</span><span class="p">),</span> <span class="sa">r</span><span class="s2">&quot;\2|\1|&quot;</span><span class="p">),</span>  <span class="c1"># a -- L --&gt; b</span>
+        <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;-\.\s+([^|&gt;]+?)\s+\.-&gt;&quot;</span><span class="p">),</span> <span class="sa">r</span><span class="s2">&quot;-.-&gt;|\1|&quot;</span><span class="p">),</span>  <span class="c1"># a -. L .-&gt; b</span>
+    <span class="p">]</span>
+
+    <span class="c1"># A stadium-shaped node whose label reads like a terminus is an END, not a</span>
+    <span class="c1"># START (Mermaid uses the same shape for both)</span>
+    <span class="n">END_LABEL_WORDS</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;end&quot;</span><span class="p">,</span> <span class="s2">&quot;finish&quot;</span><span class="p">,</span> <span class="s2">&quot;complete&quot;</span><span class="p">,</span> <span class="s2">&quot;done&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">strict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize parser.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            strict: If True, raise ValueError on a line that cannot be parsed</span>
+<span class="sd">                instead of warning and skipping it</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">strict</span> <span class="o">=</span> <span class="n">strict</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Node</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Edge</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unparsed_lines</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
 <div class="viewcode-block" id="MermaidParser.parse">
 <a class="viewcode-back" href="../../../module_docs/ij/parsers/mermaid.html#ij.MermaidParser.parse">[docs]</a>
@@ -192,17 +266,32 @@
 <span class="sd">            DiagramIR representation</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            ValueError: If the syntax is invalid</span>
+<span class="sd">            ValueError: If ``strict`` is set and a line cannot be parsed</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; parser = MermaidParser()</span>
+<span class="sd">            &gt;&gt;&gt; diagram = parser.parse(&#39;&#39;&#39;flowchart TD</span>
+<span class="sd">            ...     start([Start]) --&gt; check{Ok?}</span>
+<span class="sd">            ...     check --|Yes|--&gt; done([Done])&#39;&#39;&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; [(node.id, node.node_type.value) for node in diagram.nodes]</span>
+<span class="sd">            [(&#39;start&#39;, &#39;start&#39;), (&#39;check&#39;, &#39;decision&#39;), (&#39;done&#39;, &#39;end&#39;)]</span>
+<span class="sd">            &gt;&gt;&gt; [(edge.source, edge.target, edge.label) for edge in diagram.edges]</span>
+<span class="sd">            [(&#39;start&#39;, &#39;check&#39;, None), (&#39;check&#39;, &#39;done&#39;, &#39;Yes&#39;)]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unparsed_lines</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="n">lines</span> <span class="o">=</span> <span class="n">mermaid_text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
-            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span> <span class="ow">or</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;---&quot;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">raw_line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">raw_line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="ow">not</span> <span class="n">line</span>
+                <span class="ow">or</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;---&quot;</span><span class="p">)</span>
+                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">IGNORED_LINE_PATTERN</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="p">):</span>
                 <span class="k">continue</span>
 
             <span class="c1"># Check for title</span>
@@ -217,12 +306,11 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;direction&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flowchart_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
                 <span class="k">continue</span>
 
-            <span class="c1"># Try to parse as edge</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_edge</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+            <span class="c1"># Try to parse as edge, then as node</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_edge</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_node</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
                 <span class="k">continue</span>
 
-            <span class="c1"># Try to parse as node</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_parse_node</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_report_unparsed</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">lineno</span><span class="p">)</span>
 
         <span class="c1"># Build DiagramIR</span>
         <span class="n">diagram</span> <span class="o">=</span> <span class="n">DiagramIR</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
@@ -235,7 +323,7 @@
 
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_parse_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse a node definition.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse a standalone node definition.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            line: Line containing node definition</span>
@@ -246,67 +334,118 @@
         <span class="k">for</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">node_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">NODE_PATTERNS</span><span class="p">:</span>
             <span class="n">match</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
-                <span class="n">node_id</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-                <span class="n">label</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-
-                <span class="c1"># Determine if it&#39;s START or END based on label</span>
-                <span class="k">if</span> <span class="n">node_type</span> <span class="o">==</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">START</span><span class="p">:</span>
-                    <span class="c1"># Check if label suggests END</span>
-                    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span>
-                        <span class="n">word</span> <span class="ow">in</span> <span class="n">label</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-                        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;end&quot;</span><span class="p">,</span> <span class="s2">&quot;finish&quot;</span><span class="p">,</span> <span class="s2">&quot;complete&quot;</span><span class="p">,</span> <span class="s2">&quot;done&quot;</span><span class="p">]</span>
-                    <span class="p">):</span>
-                        <span class="n">node_type</span> <span class="o">=</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">END</span>
-
-                <span class="k">if</span> <span class="n">node_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">node_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span>
-                        <span class="nb">id</span><span class="o">=</span><span class="n">node_id</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="n">node_type</span>
-                    <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_add_node</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">node_type</span><span class="p">)</span>
                 <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="c1"># A bare id on its own line declares a node labelled by its id</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">BARE_ID_PATTERN</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_node</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">PROCESS</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
 
         <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_parse_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse an edge definition.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse an edge definition, including chains and inline node shapes.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            line: Line containing edge definition</span>
+<span class="sd">            line: Line containing one or more edge connections</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            True if successfully parsed, False otherwise</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Try labeled edge first</span>
-        <span class="k">for</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">edge_kind</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">EDGE_PATTERNS</span><span class="p">:</span>
-            <span class="n">match</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">edge_kind</span> <span class="o">==</span> <span class="s2">&quot;labeled&quot;</span><span class="p">:</span>
-                    <span class="n">source</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-                    <span class="n">arrow</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-                    <span class="n">label</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-                    <span class="n">target</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>  <span class="c1"># simple</span>
-                    <span class="n">source</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-                    <span class="n">arrow</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-                    <span class="n">target</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-                    <span class="n">label</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># re.split on a two-group pattern alternates text and groups, giving</span>
+        <span class="c1"># [endpoint, arrow, label, endpoint, arrow, label, ..., endpoint]</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">LINK_PATTERN</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_normalize_links</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
+        <span class="n">endpoints</span><span class="p">,</span> <span class="n">arrows</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">3</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">3</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">::</span><span class="mi">3</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">arrows</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
 
-                <span class="c1"># Ensure nodes exist</span>
-                <span class="k">if</span> <span class="n">source</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">source</span><span class="p">]</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span>
-                        <span class="nb">id</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="n">NodeType</span><span class="o">.</span><span class="n">PROCESS</span>
-                    <span class="p">)</span>
-                <span class="k">if</span> <span class="n">target</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">target</span><span class="p">]</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span>
-                        <span class="nb">id</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="n">NodeType</span><span class="o">.</span><span class="n">PROCESS</span>
-                    <span class="p">)</span>
+        <span class="n">endpoints</span> <span class="o">=</span> <span class="p">[</span><span class="n">endpoint</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">endpoint</span> <span class="ow">in</span> <span class="n">endpoints</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ENDPOINT_PATTERN</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">endpoints</span><span class="p">):</span>
+            <span class="c1"># Something on this line is not a node reference (e.g. an arrow</span>
+            <span class="c1"># inside a node label); let the node parser have it instead</span>
+            <span class="k">return</span> <span class="kc">False</span>
 
-                <span class="n">edge_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ARROW_TO_EDGE_TYPE</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">arrow</span><span class="p">,</span> <span class="n">EdgeType</span><span class="o">.</span><span class="n">DIRECT</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                    <span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">edge_type</span><span class="o">=</span><span class="n">edge_type</span><span class="p">)</span>
+        <span class="n">node_ids</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_resolve_endpoint</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">endpoints</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">arrow</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">node_ids</span><span class="p">,</span> <span class="n">node_ids</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">arrows</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">Edge</span><span class="p">(</span>
+                    <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span>
+                    <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
+                    <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">label</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">edge_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ARROW_TO_EDGE_TYPE</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">arrow</span><span class="p">,</span> <span class="n">EdgeType</span><span class="o">.</span><span class="n">DIRECT</span><span class="p">),</span>
                 <span class="p">)</span>
-                <span class="k">return</span> <span class="kc">True</span>
+            <span class="p">)</span>
 
-        <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_normalize_links</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Rewrite non-canonical link spellings to the `ARROW|label|` form.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            line: Line to normalize</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The line with every known link-label variant canonicalized</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">replacement</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">LINK_NORMALIZATIONS</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">replacement</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">line</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_resolve_endpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve an edge endpoint to a node id, defining the node if needed.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            endpoint: Endpoint text, e.g. `check_user` or `check_user{Ok?}`</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The node id the endpoint refers to</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">node_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">NODE_PATTERNS</span><span class="p">:</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="n">endpoint</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_add_node</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">node_type</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Bare id: give it a placeholder definition on first mention</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_node</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">PROCESS</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">endpoint</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_add_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">node_type</span><span class="p">:</span> <span class="n">NodeType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Register a node the first time it is seen.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            node_id: Node identifier</span>
+<span class="sd">            label: Node label</span>
+<span class="sd">            node_type: Shape-derived node type; a START whose label reads like a</span>
+<span class="sd">                terminus (see END_LABEL_WORDS) is recorded as an END</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">node_type</span> <span class="o">==</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">START</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span>
+            <span class="n">word</span> <span class="ow">in</span> <span class="n">label</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">END_LABEL_WORDS</span>
+        <span class="p">):</span>
+            <span class="n">node_type</span> <span class="o">=</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">END</span>
+
+        <span class="k">if</span> <span class="n">node_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">node_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">node_id</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="n">node_type</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_report_unparsed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">lineno</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Record and surface a line the parser could not interpret.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            line: The offending line</span>
+<span class="sd">            lineno: Its 1-based position in the parsed text</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If ``strict`` is set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unparsed_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Could not parse Mermaid line </span><span class="si">{</span><span class="n">lineno</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">line</span><span class="si">!r}</span><span class="s2">. &quot;</span>
+            <span class="s2">&quot;The line was skipped, so the diagram is incomplete.&quot;</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">strict</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">MermaidParseWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MermaidParser.parse_file">
 <a class="viewcode-back" href="../../../module_docs/ij/parsers/mermaid.html#ij.MermaidParser.parse_file">[docs]</a>
@@ -332,7 +471,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright NO COPYRIGHT.</p>
+    <p></p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

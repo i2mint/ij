@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ij.renderers.graphviz &mdash; ij 0.1.4 documentation</title>
+  <title>ij.renderers.graphviz &mdash; ij 0.1.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=fd825880"></script>
+      <script src="../../../_static/documentation_options.js?v=59fadc99"></script>
       <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
@@ -229,15 +229,15 @@
 
         <span class="c1"># Style based on node type</span>
         <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">node_type</span> <span class="o">==</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">START</span><span class="p">:</span>
-            <span class="n">style</span> <span class="o">=</span> <span class="s1">&#39;style=filled, fillcolor=lightgreen&#39;</span>
+            <span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;style=filled, fillcolor=lightgreen&quot;</span>
         <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">node_type</span> <span class="o">==</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">END</span><span class="p">:</span>
-            <span class="n">style</span> <span class="o">=</span> <span class="s1">&#39;style=filled, fillcolor=lightcoral&#39;</span>
+            <span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;style=filled, fillcolor=lightcoral&quot;</span>
         <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">node_type</span> <span class="o">==</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">DECISION</span><span class="p">:</span>
-            <span class="n">style</span> <span class="o">=</span> <span class="s1">&#39;style=filled, fillcolor=lightyellow&#39;</span>
+            <span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;style=filled, fillcolor=lightyellow&quot;</span>
         <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">node_type</span> <span class="o">==</span> <span class="n">NodeType</span><span class="o">.</span><span class="n">DATA</span><span class="p">:</span>
-            <span class="n">style</span> <span class="o">=</span> <span class="s1">&#39;style=filled, fillcolor=lightblue&#39;</span>
+            <span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;style=filled, fillcolor=lightblue&quot;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">style</span> <span class="o">=</span> <span class="s1">&#39;style=filled, fillcolor=lightgray&#39;</span>
+            <span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;style=filled, fillcolor=lightgray&quot;</span>
 
         <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">node</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1"> [label=&quot;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&quot;, shape=</span><span class="si">{</span><span class="n">shape</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">style</span><span class="si">}</span><span class="s1">];&#39;</span>
 
@@ -245,11 +245,11 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Render a single edge to DOT syntax.&quot;&quot;&quot;</span>
         <span class="c1"># Determine edge style</span>
         <span class="k">if</span> <span class="n">edge</span><span class="o">.</span><span class="n">edge_type</span> <span class="o">==</span> <span class="n">EdgeType</span><span class="o">.</span><span class="n">BIDIRECTIONAL</span><span class="p">:</span>
-            <span class="n">edge_attrs</span> <span class="o">=</span> <span class="s1">&#39;dir=both&#39;</span>
+            <span class="n">edge_attrs</span> <span class="o">=</span> <span class="s2">&quot;dir=both&quot;</span>
         <span class="k">elif</span> <span class="n">edge</span><span class="o">.</span><span class="n">edge_type</span> <span class="o">==</span> <span class="n">EdgeType</span><span class="o">.</span><span class="n">CONDITIONAL</span><span class="p">:</span>
-            <span class="n">edge_attrs</span> <span class="o">=</span> <span class="s1">&#39;style=dashed&#39;</span>
+            <span class="n">edge_attrs</span> <span class="o">=</span> <span class="s2">&quot;style=dashed&quot;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">edge_attrs</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="n">edge_attrs</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">edge</span><span class="o">.</span><span class="n">label</span><span class="p">:</span>
             <span class="c1"># Edge with label</span>
@@ -261,9 +261,9 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># Simple edge</span>
             <span class="k">if</span> <span class="n">edge_attrs</span><span class="p">:</span>
-                <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">edge</span><span class="o">.</span><span class="n">source</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">edge_op</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">edge</span><span class="o">.</span><span class="n">target</span><span class="si">}</span><span class="s1"> [</span><span class="si">{</span><span class="n">edge_attrs</span><span class="si">}</span><span class="s1">];&#39;</span>
+                <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">edge</span><span class="o">.</span><span class="n">source</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">edge_op</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">edge</span><span class="o">.</span><span class="n">target</span><span class="si">}</span><span class="s2"> [</span><span class="si">{</span><span class="n">edge_attrs</span><span class="si">}</span><span class="s2">];&quot;</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">edge</span><span class="o">.</span><span class="n">source</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">edge_op</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">edge</span><span class="o">.</span><span class="n">target</span><span class="si">}</span><span class="s1">;&#39;</span>
+                <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">edge</span><span class="o">.</span><span class="n">source</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">edge_op</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">edge</span><span class="o">.</span><span class="n">target</span><span class="si">}</span><span class="s2">;&quot;</span>
 
 <div class="viewcode-block" id="GraphvizRenderer.render_to_file">
 <a class="viewcode-back" href="../../../module_docs/ij/renderers/graphviz.html#ij.GraphvizRenderer.render_to_file">[docs]</a>
@@ -313,7 +313,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright NO COPYRIGHT.</p>
+    <p></p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

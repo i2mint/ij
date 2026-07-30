@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ij &mdash; ij 0.1.4 documentation</title>
+  <title>ij &mdash; ij 0.1.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -15,7 +15,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=fd825880"></script>
+      <script src="../_static/documentation_options.js?v=59fadc99"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/toggleprompt.js?v=d7ede5d2"></script>
@@ -176,7 +176,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#ij.LayoutEngine.apply"><code class="docutils literal notranslate"><span class="pre">LayoutEngine.apply()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#ij.MermaidParseWarning"><code class="docutils literal notranslate"><span class="pre">MermaidParseWarning</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ij.MermaidParser"><code class="docutils literal notranslate"><span class="pre">MermaidParser</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ij.MermaidParser.strict"><code class="docutils literal notranslate"><span class="pre">MermaidParser.strict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.MermaidParser.nodes"><code class="docutils literal notranslate"><span class="pre">MermaidParser.nodes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.MermaidParser.edges"><code class="docutils literal notranslate"><span class="pre">MermaidParser.edges</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.MermaidParser.metadata"><code class="docutils literal notranslate"><span class="pre">MermaidParser.metadata</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ij.MermaidParser.unparsed_lines"><code class="docutils literal notranslate"><span class="pre">MermaidParser.unparsed_lines</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ij.MermaidParser.parse"><code class="docutils literal notranslate"><span class="pre">MermaidParser.parse()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ij.MermaidParser.parse_file"><code class="docutils literal notranslate"><span class="pre">MermaidParser.parse_file()</span></code></a></li>
 </ul>
@@ -1505,14 +1511,52 @@ from natural language descriptions. Supports iterative refinement.</p>
 
 </dd></dl>
 
+<dl class="py exception">
+<dt class="sig sig-object py" id="ij.MermaidParseWarning">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ij.</span></span><span class="sig-name descname"><span class="pre">MermaidParseWarning</span></span><a class="reference internal" href="../_modules/ij/parsers/mermaid.html#MermaidParseWarning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.MermaidParseWarning" title="Link to this definition"></a></dt>
+<dd><p>Warns that a Mermaid line could not be interpreted and was skipped.</p>
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="ij.MermaidParser">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ij.</span></span><span class="sig-name descname"><span class="pre">MermaidParser</span></span><a class="reference internal" href="../_modules/ij/parsers/mermaid.html#MermaidParser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.MermaidParser" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ij.</span></span><span class="sig-name descname"><span class="pre">MermaidParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ij/parsers/mermaid.html#MermaidParser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.MermaidParser" title="Link to this definition"></a></dt>
 <dd><p>Parses Mermaid flowchart syntax to DiagramIR.</p>
 <p>Supports basic flowchart syntax including:
-- Node definitions with various shapes
-- Edge connections with labels
+- Node definitions with various shapes, standalone or inline on an edge line
+- Edge connections with labels, including chained edges
 - Title metadata</p>
+<p>A line matching none of the above is reported instead of being dropped:
+see <code class="docutils literal notranslate"><span class="pre">unparsed_lines</span></code> and the <code class="docutils literal notranslate"><span class="pre">strict</span></code> argument.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ij.MermaidParser.strict">
+<span class="sig-name descname"><span class="pre">strict</span></span><a class="headerlink" href="#ij.MermaidParser.strict" title="Link to this definition"></a></dt>
+<dd><p>Whether an unparseable line raises instead of warning</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ij.MermaidParser.nodes">
+<span class="sig-name descname"><span class="pre">nodes</span></span><a class="headerlink" href="#ij.MermaidParser.nodes" title="Link to this definition"></a></dt>
+<dd><p>Nodes found by the last parse, keyed by node id</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ij.MermaidParser.edges">
+<span class="sig-name descname"><span class="pre">edges</span></span><a class="headerlink" href="#ij.MermaidParser.edges" title="Link to this definition"></a></dt>
+<dd><p>Edges found by the last parse</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ij.MermaidParser.metadata">
+<span class="sig-name descname"><span class="pre">metadata</span></span><a class="headerlink" href="#ij.MermaidParser.metadata" title="Link to this definition"></a></dt>
+<dd><p>Diagram-level metadata (title, direction) from the last parse</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ij.MermaidParser.unparsed_lines">
+<span class="sig-name descname"><span class="pre">unparsed_lines</span></span><a class="headerlink" href="#ij.MermaidParser.unparsed_lines" title="Link to this definition"></a></dt>
+<dd><p>Lines the last parse could not interpret</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="ij.MermaidParser.parse">
 <span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mermaid_text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="ij/core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><span class="pre">DiagramIR</span></a></span></span><a class="reference internal" href="../_modules/ij/parsers/mermaid.html#MermaidParser.parse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.MermaidParser.parse" title="Link to this definition"></a></dt>
@@ -1525,9 +1569,20 @@ from natural language descriptions. Supports iterative refinement.</p>
 <dd class="field-even"><p>DiagramIR representation</p>
 </dd>
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – If the syntax is invalid</p>
+<dd class="field-odd"><p><strong>ValueError</strong> – If <code class="docutils literal notranslate"><span class="pre">strict</span></code> is set and a line cannot be parsed</p>
 </dd>
 </dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">MermaidParser</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">diagram</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;flowchart TD</span>
+<span class="gp">... </span><span class="s1">    start([Start]) --&gt; check{Ok?}</span>
+<span class="gp">... </span><span class="s1">    check --|Yes|--&gt; done([Done])&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[(</span><span class="n">node</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">node_type</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">nodes</span><span class="p">]</span>
+<span class="go">[(&#39;start&#39;, &#39;start&#39;), (&#39;check&#39;, &#39;decision&#39;), (&#39;done&#39;, &#39;end&#39;)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[(</span><span class="n">edge</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="n">edge</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">edge</span><span class="o">.</span><span class="n">label</span><span class="p">)</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">edges</span><span class="p">]</span>
+<span class="go">[(&#39;start&#39;, &#39;check&#39;, None), (&#39;check&#39;, &#39;done&#39;, &#39;Yes&#39;)]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -2446,7 +2501,7 @@ with support for 25+ diagram types.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright NO COPYRIGHT.</p>
+    <p></p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
