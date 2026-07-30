@@ -155,6 +155,62 @@ def test_llm_converter_with_examples(mock_openai, mock_openai_client):
     assert diagram.validate()
 
 
+def _mock_openai_returning(mermaid_code):
+    """Build a mocked openai module whose completion returns mermaid_code."""
+    mock_response = MagicMock()
+    mock_response.choices = [MagicMock()]
+    mock_response.choices[0].message.content = mermaid_code
+
+    mock_client = MagicMock()
+    mock_client.chat.completions.create.return_value = mock_response
+
+    mock_openai = MagicMock()
+    mock_openai.OpenAI.return_value = mock_client
+    return mock_openai
+
+
+def test_llm_converter_survives_edge_label_drift():
+    """Test model drift in edge-label syntax no longer costs the decision node.
+
+    Hermetic stand-in for test_llm_converter_real_api_with_decision: this is
+    the output gpt-4o-mini actually produced, with the invalid
+    `check_user --|Yes|--> show_dashboard` edge-label spelling. It used to yield
+    zero DECISION nodes, silently.
+    """
+    drifted_output = """flowchart TD
+    start([Start]) --> check_user{Is user authenticated?}
+    check_user --|Yes|--> show_dashboard([Show Dashboard])
+    check_user --|No|--> show_login([Show Login])
+    show_dashboard --> end([End])
+    show_login --> end([End])"""
+
+    from ij.core import NodeType
+
+    with patch(
+        "ij.converters.llm_converter.openai", _mock_openai_returning(drifted_output)
+    ):
+        converter = LLMConverter(api_key="test-key")
+        diagram = converter.convert(
+            "Check if user is authenticated. If yes, show dashboard. If no, show login."
+        )
+
+    decision_nodes = [n for n in diagram.nodes if n.node_type == NodeType.DECISION]
+    assert len(decision_nodes) >= 1
+    assert len(diagram.edges) == 5
+    assert diagram.validate()
+
+
+def test_llm_converter_rejects_unusable_output():
+    """Test output holding no diagram raises instead of returning an empty one."""
+    with patch(
+        "ij.converters.llm_converter.openai",
+        _mock_openai_returning("I'm sorry, I can't help with that request."),
+    ):
+        converter = LLMConverter(api_key="test-key")
+        with pytest.raises(ValueError, match="did not return a usable Mermaid diagram"):
+            converter.convert("Anything")
+
+
 # Optional real API tests - only run if OPENAI_API_KEY is set
 @pytest.mark.skipif(
     not os.environ.get("OPENAI_API_KEY"),
@@ -184,6 +240,8 @@ def test_llm_converter_real_api_with_decision():
     """Test with real OpenAI API - decision logic.
 
     This test only runs if OPENAI_API_KEY environment variable is set.
+    See test_llm_converter_survives_edge_label_drift for the hermetic
+    equivalent.
     """
     converter = LLMConverter(model="gpt-4o-mini", temperature=0.1)
     diagram = converter.convert(
