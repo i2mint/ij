@@ -9,7 +9,7 @@ from .analyzers import PythonCodeAnalyzer
 from .core import DiagramIR, Edge, EdgeType, Node, NodeType
 from .converters import EnhancedTextConverter, SimpleTextConverter
 from .graph_ops import GraphOperations
-from .parsers import D2Parser, MermaidParser
+from .parsers import D2Parser, MermaidParser, MermaidParseWarning
 from .transforms import DiagramTransforms
 from .renderers import (
     D2Renderer,
@@ -71,6 +71,7 @@ __all__ = [
     "SequenceDiagramRenderer",
     "InteractionAnalyzer",
     "MermaidParser",
+    "MermaidParseWarning",
     "D2Parser",
     "GraphOperations",
     "PythonCodeAnalyzer",

@@ -104,8 +104,7 @@ Output ONLY the Mermaid code, no explanations or markdown code blocks."""
         mermaid_code = self._generate_mermaid(user_prompt)
 
         # Parse the generated Mermaid to DiagramIR
-        parser = MermaidParser()
-        diagram = parser.parse(mermaid_code)
+        diagram = self._parse_mermaid(mermaid_code)
 
         # Add title if provided
         if title and "title" not in diagram.metadata:
@@ -150,13 +149,41 @@ Output the updated Mermaid code."""
         mermaid_code = self._generate_mermaid(user_prompt)
 
         # Parse back to DiagramIR
-        parser = MermaidParser()
-        refined_diagram = parser.parse(mermaid_code)
+        refined_diagram = self._parse_mermaid(mermaid_code)
 
         # Preserve metadata
         refined_diagram.metadata.update(diagram.metadata)
 
         return refined_diagram
+
+    def _parse_mermaid(self, mermaid_code: str) -> DiagramIR:
+        """Parse model-generated Mermaid, failing loudly on unusable output.
+
+        Model output is not trustworthy -- it drifts between model versions.
+        Parsing it without checking turns that drift into a silently wrong
+        diagram, so lines the parser could not read are surfaced by
+        ``MermaidParser`` (as a ``MermaidParseWarning``) and output that yields
+        no usable diagram at all is refused here rather than returned empty.
+
+        Args:
+            mermaid_code: Mermaid code as returned by the model
+
+        Returns:
+            DiagramIR parsed from ``mermaid_code``
+
+        Raises:
+            ValueError: If the output holds no valid diagram
+        """
+        parser = MermaidParser()
+        diagram = parser.parse(mermaid_code)
+
+        if not diagram.nodes or not diagram.validate():
+            raise ValueError(
+                f"{self.model} did not return a usable Mermaid diagram.\n"
+                f"Raw model output:\n{mermaid_code}"
+            )
+
+        return diagram
 
     def _generate_mermaid(self, user_prompt: str) -> str:
         """Call OpenAI API to generate Mermaid code.
@@ -217,8 +244,7 @@ Now create a diagram for:
             user_prompt += f"\n\nTitle: {title}"
 
         mermaid_code = self._generate_mermaid(user_prompt)
-        parser = MermaidParser()
-        diagram = parser.parse(mermaid_code)
+        diagram = self._parse_mermaid(mermaid_code)
 
         if title:
             diagram.metadata["title"] = title
