@@ -9,6 +9,7 @@ description = "Idea Junction - Connect of vague ideas and evolve them to fully f
 
 readme = "README.md"
 requires-python = ">=3.10"
+license = "MIT"
 keywords = [
     "diagrams",
     "flowcharts",
@@ -18,11 +19,19 @@ keywords = [
     "plantuml",
     "ai",
 ]
-authors = []
+authors = [
+    { name = "Thor Whalen" },
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Visualization",
+]
 dependencies = ["networkx>=3.0", "graphviz>=0.20"]
-
-[project.license]
-text = "mit"
 
 [project.urls]
 Homepage = "https://github.com/i2mint/ij"
