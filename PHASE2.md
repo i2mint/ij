@@ -232,9 +232,7 @@ diagram = converter.convert("Start -> Process -> End")
 
 # Method 2: Enhanced text with conditionals
 enhanced = EnhancedTextConverter()
-diagram = enhanced.convert(
-    "Start -> Check data. If valid: Process, else: Reject"
-)
+diagram = enhanced.convert("Start -> Check data. If valid: Process, else: Reject")
 
 # Method 3: Parse existing Mermaid
 parser = MermaidParser()

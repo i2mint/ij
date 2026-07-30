@@ -113,9 +113,7 @@ simplified = DiagramTransforms.simplify(diagram, remove_isolated=True)
 **Filtering**:
 ```python
 # Keep only PROCESS nodes
-filtered = DiagramTransforms.filter_by_node_type(
-    diagram, [NodeType.PROCESS], keep=True
-)
+filtered = DiagramTransforms.filter_by_node_type(diagram, [NodeType.PROCESS], keep=True)
 
 # Custom filtering with predicates
 error_nodes = DiagramTransforms.apply_node_filter(
@@ -134,9 +132,7 @@ subgraph = DiagramTransforms.extract_subgraph(
 **Merging Diagrams**:
 ```python
 # Merge multiple diagrams
-merged = DiagramTransforms.merge_diagrams(
-    [diagram1, diagram2], title="Combined Flow"
-)
+merged = DiagramTransforms.merge_diagrams([diagram1, diagram2], title="Combined Flow")
 ```
 
 **Cycle Detection**:
@@ -173,12 +169,7 @@ Seamlessly convert between all supported formats.
 
 **Example Workflow**:
 ```python
-from ij import (
-    MermaidParser,
-    D2Renderer,
-    PlantUMLRenderer,
-    GraphvizRenderer
-)
+from ij import MermaidParser, D2Renderer, PlantUMLRenderer, GraphvizRenderer
 
 # Start with Mermaid
 mermaid_code = "flowchart TD\n  A --> B"
@@ -210,9 +201,7 @@ class SequenceDiagramRenderer:
     def render(self, diagram: DiagramIR) -> str:
         """Render DiagramIR as Mermaid sequence diagram."""
 
-    def render_with_notes(
-        self, diagram: DiagramIR, notes: Dict[str, List[str]]
-    ) -> str:
+    def render_with_notes(self, diagram: DiagramIR, notes: Dict[str, List[str]]) -> str:
         """Render with participant notes."""
 
     def render_with_activations(
@@ -242,24 +231,19 @@ class DiagramTransforms:
 
     @staticmethod
     def filter_by_node_type(
-        diagram: DiagramIR,
-        node_types: List[NodeType],
-        keep: bool = True
+        diagram: DiagramIR, node_types: List[NodeType], keep: bool = True
     ) -> DiagramIR:
         """Filter diagram by node types."""
 
     @staticmethod
     def extract_subgraph(
-        diagram: DiagramIR,
-        root_node_id: str,
-        max_depth: Optional[int] = None
+        diagram: DiagramIR, root_node_id: str, max_depth: Optional[int] = None
     ) -> DiagramIR:
         """Extract subgraph from root node."""
 
     @staticmethod
     def merge_diagrams(
-        diagrams: List[DiagramIR],
-        title: Optional[str] = None
+        diagrams: List[DiagramIR], title: Optional[str] = None
     ) -> DiagramIR:
         """Merge multiple diagrams."""
 
@@ -273,8 +257,7 @@ class DiagramTransforms:
 
     @staticmethod
     def apply_node_filter(
-        diagram: DiagramIR,
-        predicate: Callable[[Node], bool]
+        diagram: DiagramIR, predicate: Callable[[Node], bool]
     ) -> DiagramIR:
         """Filter nodes using custom predicate."""
 
@@ -283,10 +266,7 @@ class DiagramTransforms:
         """Reverse all edge directions."""
 
     @staticmethod
-    def merge_sequential_nodes(
-        diagram: DiagramIR,
-        separator: str = " → "
-    ) -> DiagramIR:
+    def merge_sequential_nodes(diagram: DiagramIR, separator: str = " → ") -> DiagramIR:
         """Merge sequential nodes into single nodes."""
 ```
 
@@ -389,7 +369,6 @@ from ij import (
     SequenceDiagramRenderer,
     InteractionAnalyzer,
     DiagramTransforms,
-
     # Existing from previous phases
     DiagramIR,
     MermaidParser,

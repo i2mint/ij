@@ -45,9 +45,7 @@ mermaid = MermaidRenderer().render(diagram)
 
 # Refine with feedback
 refined = converter.refine(
-    diagram,
-    "Add a password reset option if login fails",
-    mermaid
+    diagram, "Add a password reset option if login fails", mermaid
 )
 ```
 
@@ -141,9 +139,7 @@ diagram = analyzer.analyze_function(code)
 # Step 2: Enhance with AI
 converter = LLMConverter()
 enhanced = converter.refine(
-    diagram,
-    "Add error handling for edge cases",
-    MermaidRenderer().render(diagram)
+    diagram, "Add error handling for edge cases", MermaidRenderer().render(diagram)
 )
 ```
 
@@ -167,9 +163,9 @@ enhanced = converter.refine(
 
 ```python
 converter = LLMConverter(
-    api_key="your-key",      # Or use OPENAI_API_KEY env var
-    model="gpt-4o-mini",     # Model choice
-    temperature=0.3          # Lower = more deterministic
+    api_key="your-key",  # Or use OPENAI_API_KEY env var
+    model="gpt-4o-mini",  # Model choice
+    temperature=0.3,  # Lower = more deterministic
 )
 ```
 
@@ -289,11 +285,14 @@ from ij.renderers import MermaidRenderer
 
 converter = LLMConverter()
 
-diagram = converter.convert("""
+diagram = converter.convert(
+    """
 Create a diagram for an online shopping checkout process. The user
 adds items to cart, proceeds to checkout, enters shipping info,
 chooses payment method, and confirms the order. Include error handling.
-""", title="E-commerce Checkout")
+""",
+    title="E-commerce Checkout",
+)
 
 mermaid = MermaidRenderer().render(diagram)
 print(mermaid)
@@ -311,13 +310,12 @@ examples = [
             A([Start]) --> B[Enter credentials]
             B --> C{Valid?}
             C -->|Yes| D([Success])
-            C -->|No| E([Error])"""
+            C -->|No| E([Error])""",
     }
 ]
 
 diagram = converter.convert_with_examples(
-    "User registration process",
-    examples=examples
+    "User registration process", examples=examples
 )
 ```
 
@@ -334,9 +332,7 @@ initial = MermaidRenderer().render(code_diagram)
 # 3. Use AI to add missing pieces
 converter = LLMConverter()
 enhanced = converter.refine(
-    code_diagram,
-    "Add input validation and error handling steps",
-    initial
+    code_diagram, "Add input validation and error handling steps", initial
 )
 
 # 4. Export final version

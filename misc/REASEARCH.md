@@ -99,6 +99,7 @@ Install: `pip install diagrams` (requires Graphviz binaries). [diagrams on PyPI]
 
 ```python
 from d2_python import D2
+
 d2 = D2()
 d2.render("x -> y", "output.svg")
 d2.render("diagram.d2", "output.pdf", format="pdf", theme="dark")
