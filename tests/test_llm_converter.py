@@ -1,6 +1,8 @@
 """Tests for LLM-based converter.
 
-Tests use mocks by default, with optional real API tests when OPENAI_API_KEY is set.
+Tests use mocks by default. The live-API tests are opt-in: they run only when
+IJ_RUN_REAL_API_TESTS is set, since they are non-hermetic, need network, cost
+money, and are fragile to model drift. They also need OPENAI_API_KEY.
 """
 
 import os
@@ -211,15 +213,16 @@ def test_llm_converter_rejects_unusable_output():
             converter.convert("Anything")
 
 
-# Optional real API tests - only run if OPENAI_API_KEY is set
+# Optional real API tests - only run if IJ_RUN_REAL_API_TESTS is set
 @pytest.mark.skipif(
-    not os.environ.get("OPENAI_API_KEY"),
-    reason="OPENAI_API_KEY not set - skipping real API tests",
+    not os.environ.get("IJ_RUN_REAL_API_TESTS"),
+    reason="IJ_RUN_REAL_API_TESTS not set - skipping live-API tests",
 )
 def test_llm_converter_real_api_simple():
     """Test with real OpenAI API - simple case.
 
-    This test only runs if OPENAI_API_KEY environment variable is set.
+    This test only runs if the IJ_RUN_REAL_API_TESTS environment variable is
+    set (and OPENAI_API_KEY with it).
     Uses gpt-4o-mini which is cheap (~$0.00015 per request).
     """
     converter = LLMConverter(model="gpt-4o-mini", temperature=0.1)
@@ -233,15 +236,15 @@ def test_llm_converter_real_api_simple():
 
 
 @pytest.mark.skipif(
-    not os.environ.get("OPENAI_API_KEY"),
-    reason="OPENAI_API_KEY not set - skipping real API tests",
+    not os.environ.get("IJ_RUN_REAL_API_TESTS"),
+    reason="IJ_RUN_REAL_API_TESTS not set - skipping live-API tests",
 )
 def test_llm_converter_real_api_with_decision():
     """Test with real OpenAI API - decision logic.
 
-    This test only runs if OPENAI_API_KEY environment variable is set.
-    See test_llm_converter_survives_edge_label_drift for the hermetic
-    equivalent.
+    This test only runs if the IJ_RUN_REAL_API_TESTS environment variable is
+    set (and OPENAI_API_KEY with it). See
+    test_llm_converter_survives_edge_label_drift for the hermetic equivalent.
     """
     converter = LLMConverter(model="gpt-4o-mini", temperature=0.1)
     diagram = converter.convert(
