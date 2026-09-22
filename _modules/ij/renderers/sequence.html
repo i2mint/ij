@@ -436,7 +436,7 @@
 
 <span class="sd">        Example:</span>
 <span class="sd">            &gt;&gt;&gt; notes = {"user": ["Note about user"], "api": ["API note"]}</span>
-<span class="sd">            &gt;&gt;&gt; renderer.render_with_notes(diagram, notes)</span>
+<span class="sd">            &gt;&gt;&gt; renderer.render_with_notes(diagram, notes)  # doctest: +SKIP</span>
 <span class="sd">        """</span>
         <span class="n">lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">diagram</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 
@@ -473,7 +473,7 @@
 
 <span class="sd">        Example:</span>
 <span class="sd">            &gt;&gt;&gt; activations = [("api", "activate"), ("api", "deactivate")]</span>
-<span class="sd">            &gt;&gt;&gt; renderer.render_with_activations(diagram, activations)</span>
+<span class="sd">            &gt;&gt;&gt; renderer.render_with_activations(diagram, activations)  # doctest: +SKIP</span>
 <span class="sd">        """</span>
         <span class="n">base</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">diagram</span><span class="p">)</span>
         <span class="n">lines</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
@@ -652,7 +652,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=d0952cc8"></script>
+</div><script src="../../../_static/documentation_options.js?v=72e2dd8f"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

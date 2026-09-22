@@ -319,8 +319,8 @@
 <span class="sd">        ERDiagram representing database schema</span>
 
 <span class="sd">    Example:</span>
-<span class="sd">        &gt;&gt;&gt; erd = from_database('postgresql://user:pass@localhost/mydb')</span>
-<span class="sd">        &gt;&gt;&gt; erd = from_database('sqlite:///path/to/db.sqlite')</span>
+<span class="sd">        &gt;&gt;&gt; erd = from_database('postgresql://user:pass@localhost/mydb')  # doctest: +SKIP</span>
+<span class="sd">        &gt;&gt;&gt; erd = from_database('sqlite:///path/to/db.sqlite')  # doctest: +SKIP</span>
 
 <span class="sd">    Note:</span>
 <span class="sd">        Requires sqlalchemy: pip install sqlalchemy</span>
@@ -399,7 +399,7 @@
 <span class="sd">        ERDiagram from SQL statements</span>
 
 <span class="sd">    Example:</span>
-<span class="sd">        &gt;&gt;&gt; erd = from_sql_file('schema.sql')</span>
+<span class="sd">        &gt;&gt;&gt; erd = from_sql_file('schema.sql')  # doctest: +SKIP</span>
 <span class="sd">    """</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">..diagrams.erd</span><span class="w"> </span><span class="kn">import</span> <span class="n">ERDBuilder</span>
@@ -435,7 +435,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=d0952cc8"></script>
+</div><script src="../../../_static/documentation_options.js?v=72e2dd8f"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

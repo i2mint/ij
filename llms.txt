@@ -49,7 +49,7 @@
 - [ij.validation](_autosummary/ij.validation.html.md): Diagram validation and linting.
 - [ij.viewer](_autosummary/ij.viewer.html.md): Interactive web viewer for diagrams.
 - [ij.viewer.server](_autosummary/ij.viewer.server.html.md): Web server for interactive diagram viewing.
-- [About this build](about-this-build.html.md): This documentation was built on &#42;&#42;2026-09-22 12:54 UTC&#42;&#42; from commit &lt;a href="https://github.com/i2m...
+- [About this build](about-this-build.html.md): This documentation was built on &#42;&#42;2026-09-22 14:40 UTC&#42;&#42; from commit &lt;a href="https://github.com/i2m...
 
 ## Optional
 

@@ -364,7 +364,7 @@
 
 <span class="sd">        Example:</span>
 <span class="sd">            &gt;&gt;&gt; exporter = ImageExporter(format='png', engine='mermaid-cli')</span>
-<span class="sd">            &gt;&gt;&gt; success = exporter.render(diagram, 'output.png', width=800)</span>
+<span class="sd">            &gt;&gt;&gt; success = exporter.render(diagram, 'output.png', width=800)  # doctest: +SKIP</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">==</span> <span class="s2">"graphviz"</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_graphviz</span><span class="p">(</span><span class="n">diagram</span><span class="p">,</span> <span class="n">output_path</span><span class="p">)</span>
@@ -644,7 +644,7 @@
 <span class="sd">        &gt;&gt;&gt; from ij import DiagramIR, Node, Edge</span>
 <span class="sd">        &gt;&gt;&gt; diagram = DiagramIR()</span>
 <span class="sd">        &gt;&gt;&gt; # ... build diagram ...</span>
-<span class="sd">        &gt;&gt;&gt; quick_export(diagram, 'diagram.png', format='png')</span>
+<span class="sd">        &gt;&gt;&gt; quick_export(diagram, 'diagram.png', format='png')  # doctest: +SKIP</span>
 <span class="sd">    """</span>
     <span class="c1"># Auto-detect engine if not specified</span>
     <span class="k">if</span> <span class="n">engine</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -696,7 +696,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=d0952cc8"></script>
+</div><script src="../../../_static/documentation_options.js?v=72e2dd8f"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

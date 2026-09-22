@@ -392,8 +392,8 @@
 
 <span class="sd">        Example:</span>
 <span class="sd">            &gt;&gt;&gt; validator = DiagramValidator()</span>
-<span class="sd">            &gt;&gt;&gt; result = validator.validate(diagram, rules=['no-cycles', 'no-orphaned-nodes'])</span>
-<span class="sd">            &gt;&gt;&gt; if not result.is_valid:</span>
+<span class="sd">            &gt;&gt;&gt; result = validator.validate(diagram, rules=['no-cycles', 'no-orphaned-nodes'])  # doctest: +SKIP</span>
+<span class="sd">            &gt;&gt;&gt; if not result.is_valid:  # doctest: +SKIP</span>
 <span class="sd">            ...     for issue in result.errors:</span>
 <span class="sd">            ...         print(f"ERROR: {issue.message}")</span>
 <span class="sd">        """</span>
@@ -724,8 +724,8 @@
 
 <span class="sd">        Example:</span>
 <span class="sd">            &gt;&gt;&gt; linter = DiagramLinter()</span>
-<span class="sd">            &gt;&gt;&gt; issues = linter.lint(diagram)</span>
-<span class="sd">            &gt;&gt;&gt; for issue in issues:</span>
+<span class="sd">            &gt;&gt;&gt; issues = linter.lint(diagram)  # doctest: +SKIP</span>
+<span class="sd">            &gt;&gt;&gt; for issue in issues:  # doctest: +SKIP</span>
 <span class="sd">            ...     print(f"{issue.severity.value.upper()}: {issue.message}")</span>
 <span class="sd">        """</span>
         <span class="n">issues</span> <span class="o">=</span> <span class="p">[]</span>
@@ -828,7 +828,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=d0952cc8"></script>
+</div><script src="../../_static/documentation_options.js?v=72e2dd8f"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

@@ -529,8 +529,8 @@ Simplify diagram by removing redundant nodes and edges.
 >>> diagram.add_node(Node(id="isolated", label="Isolated"))
 >>> diagram.add_edge(Edge(source="a", target="b"))
 >>> simplified = DiagramTransforms.simplify(diagram)
->>> len(simplified.nodes)  # isolated node removed
-2
+>>> len(simplified.nodes)  # isolated node removed; "b" was never added as a Node
+1
 ```
 
 ### *class* ij.DiagramValidator

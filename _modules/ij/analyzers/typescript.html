@@ -464,7 +464,7 @@
 <span class="sd">            ... import axios from 'axios';</span>
 <span class="sd">            ... export default App;</span>
 <span class="sd">            ... '''</span>
-<span class="sd">            &gt;&gt;&gt; diagram = analyzer.analyze_module_imports(code)</span>
+<span class="sd">            &gt;&gt;&gt; diagram = analyzer.analyze_module_imports(code)  # doctest: +SKIP</span>
 <span class="sd">        """</span>
         <span class="n">diagram</span> <span class="o">=</span> <span class="n">DiagramIR</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Module Dependencies"</span><span class="p">})</span>
 
@@ -526,7 +526,7 @@
 <span class="sd">            ...   );</span>
 <span class="sd">            ... }</span>
 <span class="sd">            ... '''</span>
-<span class="sd">            &gt;&gt;&gt; diagram = analyzer.analyze_react_component(code, 'App')</span>
+<span class="sd">            &gt;&gt;&gt; diagram = analyzer.analyze_react_component(code, 'App')  # doctest: +SKIP</span>
 <span class="sd">        """</span>
         <span class="n">diagram</span> <span class="o">=</span> <span class="n">DiagramIR</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">"title"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Component: </span><span class="si">{</span><span class="n">component_name</span><span class="si">}</span><span class="s2">"</span><span class="p">})</span>
 
@@ -576,7 +576,7 @@
 <span class="sd">            ...   return data;</span>
 <span class="sd">            ... }</span>
 <span class="sd">            ... '''</span>
-<span class="sd">            &gt;&gt;&gt; diagram = analyzer.analyze_async_flow(code)</span>
+<span class="sd">            &gt;&gt;&gt; diagram = analyzer.analyze_async_flow(code)  # doctest: +SKIP</span>
 <span class="sd">        """</span>
         <span class="n">diagram</span> <span class="o">=</span> <span class="n">DiagramIR</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Async Flow"</span><span class="p">})</span>
 
@@ -619,7 +619,7 @@
 <span class="sd">        DiagramIR showing dependencies</span>
 
 <span class="sd">    Example:</span>
-<span class="sd">        &gt;&gt;&gt; diagram = analyze_package_json('package.json')</span>
+<span class="sd">        &gt;&gt;&gt; diagram = analyze_package_json('package.json')  # doctest: +SKIP</span>
 <span class="sd">    """</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">package_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
@@ -684,7 +684,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=d0952cc8"></script>
+</div><script src="../../../_static/documentation_options.js?v=72e2dd8f"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

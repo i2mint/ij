@@ -1,34 +1,34 @@
 {
   "schema_version": 1,
-  "built_at": "2026-09-22T12:54:46Z",
+  "built_at": "2026-09-22T14:40:25Z",
   "package": {
     "name": "ij",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "display_name": "ij",
     "source": "pyproject.toml"
   },
   "git": {
     "available": true,
-    "commit": "db23ee7022185b554ebd01faef581df43dd04f31",
-    "short_commit": "db23ee7",
+    "commit": "40c8d9dcec023a80399b6f076b595cc1eed47f4e",
+    "short_commit": "40c8d9d",
     "branch": "master",
     "tags": [
-      "0.1.7"
+      "0.1.8"
     ],
     "dirty": false,
     "remote_url": "https://github.com/i2mint/ij",
-    "commit_url": "https://github.com/i2mint/ij/commit/db23ee7022185b554ebd01faef581df43dd04f31",
+    "commit_url": "https://github.com/i2mint/ij/commit/40c8d9dcec023a80399b6f076b595cc1eed47f4e",
     "error": null
   },
   "ci": {
     "provider": "github",
     "repository": "i2mint/ij",
-    "sha": "c37e0ccabda6481ad6d5c308a36cf109f26f2bf3",
+    "sha": "85b13826b18acb0a750482374e51ce0a4a4f82fe",
     "sha_in_history": true,
     "ref": "refs/heads/master",
     "ref_name": "master",
-    "run_id": "35729816094",
-    "run_url": "https://github.com/i2mint/ij/actions/runs/35729816094",
+    "run_id": "35741343930",
+    "run_url": "https://github.com/i2mint/ij/actions/runs/35741343930",
     "server_url": "https://github.com"
   },
   "tools": {
@@ -62,11 +62,11 @@
   },
   "pypi": {
     "checked": true,
-    "latest": "0.1.7",
+    "latest": "0.1.8",
     "relation": "same",
     "error": null
   },
-  "reproduce": "git clone https://github.com/i2mint/ij && cd ij\ngit checkout db23ee7022185b554ebd01faef581df43dd04f31\npip install \"epythet==0.2.12\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
+  "reproduce": "git clone https://github.com/i2mint/ij && cd ij\ngit checkout 40c8d9dcec023a80399b6f076b595cc1eed47f4e\npip install \"epythet==0.2.12\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
   "warnings": [],
   "alignment": {
     "aligned": true,

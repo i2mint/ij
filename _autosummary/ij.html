@@ -1094,8 +1094,8 @@ and PowerPoint export capabilities.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">diagram</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">"isolated"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Isolated"</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">diagram</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">Edge</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">"a"</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">"b"</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">simplified</span> <span class="o">=</span> <span class="n">DiagramTransforms</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">diagram</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">simplified</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>  <span class="c1"># isolated node removed</span>
-<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">simplified</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>  <span class="c1"># isolated node removed; "b" was never added as a Node</span>
+<span class="go">1</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -3249,7 +3249,7 @@ with support for 25+ diagram types.</p>
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=d0952cc8"></script>
+</div><script src="../_static/documentation_options.js?v=72e2dd8f"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>

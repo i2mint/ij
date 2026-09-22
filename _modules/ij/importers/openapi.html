@@ -322,8 +322,8 @@
 <span class="sd">        DiagramIR representing API structure</span>
 
 <span class="sd">    Example:</span>
-<span class="sd">        &gt;&gt;&gt; diagram = from_openapi('openapi.yaml')</span>
-<span class="sd">        &gt;&gt;&gt; diagram = from_openapi({'openapi': '3.0.0', ...})</span>
+<span class="sd">        &gt;&gt;&gt; diagram = from_openapi('openapi.yaml')  # doctest: +SKIP</span>
+<span class="sd">        &gt;&gt;&gt; diagram = from_openapi({'openapi': '3.0.0', ...})  # doctest: +SKIP</span>
 
 <span class="sd">    Note:</span>
 <span class="sd">        Requires pyyaml for YAML files: pip install pyyaml</span>
@@ -416,7 +416,7 @@
 <span class="sd">        DiagramIR as sequence diagram</span>
 
 <span class="sd">    Example:</span>
-<span class="sd">        &gt;&gt;&gt; diagram = from_openapi_to_sequence('api.yaml', flow='auth')</span>
+<span class="sd">        &gt;&gt;&gt; diagram = from_openapi_to_sequence('api.yaml', flow='auth')  # doctest: +SKIP</span>
 <span class="sd">    """</span>
     <span class="c1"># This would create a sequence diagram showing client -&gt; API -&gt; services flow</span>
     <span class="c1"># Implementation would parse the OpenAPI spec and create participant interactions</span>
@@ -478,7 +478,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=d0952cc8"></script>
+</div><script src="../../../_static/documentation_options.js?v=72e2dd8f"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

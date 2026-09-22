@@ -374,8 +374,8 @@
 
 <span class="sd">        Example:</span>
 <span class="sd">            &gt;&gt;&gt; differ = DiagramDiff()</span>
-<span class="sd">            &gt;&gt;&gt; changes = differ.compare(old_diagram, new_diagram)</span>
-<span class="sd">            &gt;&gt;&gt; print(f"Added: {len(changes.added_nodes)} nodes")</span>
+<span class="sd">            &gt;&gt;&gt; changes = differ.compare(old_diagram, new_diagram)  # doctest: +SKIP</span>
+<span class="sd">            &gt;&gt;&gt; print(f"Added: {len(changes.added_nodes)} nodes")  # doctest: +SKIP</span>
 <span class="sd">        """</span>
         <span class="n">changes</span> <span class="o">=</span> <span class="n">DiagramChanges</span><span class="p">()</span>
 
@@ -532,7 +532,7 @@
 
 <span class="sd">        Example:</span>
 <span class="sd">            &gt;&gt;&gt; differ = DiagramDiff()</span>
-<span class="sd">            &gt;&gt;&gt; merged = differ.merge(base, branch1, branch2, strategy='union')</span>
+<span class="sd">            &gt;&gt;&gt; merged = differ.merge(base, branch1, branch2, strategy='union')  # doctest: +SKIP</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">strategy</span> <span class="o">==</span> <span class="s2">"ours"</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">branch1</span>
@@ -742,7 +742,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=d0952cc8"></script>
+</div><script src="../../_static/documentation_options.js?v=72e2dd8f"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

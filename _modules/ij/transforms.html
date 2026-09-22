@@ -334,8 +334,8 @@
 <span class="sd">            &gt;&gt;&gt; diagram.add_node(Node(id="isolated", label="Isolated"))</span>
 <span class="sd">            &gt;&gt;&gt; diagram.add_edge(Edge(source="a", target="b"))</span>
 <span class="sd">            &gt;&gt;&gt; simplified = DiagramTransforms.simplify(diagram)</span>
-<span class="sd">            &gt;&gt;&gt; len(simplified.nodes)  # isolated node removed</span>
-<span class="sd">            2</span>
+<span class="sd">            &gt;&gt;&gt; len(simplified.nodes)  # isolated node removed; "b" was never added as a Node</span>
+<span class="sd">            1</span>
 <span class="sd">        """</span>
         <span class="n">new_diagram</span> <span class="o">=</span> <span class="n">DiagramIR</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">diagram</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
 
@@ -473,7 +473,7 @@
 
 <span class="sd">        Example:</span>
 <span class="sd">            &gt;&gt;&gt; # Keep only PROCESS nodes</span>
-<span class="sd">            &gt;&gt;&gt; filtered = DiagramTransforms.filter_by_node_type(</span>
+<span class="sd">            &gt;&gt;&gt; filtered = DiagramTransforms.filter_by_node_type(  # doctest: +SKIP</span>
 <span class="sd">            ...     diagram, [NodeType.PROCESS], keep=True</span>
 <span class="sd">            ... )</span>
 <span class="sd">        """</span>
@@ -513,7 +513,7 @@
 
 <span class="sd">        Example:</span>
 <span class="sd">            &gt;&gt;&gt; # Extract subgraph from node 'start' with depth 2</span>
-<span class="sd">            &gt;&gt;&gt; subgraph = DiagramTransforms.extract_subgraph(diagram, "start", max_depth=2)</span>
+<span class="sd">            &gt;&gt;&gt; subgraph = DiagramTransforms.extract_subgraph(diagram, "start", max_depth=2)  # doctest: +SKIP</span>
 <span class="sd">        """</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span>
 
@@ -622,7 +622,7 @@
 <span class="sd">            DiagramIR with reversed edges</span>
 
 <span class="sd">        Example:</span>
-<span class="sd">            &gt;&gt;&gt; reversed_diagram = DiagramTransforms.reverse_edges(diagram)</span>
+<span class="sd">            &gt;&gt;&gt; reversed_diagram = DiagramTransforms.reverse_edges(diagram)  # doctest: +SKIP</span>
 <span class="sd">        """</span>
         <span class="n">new_diagram</span> <span class="o">=</span> <span class="n">DiagramIR</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">diagram</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
 
@@ -660,7 +660,7 @@
 
 <span class="sd">        Example:</span>
 <span class="sd">            &gt;&gt;&gt; # Keep only nodes with labels containing "error"</span>
-<span class="sd">            &gt;&gt;&gt; filtered = DiagramTransforms.apply_node_filter(</span>
+<span class="sd">            &gt;&gt;&gt; filtered = DiagramTransforms.apply_node_filter(  # doctest: +SKIP</span>
 <span class="sd">            ...     diagram, lambda n: "error" in n.label.lower()</span>
 <span class="sd">            ... )</span>
 <span class="sd">        """</span>
@@ -694,8 +694,8 @@
 <span class="sd">            List of cycles, where each cycle is a list of node IDs</span>
 
 <span class="sd">        Example:</span>
-<span class="sd">            &gt;&gt;&gt; cycles = DiagramTransforms.find_cycles(diagram)</span>
-<span class="sd">            &gt;&gt;&gt; if cycles:</span>
+<span class="sd">            &gt;&gt;&gt; cycles = DiagramTransforms.find_cycles(diagram)  # doctest: +SKIP</span>
+<span class="sd">            &gt;&gt;&gt; if cycles:  # doctest: +SKIP</span>
 <span class="sd">            ...     print(f"Found {len(cycles)} cycles")</span>
 <span class="sd">        """</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
@@ -748,8 +748,8 @@
 <span class="sd">            Dictionary containing diagram statistics</span>
 
 <span class="sd">        Example:</span>
-<span class="sd">            &gt;&gt;&gt; stats = DiagramTransforms.get_statistics(diagram)</span>
-<span class="sd">            &gt;&gt;&gt; print(f"Nodes: {stats['node_count']}, Edges: {stats['edge_count']}")</span>
+<span class="sd">            &gt;&gt;&gt; stats = DiagramTransforms.get_statistics(diagram)  # doctest: +SKIP</span>
+<span class="sd">            &gt;&gt;&gt; print(f"Nodes: {stats['node_count']}, Edges: {stats['edge_count']}")  # doctest: +SKIP</span>
 <span class="sd">        """</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
 
@@ -814,7 +814,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=d0952cc8"></script>
+</div><script src="../../_static/documentation_options.js?v=72e2dd8f"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

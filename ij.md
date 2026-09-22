@@ -1,4 +1,4 @@
-> built 2026-09-22 12:54 UTC from db23ee7 (master) · ij 0.1.7. Details: build_info.json
+> built 2026-09-22 14:40 UTC from 40c8d9d (master) · ij 0.1.8. Details: build_info.json
 
 # index.html.md
 
@@ -2745,8 +2745,8 @@ Simplify diagram by removing redundant nodes and edges.
 >>> diagram.add_node(Node(id="isolated", label="Isolated"))
 >>> diagram.add_edge(Edge(source="a", target="b"))
 >>> simplified = DiagramTransforms.simplify(diagram)
->>> len(simplified.nodes)  # isolated node removed
-2
+>>> len(simplified.nodes)  # isolated node removed; "b" was never added as a Node
+1
 ```
 
 ### *class* ij.DiagramValidator
@@ -6106,8 +6106,8 @@ Simplify diagram by removing redundant nodes and edges.
 >>> diagram.add_node(Node(id="isolated", label="Isolated"))
 >>> diagram.add_edge(Edge(source="a", target="b"))
 >>> simplified = DiagramTransforms.simplify(diagram)
->>> len(simplified.nodes)  # isolated node removed
-2
+>>> len(simplified.nodes)  # isolated node removed; "b" was never added as a Node
+1
 ```
 
 
@@ -6394,7 +6394,7 @@ Quickly serve a diagram in browser.
 
 # About this build
 
-This documentation was built on **2026-09-22 12:54 UTC** from commit <a href="https://github.com/i2mint/ij/commit/db23ee7022185b554ebd01faef581df43dd04f31"><code>db23ee7</code></a> on branch <code>master</code>, for **ij 0.1.7** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-09-22 14:40 UTC** from commit <a href="https://github.com/i2mint/ij/commit/40c8d9dcec023a80399b6f076b595cc1eed47f4e"><code>40c8d9d</code></a> on branch <code>master</code>, for **ij 0.1.8** (from <code>pyproject.toml</code>).
 
 #### NOTE
 Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
@@ -6403,9 +6403,9 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 
 |                     |                                                                                                                                                  |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/i2mint/ij/commit/db23ee7022185b554ebd01faef581df43dd04f31"><code>db23ee7022185b554ebd01faef581df43dd04f31</code></a> |
+| Commit              | <a href="https://github.com/i2mint/ij/commit/40c8d9dcec023a80399b6f076b595cc1eed47f4e"><code>40c8d9dcec023a80399b6f076b595cc1eed47f4e</code></a> |
 | Branch              | <code>master</code>                                                                                                                              |
-| Tags at this commit | <code>0.1.7</code>                                                                                                                               |
+| Tags at this commit | <code>0.1.8</code>                                                                                                                               |
 | Working tree        | clean                                                                                                                                            |
 | Remote              | <code>https://github.com/i2mint/ij</code>                                                                                                        |
 
@@ -6414,9 +6414,9 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 |              |                                                                                            |
 |--------------|--------------------------------------------------------------------------------------------|
 | Repository   | <code>i2mint/ij</code>                                                                     |
-| Run          | <a href="https://github.com/i2mint/ij/actions/runs/35729816094">35729816094</a>            |
+| Run          | <a href="https://github.com/i2mint/ij/actions/runs/35741343930">35741343930</a>            |
 | Ref          | <code>refs/heads/master</code>                                                             |
-| Event commit | <code>c37e0ccabda6481ad6d5c308a36cf109f26f2bf3</code> (in the history of the built commit) |
+| Event commit | <code>85b13826b18acb0a750482374e51ce0a4a4f82fe</code> (in the history of the built commit) |
 
 ## Tools
 
@@ -6441,13 +6441,13 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/ij/0.1.7/">0.1.7</a>, the same as the documented version.
+Latest release: <a href="https://pypi.org/project/ij/0.1.8/">0.1.8</a>, the same as the documented version.
 
 ## Reproduce
 
 ```bash
 git clone https://github.com/i2mint/ij && cd ij
-git checkout db23ee7022185b554ebd01faef581df43dd04f31
+git checkout 40c8d9dcec023a80399b6f076b595cc1eed47f4e
 pip install "epythet==0.2.12"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```

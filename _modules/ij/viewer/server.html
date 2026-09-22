@@ -572,7 +572,7 @@
 
 <span class="sd">        Example:</span>
 <span class="sd">            &gt;&gt;&gt; server = ViewerServer(port=8080)</span>
-<span class="sd">            &gt;&gt;&gt; server.start(diagram)</span>
+<span class="sd">            &gt;&gt;&gt; server.start(diagram)  # doctest: +SKIP</span>
 <span class="sd">            Server running at http://localhost:8080</span>
 <span class="sd">            Press Ctrl+C to stop</span>
 <span class="sd">        """</span>
@@ -663,7 +663,7 @@
 <span class="sd">        &gt;&gt;&gt; from ij import DiagramIR, Node, Edge</span>
 <span class="sd">        &gt;&gt;&gt; diagram = DiagramIR()</span>
 <span class="sd">        &gt;&gt;&gt; # ... build diagram ...</span>
-<span class="sd">        &gt;&gt;&gt; serve_diagram(diagram)</span>
+<span class="sd">        &gt;&gt;&gt; serve_diagram(diagram)  # doctest: +SKIP</span>
 <span class="sd">    """</span>
     <span class="n">server</span> <span class="o">=</span> <span class="n">ViewerServer</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">,</span> <span class="n">theme</span><span class="o">=</span><span class="n">theme</span><span class="p">)</span>
     <span class="n">server</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">diagram</span><span class="p">,</span> <span class="n">open_browser</span><span class="o">=</span><span class="n">open_browser</span><span class="p">)</span></div>
@@ -696,7 +696,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=d0952cc8"></script>
+</div><script src="../../../_static/documentation_options.js?v=72e2dd8f"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

@@ -392,8 +392,8 @@
 <span class="sd">            DiagramIR representation</span>
 
 <span class="sd">        Example:</span>
-<span class="sd">            &gt;&gt;&gt; converter = LLMConverter()</span>
-<span class="sd">            &gt;&gt;&gt; diagram = converter.convert(</span>
+<span class="sd">            &gt;&gt;&gt; converter = LLMConverter()  # doctest: +SKIP</span>
+<span class="sd">            &gt;&gt;&gt; diagram = converter.convert(  # doctest: +SKIP</span>
 <span class="sd">            ...     "A user logs into the system. If authentication succeeds, "</span>
 <span class="sd">            ...     "they see the dashboard. Otherwise, they see an error message."</span>
 <span class="sd">            ... )</span>
@@ -434,10 +434,10 @@
 <span class="sd">            Refined DiagramIR</span>
 
 <span class="sd">        Example:</span>
-<span class="sd">            &gt;&gt;&gt; diagram = converter.convert("User login process")</span>
+<span class="sd">            &gt;&gt;&gt; diagram = converter.convert("User login process")  # doctest: +SKIP</span>
 <span class="sd">            &gt;&gt;&gt; from ij.renderers import MermaidRenderer</span>
-<span class="sd">            &gt;&gt;&gt; mermaid = MermaidRenderer().render(diagram)</span>
-<span class="sd">            &gt;&gt;&gt; refined = converter.refine(</span>
+<span class="sd">            &gt;&gt;&gt; mermaid = MermaidRenderer().render(diagram)  # doctest: +SKIP</span>
+<span class="sd">            &gt;&gt;&gt; refined = converter.refine(  # doctest: +SKIP</span>
 <span class="sd">            ...     diagram,</span>
 <span class="sd">            ...     "Add a step for password reset if login fails",</span>
 <span class="sd">            ...     mermaid</span>
@@ -591,7 +591,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=d0952cc8"></script>
+</div><script src="../../../_static/documentation_options.js?v=72e2dd8f"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>
