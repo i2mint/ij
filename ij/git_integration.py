@@ -66,8 +66,8 @@ class DiagramDiff:
 
         Example:
             >>> differ = DiagramDiff()
-            >>> changes = differ.compare(old_diagram, new_diagram)
-            >>> print(f"Added: {len(changes.added_nodes)} nodes")
+            >>> changes = differ.compare(old_diagram, new_diagram)  # doctest: +SKIP
+            >>> print(f"Added: {len(changes.added_nodes)} nodes")  # doctest: +SKIP
         """
         changes = DiagramChanges()
 
@@ -215,7 +215,7 @@ class DiagramDiff:
 
         Example:
             >>> differ = DiagramDiff()
-            >>> merged = differ.merge(base, branch1, branch2, strategy='union')
+            >>> merged = differ.merge(base, branch1, branch2, strategy='union')  # doctest: +SKIP
         """
         if strategy == "ours":
             return branch1

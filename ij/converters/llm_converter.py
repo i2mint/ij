@@ -87,8 +87,8 @@ Output ONLY the Mermaid code, no explanations or markdown code blocks."""
             DiagramIR representation
 
         Example:
-            >>> converter = LLMConverter()
-            >>> diagram = converter.convert(
+            >>> converter = LLMConverter()  # doctest: +SKIP
+            >>> diagram = converter.convert(  # doctest: +SKIP
             ...     "A user logs into the system. If authentication succeeds, "
             ...     "they see the dashboard. Otherwise, they see an error message."
             ... )
@@ -126,10 +126,10 @@ Output ONLY the Mermaid code, no explanations or markdown code blocks."""
             Refined DiagramIR
 
         Example:
-            >>> diagram = converter.convert("User login process")
+            >>> diagram = converter.convert("User login process")  # doctest: +SKIP
             >>> from ij.renderers import MermaidRenderer
-            >>> mermaid = MermaidRenderer().render(diagram)
-            >>> refined = converter.refine(
+            >>> mermaid = MermaidRenderer().render(diagram)  # doctest: +SKIP
+            >>> refined = converter.refine(  # doctest: +SKIP
             ...     diagram,
             ...     "Add a step for password reset if login fails",
             ...     mermaid

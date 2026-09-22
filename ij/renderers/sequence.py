@@ -128,7 +128,7 @@ class SequenceDiagramRenderer:
 
         Example:
             >>> notes = {"user": ["Note about user"], "api": ["API note"]}
-            >>> renderer.render_with_notes(diagram, notes)
+            >>> renderer.render_with_notes(diagram, notes)  # doctest: +SKIP
         """
         lines = self.render(diagram).split("\n")
 
@@ -162,7 +162,7 @@ class SequenceDiagramRenderer:
 
         Example:
             >>> activations = [("api", "activate"), ("api", "deactivate")]
-            >>> renderer.render_with_activations(diagram, activations)
+            >>> renderer.render_with_activations(diagram, activations)  # doctest: +SKIP
         """
         base = self.render(diagram)
         lines = base.split("\n")

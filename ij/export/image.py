@@ -59,7 +59,7 @@ class ImageExporter:
 
         Example:
             >>> exporter = ImageExporter(format='png', engine='mermaid-cli')
-            >>> success = exporter.render(diagram, 'output.png', width=800)
+            >>> success = exporter.render(diagram, 'output.png', width=800)  # doctest: +SKIP
         """
         if self.engine == "graphviz":
             return self._render_graphviz(diagram, output_path)
@@ -332,7 +332,7 @@ def quick_export(
         >>> from ij import DiagramIR, Node, Edge
         >>> diagram = DiagramIR()
         >>> # ... build diagram ...
-        >>> quick_export(diagram, 'diagram.png', format='png')
+        >>> quick_export(diagram, 'diagram.png', format='png')  # doctest: +SKIP
     """
     # Auto-detect engine if not specified
     if engine is None:

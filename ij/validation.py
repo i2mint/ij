@@ -78,8 +78,8 @@ class DiagramValidator:
 
         Example:
             >>> validator = DiagramValidator()
-            >>> result = validator.validate(diagram, rules=['no-cycles', 'no-orphaned-nodes'])
-            >>> if not result.is_valid:
+            >>> result = validator.validate(diagram, rules=['no-cycles', 'no-orphaned-nodes'])  # doctest: +SKIP
+            >>> if not result.is_valid:  # doctest: +SKIP
             ...     for issue in result.errors:
             ...         print(f"ERROR: {issue.message}")
         """
@@ -404,8 +404,8 @@ class DiagramLinter:
 
         Example:
             >>> linter = DiagramLinter()
-            >>> issues = linter.lint(diagram)
-            >>> for issue in issues:
+            >>> issues = linter.lint(diagram)  # doctest: +SKIP
+            >>> for issue in issues:  # doctest: +SKIP
             ...     print(f"{issue.severity.value.upper()}: {issue.message}")
         """
         issues = []

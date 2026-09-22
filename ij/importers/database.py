@@ -16,8 +16,8 @@ def from_database(connection_string: str, schema: Optional[str] = None) -> ERDia
         ERDiagram representing database schema
 
     Example:
-        >>> erd = from_database('postgresql://user:pass@localhost/mydb')
-        >>> erd = from_database('sqlite:///path/to/db.sqlite')
+        >>> erd = from_database('postgresql://user:pass@localhost/mydb')  # doctest: +SKIP
+        >>> erd = from_database('sqlite:///path/to/db.sqlite')  # doctest: +SKIP
 
     Note:
         Requires sqlalchemy: pip install sqlalchemy
@@ -93,7 +93,7 @@ def from_sql_file(file_path: str) -> ERDiagram:
         ERDiagram from SQL statements
 
     Example:
-        >>> erd = from_sql_file('schema.sql')
+        >>> erd = from_sql_file('schema.sql')  # doctest: +SKIP
     """
     from pathlib import Path
     from ..diagrams.erd import ERDBuilder
