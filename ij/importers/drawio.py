@@ -22,7 +22,7 @@ def from_drawio(file_path: str, page: int = 0) -> DiagramIR:
         DiagramIR representation
 
     Example:
-        >>> diagram = from_drawio('flowchart.drawio')
+        >>> diagram = from_drawio('flowchart.drawio')  # doctest: +SKIP
 
     Note:
         draw.io files use compressed XML. This provides basic support

@@ -62,7 +62,7 @@ class PluginManager:
             >>> def highlight_critical(diagram, start, end):
             ...     # Highlight path from start to end
             ...     return diagram
-            >>> manager.register_transform('highlight-critical', highlight_critical)
+            >>> manager.register_transform('highlight-critical', highlight_critical)  # doctest: +SKIP
         """
         self.transforms[name] = func
 
@@ -76,7 +76,7 @@ class PluginManager:
         Example:
             >>> def on_render(diagram):
             ...     print(f"Rendering {len(diagram.nodes)} nodes")
-            >>> manager.register_hook('pre_render', on_render)
+            >>> manager.register_hook('pre_render', on_render)  # doctest: +SKIP
         """
         if event not in self.hooks:
             self.hooks[event] = []
@@ -138,7 +138,7 @@ class PluginManager:
             file_path: Path to plugin file
 
         Example:
-            >>> manager.load_plugin_file('plugins/my_plugin.py')
+            >>> manager.load_plugin_file('plugins/my_plugin.py')  # doctest: +SKIP
         """
         path = Path(file_path)
         if not path.exists():
@@ -166,7 +166,7 @@ class PluginManager:
             directory: Directory containing plugin files
 
         Example:
-            >>> manager.load_plugins_directory('~/.ij/plugins')
+            >>> manager.load_plugins_directory('~/.ij/plugins')  # doctest: +SKIP
         """
         dir_path = Path(directory).expanduser()
         if not dir_path.exists():

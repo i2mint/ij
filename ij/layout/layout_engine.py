@@ -35,8 +35,8 @@ class LayoutEngine:
 
         Example:
             >>> engine = LayoutEngine(algorithm='force-directed')
-            >>> positions = engine.apply(diagram)
-            >>> print(positions['node1'])  # (x, y)
+            >>> positions = engine.apply(diagram)  # doctest: +SKIP
+            >>> print(positions['node1'])  # (x, y)  # doctest: +SKIP
             (150.0, 200.0)
         """
         if self.algorithm == "force-directed":

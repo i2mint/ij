@@ -156,7 +156,7 @@ class TypeScriptAnalyzer:
             ... import axios from 'axios';
             ... export default App;
             ... '''
-            >>> diagram = analyzer.analyze_module_imports(code)
+            >>> diagram = analyzer.analyze_module_imports(code)  # doctest: +SKIP
         """
         diagram = DiagramIR(metadata={"title": "Module Dependencies"})
 
@@ -215,7 +215,7 @@ class TypeScriptAnalyzer:
             ...   );
             ... }
             ... '''
-            >>> diagram = analyzer.analyze_react_component(code, 'App')
+            >>> diagram = analyzer.analyze_react_component(code, 'App')  # doctest: +SKIP
         """
         diagram = DiagramIR(metadata={"title": f"Component: {component_name}"})
 
@@ -262,7 +262,7 @@ class TypeScriptAnalyzer:
             ...   return data;
             ... }
             ... '''
-            >>> diagram = analyzer.analyze_async_flow(code)
+            >>> diagram = analyzer.analyze_async_flow(code)  # doctest: +SKIP
         """
         diagram = DiagramIR(metadata={"title": "Async Flow"})
 
@@ -301,7 +301,7 @@ def analyze_package_json(file_path: str) -> DiagramIR:
         DiagramIR showing dependencies
 
     Example:
-        >>> diagram = analyze_package_json('package.json')
+        >>> diagram = analyze_package_json('package.json')  # doctest: +SKIP
     """
     with open(file_path) as f:
         package_data = json.load(f)

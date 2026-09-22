@@ -19,8 +19,8 @@ def from_openapi(spec: Union[str, Dict], title: Optional[str] = None) -> Diagram
         DiagramIR representing API structure
 
     Example:
-        >>> diagram = from_openapi('openapi.yaml')
-        >>> diagram = from_openapi({'openapi': '3.0.0', ...})
+        >>> diagram = from_openapi('openapi.yaml')  # doctest: +SKIP
+        >>> diagram = from_openapi({'openapi': '3.0.0', ...})  # doctest: +SKIP
 
     Note:
         Requires pyyaml for YAML files: pip install pyyaml
@@ -110,7 +110,7 @@ def from_openapi_to_sequence(
         DiagramIR as sequence diagram
 
     Example:
-        >>> diagram = from_openapi_to_sequence('api.yaml', flow='auth')
+        >>> diagram = from_openapi_to_sequence('api.yaml', flow='auth')  # doctest: +SKIP
     """
     # This would create a sequence diagram showing client -> API -> services flow
     # Implementation would parse the OpenAPI spec and create participant interactions

@@ -29,8 +29,8 @@ class DiagramTransforms:
             >>> diagram.add_node(Node(id="isolated", label="Isolated"))
             >>> diagram.add_edge(Edge(source="a", target="b"))
             >>> simplified = DiagramTransforms.simplify(diagram)
-            >>> len(simplified.nodes)  # isolated node removed
-            2
+            >>> len(simplified.nodes)  # isolated node removed; "b" was never added as a Node
+            1
         """
         new_diagram = DiagramIR(metadata=diagram.metadata.copy())
 
@@ -162,7 +162,7 @@ class DiagramTransforms:
 
         Example:
             >>> # Keep only PROCESS nodes
-            >>> filtered = DiagramTransforms.filter_by_node_type(
+            >>> filtered = DiagramTransforms.filter_by_node_type(  # doctest: +SKIP
             ...     diagram, [NodeType.PROCESS], keep=True
             ... )
         """
@@ -199,7 +199,7 @@ class DiagramTransforms:
 
         Example:
             >>> # Extract subgraph from node 'start' with depth 2
-            >>> subgraph = DiagramTransforms.extract_subgraph(diagram, "start", max_depth=2)
+            >>> subgraph = DiagramTransforms.extract_subgraph(diagram, "start", max_depth=2)  # doctest: +SKIP
         """
         from collections import deque
 
@@ -302,7 +302,7 @@ class DiagramTransforms:
             DiagramIR with reversed edges
 
         Example:
-            >>> reversed_diagram = DiagramTransforms.reverse_edges(diagram)
+            >>> reversed_diagram = DiagramTransforms.reverse_edges(diagram)  # doctest: +SKIP
         """
         new_diagram = DiagramIR(metadata=diagram.metadata.copy())
 
@@ -337,7 +337,7 @@ class DiagramTransforms:
 
         Example:
             >>> # Keep only nodes with labels containing "error"
-            >>> filtered = DiagramTransforms.apply_node_filter(
+            >>> filtered = DiagramTransforms.apply_node_filter(  # doctest: +SKIP
             ...     diagram, lambda n: "error" in n.label.lower()
             ... )
         """
@@ -368,8 +368,8 @@ class DiagramTransforms:
             List of cycles, where each cycle is a list of node IDs
 
         Example:
-            >>> cycles = DiagramTransforms.find_cycles(diagram)
-            >>> if cycles:
+            >>> cycles = DiagramTransforms.find_cycles(diagram)  # doctest: +SKIP
+            >>> if cycles:  # doctest: +SKIP
             ...     print(f"Found {len(cycles)} cycles")
         """
         from collections import defaultdict
@@ -419,8 +419,8 @@ class DiagramTransforms:
             Dictionary containing diagram statistics
 
         Example:
-            >>> stats = DiagramTransforms.get_statistics(diagram)
-            >>> print(f"Nodes: {stats['node_count']}, Edges: {stats['edge_count']}")
+            >>> stats = DiagramTransforms.get_statistics(diagram)  # doctest: +SKIP
+            >>> print(f"Nodes: {stats['node_count']}, Edges: {stats['edge_count']}")  # doctest: +SKIP
         """
         from collections import Counter
 

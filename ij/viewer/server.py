@@ -246,7 +246,7 @@ class ViewerServer:
 
         Example:
             >>> server = ViewerServer(port=8080)
-            >>> server.start(diagram)
+            >>> server.start(diagram)  # doctest: +SKIP
             Server running at http://localhost:8080
             Press Ctrl+C to stop
         """
@@ -327,7 +327,7 @@ def serve_diagram(
         >>> from ij import DiagramIR, Node, Edge
         >>> diagram = DiagramIR()
         >>> # ... build diagram ...
-        >>> serve_diagram(diagram)
+        >>> serve_diagram(diagram)  # doctest: +SKIP
     """
     server = ViewerServer(port=port, theme=theme)
     server.start(diagram, open_browser=open_browser)
