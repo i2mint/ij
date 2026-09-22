@@ -1,0 +1,25 @@
+ij.viewer
+=========
+
+.. automodule:: ij.viewer
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      serve_diagram
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      ViewerServer
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   server

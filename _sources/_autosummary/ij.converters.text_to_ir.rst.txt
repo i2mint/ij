@@ -1,0 +1,13 @@
+ij.converters.text\_to\_ir
+==========================
+
+.. automodule:: ij.converters.text_to_ir
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      SimpleTextConverter
+      StructuredTextConverter
+   

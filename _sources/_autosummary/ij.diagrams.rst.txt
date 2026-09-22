@@ -1,0 +1,28 @@
+ij.diagrams
+===========
+
+.. automodule:: ij.diagrams
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      ERDiagram
+      Entity
+      Field
+      Relationship
+      Cardinality
+      ERDBuilder
+      StateMachine
+      State
+      Transition
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   erd
+   state_machine

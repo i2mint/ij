@@ -1,0 +1,16 @@
+ij.validation
+=============
+
+.. automodule:: ij.validation
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      DiagramLinter
+      DiagramValidator
+      Severity
+      ValidationIssue
+      ValidationResult
+   

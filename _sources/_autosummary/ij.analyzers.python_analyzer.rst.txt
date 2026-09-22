@@ -1,0 +1,12 @@
+ij.analyzers.python\_analyzer
+=============================
+
+.. automodule:: ij.analyzers.python_analyzer
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      PythonCodeAnalyzer
+   

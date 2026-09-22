@@ -1,0 +1,13 @@
+ij.importers.database
+=====================
+
+.. automodule:: ij.importers.database
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      from_database
+      from_sql_file
+   

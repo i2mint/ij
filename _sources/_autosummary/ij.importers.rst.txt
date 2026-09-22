@@ -1,0 +1,25 @@
+ij.importers
+============
+
+.. automodule:: ij.importers
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      from_database
+      from_openapi
+      from_drawio
+      from_plantuml
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   database
+   drawio
+   openapi
+   plantuml

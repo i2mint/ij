@@ -1,0 +1,14 @@
+ij.git\_integration
+===================
+
+.. automodule:: ij.git_integration
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      DiagramChanges
+      DiagramDiff
+      DiagramHistory
+   

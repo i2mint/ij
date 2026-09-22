@@ -1,4 +1,0 @@
-ij.diagrams.state_machine
-=========================
-.. automodule:: ij.diagrams.state_machine
-   :members:

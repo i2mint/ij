@@ -1,4 +1,0 @@
-ij.cli
-======
-.. automodule:: ij.cli
-   :members:

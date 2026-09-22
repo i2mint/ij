@@ -1,0 +1,18 @@
+ij.analyzers.typescript
+=======================
+
+.. automodule:: ij.analyzers.typescript
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      analyze_package_json
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      TypeScriptAnalyzer
+   

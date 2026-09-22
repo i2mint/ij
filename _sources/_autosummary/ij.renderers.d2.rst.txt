@@ -1,0 +1,12 @@
+ij.renderers.d2
+===============
+
+.. automodule:: ij.renderers.d2
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      D2Renderer
+   

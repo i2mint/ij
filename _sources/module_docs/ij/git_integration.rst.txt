@@ -1,4 +1,0 @@
-ij.git_integration
-==================
-.. automodule:: ij.git_integration
-   :members:

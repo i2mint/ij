@@ -1,4 +1,0 @@
-ij.analyzers.python_analyzer
-============================
-.. automodule:: ij.analyzers.python_analyzer
-   :members:

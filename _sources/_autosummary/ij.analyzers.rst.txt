@@ -1,0 +1,20 @@
+ij.analyzers
+============
+
+.. automodule:: ij.analyzers
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      PythonCodeAnalyzer
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   python_analyzer
+   typescript

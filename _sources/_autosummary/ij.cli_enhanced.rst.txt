@@ -1,0 +1,22 @@
+ij.cli\_enhanced
+================
+
+.. automodule:: ij.cli_enhanced
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      cmd_convert
+      cmd_diff
+      cmd_extract
+      cmd_simplify
+      cmd_stats
+      cmd_validate
+      cmd_watch
+      detect_format
+      get_parser_for_format
+      get_renderer_for_format
+      main
+   

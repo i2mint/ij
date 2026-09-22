@@ -1,0 +1,17 @@
+ij.diagrams.erd
+===============
+
+.. automodule:: ij.diagrams.erd
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Cardinality
+      ERDBuilder
+      ERDiagram
+      Entity
+      Field
+      Relationship
+   

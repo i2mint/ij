@@ -1,0 +1,12 @@
+ij.renderers.plantuml
+=====================
+
+.. automodule:: ij.renderers.plantuml
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      PlantUMLRenderer
+   

@@ -1,0 +1,16 @@
+ij.diagrams.state\_machine
+==========================
+
+.. automodule:: ij.diagrams.state_machine
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      State
+      StateMachine
+      StateMachineBuilder
+      StateType
+      Transition
+   

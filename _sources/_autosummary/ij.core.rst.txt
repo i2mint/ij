@@ -1,0 +1,16 @@
+ij.core
+=======
+
+.. automodule:: ij.core
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      DiagramIR
+      Edge
+      EdgeType
+      Node
+      NodeType
+   

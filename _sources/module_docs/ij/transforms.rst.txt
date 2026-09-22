@@ -1,4 +1,0 @@
-ij.transforms
-=============
-.. automodule:: ij.transforms
-   :members:

@@ -1,0 +1,12 @@
+ij.parsers.d2
+=============
+
+.. automodule:: ij.parsers.d2
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      D2Parser
+   

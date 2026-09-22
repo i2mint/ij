@@ -1,0 +1,88 @@
+﻿ij
+==
+
+.. automodule:: ij
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      quick_export
+      register_plugin
+      register_transform
+      serve_diagram
+      text_to_mermaid
+      analyze_package_json
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      DiagramIR
+      Node
+      Edge
+      NodeType
+      EdgeType
+      SimpleTextConverter
+      EnhancedTextConverter
+      MermaidRenderer
+      PlantUMLRenderer
+      D2Renderer
+      GraphvizRenderer
+      SequenceDiagramRenderer
+      InteractionAnalyzer
+      MermaidParser
+      D2Parser
+      GraphOperations
+      PythonCodeAnalyzer
+      DiagramTransforms
+      DiagramValidator
+      DiagramLinter
+      ValidationResult
+      DiagramDiff
+      DiagramHistory
+      ERDiagram
+      Entity
+      Field
+      Cardinality
+      StateMachine
+      State
+      ImageExporter
+      LayoutEngine
+      ForceDirectedLayout
+      HierarchicalLayout
+      PluginManager
+      ViewerServer
+      LLMConverter
+      TypeScriptAnalyzer
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      MermaidParseWarning
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   importers
+   analyzers
+   cli
+   cli_enhanced
+   converters
+   core
+   diagrams
+   export
+   git_integration
+   graph_ops
+   layout
+   parsers
+   plugins
+   renderers
+   transforms
+   validation
+   viewer

@@ -1,0 +1,21 @@
+ij.plugins.plugin\_manager
+==========================
+
+.. automodule:: ij.plugins.plugin_manager
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      get_global_manager
+      register_plugin
+      register_transform
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Plugin
+      PluginManager
+   

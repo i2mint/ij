@@ -1,0 +1,23 @@
+ij.layout
+=========
+
+.. automodule:: ij.layout
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      LayoutEngine
+      ForceDirectedLayout
+      HierarchicalLayout
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   force_directed
+   hierarchical
+   layout_engine

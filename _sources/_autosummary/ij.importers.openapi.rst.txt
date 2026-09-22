@@ -1,0 +1,13 @@
+ij.importers.openapi
+====================
+
+.. automodule:: ij.importers.openapi
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      from_openapi
+      from_openapi_to_sequence
+   

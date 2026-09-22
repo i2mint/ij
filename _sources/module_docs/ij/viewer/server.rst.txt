@@ -1,4 +1,0 @@
-ij.viewer.server
-================
-.. automodule:: ij.viewer.server
-   :members:

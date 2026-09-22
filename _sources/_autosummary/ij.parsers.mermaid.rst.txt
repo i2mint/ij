@@ -1,0 +1,18 @@
+ij.parsers.mermaid
+==================
+
+.. automodule:: ij.parsers.mermaid
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      MermaidParser
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      MermaidParseWarning
+   

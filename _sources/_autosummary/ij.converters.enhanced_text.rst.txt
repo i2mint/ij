@@ -1,0 +1,12 @@
+ij.converters.enhanced\_text
+============================
+
+.. automodule:: ij.converters.enhanced_text
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      EnhancedTextConverter
+   

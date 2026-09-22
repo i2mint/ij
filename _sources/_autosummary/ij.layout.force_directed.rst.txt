@@ -1,0 +1,12 @@
+ij.layout.force\_directed
+=========================
+
+.. automodule:: ij.layout.force_directed
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      ForceDirectedLayout
+   

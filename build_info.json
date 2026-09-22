@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "built_at": "2026-09-22T12:54:46Z",
+  "package": {
+    "name": "ij",
+    "version": "0.1.7",
+    "display_name": "ij",
+    "source": "pyproject.toml"
+  },
+  "git": {
+    "available": true,
+    "commit": "db23ee7022185b554ebd01faef581df43dd04f31",
+    "short_commit": "db23ee7",
+    "branch": "master",
+    "tags": [
+      "0.1.7"
+    ],
+    "dirty": false,
+    "remote_url": "https://github.com/i2mint/ij",
+    "commit_url": "https://github.com/i2mint/ij/commit/db23ee7022185b554ebd01faef581df43dd04f31",
+    "error": null
+  },
+  "ci": {
+    "provider": "github",
+    "repository": "i2mint/ij",
+    "sha": "c37e0ccabda6481ad6d5c308a36cf109f26f2bf3",
+    "sha_in_history": true,
+    "ref": "refs/heads/master",
+    "ref_name": "master",
+    "run_id": "35729816094",
+    "run_url": "https://github.com/i2mint/ij/actions/runs/35729816094",
+    "server_url": "https://github.com"
+  },
+  "tools": {
+    "epythet": "0.2.12",
+    "sphinx": "9.1.0",
+    "docutils": "0.22.4",
+    "python": "3.12.14"
+  },
+  "config": {
+    "theme": "auto",
+    "html_theme": "furo",
+    "accent": "#675900",
+    "mode": "auto",
+    "api_generator": "autosummary",
+    "ignore": [
+      "tests/",
+      "scrap/",
+      "examples/"
+    ],
+    "agent_outputs": true,
+    "aggregates": [
+      "md"
+    ],
+    "ai_artifacts": true,
+    "provenance": true,
+    "docs_dir": "docsrc"
+  },
+  "site": {
+    "modules_documented": 42,
+    "objects_documented": 458
+  },
+  "pypi": {
+    "checked": true,
+    "latest": "0.1.7",
+    "relation": "same",
+    "error": null
+  },
+  "reproduce": "git clone https://github.com/i2mint/ij && cd ij\ngit checkout db23ee7022185b554ebd01faef581df43dd04f31\npip install \"epythet==0.2.12\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
+  "warnings": [],
+  "alignment": {
+    "aligned": true,
+    "notes": []
+  }
+}

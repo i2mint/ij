@@ -1,4 +1,0 @@
-ij.core
-=======
-.. automodule:: ij.core
-   :members:

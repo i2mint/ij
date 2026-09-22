@@ -1,0 +1,53 @@
+# ij
+
+> Idea Junction - Connect of vague ideas and evolve them to fully functional systems
+
+
+## Pages in this subsection
+
+- [ij](ij.html.md): Idea Junction - Connect vague ideas and evolve them to fully functional systems.
+- [ij.importers](ij.importers.html.md): Import diagrams from external sources.
+- [ij.importers.database](ij.importers.database.html.md): Import diagrams from database schemas.
+- [ij.importers.drawio](ij.importers.drawio.html.md): Import diagrams from draw.io files.
+- [ij.importers.openapi](ij.importers.openapi.html.md): Import diagrams from OpenAPI specifications.
+- [ij.importers.plantuml](ij.importers.plantuml.html.md): Import diagrams from PlantUML format.
+- [ij.analyzers](ij.analyzers.html.md): Code analyzers for reverse engineering diagrams from code.
+- [ij.analyzers.python_analyzer](ij.analyzers.python_analyzer.html.md): Python code analyzer for reverse engineering diagrams.
+- [ij.analyzers.typescript](ij.analyzers.typescript.html.md): TypeScript and JavaScript code analyzer.
+- [ij.cli](ij.cli.html.md): Command-line interface for Idea Junction.
+- [ij.cli_enhanced](ij.cli_enhanced.html.md): Enhanced command-line interface for Idea Junction.
+- [ij.converters](ij.converters.html.md): Converters between different representations.
+- [ij.converters.enhanced_text](ij.converters.enhanced_text.html.md): Enhanced text to DiagramIR converter with better NLP.
+- [ij.converters.llm_converter](ij.converters.llm_converter.html.md): AI/LLM-based text to diagram converter.
+- [ij.converters.text_to_ir](ij.converters.text_to_ir.html.md): Text to DiagramIR converters.
+- [ij.core](ij.core.html.md): Core data structures for Idea Junction.
+- [ij.diagrams](ij.diagrams.html.md): Advanced diagram types.
+- [ij.diagrams.erd](ij.diagrams.erd.html.md): Entity-Relationship Diagram support.
+- [ij.diagrams.state_machine](ij.diagrams.state_machine.html.md): State Machine diagram support.
+- [ij.export](ij.export.html.md): Export functionality.
+- [ij.export.image](ij.export.image.html.md): Image export functionality for diagrams.
+- [ij.git_integration](ij.git_integration.html.md): Git integration for diagram version control and diffing.
+- [ij.graph_ops](ij.graph_ops.html.md): Graph operations using NetworkX.
+- [ij.layout](ij.layout.html.md): Layout algorithms for diagram positioning.
+- [ij.layout.force_directed](ij.layout.force_directed.html.md): Force-directed graph layout algorithm.
+- [ij.layout.hierarchical](ij.layout.hierarchical.html.md): Hierarchical (layered) graph layout algorithm.
+- [ij.layout.layout_engine](ij.layout.layout_engine.html.md): Layout engine for positioning diagram nodes.
+- [ij.parsers](ij.parsers.html.md): Diagram parsers for various formats.
+- [ij.parsers.d2](ij.parsers.d2.html.md): D2 diagram parser.
+- [ij.parsers.mermaid](ij.parsers.mermaid.html.md): Mermaid diagram parser.
+- [ij.plugins](ij.plugins.html.md): Plugin system for extensibility.
+- [ij.plugins.plugin_manager](ij.plugins.plugin_manager.html.md): Plugin manager for extensible functionality.
+- [ij.renderers](ij.renderers.html.md): Diagram renderers for various formats.
+- [ij.renderers.d2](ij.renderers.d2.html.md): D2 diagram renderer.
+- [ij.renderers.graphviz](ij.renderers.graphviz.html.md): Graphviz/DOT diagram renderer.
+- [ij.renderers.mermaid](ij.renderers.mermaid.html.md): Mermaid diagram renderer.
+- [ij.renderers.plantuml](ij.renderers.plantuml.html.md): PlantUML diagram renderer.
+- [ij.renderers.sequence](ij.renderers.sequence.html.md): Sequence diagram renderer for Mermaid format.
+- [ij.transforms](ij.transforms.html.md): Diagram transformation and optimization utilities.
+- [ij.validation](ij.validation.html.md): Diagram validation and linting.
+- [ij.viewer](ij.viewer.html.md): Interactive web viewer for diagrams.
+- [ij.viewer.server](ij.viewer.server.html.md): Web server for interactive diagram viewing.
+
+## Optional
+
+- [Top-level llms.txt](../llms.txt): Complete documentation index.

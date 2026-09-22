@@ -1,0 +1,13 @@
+ij.renderers.sequence
+=====================
+
+.. automodule:: ij.renderers.sequence
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      InteractionAnalyzer
+      SequenceDiagramRenderer
+   

@@ -1,0 +1,12 @@
+ij.graph\_ops
+=============
+
+.. automodule:: ij.graph_ops
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      GraphOperations
+   

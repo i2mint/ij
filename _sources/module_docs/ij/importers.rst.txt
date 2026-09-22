@@ -1,4 +1,0 @@
-ij.importers
-============
-.. automodule:: ij.importers
-   :members:

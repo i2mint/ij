@@ -1,0 +1,12 @@
+ij.converters.llm\_converter
+============================
+
+.. automodule:: ij.converters.llm_converter
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      LLMConverter
+   

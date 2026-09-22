@@ -1,4 +1,0 @@
-ij.validation
-=============
-.. automodule:: ij.validation
-   :members:

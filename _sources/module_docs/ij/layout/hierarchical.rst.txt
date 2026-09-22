@@ -1,4 +1,0 @@
-ij.layout.hierarchical
-======================
-.. automodule:: ij.layout.hierarchical
-   :members:

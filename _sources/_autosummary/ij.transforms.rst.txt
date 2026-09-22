@@ -1,0 +1,12 @@
+ij.transforms
+=============
+
+.. automodule:: ij.transforms
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      DiagramTransforms
+   

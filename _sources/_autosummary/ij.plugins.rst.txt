@@ -1,0 +1,26 @@
+ij.plugins
+==========
+
+.. automodule:: ij.plugins
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      register_plugin
+      register_transform
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      PluginManager
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   plugin_manager

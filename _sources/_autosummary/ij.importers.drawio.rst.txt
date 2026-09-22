@@ -1,0 +1,13 @@
+ij.importers.drawio
+===================
+
+.. automodule:: ij.importers.drawio
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      from_drawio
+      from_drawio_xml
+   

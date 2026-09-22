@@ -1,4 +1,0 @@
-ij.analyzers.typescript
-=======================
-.. automodule:: ij.analyzers.typescript
-   :members:

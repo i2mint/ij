@@ -1,4 +1,0 @@
-ij.layout
-=========
-.. automodule:: ij.layout
-   :members:

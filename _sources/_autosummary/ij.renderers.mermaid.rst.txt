@@ -1,0 +1,12 @@
+ij.renderers.mermaid
+====================
+
+.. automodule:: ij.renderers.mermaid
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      MermaidRenderer
+   

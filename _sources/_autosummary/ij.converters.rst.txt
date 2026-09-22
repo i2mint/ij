@@ -1,0 +1,23 @@
+ij.converters
+=============
+
+.. automodule:: ij.converters
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      SimpleTextConverter
+      EnhancedTextConverter
+      LLMConverter
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   enhanced_text
+   llm_converter
+   text_to_ir

@@ -1,0 +1,60 @@
+# ij
+
+> Idea Junction - Connect of vague ideas and evolve them to fully functional systems
+
+
+## Pages
+
+- [ij - Idea Junction](index.html.md): &#42;&#42;Connect vague ideas and evolve them to fully functional systems&#42;&#42;
+- [API reference](api.html.md): | &#96;ij&#96;   | Idea Junction - Connect vague ideas and evolve them to fully functional systems.   |
+- [ij](_autosummary/ij.html.md): Idea Junction - Connect vague ideas and evolve them to fully functional systems.
+- [ij.importers](_autosummary/ij.importers.html.md): Import diagrams from external sources.
+- [ij.importers.database](_autosummary/ij.importers.database.html.md): Import diagrams from database schemas.
+- [ij.importers.drawio](_autosummary/ij.importers.drawio.html.md): Import diagrams from draw.io files.
+- [ij.importers.openapi](_autosummary/ij.importers.openapi.html.md): Import diagrams from OpenAPI specifications.
+- [ij.importers.plantuml](_autosummary/ij.importers.plantuml.html.md): Import diagrams from PlantUML format.
+- [ij.analyzers](_autosummary/ij.analyzers.html.md): Code analyzers for reverse engineering diagrams from code.
+- [ij.analyzers.python_analyzer](_autosummary/ij.analyzers.python_analyzer.html.md): Python code analyzer for reverse engineering diagrams.
+- [ij.analyzers.typescript](_autosummary/ij.analyzers.typescript.html.md): TypeScript and JavaScript code analyzer.
+- [ij.cli](_autosummary/ij.cli.html.md): Command-line interface for Idea Junction.
+- [ij.cli_enhanced](_autosummary/ij.cli_enhanced.html.md): Enhanced command-line interface for Idea Junction.
+- [ij.converters](_autosummary/ij.converters.html.md): Converters between different representations.
+- [ij.converters.enhanced_text](_autosummary/ij.converters.enhanced_text.html.md): Enhanced text to DiagramIR converter with better NLP.
+- [ij.converters.llm_converter](_autosummary/ij.converters.llm_converter.html.md): AI/LLM-based text to diagram converter.
+- [ij.converters.text_to_ir](_autosummary/ij.converters.text_to_ir.html.md): Text to DiagramIR converters.
+- [ij.core](_autosummary/ij.core.html.md): Core data structures for Idea Junction.
+- [ij.diagrams](_autosummary/ij.diagrams.html.md): Advanced diagram types.
+- [ij.diagrams.erd](_autosummary/ij.diagrams.erd.html.md): Entity-Relationship Diagram support.
+- [ij.diagrams.state_machine](_autosummary/ij.diagrams.state_machine.html.md): State Machine diagram support.
+- [ij.export](_autosummary/ij.export.html.md): Export functionality.
+- [ij.export.image](_autosummary/ij.export.image.html.md): Image export functionality for diagrams.
+- [ij.git_integration](_autosummary/ij.git_integration.html.md): Git integration for diagram version control and diffing.
+- [ij.graph_ops](_autosummary/ij.graph_ops.html.md): Graph operations using NetworkX.
+- [ij.layout](_autosummary/ij.layout.html.md): Layout algorithms for diagram positioning.
+- [ij.layout.force_directed](_autosummary/ij.layout.force_directed.html.md): Force-directed graph layout algorithm.
+- [ij.layout.hierarchical](_autosummary/ij.layout.hierarchical.html.md): Hierarchical (layered) graph layout algorithm.
+- [ij.layout.layout_engine](_autosummary/ij.layout.layout_engine.html.md): Layout engine for positioning diagram nodes.
+- [ij.parsers](_autosummary/ij.parsers.html.md): Diagram parsers for various formats.
+- [ij.parsers.d2](_autosummary/ij.parsers.d2.html.md): D2 diagram parser.
+- [ij.parsers.mermaid](_autosummary/ij.parsers.mermaid.html.md): Mermaid diagram parser.
+- [ij.plugins](_autosummary/ij.plugins.html.md): Plugin system for extensibility.
+- [ij.plugins.plugin_manager](_autosummary/ij.plugins.plugin_manager.html.md): Plugin manager for extensible functionality.
+- [ij.renderers](_autosummary/ij.renderers.html.md): Diagram renderers for various formats.
+- [ij.renderers.d2](_autosummary/ij.renderers.d2.html.md): D2 diagram renderer.
+- [ij.renderers.graphviz](_autosummary/ij.renderers.graphviz.html.md): Graphviz/DOT diagram renderer.
+- [ij.renderers.mermaid](_autosummary/ij.renderers.mermaid.html.md): Mermaid diagram renderer.
+- [ij.renderers.plantuml](_autosummary/ij.renderers.plantuml.html.md): PlantUML diagram renderer.
+- [ij.renderers.sequence](_autosummary/ij.renderers.sequence.html.md): Sequence diagram renderer for Mermaid format.
+- [ij.transforms](_autosummary/ij.transforms.html.md): Diagram transformation and optimization utilities.
+- [ij.validation](_autosummary/ij.validation.html.md): Diagram validation and linting.
+- [ij.viewer](_autosummary/ij.viewer.html.md): Interactive web viewer for diagrams.
+- [ij.viewer.server](_autosummary/ij.viewer.server.html.md): Web server for interactive diagram viewing.
+- [About this build](about-this-build.html.md): This documentation was built on &#42;&#42;2026-09-22 12:54 UTC&#42;&#42; from commit &lt;a href="https://github.com/i2m...
+
+## Optional
+
+- [ij.md](ij.md): Complete documentation in a single file.
+
+## Build
+
+- [build_info.json](build_info.json): build provenance (commit, version, tool versions, whether the docs match the package)

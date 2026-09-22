@@ -1,0 +1,12 @@
+ij.cli
+======
+
+.. automodule:: ij.cli
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      main
+   

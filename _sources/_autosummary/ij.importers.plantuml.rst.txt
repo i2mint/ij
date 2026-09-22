@@ -1,0 +1,13 @@
+ij.importers.plantuml
+=====================
+
+.. automodule:: ij.importers.plantuml
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      from_plantuml
+      from_plantuml_file
+   
