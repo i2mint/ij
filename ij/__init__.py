@@ -53,7 +53,23 @@ try:
 except ImportError:
     _has_llm = False
 
-__version__ = "0.2.0"
+
+def _resolve_version() -> str:
+    """Read the installed distribution version (SSOT = pyproject), else a sentinel.
+
+    Sourcing ``__version__`` from installed metadata keeps it in step with
+    ``pyproject.toml`` (which wads bumps on release) instead of a hand-edited
+    literal that silently drifts.
+    """
+    from importlib.metadata import PackageNotFoundError, version
+
+    try:
+        return version("ij")
+    except PackageNotFoundError:  # pragma: no cover - only in an uninstalled tree
+        return "0.0.0+unknown"
+
+
+__version__ = _resolve_version()
 
 __all__ = [
     # Core
