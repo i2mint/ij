@@ -1,7 +1,7 @@
 {
-  "collection_duration_seconds": 3.6163697242736816,
-  "commit_message": "test: DiagramDiff, merge strategies and DiagramHistory [skip publish]",
-  "commit_sha": "6110684d53b9613202093d8a8d4cf0348af8f6be",
+  "collection_duration_seconds": 3.844910144805908,
+  "commit_message": "test: DiagramDiff, merge strategies and DiagramHistory [skip publish] (#11)",
+  "commit_sha": "fbb55722653a7b4a4d1b14a3a9de6f43ada843db",
   "metrics": {
     "coverage": {
       "branch_coverage": 0.0,
@@ -22,7 +22,7 @@
       "mean_lines_per_function": 25.361421181595425,
       "num_classes": 1547,
       "num_functions": 7346,
-      "pypi_version": "0.1.9",
+      "pypi_version": "0.1.10",
       "total_lines": 332010
     },
     "wily": {
@@ -42,6 +42,6 @@
   },
   "python_version": "3.10",
   "schema_version": "1.0",
-  "timestamp": "2026-11-22T21:55:23.896559Z",
+  "timestamp": "2026-11-22T21:56:57.049922Z",
   "workflow_status": {}
 }
