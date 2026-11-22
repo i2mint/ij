@@ -21,12 +21,21 @@ from . import (
 )
 
 
+class _TextParser:
+    """Parser facade over :class:`SimpleTextConverter`: one step per line of plain text."""
+
+    def parse(self, text: str):
+        return SimpleTextConverter().convert(text)
+
+
 def get_parser_for_format(format_name: str):
     """Get parser instance for a format."""
     parsers = {
         "mermaid": MermaidParser,
         "mmd": MermaidParser,
         "d2": D2Parser,
+        "text": _TextParser,
+        "txt": _TextParser,
     }
     parser_class = parsers.get(format_name.lower())
     if parser_class:
@@ -57,6 +66,7 @@ def detect_format(filename: str) -> str:
     format_map = {
         ".mmd": "mermaid",
         ".mermaid": "mermaid",
+        ".txt": "text",
         ".d2": "d2",
         ".puml": "plantuml",
         ".plantuml": "plantuml",

@@ -106,3 +106,19 @@ def test_plain_ij_errors(monkeypatch, capsys):
     with pytest.raises(SystemExit) as e:
         cli.main()
     assert e.value.code == 1
+
+
+def test_convert_of_a_txt_file_reads_it_as_plain_text(tmp_path, capsys):
+    """A .txt input goes through the plain-text converter, not the mermaid parser (empty diagram)."""
+    from types import SimpleNamespace
+
+    from ij.cli_enhanced import cmd_convert
+
+    src = tmp_path / "steps.txt"
+    src.write_text("Start\nProcess data\nEnd\n")
+    args = SimpleNamespace(
+        input=str(src), from_format=None, to_format=None, output=None, direction=None
+    )
+    cmd_convert(args)
+    out = capsys.readouterr().out
+    assert "Process data" in out and "-->" in out
