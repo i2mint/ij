@@ -170,7 +170,7 @@ def cmd_validate(args):
         else:
             print(f"❌ {file_path}: {len(results.issues)} issue(s)")
             for issue in results.issues:
-                print(f"   {issue.severity.upper()}: {issue.message}")
+                print(f"   {issue.severity.value.upper()}: {issue.message}")
                 total_issues += 1
 
     if total_issues > 0:
