@@ -1,7 +1,7 @@
 {
-  "collection_duration_seconds": 3.4663920402526855,
-  "commit_message": "test: OpenAPI and draw.io importers [skip publish]",
-  "commit_sha": "aad89b6299ad9ff10fde7436862e7f03a5fe5d9b",
+  "collection_duration_seconds": 3.158761978149414,
+  "commit_message": "Merge aad89b6299ad9ff10fde7436862e7f03a5fe5d9b into d1de89f2d0d6203886a8b9bcea5d729195bb2ebe",
+  "commit_sha": "a9e84caeb5ccea2c4e29a024e8a359e8403be283",
   "metrics": {
     "coverage": {
       "branch_coverage": 0.0,
@@ -11,19 +11,19 @@
       "statements_total": 0
     },
     "umpyre_stats": {
-      "comment_lines": 17411,
-      "comment_lines_ratio": 0.05206607615983158,
-      "docs_lines": 77644,
-      "empty_lines": 46109,
-      "empty_lines_ratio": 0.1378849408795402,
-      "files_analyzed": 879,
-      "function_lines": 190561,
-      "function_lines_ratio": 0.5698560415308521,
-      "mean_lines_per_function": 26.73414702581369,
-      "num_classes": 1487,
-      "num_functions": 7128,
-      "pypi_version": "0.1.8",
-      "total_lines": 334402
+      "comment_lines": 17126,
+      "comment_lines_ratio": 0.051582783651094845,
+      "docs_lines": 73403,
+      "empty_lines": 45729,
+      "empty_lines_ratio": 0.13773380319869882,
+      "files_analyzed": 883,
+      "function_lines": 186305,
+      "function_lines_ratio": 0.5611427366645583,
+      "mean_lines_per_function": 25.361421181595425,
+      "num_classes": 1547,
+      "num_functions": 7346,
+      "pypi_version": "0.1.9",
+      "total_lines": 332010
     },
     "wily": {
       "cyclomatic_avg": 0.0,
@@ -42,6 +42,6 @@
   },
   "python_version": "3.10",
   "schema_version": "1.0",
-  "timestamp": "2026-11-22T21:51:45.904146Z",
+  "timestamp": "2026-11-22T21:51:50.112433Z",
   "workflow_status": {}
 }
