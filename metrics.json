@@ -1,7 +1,7 @@
 {
-  "collection_duration_seconds": 3.158761978149414,
-  "commit_message": "Merge aad89b6299ad9ff10fde7436862e7f03a5fe5d9b into d1de89f2d0d6203886a8b9bcea5d729195bb2ebe",
-  "commit_sha": "a9e84caeb5ccea2c4e29a024e8a359e8403be283",
+  "collection_duration_seconds": 4.516005516052246,
+  "commit_message": "test: OpenAPI and draw.io importers [skip publish]",
+  "commit_sha": "aad89b6299ad9ff10fde7436862e7f03a5fe5d9b",
   "metrics": {
     "coverage": {
       "branch_coverage": 0.0,
@@ -22,7 +22,7 @@
       "mean_lines_per_function": 25.361421181595425,
       "num_classes": 1547,
       "num_functions": 7346,
-      "pypi_version": "0.1.9",
+      "pypi_version": "0.1.8",
       "total_lines": 332010
     },
     "wily": {
@@ -42,6 +42,6 @@
   },
   "python_version": "3.10",
   "schema_version": "1.0",
-  "timestamp": "2026-11-22T21:51:50.112433Z",
+  "timestamp": "2026-11-22T21:51:53.653680Z",
   "workflow_status": {}
 }
