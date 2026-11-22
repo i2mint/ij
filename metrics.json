@@ -1,5 +1,5 @@
 {
-  "collection_duration_seconds": 4.28626275062561,
+  "collection_duration_seconds": 3.7592103481292725,
   "commit_message": "test: ERD and state machine builders, exporters, validation, simulation [skip publish] (#12)",
   "commit_sha": "205fcc20b5dfbbc1d1f48684ca93c76851c1c528",
   "metrics": {
@@ -11,19 +11,19 @@
       "statements_total": 0
     },
     "umpyre_stats": {
-      "comment_lines": 17411,
-      "comment_lines_ratio": 0.05206607615983158,
-      "docs_lines": 77644,
-      "empty_lines": 46109,
-      "empty_lines_ratio": 0.1378849408795402,
-      "files_analyzed": 879,
-      "function_lines": 190561,
-      "function_lines_ratio": 0.5698560415308521,
-      "mean_lines_per_function": 26.73414702581369,
-      "num_classes": 1487,
-      "num_functions": 7128,
+      "comment_lines": 17126,
+      "comment_lines_ratio": 0.051582783651094845,
+      "docs_lines": 73403,
+      "empty_lines": 45729,
+      "empty_lines_ratio": 0.13773380319869882,
+      "files_analyzed": 883,
+      "function_lines": 186305,
+      "function_lines_ratio": 0.5611427366645583,
+      "mean_lines_per_function": 25.361421181595425,
+      "num_classes": 1547,
+      "num_functions": 7346,
       "pypi_version": "0.1.12",
-      "total_lines": 334402
+      "total_lines": 332010
     },
     "wily": {
       "cyclomatic_avg": 0.0,
@@ -42,6 +42,6 @@
   },
   "python_version": "3.10",
   "schema_version": "1.0",
-  "timestamp": "2026-11-22T22:00:04.238014Z",
+  "timestamp": "2026-11-22T22:00:07.104986Z",
   "workflow_status": {}
 }
