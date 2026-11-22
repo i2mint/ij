@@ -1,7 +1,7 @@
 {
-  "collection_duration_seconds": 4.4580512046813965,
-  "commit_message": "Merge 3d3db018db47943ebe098295951ff65fe2c2d6b1 into 26348a31c4a1b82ae5c2d6be9f320075fb478070",
-  "commit_sha": "f808c7c8be5f0c4ce62c1b105fc49ec6728449ff",
+  "collection_duration_seconds": 4.499303340911865,
+  "commit_message": "Fix ij2 validate crash (Severity enum has no .upper); add CLI tests [skip publish] (#13)",
+  "commit_sha": "811bdefb076cb34b936d46fac1e08f9b96df876e",
   "metrics": {
     "coverage": {
       "branch_coverage": 0.0,
@@ -34,14 +34,14 @@
     },
     "workflow_status": {
       "last_run_status": "success",
-      "last_success_timestamp": "2026-11-22T22:01:38Z",
+      "last_success_timestamp": "2026-11-22T22:02:22Z",
       "recent_failure_count": 0,
-      "run_url": "https://github.com/i2mint/ij/actions/runs/45075304684",
+      "run_url": "https://github.com/i2mint/ij/actions/runs/45075307320",
       "total_runs_analyzed": 10
     }
   },
   "python_version": "3.10",
   "schema_version": "1.0",
-  "timestamp": "2026-11-22T22:02:17.964539Z",
+  "timestamp": "2026-11-22T22:03:50.445547Z",
   "workflow_status": {}
 }
