@@ -2,18 +2,20 @@
 
 # About this build
 
-This documentation was built on **2026-11-22 21:54 UTC** from commit <a href="https://github.com/i2mint/ij/commit/12645e2b1044293efb28d76c3e14163f04a12603"><code>12645e2</code></a> on branch <code>master</code>, for **ij 0.1.10** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-11-22 21:57 UTC** from commit <a href="https://github.com/i2mint/ij/commit/a046c40237d52dfcc1ae0453bc501709613260c4"><code>a046c40</code></a> on branch <code>master</code>, for **ij 0.1.11** (from <code>pyproject.toml</code>).
 
-#### NOTE
-Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
+#### WARNING
+The documentation and the package may be misaligned:
+
+- The documented version (0.1.11) is ahead of the latest release on PyPI (0.1.9): these docs describe unreleased code.
 
 ## Source
 
 |                     |                                                                                                                                                  |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/i2mint/ij/commit/12645e2b1044293efb28d76c3e14163f04a12603"><code>12645e2b1044293efb28d76c3e14163f04a12603</code></a> |
+| Commit              | <a href="https://github.com/i2mint/ij/commit/a046c40237d52dfcc1ae0453bc501709613260c4"><code>a046c40237d52dfcc1ae0453bc501709613260c4</code></a> |
 | Branch              | <code>master</code>                                                                                                                              |
-| Tags at this commit | <code>0.1.10</code>                                                                                                                              |
+| Tags at this commit | <code>0.1.11</code>                                                                                                                              |
 | Working tree        | clean                                                                                                                                            |
 | Remote              | <code>https://github.com/i2mint/ij</code>                                                                                                        |
 
@@ -22,9 +24,9 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 |              |                                                                                            |
 |--------------|--------------------------------------------------------------------------------------------|
 | Repository   | <code>i2mint/ij</code>                                                                     |
-| Run          | <a href="https://github.com/i2mint/ij/actions/runs/45074506001">45074506001</a>            |
+| Run          | <a href="https://github.com/i2mint/ij/actions/runs/45074824540">45074824540</a>            |
 | Ref          | <code>refs/heads/master</code>                                                             |
-| Event commit | <code>8f2a02101d88337ff6cf9bb43574a1ddd5e4b01e</code> (in the history of the built commit) |
+| Event commit | <code>fbb55722653a7b4a4d1b14a3a9de6f43ada843db</code> (in the history of the built commit) |
 
 ## Tools
 
@@ -49,13 +51,13 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/ij/0.1.10/">0.1.10</a>, the same as the documented version.
+Latest release: <a href="https://pypi.org/project/ij/0.1.9/">0.1.9</a>, older than the documented version (0.1.11).
 
 ## Reproduce
 
 ```bash
 git clone https://github.com/i2mint/ij && cd ij
-git checkout 12645e2b1044293efb28d76c3e14163f04a12603
+git checkout a046c40237d52dfcc1ae0453bc501709613260c4
 pip install "epythet==0.2.23"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```
