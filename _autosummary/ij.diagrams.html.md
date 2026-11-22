@@ -105,7 +105,7 @@ Render ERD as PlantUML class diagram.
 * **Returns:**
   PlantUML syntax
 
-### *class* ij.diagrams.Entity(name, fields=<factory>, metadata=<factory>)
+### *class* ij.diagrams.Entity(name, fields=list(), metadata=dict())
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
@@ -121,13 +121,13 @@ Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
 A field in an entity.
 
-### *class* ij.diagrams.Relationship(from_entity, to_entity, cardinality, label=None, metadata=<factory>)
+### *class* ij.diagrams.Relationship(from_entity, to_entity, cardinality, label=None, metadata=dict())
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
 A relationship between entities.
 
-### *class* ij.diagrams.State(name, state_type=StateType.NORMAL, on_enter=None, on_exit=None, metadata=<factory>)
+### *class* ij.diagrams.State(name, state_type=StateType.NORMAL, on_enter=None, on_exit=None, metadata=dict())
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
@@ -219,7 +219,7 @@ Validate state machine for common issues.
 * **Returns:**
   List of validation issues (empty if valid)
 
-### *class* ij.diagrams.Transition(from_state, to_state, trigger, condition=None, action=None, metadata=<factory>)
+### *class* ij.diagrams.Transition(from_state, to_state, trigger, condition=None, action=None, metadata=dict())
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 

@@ -11,7 +11,7 @@ Provides tools for comparing diagrams, merging changes, and tracking history.
 | [`DiagramDiff`](#ij.git_integration.DiagramDiff)()                                       | Compare and diff diagrams.                   |
 | [`DiagramHistory`](#ij.git_integration.DiagramHistory)()                                    | Track diagram history and changes over time. |
 
-### *class* ij.git_integration.DiagramChanges(added_nodes=<factory>, removed_nodes=<factory>, modified_nodes=<factory>, added_edges=<factory>, removed_edges=<factory>, modified_edges=<factory>)
+### *class* ij.git_integration.DiagramChanges(added_nodes=list(), removed_nodes=list(), modified_nodes=list(), added_edges=list(), removed_edges=list(), modified_edges=list())
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 

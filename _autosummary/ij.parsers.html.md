@@ -92,17 +92,29 @@ Whether an unparseable line raises instead of warning
 
 Nodes found by the last parse, keyed by node id
 
+* **Type:**
+  [`Dict`](https://docs.python.org/3/library/typing.html#typing.Dict)[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str), [`Node`](ij.core.html.md#ij.core.Node)]
+
 #### edges
 
 Edges found by the last parse
+
+* **Type:**
+  [`List`](https://docs.python.org/3/library/typing.html#typing.List)[[`Edge`](ij.core.html.md#ij.core.Edge)]
 
 #### metadata
 
 Diagram-level metadata (title, direction) from the last parse
 
+* **Type:**
+  [`Dict`](https://docs.python.org/3/library/typing.html#typing.Dict)
+
 #### unparsed_lines
 
 Lines the last parse could not interpret
+
+* **Type:**
+  [`List`](https://docs.python.org/3/library/typing.html#typing.List)[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str)]
 
 #### parse(mermaid_text)
 

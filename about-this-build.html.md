@@ -2,7 +2,7 @@
 
 # About this build
 
-This documentation was built on **2026-09-22 14:40 UTC** from commit <a href="https://github.com/i2mint/ij/commit/40c8d9dcec023a80399b6f076b595cc1eed47f4e"><code>40c8d9d</code></a> on branch <code>master</code>, for **ij 0.1.8** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-11-22 21:49 UTC** from commit <a href="https://github.com/i2mint/ij/commit/d1de89f2d0d6203886a8b9bcea5d729195bb2ebe"><code>d1de89f</code></a> on branch <code>master</code>, for **ij 0.1.9** (from <code>pyproject.toml</code>).
 
 #### NOTE
 Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
@@ -11,9 +11,9 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 
 |                     |                                                                                                                                                  |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/i2mint/ij/commit/40c8d9dcec023a80399b6f076b595cc1eed47f4e"><code>40c8d9dcec023a80399b6f076b595cc1eed47f4e</code></a> |
+| Commit              | <a href="https://github.com/i2mint/ij/commit/d1de89f2d0d6203886a8b9bcea5d729195bb2ebe"><code>d1de89f2d0d6203886a8b9bcea5d729195bb2ebe</code></a> |
 | Branch              | <code>master</code>                                                                                                                              |
-| Tags at this commit | <code>0.1.8</code>                                                                                                                               |
+| Tags at this commit | <code>0.1.9</code>                                                                                                                               |
 | Working tree        | clean                                                                                                                                            |
 | Remote              | <code>https://github.com/i2mint/ij</code>                                                                                                        |
 
@@ -22,18 +22,18 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 |              |                                                                                            |
 |--------------|--------------------------------------------------------------------------------------------|
 | Repository   | <code>i2mint/ij</code>                                                                     |
-| Run          | <a href="https://github.com/i2mint/ij/actions/runs/35741343930">35741343930</a>            |
+| Run          | <a href="https://github.com/i2mint/ij/actions/runs/45074038359">45074038359</a>            |
 | Ref          | <code>refs/heads/master</code>                                                             |
-| Event commit | <code>85b13826b18acb0a750482374e51ce0a4a4f82fe</code> (in the history of the built commit) |
+| Event commit | <code>65af32e512d2d5cf02670521b3d5be5dd88748c0</code> (in the history of the built commit) |
 
 ## Tools
 
 |          |         |
 |----------|---------|
-| epythet  | 0.2.12  |
-| Sphinx   | 9.1.0   |
+| epythet  | 0.2.23  |
+| Sphinx   | 9.1.1   |
 | docutils | 0.22.4  |
-| Python   | 3.12.14 |
+| Python   | 3.12.16 |
 
 ## Configuration as resolved
 
@@ -49,14 +49,14 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/ij/0.1.8/">0.1.8</a>, the same as the documented version.
+Latest release: <a href="https://pypi.org/project/ij/0.1.9/">0.1.9</a>, the same as the documented version.
 
 ## Reproduce
 
 ```bash
 git clone https://github.com/i2mint/ij && cd ij
-git checkout 40c8d9dcec023a80399b6f076b595cc1eed47f4e
-pip install "epythet==0.2.12"
+git checkout d1de89f2d0d6203886a8b9bcea5d729195bb2ebe
+pip install "epythet==0.2.23"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```
 

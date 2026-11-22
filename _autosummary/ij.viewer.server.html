@@ -9,10 +9,11 @@
 <link rel="alternate" type="text/markdown" href="ij.viewer.server.html.md">
 <link rel="describedby" href="llms.txt"><link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="prev" title="ij.viewer" href="ij.viewer.html">
 
-    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+    <!-- Generated with Sphinx 9.1.1 and Furo 2025.12.19 -->
         <title>ij.viewer.server - ij</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_autodoc_typehints.css?v=057ac668" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
     
@@ -336,7 +337,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="ij.viewer.server.ViewerHandler">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ij.viewer.server.</span></span><span class="sig-name descname"><span class="pre">ViewerHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ij/viewer/server.html#ViewerHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.viewer.server.ViewerHandler" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/http.server.html#http.server.BaseHTTPRequestHandler" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/http.server.html#http.server.BaseHTTPRequestHandler" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseHTTPRequestHandler</span></code></a></p>
 <p>HTTP request handler for viewer.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="ij.viewer.server.ViewerHandler.do_GET">
@@ -350,7 +351,7 @@
 <dd><p>Generate viewer HTML.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -384,7 +385,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="ij.viewer.server.ViewerServer">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ij.viewer.server.</span></span><span class="sig-name descname"><span class="pre">ViewerServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8080</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theme</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ij/viewer/server.html#ViewerServer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.viewer.server.ViewerServer" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Interactive web server for diagram viewing.</p>
 <dl class="field-list simple">
 </dl>
@@ -396,7 +397,7 @@
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>diagram</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ij.core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><code class="xref py py-class docutils literal notranslate"><span class="pre">DiagramIR</span></code></a></span>) – DiagramIR to display</p></li>
-<li><p><strong>open_browser</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to open browser automatically</p></li>
+<li><p><strong>open_browser</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to open browser automatically</p></li>
 </ul>
 </dd>
 </dl>
@@ -436,9 +437,9 @@
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>diagram</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="ij.core.html#ij.core.DiagramIR" title="ij.core.DiagramIR"><code class="xref py py-class docutils literal notranslate"><span class="pre">DiagramIR</span></code></a></span>) – DiagramIR to display</p></li>
-<li><p><strong>port</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Port number</p></li>
-<li><p><strong>theme</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Mermaid theme</p></li>
-<li><p><strong>open_browser</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to open browser</p></li>
+<li><p><strong>port</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Port number</p></li>
+<li><p><strong>theme</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Mermaid theme</p></li>
+<li><p><strong>open_browser</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to open browser</p></li>
 </ul>
 </dd>
 </dl>
@@ -524,7 +525,7 @@
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=72e2dd8f"></script>
+</div><script src="../_static/documentation_options.js?v=dba2a9e9"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>

@@ -270,7 +270,7 @@ List all version names.
 * **Return type:**
   [`List`](https://docs.python.org/3/library/typing.html#typing.List)[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str)]
 
-### *class* ij.DiagramIR(nodes=<factory>, edges=<factory>, metadata=<factory>)
+### *class* ij.DiagramIR(nodes=list(), edges=list(), metadata=dict())
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
@@ -287,13 +287,22 @@ This serves as the central data structure that can be:
 
 List of nodes in the diagram
 
+* **Type:**
+  [`List`](https://docs.python.org/3/library/typing.html#typing.List)[[`Node`](ij.core.html.md#ij.core.Node)]
+
 #### edges
 
 List of edges connecting nodes
 
+* **Type:**
+  [`List`](https://docs.python.org/3/library/typing.html#typing.List)[[`Edge`](ij.core.html.md#ij.core.Edge)]
+
 #### metadata
 
 Diagram-level properties (title, description, etc.)
+
+* **Type:**
+  [`Dict`](https://docs.python.org/3/library/typing.html#typing.Dict)[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str), [`Any`](https://docs.python.org/3/library/typing.html#typing.Any)]
 
 #### add_edge(edge)
 
@@ -602,7 +611,7 @@ Render ERD as PlantUML class diagram.
 * **Returns:**
   PlantUML syntax
 
-### *class* ij.Edge(source, target, label=None, edge_type=EdgeType.DIRECT, metadata=<factory>)
+### *class* ij.Edge(source, target, label=None, edge_type=EdgeType.DIRECT, metadata=dict())
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
@@ -612,21 +621,36 @@ Represents an edge in the diagram IR.
 
 Source node ID
 
+* **Type:**
+  [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
+
 #### target
 
 Target node ID
+
+* **Type:**
+  [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
 
 #### label
 
 Optional edge label
 
+* **Type:**
+  [`Optional`](https://docs.python.org/3/library/typing.html#typing.Optional)[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str)]
+
 #### edge_type
 
 Type of edge
 
+* **Type:**
+  [`EdgeType`](ij.core.html.md#ij.core.EdgeType)
+
 #### metadata
 
 Additional properties for extensibility
+
+* **Type:**
+  [`Dict`](https://docs.python.org/3/library/typing.html#typing.Dict)[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str), [`Any`](https://docs.python.org/3/library/typing.html#typing.Any)]
 
 ### *class* ij.EdgeType(\*values)
 
@@ -670,7 +694,7 @@ Convert enhanced text to DiagramIR.
 >>> diagram = converter.convert("Start -> [parallel: Process A, Process B] -> End")
 ```
 
-### *class* ij.Entity(name, fields=<factory>, metadata=<factory>)
+### *class* ij.Entity(name, fields=list(), metadata=dict())
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
@@ -1069,17 +1093,29 @@ Whether an unparseable line raises instead of warning
 
 Nodes found by the last parse, keyed by node id
 
+* **Type:**
+  [`Dict`](https://docs.python.org/3/library/typing.html#typing.Dict)[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str), [`Node`](ij.core.html.md#ij.core.Node)]
+
 #### edges
 
 Edges found by the last parse
+
+* **Type:**
+  [`List`](https://docs.python.org/3/library/typing.html#typing.List)[[`Edge`](ij.core.html.md#ij.core.Edge)]
 
 #### metadata
 
 Diagram-level metadata (title, direction) from the last parse
 
+* **Type:**
+  [`Dict`](https://docs.python.org/3/library/typing.html#typing.Dict)
+
 #### unparsed_lines
 
 Lines the last parse could not interpret
+
+* **Type:**
+  [`List`](https://docs.python.org/3/library/typing.html#typing.List)[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str)]
 
 #### parse(mermaid_text)
 
@@ -1150,7 +1186,7 @@ Render diagram and save to file.
 * **Return type:**
   [`None`](https://docs.python.org/3/builtins/constants.html#None)
 
-### *class* ij.Node(id, label, node_type=NodeType.PROCESS, metadata=<factory>)
+### *class* ij.Node(id, label, node_type=NodeType.PROCESS, metadata=dict())
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
@@ -1160,17 +1196,29 @@ Represents a node in the diagram IR.
 
 Unique identifier for the node
 
+* **Type:**
+  [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
+
 #### label
 
 Display label/text
+
+* **Type:**
+  [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
 
 #### node_type
 
 Type of node (process, decision, etc.)
 
+* **Type:**
+  [`NodeType`](ij.core.html.md#ij.core.NodeType)
+
 #### metadata
 
 Additional properties for extensibility
+
+* **Type:**
+  [`Dict`](https://docs.python.org/3/library/typing.html#typing.Dict)[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str), [`Any`](https://docs.python.org/3/library/typing.html#typing.Any)]
 
 ### *class* ij.NodeType(\*values)
 
@@ -1508,7 +1556,7 @@ Convert structured text to DiagramIR.
 * **Returns:**
   DiagramIR representation
 
-### *class* ij.State(name, state_type=StateType.NORMAL, on_enter=None, on_exit=None, metadata=<factory>)
+### *class* ij.State(name, state_type=StateType.NORMAL, on_enter=None, on_exit=None, metadata=dict())
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 

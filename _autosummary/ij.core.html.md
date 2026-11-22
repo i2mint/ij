@@ -15,7 +15,7 @@ for bidirectional conversion between text, diagrams, and code.
 | [`Node`](#ij.core.Node)(id, label[, node_type, metadata])        | Represents a node in the diagram IR.        |
 | [`NodeType`](#ij.core.NodeType)(\*values)                            | Types of nodes in a diagram.                |
 
-### *class* ij.core.DiagramIR(nodes=<factory>, edges=<factory>, metadata=<factory>)
+### *class* ij.core.DiagramIR(nodes=list(), edges=list(), metadata=dict())
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
@@ -32,13 +32,22 @@ This serves as the central data structure that can be:
 
 List of nodes in the diagram
 
+* **Type:**
+  [`List`](https://docs.python.org/3/library/typing.html#typing.List)[[`Node`](#ij.core.Node)]
+
 #### edges
 
 List of edges connecting nodes
 
+* **Type:**
+  [`List`](https://docs.python.org/3/library/typing.html#typing.List)[[`Edge`](#ij.core.Edge)]
+
 #### metadata
 
 Diagram-level properties (title, description, etc.)
+
+* **Type:**
+  [`Dict`](https://docs.python.org/3/library/typing.html#typing.Dict)[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str), [`Any`](https://docs.python.org/3/library/typing.html#typing.Any)]
 
 #### add_edge(edge)
 
@@ -70,7 +79,7 @@ Validate the diagram structure.
 * **Returns:**
   True if the diagram is valid, False otherwise
 
-### *class* ij.core.Edge(source, target, label=None, edge_type=EdgeType.DIRECT, metadata=<factory>)
+### *class* ij.core.Edge(source, target, label=None, edge_type=EdgeType.DIRECT, metadata=dict())
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
@@ -80,21 +89,36 @@ Represents an edge in the diagram IR.
 
 Source node ID
 
+* **Type:**
+  [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
+
 #### target
 
 Target node ID
+
+* **Type:**
+  [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
 
 #### label
 
 Optional edge label
 
+* **Type:**
+  [`Optional`](https://docs.python.org/3/library/typing.html#typing.Optional)[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str)]
+
 #### edge_type
 
 Type of edge
 
+* **Type:**
+  [`EdgeType`](#ij.core.EdgeType)
+
 #### metadata
 
 Additional properties for extensibility
+
+* **Type:**
+  [`Dict`](https://docs.python.org/3/library/typing.html#typing.Dict)[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str), [`Any`](https://docs.python.org/3/library/typing.html#typing.Any)]
 
 ### *class* ij.core.EdgeType(\*values)
 
@@ -102,7 +126,7 @@ Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum)
 
 Types of edges connecting nodes.
 
-### *class* ij.core.Node(id, label, node_type=NodeType.PROCESS, metadata=<factory>)
+### *class* ij.core.Node(id, label, node_type=NodeType.PROCESS, metadata=dict())
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
@@ -112,17 +136,29 @@ Represents a node in the diagram IR.
 
 Unique identifier for the node
 
+* **Type:**
+  [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
+
 #### label
 
 Display label/text
+
+* **Type:**
+  [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
 
 #### node_type
 
 Type of node (process, decision, etc.)
 
+* **Type:**
+  [`NodeType`](#ij.core.NodeType)
+
 #### metadata
 
 Additional properties for extensibility
+
+* **Type:**
+  [`Dict`](https://docs.python.org/3/library/typing.html#typing.Dict)[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str), [`Any`](https://docs.python.org/3/library/typing.html#typing.Any)]
 
 ### *class* ij.core.NodeType(\*values)
 

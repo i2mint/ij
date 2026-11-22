@@ -13,7 +13,7 @@ Provides tools for creating and rendering finite state machines.
 | [`StateType`](#ij.diagrams.state_machine.StateType)(\*values)                                 | Type of state.                                            |
 | [`Transition`](#ij.diagrams.state_machine.Transition)(from_state, to_state, trigger[, ...])    | A transition between states.                              |
 
-### *class* ij.diagrams.state_machine.State(name, state_type=StateType.NORMAL, on_enter=None, on_exit=None, metadata=<factory>)
+### *class* ij.diagrams.state_machine.State(name, state_type=StateType.NORMAL, on_enter=None, on_exit=None, metadata=dict())
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
@@ -172,7 +172,7 @@ Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum)
 
 Type of state.
 
-### *class* ij.diagrams.state_machine.Transition(from_state, to_state, trigger, condition=None, action=None, metadata=<factory>)
+### *class* ij.diagrams.state_machine.Transition(from_state, to_state, trigger, condition=None, action=None, metadata=dict())
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 

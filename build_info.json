@@ -1,41 +1,41 @@
 {
   "schema_version": 1,
-  "built_at": "2026-09-22T14:40:25Z",
+  "built_at": "2026-11-22T21:49:02Z",
   "package": {
     "name": "ij",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "display_name": "ij",
     "source": "pyproject.toml"
   },
   "git": {
     "available": true,
-    "commit": "40c8d9dcec023a80399b6f076b595cc1eed47f4e",
-    "short_commit": "40c8d9d",
+    "commit": "d1de89f2d0d6203886a8b9bcea5d729195bb2ebe",
+    "short_commit": "d1de89f",
     "branch": "master",
     "tags": [
-      "0.1.8"
+      "0.1.9"
     ],
     "dirty": false,
     "remote_url": "https://github.com/i2mint/ij",
-    "commit_url": "https://github.com/i2mint/ij/commit/40c8d9dcec023a80399b6f076b595cc1eed47f4e",
+    "commit_url": "https://github.com/i2mint/ij/commit/d1de89f2d0d6203886a8b9bcea5d729195bb2ebe",
     "error": null
   },
   "ci": {
     "provider": "github",
     "repository": "i2mint/ij",
-    "sha": "85b13826b18acb0a750482374e51ce0a4a4f82fe",
+    "sha": "65af32e512d2d5cf02670521b3d5be5dd88748c0",
     "sha_in_history": true,
     "ref": "refs/heads/master",
     "ref_name": "master",
-    "run_id": "35741343930",
-    "run_url": "https://github.com/i2mint/ij/actions/runs/35741343930",
+    "run_id": "45074038359",
+    "run_url": "https://github.com/i2mint/ij/actions/runs/45074038359",
     "server_url": "https://github.com"
   },
   "tools": {
-    "epythet": "0.2.12",
-    "sphinx": "9.1.0",
+    "epythet": "0.2.23",
+    "sphinx": "9.1.1",
     "docutils": "0.22.4",
-    "python": "3.12.14"
+    "python": "3.12.16"
   },
   "config": {
     "theme": "auto",
@@ -62,11 +62,11 @@
   },
   "pypi": {
     "checked": true,
-    "latest": "0.1.8",
+    "latest": "0.1.9",
     "relation": "same",
     "error": null
   },
-  "reproduce": "git clone https://github.com/i2mint/ij && cd ij\ngit checkout 40c8d9dcec023a80399b6f076b595cc1eed47f4e\npip install \"epythet==0.2.12\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
+  "reproduce": "git clone https://github.com/i2mint/ij && cd ij\ngit checkout d1de89f2d0d6203886a8b9bcea5d729195bb2ebe\npip install \"epythet==0.2.23\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
   "warnings": [],
   "alignment": {
     "aligned": true,

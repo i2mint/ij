@@ -61,7 +61,7 @@ Import diagram from OpenAPI specification.
 Creates a diagram showing API endpoints and their relationships.
 
 * **Parameters:**
-  * **spec** (`Union`[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str), [`Dict`](https://docs.python.org/3/library/typing.html#typing.Dict)]) – Path to OpenAPI file or dict specification
+  * **spec** ([`Union`](https://docs.python.org/3/library/typing.html#typing.Union)[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str), [`Dict`](https://docs.python.org/3/library/typing.html#typing.Dict)]) – Path to OpenAPI file or dict specification
   * **title** ([`Optional`](https://docs.python.org/3/library/typing.html#typing.Optional)[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str)]) – Optional diagram title
 * **Return type:**
   [`DiagramIR`](ij.core.html.md#ij.core.DiagramIR)
