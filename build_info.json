@@ -1,23 +1,21 @@
 {
   "schema_version": 1,
-  "built_at": "2026-11-22T21:57:50Z",
+  "built_at": "2026-11-22T21:59:32Z",
   "package": {
     "name": "ij",
-    "version": "0.1.11",
+    "version": "0.1.12",
     "display_name": "ij",
     "source": "pyproject.toml"
   },
   "git": {
     "available": true,
-    "commit": "a046c40237d52dfcc1ae0453bc501709613260c4",
-    "short_commit": "a046c40",
+    "commit": "205fcc20b5dfbbc1d1f48684ca93c76851c1c528",
+    "short_commit": "205fcc2",
     "branch": "master",
-    "tags": [
-      "0.1.11"
-    ],
+    "tags": [],
     "dirty": false,
     "remote_url": "https://github.com/i2mint/ij",
-    "commit_url": "https://github.com/i2mint/ij/commit/a046c40237d52dfcc1ae0453bc501709613260c4",
+    "commit_url": "https://github.com/i2mint/ij/commit/205fcc20b5dfbbc1d1f48684ca93c76851c1c528",
     "error": null
   },
   "ci": {
@@ -27,8 +25,8 @@
     "sha_in_history": true,
     "ref": "refs/heads/master",
     "ref_name": "master",
-    "run_id": "45074824540",
-    "run_url": "https://github.com/i2mint/ij/actions/runs/45074824540",
+    "run_id": "45074974891",
+    "run_url": "https://github.com/i2mint/ij/actions/runs/45074974891",
     "server_url": "https://github.com"
   },
   "tools": {
@@ -62,16 +60,16 @@
   },
   "pypi": {
     "checked": true,
-    "latest": "0.1.9",
+    "latest": "0.1.11",
     "relation": "ahead",
     "error": null
   },
-  "reproduce": "git clone https://github.com/i2mint/ij && cd ij\ngit checkout a046c40237d52dfcc1ae0453bc501709613260c4\npip install \"epythet==0.2.23\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
+  "reproduce": "git clone https://github.com/i2mint/ij && cd ij\ngit checkout 205fcc20b5dfbbc1d1f48684ca93c76851c1c528\npip install \"epythet==0.2.23\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
   "warnings": [],
   "alignment": {
     "aligned": false,
     "notes": [
-      "The documented version (0.1.11) is ahead of the latest release on PyPI (0.1.9): these docs describe unreleased code."
+      "The documented version (0.1.12) is ahead of the latest release on PyPI (0.1.11): these docs describe unreleased code."
     ]
   }
 }
