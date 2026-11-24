@@ -1,39 +1,36 @@
 metric,value
 schema_version,1.0
-timestamp,2026-11-22T23:38:47.878194Z
-commit_sha,e83465e547b6a59c09837b6a0afd49a97d6dcb2d
-commit_message,convert: read .txt input with the plain-text converter (#15) (#16)
+timestamp,2026-11-24T00:16:30.478558Z
+commit_sha,1c929e51e042c11ec4d7a38218aa3b1fa630d381
+commit_message,Merge 2232ec069999c9bc58a1f4488417af921a2e6286 into 00077c2e7d6b65b93cbd0ee0ced928bd0246d48e
 python_version,3.10
-metrics.umpyre_stats.num_functions,7347
-metrics.umpyre_stats.num_classes,1548
-metrics.umpyre_stats.total_lines,332020
-metrics.umpyre_stats.empty_lines,45732
-metrics.umpyre_stats.comment_lines,17126
-metrics.umpyre_stats.docs_lines,73404
-metrics.umpyre_stats.function_lines,186310
-metrics.umpyre_stats.empty_lines_ratio,0.13773869044033493
-metrics.umpyre_stats.comment_lines_ratio,0.05158123004638275
-metrics.umpyre_stats.function_lines_ratio,0.5611408951267995
-metrics.umpyre_stats.mean_lines_per_function,25.358649789029535
-metrics.umpyre_stats.files_analyzed,883
-metrics.umpyre_stats.pypi_version,0.1.15
+metrics.umpyre_stats.num_functions,7166
+metrics.umpyre_stats.num_classes,1490
+metrics.umpyre_stats.total_lines,335454
+metrics.umpyre_stats.empty_lines,46339
+metrics.umpyre_stats.comment_lines,17436
+metrics.umpyre_stats.docs_lines,77896
+metrics.umpyre_stats.function_lines,191239
+metrics.umpyre_stats.empty_lines_ratio,0.13813816499430623
+metrics.umpyre_stats.comment_lines_ratio,0.05197732028832567
+metrics.umpyre_stats.function_lines_ratio,0.57009008686735
+metrics.umpyre_stats.mean_lines_per_function,26.686994138989675
+metrics.umpyre_stats.files_analyzed,879
+metrics.umpyre_stats.pypi_version,0.1.16
 metrics.workflow_status.last_run_status,success
-metrics.workflow_status.last_success_timestamp,2026-11-22T23:37:38Z
+metrics.workflow_status.last_success_timestamp,2026-11-22T23:40:12Z
 metrics.workflow_status.recent_failure_count,0
-metrics.workflow_status.run_url,https://github.com/i2mint/ij/actions/runs/45084173724
+metrics.workflow_status.run_url,https://github.com/i2mint/ij/actions/runs/45084437764
 metrics.workflow_status.total_runs_analyzed,10
 metrics.wily.cyclomatic_avg,0.0
 metrics.wily.maintainability_index,0.0
 metrics.wily.total_loc,0
 metrics.wily.files_analyzed,0
-metrics.wily.error,"wily report failed: Usage: wily report [OPTIONS] FILE [METRICS]...
-Try 'wily report --help' for help.
-
-Error: Invalid value for '-f' / '--format': 'json' is not one of 'CONSOLE', 'HTML'.
+metrics.wily.error,"wily build failed: [31mFailed to setup archiver: 'Dirty repository, make sure you commit/stash files first'[0m
 "
 metrics.coverage.line_coverage,0.0
 metrics.coverage.branch_coverage,0.0
 metrics.coverage.statements_covered,0
 metrics.coverage.statements_total,0
 metrics.coverage.error,No coverage file found
-collection_duration_seconds,4.957952976226807
+collection_duration_seconds,3.337646722793579
