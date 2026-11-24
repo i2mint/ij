@@ -26,4 +26,5 @@ ij.cli\_enhanced
       get_parser_for_format
       get_renderer_for_format
       main
+      resolve_output_format
    
