@@ -1,0 +1,47 @@
+{
+  "collection_duration_seconds": 3.6940219402313232,
+  "commit_message": "Open links as one undirected edge; opt-in validate-then-retry in LLMConverter (#6)",
+  "commit_sha": "2232ec069999c9bc58a1f4488417af921a2e6286",
+  "metrics": {
+    "coverage": {
+      "branch_coverage": 0.0,
+      "error": "No coverage file found",
+      "line_coverage": 0.0,
+      "statements_covered": 0,
+      "statements_total": 0
+    },
+    "umpyre_stats": {
+      "comment_lines": 17134,
+      "comment_lines_ratio": 0.05144758255814652,
+      "docs_lines": 73656,
+      "empty_lines": 45960,
+      "empty_lines_ratio": 0.13800227001122994,
+      "files_analyzed": 883,
+      "function_lines": 186958,
+      "function_lines_ratio": 0.5613713750382839,
+      "mean_lines_per_function": 25.315910629654706,
+      "num_classes": 1550,
+      "num_functions": 7385,
+      "pypi_version": "0.1.16",
+      "total_lines": 333038
+    },
+    "wily": {
+      "cyclomatic_avg": 0.0,
+      "error": "wily build failed: \u001b[31mFailed to setup archiver: 'Dirty repository, make sure you commit/stash files first'\u001b[0m\n",
+      "files_analyzed": 0,
+      "maintainability_index": 0.0,
+      "total_loc": 0
+    },
+    "workflow_status": {
+      "last_run_status": "success",
+      "last_success_timestamp": "2026-11-22T23:40:12Z",
+      "recent_failure_count": 0,
+      "run_url": "https://github.com/i2mint/ij/actions/runs/45084437764",
+      "total_runs_analyzed": 10
+    }
+  },
+  "python_version": "3.10",
+  "schema_version": "1.0",
+  "timestamp": "2026-11-24T00:16:32.881050Z",
+  "workflow_status": {}
+}
