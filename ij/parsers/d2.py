@@ -187,6 +187,16 @@ class D2Parser:
                 EdgeType.DIRECT,
             )
 
+        # Undirected, optionally labelled: n1 -- n2 or n1 -- n2: "label"
+        match = re.match(r'(\w+)\s*--\s*(\w+)(?::\s*"([^"]+)")?', line)
+        if match:
+            return (
+                match.group(1),
+                match.group(2),
+                match.group(3),
+                EdgeType.UNDIRECTED,
+            )
+
         # Bidirectional: n1 <-> n2
         match = re.match(r"(\w+)\s*<->\s*(\w+)", line)
         if match:

@@ -96,6 +96,7 @@ class MermaidParser:
         "<-->": EdgeType.BIDIRECTIONAL,
         "-.->": EdgeType.CONDITIONAL,
         "-->": EdgeType.DIRECT,
+        "---": EdgeType.UNDIRECTED,  # an open link: a --- b
     }
 
     _ARROWS = "|".join(re.escape(arrow) for arrow in ARROW_TO_EDGE_TYPE)
@@ -110,7 +111,7 @@ class MermaidParser:
     # are valid Mermaid alternatives to `-->|label|`.
     LINK_NORMALIZATIONS = [
         (re.compile(r"--\|([^|]*)\|(-->|-\.->)"), r"\2|\1|"),  # a --|L|--> b
-        (re.compile(r"--\s+([^|>]+?)\s+(-->)"), r"\2|\1|"),  # a -- L --> b
+        (re.compile(r"--\s+([^|>]+?)\s+(-->|---)"), r"\2|\1|"),  # a -- L --> b, a -- L --- b
         (re.compile(r"-\.\s+([^|>]+?)\s+\.->"), r"-.->|\1|"),  # a -. L .-> b
     ]
 

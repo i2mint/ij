@@ -280,3 +280,46 @@ def test_mermaid_parser_roundtrip():
     assert len(parsed.nodes) == len(original.nodes)
     assert len(parsed.edges) == len(original.edges)
     assert parsed.validate()
+
+
+# --- open links (#6) ------------------------------------------------------------
+
+
+def test_an_open_link_is_one_undirected_edge():
+    from ij.core import EdgeType
+    from ij.parsers import MermaidParser
+
+    parser = MermaidParser(strict=True)
+    diagram = parser.parse("flowchart LR\n    a[A] --- b[B]\n    b ---|knows| c\n    c -- likes --- a")
+    assert [(e.source, e.target, e.label, e.edge_type) for e in diagram.edges] == [
+        ("a", "b", None, EdgeType.UNDIRECTED),
+        ("b", "c", "knows", EdgeType.UNDIRECTED),
+        ("c", "a", "likes", EdgeType.UNDIRECTED),
+    ]
+    assert parser.unparsed_lines == []
+
+
+def test_an_open_link_round_trips_through_mermaid_and_d2():
+    from ij.core import EdgeType
+    from ij.parsers import MermaidParser
+    from ij.parsers.d2 import D2Parser
+    from ij.renderers import MermaidRenderer
+    from ij.renderers.d2 import D2Renderer
+
+    diagram = MermaidParser(strict=True).parse("flowchart TD\n    a[A] ---|L| b[B]")
+    again = MermaidParser(strict=True).parse(MermaidRenderer().render(diagram))
+    assert [(e.label, e.edge_type) for e in again.edges] == [("L", EdgeType.UNDIRECTED)]
+    d2 = D2Renderer().render(diagram)
+    assert 'a -- b: "L"' in d2
+    assert [(e.label, e.edge_type) for e in D2Parser().parse(d2).edges] == [("L", EdgeType.UNDIRECTED)]
+
+
+def test_graphviz_draws_an_open_link_without_arrowheads():
+    from ij.core import DiagramIR, Edge, EdgeType, Node
+    from ij.renderers.graphviz import GraphvizRenderer
+
+    diagram = DiagramIR()
+    diagram.add_node(Node("a", "A"))
+    diagram.add_node(Node("b", "B"))
+    diagram.add_edge(Edge("a", "b", edge_type=EdgeType.UNDIRECTED))
+    assert "dir=none" in GraphvizRenderer().render(diagram)

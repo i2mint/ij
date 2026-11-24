@@ -30,6 +30,7 @@ class MermaidRenderer:
         EdgeType.DIRECT: "-->",
         EdgeType.CONDITIONAL: "-.->",
         EdgeType.BIDIRECTIONAL: "<-->",
+        EdgeType.UNDIRECTED: "---",
     }
 
     def __init__(self, direction: str = "TD"):

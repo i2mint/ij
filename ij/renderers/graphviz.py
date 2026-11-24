@@ -123,6 +123,8 @@ class GraphvizRenderer:
         # Determine edge style
         if edge.edge_type == EdgeType.BIDIRECTIONAL:
             edge_attrs = "dir=both"
+        elif edge.edge_type == EdgeType.UNDIRECTED:
+            edge_attrs = "dir=none"
         elif edge.edge_type == EdgeType.CONDITIONAL:
             edge_attrs = "style=dashed"
         else:

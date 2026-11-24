@@ -110,6 +110,8 @@ class D2Renderer:
         # Determine arrow style
         if edge.edge_type == EdgeType.BIDIRECTIONAL:
             arrow = "<->"
+        elif edge.edge_type == EdgeType.UNDIRECTED:
+            arrow = "--"
         elif edge.edge_type == EdgeType.CONDITIONAL:
             arrow = "->  {style.stroke-dash: 3}"
         else:

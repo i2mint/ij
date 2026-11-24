@@ -28,6 +28,9 @@ class EdgeType(Enum):
     DIRECT = "direct"
     CONDITIONAL = "conditional"
     BIDIRECTIONAL = "bidirectional"
+    #: A link with no direction (Mermaid's open link ``a --- b``): one edge,
+    #: never two opposite ones; ``source``/``target`` keep the written order.
+    UNDIRECTED = "undirected"
 
 
 @dataclass
