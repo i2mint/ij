@@ -1,7 +1,7 @@
 {
-  "collection_duration_seconds": 3.6940219402313232,
-  "commit_message": "Open links as one undirected edge; opt-in validate-then-retry in LLMConverter (#6)",
-  "commit_sha": "2232ec069999c9bc58a1f4488417af921a2e6286",
+  "collection_duration_seconds": 2.5358035564422607,
+  "commit_message": "Open links as one undirected edge; opt-in validate-then-retry in LLMConverter (#6) (#17)",
+  "commit_sha": "1354a904c5d106400702efcb2981421964880421",
   "metrics": {
     "coverage": {
       "branch_coverage": 0.0,
@@ -34,14 +34,14 @@
     },
     "workflow_status": {
       "last_run_status": "success",
-      "last_success_timestamp": "2026-11-22T23:40:12Z",
+      "last_success_timestamp": "2026-11-24T00:16:38Z",
       "recent_failure_count": 0,
-      "run_url": "https://github.com/i2mint/ij/actions/runs/45084437764",
+      "run_url": "https://github.com/i2mint/ij/actions/runs/45295692133",
       "total_runs_analyzed": 10
     }
   },
   "python_version": "3.10",
   "schema_version": "1.0",
-  "timestamp": "2026-11-24T00:16:32.881050Z",
+  "timestamp": "2026-11-24T00:20:24.717616Z",
   "workflow_status": {}
 }
