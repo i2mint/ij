@@ -1,6 +1,6 @@
 metric,value
 schema_version,1.0
-timestamp,2026-11-24T01:11:53.318456Z
+timestamp,2026-11-24T01:11:58.622117Z
 commit_sha,f224591a145df32a3e2b40b1720a23e370dd9d28
 commit_message,"Write mermaid to a .txt output again
 
@@ -9,18 +9,18 @@ no renderer, so .txt stays a plain-text input without breaking .txt outputs.
 
 Fixes #18"
 python_version,3.10
-metrics.umpyre_stats.num_functions,7167
-metrics.umpyre_stats.num_classes,1490
-metrics.umpyre_stats.total_lines,335473
-metrics.umpyre_stats.empty_lines,46345
-metrics.umpyre_stats.comment_lines,17437
-metrics.umpyre_stats.docs_lines,77902
-metrics.umpyre_stats.function_lines,191242
-metrics.umpyre_stats.empty_lines_ratio,0.13814822653387904
-metrics.umpyre_stats.comment_lines_ratio,0.05197735734321391
-metrics.umpyre_stats.function_lines_ratio,0.570066741585761
-metrics.umpyre_stats.mean_lines_per_function,26.683689130738106
-metrics.umpyre_stats.files_analyzed,879
+metrics.umpyre_stats.num_functions,7386
+metrics.umpyre_stats.num_classes,1550
+metrics.umpyre_stats.total_lines,333057
+metrics.umpyre_stats.empty_lines,45966
+metrics.umpyre_stats.comment_lines,17135
+metrics.umpyre_stats.docs_lines,73662
+metrics.umpyre_stats.function_lines,186961
+metrics.umpyre_stats.empty_lines_ratio,0.13801241228978822
+metrics.umpyre_stats.comment_lines_ratio,0.05144765010193451
+metrics.umpyre_stats.function_lines_ratio,0.5613483577886067
+metrics.umpyre_stats.mean_lines_per_function,25.312889249932304
+metrics.umpyre_stats.files_analyzed,883
 metrics.umpyre_stats.pypi_version,0.1.17
 metrics.workflow_status.last_run_status,success
 metrics.workflow_status.last_success_timestamp,2026-11-24T00:22:13Z
@@ -41,4 +41,4 @@ metrics.coverage.branch_coverage,0.0
 metrics.coverage.statements_covered,0
 metrics.coverage.statements_total,0
 metrics.coverage.error,No coverage file found
-collection_duration_seconds,3.1118931770324707
+collection_duration_seconds,4.685965061187744
