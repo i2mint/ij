@@ -1,7 +1,7 @@
 {
-  "collection_duration_seconds": 4.739693641662598,
-  "commit_message": "Merge f224591a145df32a3e2b40b1720a23e370dd9d28 into bbca4048cad20f8da72f5c1c23c3b9fb355fd5f3",
-  "commit_sha": "4ceb86f7011961407dddcc79f1e0ce8e8a54bf9b",
+  "collection_duration_seconds": 4.2647624015808105,
+  "commit_message": "Write mermaid to a .txt output again (#19)\n\nOutput format detection falls back to mermaid when the extension's format has\nno renderer, so .txt stays a plain-text input without breaking .txt outputs.\n\nFixes #18",
+  "commit_sha": "7f6e988181023d574fafda52244f222971d8fcd5",
   "metrics": {
     "coverage": {
       "branch_coverage": 0.0,
@@ -11,19 +11,19 @@
       "statements_total": 0
     },
     "umpyre_stats": {
-      "comment_lines": 17135,
-      "comment_lines_ratio": 0.05144765010193451,
-      "docs_lines": 73662,
-      "empty_lines": 45966,
-      "empty_lines_ratio": 0.13801241228978822,
-      "files_analyzed": 883,
-      "function_lines": 186961,
-      "function_lines_ratio": 0.5613483577886067,
-      "mean_lines_per_function": 25.312889249932304,
-      "num_classes": 1550,
-      "num_functions": 7386,
+      "comment_lines": 17437,
+      "comment_lines_ratio": 0.05197735734321391,
+      "docs_lines": 77902,
+      "empty_lines": 46345,
+      "empty_lines_ratio": 0.13814822653387904,
+      "files_analyzed": 879,
+      "function_lines": 191242,
+      "function_lines_ratio": 0.570066741585761,
+      "mean_lines_per_function": 26.683689130738106,
+      "num_classes": 1490,
+      "num_functions": 7167,
       "pypi_version": "0.1.17",
-      "total_lines": 333057
+      "total_lines": 335473
     },
     "wily": {
       "cyclomatic_avg": 0.0,
@@ -34,14 +34,14 @@
     },
     "workflow_status": {
       "last_run_status": "success",
-      "last_success_timestamp": "2026-11-24T00:22:13Z",
+      "last_success_timestamp": "2026-11-24T01:12:06Z",
       "recent_failure_count": 0,
-      "run_url": "https://github.com/i2mint/ij/actions/runs/45296534350",
+      "run_url": "https://github.com/i2mint/ij/actions/runs/45303085373",
       "total_runs_analyzed": 10
     }
   },
   "python_version": "3.10",
   "schema_version": "1.0",
-  "timestamp": "2026-11-24T01:12:01.105635Z",
+  "timestamp": "2026-11-24T01:16:48.866660Z",
   "workflow_status": {}
 }
