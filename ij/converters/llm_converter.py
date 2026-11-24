@@ -226,7 +226,9 @@ Output the updated Mermaid code."""
     @staticmethod
     def _repair_prompt(user_prompt: str, error: "UnusableDiagramError") -> str:
         """The original request, plus what was wrong with the last answer."""
-        unreadable = "\n".join(error.unparsed_lines) or "(none: no node or edge was found)"
+        unreadable = (
+            "\n".join(error.unparsed_lines) or "(none: no node or edge was found)"
+        )
         return (
             f"{user_prompt}\n\n"
             "Your previous answer was not a usable Mermaid flowchart:\n"

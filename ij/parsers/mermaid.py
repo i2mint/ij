@@ -111,7 +111,10 @@ class MermaidParser:
     # are valid Mermaid alternatives to `-->|label|`.
     LINK_NORMALIZATIONS = [
         (re.compile(r"--\|([^|]*)\|(-->|-\.->)"), r"\2|\1|"),  # a --|L|--> b
-        (re.compile(r"--\s+([^|>]+?)\s+(-->|---)"), r"\2|\1|"),  # a -- L --> b, a -- L --- b
+        (
+            re.compile(r"--\s+([^|>]+?)\s+(-->|---)"),
+            r"\2|\1|",
+        ),  # a -- L --> b, a -- L --- b
         (re.compile(r"-\.\s+([^|>]+?)\s+\.->"), r"-.->|\1|"),  # a -. L .-> b
     ]
 
