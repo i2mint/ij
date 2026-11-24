@@ -1,31 +1,33 @@
 metric,value
 schema_version,1.0
-timestamp,2026-11-24T01:16:57.978153Z
-commit_sha,7f6e988181023d574fafda52244f222971d8fcd5
-commit_message,"Write mermaid to a .txt output again (#19)
+timestamp,2026-11-24T04:45:58.767575Z
+commit_sha,14f3f1cd07509cab726dd5ebc8271228b343ae72
+commit_message,"fix(cli): one output-format rule for convert, watch, simplify and extract
 
-Output format detection falls back to mermaid when the extension's format has
-no renderer, so .txt stays a plain-text input without breaking .txt outputs.
+resolve_output_format picks the format every rendering command writes in:
+explicit format, else the output file's format when it has a renderer, else the
+input's format when it has a renderer, else mermaid. A .txt file (plain text, no
+renderer) is no longer rendered as 'text' by watch, simplify or extract.
 
-Fixes #18"
+Fixes #21"
 python_version,3.10
-metrics.umpyre_stats.num_functions,7386
+metrics.umpyre_stats.num_functions,7387
 metrics.umpyre_stats.num_classes,1550
-metrics.umpyre_stats.total_lines,333057
-metrics.umpyre_stats.empty_lines,45966
-metrics.umpyre_stats.comment_lines,17135
-metrics.umpyre_stats.docs_lines,73662
-metrics.umpyre_stats.function_lines,186961
-metrics.umpyre_stats.empty_lines_ratio,0.13801241228978822
-metrics.umpyre_stats.comment_lines_ratio,0.05144765010193451
-metrics.umpyre_stats.function_lines_ratio,0.5613483577886067
-metrics.umpyre_stats.mean_lines_per_function,25.312889249932304
+metrics.umpyre_stats.total_lines,333081
+metrics.umpyre_stats.empty_lines,45972
+metrics.umpyre_stats.comment_lines,17134
+metrics.umpyre_stats.docs_lines,73676
+metrics.umpyre_stats.function_lines,186971
+metrics.umpyre_stats.empty_lines_ratio,0.13802048150449892
+metrics.umpyre_stats.comment_lines_ratio,0.05144094079217968
+metrics.umpyre_stats.function_lines_ratio,0.5613379328151411
+metrics.umpyre_stats.mean_lines_per_function,25.31081629890348
 metrics.umpyre_stats.files_analyzed,883
-metrics.umpyre_stats.pypi_version,0.1.17
+metrics.umpyre_stats.pypi_version,0.1.18
 metrics.workflow_status.last_run_status,success
-metrics.workflow_status.last_success_timestamp,2026-11-24T01:12:06Z
+metrics.workflow_status.last_success_timestamp,2026-11-24T01:18:37Z
 metrics.workflow_status.recent_failure_count,0
-metrics.workflow_status.run_url,https://github.com/i2mint/ij/actions/runs/45303085373
+metrics.workflow_status.run_url,https://github.com/i2mint/ij/actions/runs/45304024047
 metrics.workflow_status.total_runs_analyzed,10
 metrics.wily.cyclomatic_avg,0.0
 metrics.wily.maintainability_index,0.0
@@ -41,4 +43,4 @@ metrics.coverage.branch_coverage,0.0
 metrics.coverage.statements_covered,0
 metrics.coverage.statements_total,0
 metrics.coverage.error,No coverage file found
-collection_duration_seconds,4.621921062469482
+collection_duration_seconds,2.692354917526245
