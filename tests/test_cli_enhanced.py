@@ -122,3 +122,11 @@ def test_convert_of_a_txt_file_reads_it_as_plain_text(tmp_path, capsys):
     cmd_convert(args)
     out = capsys.readouterr().out
     assert "Process data" in out and "-->" in out
+
+
+def test_convert_to_a_txt_file_writes_mermaid(files, monkeypatch, capsys):
+    """A .txt output has no renderer of its own: it gets mermaid, the default output."""
+    target = files / "out.txt"
+    out = run2(monkeypatch, capsys, "convert", files / "a.mmd", "-o", target).out
+    assert "mermaid → mermaid" in out
+    assert target.read_text().startswith("flowchart TD") and "A --> B" in target.read_text()
