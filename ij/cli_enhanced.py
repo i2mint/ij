@@ -65,20 +65,51 @@ def get_renderer_for_format(format_name: str, **kwargs):
     raise ValueError(f"No renderer available for format: {format_name}")
 
 
+_EXTENSION_FORMATS = {
+    ".mmd": "mermaid",
+    ".mermaid": "mermaid",
+    ".txt": "text",
+    ".d2": "d2",
+    ".puml": "plantuml",
+    ".plantuml": "plantuml",
+    ".dot": "graphviz",
+    ".gv": "graphviz",
+}
+
+
 def detect_format(filename: str) -> str:
-    """Detect format from file extension."""
-    ext = Path(filename).suffix.lower()
-    format_map = {
-        ".mmd": "mermaid",
-        ".mermaid": "mermaid",
-        ".txt": "text",
-        ".d2": "d2",
-        ".puml": "plantuml",
-        ".plantuml": "plantuml",
-        ".dot": "graphviz",
-        ".gv": "graphviz",
-    }
-    return format_map.get(ext, "mermaid")
+    """Detect format from file extension (mermaid when the extension is unknown)."""
+    return _EXTENSION_FORMATS.get(Path(filename).suffix.lower(), "mermaid")
+
+
+def resolve_output_format(
+    format_name: Optional[str] = None,
+    *,
+    output: Optional[str] = None,
+    input_format: Optional[str] = None,
+) -> str:
+    """The format a command writes in. Every rendering command uses this one rule.
+
+    In order: the explicit ``format_name``; else the ``output`` file's format, if its
+    extension is known and has a renderer; else ``input_format``, if it has a renderer
+    (``simplify`` and ``extract`` keep the input's format); else
+    ``DEFAULT_OUTPUT_FORMAT``. So a ``.txt`` file (read as plain text, no renderer) is
+    never asked to be rendered as ``text``.
+
+    >>> resolve_output_format(output="out.d2"), resolve_output_format(output="out.txt")
+    ('d2', 'mermaid')
+    >>> resolve_output_format(output="out.txt", input_format="d2")
+    'd2'
+    >>> resolve_output_format(input_format="text")
+    'mermaid'
+    """
+    if format_name:
+        return format_name
+    output_format = output and _EXTENSION_FORMATS.get(Path(output).suffix.lower())
+    for candidate in (output_format, input_format):
+        if candidate and candidate.lower() in _RENDERERS:
+            return candidate
+    return DEFAULT_OUTPUT_FORMAT
 
 
 def detect_output_format(filename: str) -> str:
@@ -89,10 +120,7 @@ def detect_output_format(filename: str) -> str:
     >>> detect_output_format("out.d2"), detect_output_format("out.txt")
     ('d2', 'mermaid')
     """
-    format_name = detect_format(filename)
-    if format_name.lower() in _RENDERERS:
-        return format_name
-    return DEFAULT_OUTPUT_FORMAT
+    return resolve_output_format(output=filename)
 
 
 def cmd_convert(args):
@@ -103,13 +131,7 @@ def cmd_convert(args):
     else:
         input_format = detect_format(args.input)
 
-    # Determine output format
-    if args.to_format:
-        output_format = args.to_format
-    elif args.output:
-        output_format = detect_output_format(args.output)
-    else:
-        output_format = DEFAULT_OUTPUT_FORMAT
+    output_format = resolve_output_format(args.to_format, output=args.output)
 
     # Read input
     try:
@@ -261,7 +283,9 @@ def cmd_simplify(args):
     )
 
     # Render
-    output_format = args.format or format_name
+    output_format = resolve_output_format(
+        args.format, output=args.output, input_format=format_name
+    )
     renderer = get_renderer_for_format(output_format)
     output_text = renderer.render(simplified)
 
@@ -343,7 +367,9 @@ def cmd_extract(args):
         sys.exit(1)
 
     # Render
-    output_format = args.format or format_name
+    output_format = resolve_output_format(
+        args.format, output=args.output, input_format=format_name
+    )
     renderer = get_renderer_for_format(output_format)
     output_text = renderer.render(subgraph)
 
@@ -377,9 +403,7 @@ def cmd_watch(args):
                     # Convert
                     try:
                         input_format = detect_format(args.input)
-                        output_format = (
-                            detect_format(args.output) if args.output else "mermaid"
-                        )
+                        output_format = resolve_output_format(output=args.output)
 
                         input_text = input_path.read_text()
                         parser = get_parser_for_format(input_format)

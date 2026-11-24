@@ -130,3 +130,60 @@ def test_convert_to_a_txt_file_writes_mermaid(files, monkeypatch, capsys):
     out = run2(monkeypatch, capsys, "convert", files / "a.mmd", "-o", target).out
     assert "mermaid → mermaid" in out
     assert target.read_text().startswith("flowchart TD") and "A --> B" in target.read_text()
+
+
+STEPS = "Process data\nSave results\n"
+
+
+@pytest.fixture
+def txt(tmp_path):
+    src = tmp_path / "in.txt"
+    src.write_text(STEPS)
+    return src
+
+
+def test_simplify_of_a_txt_file_writes_mermaid(txt, monkeypatch, capsys):
+    out = run2(monkeypatch, capsys, "simplify", txt).out
+    assert out.startswith("flowchart") and "Process data" in out and "-->" in out
+
+
+def test_extract_of_a_txt_file_writes_mermaid(txt, monkeypatch, capsys):
+    from ij.cli_enhanced import get_parser_for_format
+
+    root = get_parser_for_format("text").parse(STEPS).nodes[0].id
+    out = run2(monkeypatch, capsys, "extract", txt, root).out
+    assert out.startswith("flowchart") and "Process data" in out
+
+
+@pytest.mark.parametrize("command", ["simplify", "extract"])
+def test_simplify_and_extract_write_the_output_files_format(files, command, monkeypatch, capsys):
+    args = [command, files / "a.mmd", *(["A"] if command == "extract" else [])]
+    target = files / "out.txt"
+    run2(monkeypatch, capsys, *args, "-o", target)
+    assert target.read_text().startswith("flowchart")  # .txt: no renderer, input's format
+    target = files / "out.d2"
+    run2(monkeypatch, capsys, *args, "-o", target)
+    assert "A -> B" in target.read_text()  # .d2 has a renderer: the extension wins
+
+
+def test_watch_to_a_txt_file_writes_mermaid(files, monkeypatch, capsys):
+    import time
+
+    def stop(_seconds):
+        raise KeyboardInterrupt
+
+    monkeypatch.setattr(time, "sleep", stop)
+    target = files / "out.txt"
+    out = run2(monkeypatch, capsys, "watch", files / "a.mmd", "-o", target).out
+    assert "Error" not in out and "Converted" in out
+    assert target.read_text().startswith("flowchart TD") and "A --> B" in target.read_text()
+
+
+def test_resolve_output_format_order():
+    resolve = cli_enhanced.resolve_output_format
+    assert resolve("dot", output="out.d2", input_format="d2") == "dot"
+    assert resolve(output="out.d2", input_format="mermaid") == "d2"
+    assert resolve(output="out.txt", input_format="d2") == "d2"
+    assert resolve(output="out", input_format="d2") == "d2"
+    assert resolve(output="out.txt", input_format="text") == "mermaid"
+    assert resolve() == cli_enhanced.DEFAULT_OUTPUT_FORMAT
