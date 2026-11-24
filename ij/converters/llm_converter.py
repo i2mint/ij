@@ -18,6 +18,20 @@ from ..core import DiagramIR, Edge, EdgeType, Node, NodeType
 from ..parsers import MermaidParser
 
 
+class UnusableDiagramError(ValueError):
+    """Model output that holds no usable diagram.
+
+    Attributes:
+        raw: The model's output, as returned
+        unparsed_lines: The lines of it the Mermaid parser could not read
+    """
+
+    def __init__(self, message: str, *, raw: str, unparsed_lines: List[str]):
+        super().__init__(message)
+        self.raw = raw
+        self.unparsed_lines = list(unparsed_lines)
+
+
 class LLMConverter:
     """AI-powered text to diagram converter using LLMs.
 
@@ -47,6 +61,8 @@ Output ONLY the Mermaid code, no explanations or markdown code blocks."""
         api_key: Optional[str] = None,
         model: str = "gpt-4o-mini",
         temperature: float = 0.3,
+        *,
+        max_retries: int = 0,
     ):
         """Initialize LLM converter.
 
@@ -54,10 +70,17 @@ Output ONLY the Mermaid code, no explanations or markdown code blocks."""
             api_key: OpenAI API key (defaults to OPENAI_API_KEY env var)
             model: Model to use (gpt-4o-mini is cheap and effective)
             temperature: Sampling temperature (lower = more deterministic)
+            max_retries: How many more times to ask the model when its output
+                holds no usable diagram, each time showing it the error and the
+                lines the parser could not read. Each retry is a paid call, so
+                the default is 0: an unusable output raises at once.
         """
+        if max_retries < 0:
+            raise ValueError(f"max_retries must be 0 or more, got {max_retries!r}")
         self.api_key = api_key or os.environ.get("OPENAI_API_KEY")
         self.model = model
         self.temperature = temperature
+        self.max_retries = max_retries
 
         if not self.api_key:
             raise ValueError(
@@ -100,11 +123,8 @@ Output ONLY the Mermaid code, no explanations or markdown code blocks."""
         if direction != "TD":
             user_prompt += f"\n\nUse direction: {direction}"
 
-        # Call OpenAI API
-        mermaid_code = self._generate_mermaid(user_prompt)
-
-        # Parse the generated Mermaid to DiagramIR
-        diagram = self._parse_mermaid(mermaid_code)
+        # Call the model, and parse what it returns to DiagramIR
+        diagram = self._generate_diagram(user_prompt)
 
         # Add title if provided
         if title and "title" not in diagram.metadata:
@@ -145,11 +165,8 @@ Please modify it based on this feedback:
 
 Output the updated Mermaid code."""
 
-        # Generate refined version
-        mermaid_code = self._generate_mermaid(user_prompt)
-
-        # Parse back to DiagramIR
-        refined_diagram = self._parse_mermaid(mermaid_code)
+        # Generate the refined version, parsed back to DiagramIR
+        refined_diagram = self._generate_diagram(user_prompt)
 
         # Preserve metadata
         refined_diagram.metadata.update(diagram.metadata)
@@ -172,18 +189,51 @@ Output the updated Mermaid code."""
             DiagramIR parsed from ``mermaid_code``
 
         Raises:
-            ValueError: If the output holds no valid diagram
+            UnusableDiagramError: If the output holds no valid diagram (a
+                ``ValueError``, carrying the raw output and unparsed lines)
         """
         parser = MermaidParser()
         diagram = parser.parse(mermaid_code)
 
         if not diagram.nodes or not diagram.validate():
-            raise ValueError(
+            raise UnusableDiagramError(
                 f"{self.model} did not return a usable Mermaid diagram.\n"
-                f"Raw model output:\n{mermaid_code}"
+                f"Raw model output:\n{mermaid_code}",
+                raw=mermaid_code,
+                unparsed_lines=parser.unparsed_lines,
             )
 
         return diagram
+
+    def _generate_diagram(self, user_prompt: str) -> DiagramIR:
+        """Ask the model for a diagram, retrying up to ``max_retries`` times.
+
+        A retry repeats the request with the unusable output, the error and
+        the lines the parser could not read appended, so the model repairs
+        its answer rather than drawing again from scratch.
+        """
+        prompt = user_prompt
+        for attempt in range(self.max_retries + 1):
+            mermaid_code = self._generate_mermaid(prompt)
+            try:
+                return self._parse_mermaid(mermaid_code)
+            except UnusableDiagramError as error:
+                if attempt == self.max_retries:
+                    raise
+                prompt = self._repair_prompt(user_prompt, error)
+        raise AssertionError("unreachable: the last attempt returns or raises")
+
+    @staticmethod
+    def _repair_prompt(user_prompt: str, error: "UnusableDiagramError") -> str:
+        """The original request, plus what was wrong with the last answer."""
+        unreadable = "\n".join(error.unparsed_lines) or "(none: no node or edge was found)"
+        return (
+            f"{user_prompt}\n\n"
+            "Your previous answer was not a usable Mermaid flowchart:\n"
+            f"```\n{error.raw}\n```\n"
+            f"Lines that could not be parsed:\n{unreadable}\n\n"
+            "Answer again with valid Mermaid flowchart code only."
+        )
 
     def _generate_mermaid(self, user_prompt: str) -> str:
         """Call OpenAI API to generate Mermaid code.
@@ -243,8 +293,7 @@ Now create a diagram for:
         if title:
             user_prompt += f"\n\nTitle: {title}"
 
-        mermaid_code = self._generate_mermaid(user_prompt)
-        diagram = self._parse_mermaid(mermaid_code)
+        diagram = self._generate_diagram(user_prompt)
 
         if title:
             diagram.metadata["title"] = title

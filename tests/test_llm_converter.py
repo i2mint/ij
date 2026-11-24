@@ -257,3 +257,60 @@ def test_llm_converter_real_api_with_decision():
     decision_nodes = [n for n in diagram.nodes if n.node_type == NodeType.DECISION]
     assert len(decision_nodes) >= 1
     assert diagram.validate()
+
+
+# --- validate-then-retry (#6) -------------------------------------------------
+
+GOOD = "flowchart TD\n    a[Start] --> b[End]"
+BAD = "this is not mermaid at all"
+
+
+def _converter_answering(answers, **kwargs):
+    """An LLMConverter whose model returns ``answers`` in turn (no network)."""
+    converter = LLMConverter(api_key="test-key", **kwargs)
+    responses = []
+    for text in answers:
+        r = MagicMock()
+        r.choices = [MagicMock()]
+        r.choices[0].message.content = text
+        responses.append(r)
+    converter.client = MagicMock()
+    converter.client.chat.completions.create.side_effect = responses
+    return converter
+
+
+def test_by_default_an_unusable_answer_raises_after_one_call():
+    from ij.converters.llm_converter import UnusableDiagramError
+
+    converter = _converter_answering([BAD, GOOD])
+    with pytest.warns(Warning), pytest.raises(UnusableDiagramError) as info:
+        converter.convert("a start and an end")
+    assert converter.client.chat.completions.create.call_count == 1
+    assert info.value.raw == BAD and info.value.unparsed_lines == [BAD]
+    assert isinstance(info.value, ValueError)  # what callers caught before
+
+
+def test_a_retry_shows_the_model_its_unparsed_lines_and_takes_the_repair():
+    converter = _converter_answering([BAD, GOOD], max_retries=2)
+    with pytest.warns(Warning):
+        diagram = converter.convert("a start and an end")
+    assert {n.id for n in diagram.nodes} == {"a", "b"}
+    calls = converter.client.chat.completions.create.call_args_list
+    assert len(calls) == 2
+    repair = calls[1].kwargs["messages"][-1]["content"]
+    assert repair.startswith("Create a Mermaid flowchart for:\n\na start and an end")
+    assert BAD in repair and "could not be parsed" in repair
+
+
+def test_retries_stop_at_the_budget():
+    from ij.converters.llm_converter import UnusableDiagramError
+
+    converter = _converter_answering([BAD, BAD, BAD, GOOD], max_retries=2)
+    with pytest.warns(Warning), pytest.raises(UnusableDiagramError):
+        converter.convert("x")
+    assert converter.client.chat.completions.create.call_count == 3
+
+
+def test_a_negative_retry_budget_is_refused():
+    with pytest.raises(ValueError, match="max_retries"):
+        LLMConverter(api_key="test-key", max_retries=-1)

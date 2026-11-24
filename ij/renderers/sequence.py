@@ -21,6 +21,7 @@ class SequenceDiagramRenderer:
     - EdgeType.DIRECT -> Solid arrows (synchronous)
     - EdgeType.CONDITIONAL -> Dashed arrows (asynchronous/return)
     - EdgeType.BIDIRECTIONAL -> Bidirectional arrows
+    - EdgeType.UNDIRECTED -> Solid line, no arrowhead
     """
 
     def __init__(self):
@@ -113,6 +114,7 @@ class SequenceDiagramRenderer:
             EdgeType.DIRECT: "->>",  # Solid arrow (synchronous)
             EdgeType.CONDITIONAL: "-->>",  # Dashed arrow (asynchronous/return)
             EdgeType.BIDIRECTIONAL: "<<->>",  # Bidirectional
+            EdgeType.UNDIRECTED: "->",  # Solid line, no arrowhead
         }
         return arrow_map.get(edge_type, "->>")
 
