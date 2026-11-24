@@ -348,20 +348,25 @@
 
 
 
+<span class="n">_RENDERERS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"mermaid"</span><span class="p">:</span> <span class="n">MermaidRenderer</span><span class="p">,</span>
+    <span class="s2">"mmd"</span><span class="p">:</span> <span class="n">MermaidRenderer</span><span class="p">,</span>
+    <span class="s2">"d2"</span><span class="p">:</span> <span class="n">D2Renderer</span><span class="p">,</span>
+    <span class="s2">"plantuml"</span><span class="p">:</span> <span class="n">PlantUMLRenderer</span><span class="p">,</span>
+    <span class="s2">"puml"</span><span class="p">:</span> <span class="n">PlantUMLRenderer</span><span class="p">,</span>
+    <span class="s2">"graphviz"</span><span class="p">:</span> <span class="n">GraphvizRenderer</span><span class="p">,</span>
+    <span class="s2">"dot"</span><span class="p">:</span> <span class="n">GraphvizRenderer</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1">#: Output format of a file whose extension names no renderable format.</span>
+<span class="n">DEFAULT_OUTPUT_FORMAT</span> <span class="o">=</span> <span class="s2">"mermaid"</span>
+
+
 <div class="viewcode-block" id="get_renderer_for_format">
 <a class="viewcode-back" href="../../_autosummary/ij.cli_enhanced.html#ij.cli_enhanced.get_renderer_for_format">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_renderer_for_format</span><span class="p">(</span><span class="n">format_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Get renderer instance for a format."""</span>
-    <span class="n">renderers</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">"mermaid"</span><span class="p">:</span> <span class="n">MermaidRenderer</span><span class="p">,</span>
-        <span class="s2">"mmd"</span><span class="p">:</span> <span class="n">MermaidRenderer</span><span class="p">,</span>
-        <span class="s2">"d2"</span><span class="p">:</span> <span class="n">D2Renderer</span><span class="p">,</span>
-        <span class="s2">"plantuml"</span><span class="p">:</span> <span class="n">PlantUMLRenderer</span><span class="p">,</span>
-        <span class="s2">"puml"</span><span class="p">:</span> <span class="n">PlantUMLRenderer</span><span class="p">,</span>
-        <span class="s2">"graphviz"</span><span class="p">:</span> <span class="n">GraphvizRenderer</span><span class="p">,</span>
-        <span class="s2">"dot"</span><span class="p">:</span> <span class="n">GraphvizRenderer</span><span class="p">,</span>
-    <span class="p">}</span>
-    <span class="n">renderer_class</span> <span class="o">=</span> <span class="n">renderers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">format_name</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="n">renderer_class</span> <span class="o">=</span> <span class="n">_RENDERERS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">format_name</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
     <span class="k">if</span> <span class="n">renderer_class</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">renderer_class</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"No renderer available for format: </span><span class="si">{</span><span class="n">format_name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span></div>
@@ -387,6 +392,23 @@
 
 
 
+<div class="viewcode-block" id="detect_output_format">
+<a class="viewcode-back" href="../../_autosummary/ij.cli_enhanced.html#ij.cli_enhanced.detect_output_format">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">detect_output_format</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Detect the format to write ``filename`` in: its extension's format if there is a</span>
+<span class="sd">    renderer for it, else ``DEFAULT_OUTPUT_FORMAT`` (e.g. ``.txt``, read as plain text</span>
+<span class="sd">    but written as mermaid).</span>
+
+<span class="sd">    &gt;&gt;&gt; detect_output_format("out.d2"), detect_output_format("out.txt")</span>
+<span class="sd">    ('d2', 'mermaid')</span>
+<span class="sd">    """</span>
+    <span class="n">format_name</span> <span class="o">=</span> <span class="n">detect_format</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">format_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">_RENDERERS</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">format_name</span>
+    <span class="k">return</span> <span class="n">DEFAULT_OUTPUT_FORMAT</span></div>
+
+
+
 <div class="viewcode-block" id="cmd_convert">
 <a class="viewcode-back" href="../../_autosummary/ij.cli_enhanced.html#ij.cli_enhanced.cmd_convert">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">cmd_convert</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
@@ -401,9 +423,9 @@
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">to_format</span><span class="p">:</span>
         <span class="n">output_format</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">to_format</span>
     <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
-        <span class="n">output_format</span> <span class="o">=</span> <span class="n">detect_format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
+        <span class="n">output_format</span> <span class="o">=</span> <span class="n">detect_output_format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">output_format</span> <span class="o">=</span> <span class="s2">"mermaid"</span>
+        <span class="n">output_format</span> <span class="o">=</span> <span class="n">DEFAULT_OUTPUT_FORMAT</span>
 
     <span class="c1"># Read input</span>
     <span class="k">try</span><span class="p">:</span>
@@ -862,7 +884,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=d24e387d"></script>
+</div><script src="../../_static/documentation_options.js?v=7039c93a"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

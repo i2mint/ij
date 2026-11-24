@@ -4,6 +4,12 @@ ij.cli\_enhanced
 .. automodule:: ij.cli_enhanced
 
    
+   .. rubric:: Module Attributes
+
+   .. autosummary::
+   
+      DEFAULT_OUTPUT_FORMAT
+   
    .. rubric:: Functions
 
    .. autosummary::
@@ -16,6 +22,7 @@ ij.cli\_enhanced
       cmd_validate
       cmd_watch
       detect_format
+      detect_output_format
       get_parser_for_format
       get_renderer_for_format
       main

@@ -312,6 +312,16 @@
 <span id="ij-cli-enhanced"></span><h1>ij.cli_enhanced<a class="headerlink" href="#module-ij.cli_enhanced" title="Link to this heading">¶</a></h1>
 <p>Enhanced command-line interface for Idea Junction.</p>
 <p>Provides subcommands for conversion, validation, diff, and more.</p>
+<p class="rubric">Module Attributes</p>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ij.cli_enhanced.DEFAULT_OUTPUT_FORMAT" title="ij.cli_enhanced.DEFAULT_OUTPUT_FORMAT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DEFAULT_OUTPUT_FORMAT</span></code></a></p></td>
+<td><p>Output format of a file whose extension names no renderable format.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <p class="rubric">Functions</p>
 <div class="table-wrapper autosummary longtable docutils container">
 <table class="autosummary longtable docutils align-default">
@@ -340,18 +350,27 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#ij.cli_enhanced.detect_format" title="ij.cli_enhanced.detect_format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_format</span></code></a>(filename)</p></td>
 <td><p>Detect format from file extension.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ij.cli_enhanced.get_parser_for_format" title="ij.cli_enhanced.get_parser_for_format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_parser_for_format</span></code></a>(format_name)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ij.cli_enhanced.detect_output_format" title="ij.cli_enhanced.detect_output_format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_output_format</span></code></a>(filename)</p></td>
+<td><p>Detect the format to write <code class="docutils literal notranslate"><span class="pre">filename</span></code> in: its extension's format if there is a renderer for it, else <code class="docutils literal notranslate"><span class="pre">DEFAULT_OUTPUT_FORMAT</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">.txt</span></code>, read as plain text but written as mermaid).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ij.cli_enhanced.get_parser_for_format" title="ij.cli_enhanced.get_parser_for_format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_parser_for_format</span></code></a>(format_name)</p></td>
 <td><p>Get parser instance for a format.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ij.cli_enhanced.get_renderer_for_format" title="ij.cli_enhanced.get_renderer_for_format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_renderer_for_format</span></code></a>(format_name, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ij.cli_enhanced.get_renderer_for_format" title="ij.cli_enhanced.get_renderer_for_format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_renderer_for_format</span></code></a>(format_name, **kwargs)</p></td>
 <td><p>Get renderer instance for a format.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ij.cli_enhanced.main" title="ij.cli_enhanced.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ij.cli_enhanced.main" title="ij.cli_enhanced.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a>()</p></td>
 <td><p>Enhanced CLI entry point.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<dl class="py data">
+<dt class="sig sig-object py" id="ij.cli_enhanced.DEFAULT_OUTPUT_FORMAT">
+<span class="sig-prename descclassname"><span class="pre">ij.cli_enhanced.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_OUTPUT_FORMAT</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'mermaid'</span></span><a class="headerlink" href="#ij.cli_enhanced.DEFAULT_OUTPUT_FORMAT" title="Link to this definition">¶</a></dt>
+<dd><p>Output format of a file whose extension names no renderable format.</p>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="ij.cli_enhanced.cmd_convert">
 <span class="sig-prename descclassname"><span class="pre">ij.cli_enhanced.</span></span><span class="sig-name descname"><span class="pre">cmd_convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ij/cli_enhanced.html#cmd_convert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.cli_enhanced.cmd_convert" title="Link to this definition">¶</a></dt>
@@ -398,6 +417,23 @@
 <dt class="sig sig-object py" id="ij.cli_enhanced.detect_format">
 <span class="sig-prename descclassname"><span class="pre">ij.cli_enhanced.</span></span><span class="sig-name descname"><span class="pre">detect_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ij/cli_enhanced.html#detect_format"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.cli_enhanced.detect_format" title="Link to this definition">¶</a></dt>
 <dd><p>Detect format from file extension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ij.cli_enhanced.detect_output_format">
+<span class="sig-prename descclassname"><span class="pre">ij.cli_enhanced.</span></span><span class="sig-name descname"><span class="pre">detect_output_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ij/cli_enhanced.html#detect_output_format"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.cli_enhanced.detect_output_format" title="Link to this definition">¶</a></dt>
+<dd><p>Detect the format to write <code class="docutils literal notranslate"><span class="pre">filename</span></code> in: its extension’s format if there is a
+renderer for it, else <code class="docutils literal notranslate"><span class="pre">DEFAULT_OUTPUT_FORMAT</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">.txt</span></code>, read as plain text
+but written as mermaid).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">detect_output_format</span><span class="p">(</span><span class="s2">"out.d2"</span><span class="p">),</span> <span class="n">detect_output_format</span><span class="p">(</span><span class="s2">"out.txt"</span><span class="p">)</span>
+<span class="go">('d2', 'mermaid')</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
@@ -481,6 +517,7 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">ij.cli_enhanced</a><ul>
+<li><a class="reference internal" href="#ij.cli_enhanced.DEFAULT_OUTPUT_FORMAT"><code class="docutils literal notranslate"><span class="pre">DEFAULT_OUTPUT_FORMAT</span></code></a></li>
 <li><a class="reference internal" href="#ij.cli_enhanced.cmd_convert"><code class="docutils literal notranslate"><span class="pre">cmd_convert()</span></code></a></li>
 <li><a class="reference internal" href="#ij.cli_enhanced.cmd_diff"><code class="docutils literal notranslate"><span class="pre">cmd_diff()</span></code></a></li>
 <li><a class="reference internal" href="#ij.cli_enhanced.cmd_extract"><code class="docutils literal notranslate"><span class="pre">cmd_extract()</span></code></a></li>
@@ -489,6 +526,7 @@
 <li><a class="reference internal" href="#ij.cli_enhanced.cmd_validate"><code class="docutils literal notranslate"><span class="pre">cmd_validate()</span></code></a></li>
 <li><a class="reference internal" href="#ij.cli_enhanced.cmd_watch"><code class="docutils literal notranslate"><span class="pre">cmd_watch()</span></code></a></li>
 <li><a class="reference internal" href="#ij.cli_enhanced.detect_format"><code class="docutils literal notranslate"><span class="pre">detect_format()</span></code></a></li>
+<li><a class="reference internal" href="#ij.cli_enhanced.detect_output_format"><code class="docutils literal notranslate"><span class="pre">detect_output_format()</span></code></a></li>
 <li><a class="reference internal" href="#ij.cli_enhanced.get_parser_for_format"><code class="docutils literal notranslate"><span class="pre">get_parser_for_format()</span></code></a></li>
 <li><a class="reference internal" href="#ij.cli_enhanced.get_renderer_for_format"><code class="docutils literal notranslate"><span class="pre">get_renderer_for_format()</span></code></a></li>
 <li><a class="reference internal" href="#ij.cli_enhanced.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
@@ -503,7 +541,7 @@
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=d24e387d"></script>
+</div><script src="../_static/documentation_options.js?v=7039c93a"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
