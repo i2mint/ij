@@ -501,6 +501,18 @@ for bidirectional conversion between text, diagrams, and code.</p>
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ij.core.</span></span><span class="sig-name descname"><span class="pre">EdgeType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ij/core.html#EdgeType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.core.EdgeType" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a></p>
 <p>Types of edges connecting nodes.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ij.core.EdgeType.UNDIRECTED">
+<span class="sig-name descname"><span class="pre">UNDIRECTED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'undirected'</span></span><a class="headerlink" href="#ij.core.EdgeType.UNDIRECTED" title="Link to this definition">¶</a></dt>
+<dd><p>one edge,
+never two opposite ones; <code class="docutils literal notranslate"><span class="pre">source</span></code>/<code class="docutils literal notranslate"><span class="pre">target</span></code> keep the written order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A link with no direction (Mermaid’s open link <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">---</span> <span class="pre">b</span></code>)</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -635,7 +647,10 @@ for bidirectional conversion between text, diagrams, and code.</p>
 <li><a class="reference internal" href="#ij.core.Edge.metadata"><code class="docutils literal notranslate"><span class="pre">Edge.metadata</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#ij.core.EdgeType"><code class="docutils literal notranslate"><span class="pre">EdgeType</span></code></a></li>
+<li><a class="reference internal" href="#ij.core.EdgeType"><code class="docutils literal notranslate"><span class="pre">EdgeType</span></code></a><ul>
+<li><a class="reference internal" href="#ij.core.EdgeType.UNDIRECTED"><code class="docutils literal notranslate"><span class="pre">EdgeType.UNDIRECTED</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#ij.core.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a><ul>
 <li><a class="reference internal" href="#ij.core.Node.id"><code class="docutils literal notranslate"><span class="pre">Node.id</span></code></a></li>
 <li><a class="reference internal" href="#ij.core.Node.label"><code class="docutils literal notranslate"><span class="pre">Node.label</span></code></a></li>
@@ -655,7 +670,7 @@ for bidirectional conversion between text, diagrams, and code.</p>
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=7b0e4c1b"></script>
+</div><script src="../_static/documentation_options.js?v=d24e387d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>

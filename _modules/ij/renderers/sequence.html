@@ -325,6 +325,7 @@
 <span class="sd">    - EdgeType.DIRECT -&gt; Solid arrows (synchronous)</span>
 <span class="sd">    - EdgeType.CONDITIONAL -&gt; Dashed arrows (asynchronous/return)</span>
 <span class="sd">    - EdgeType.BIDIRECTIONAL -&gt; Bidirectional arrows</span>
+<span class="sd">    - EdgeType.UNDIRECTED -&gt; Solid line, no arrowhead</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -420,6 +421,7 @@
             <span class="n">EdgeType</span><span class="o">.</span><span class="n">DIRECT</span><span class="p">:</span> <span class="s2">"-&gt;&gt;"</span><span class="p">,</span>  <span class="c1"># Solid arrow (synchronous)</span>
             <span class="n">EdgeType</span><span class="o">.</span><span class="n">CONDITIONAL</span><span class="p">:</span> <span class="s2">"--&gt;&gt;"</span><span class="p">,</span>  <span class="c1"># Dashed arrow (asynchronous/return)</span>
             <span class="n">EdgeType</span><span class="o">.</span><span class="n">BIDIRECTIONAL</span><span class="p">:</span> <span class="s2">"&lt;&lt;-&gt;&gt;"</span><span class="p">,</span>  <span class="c1"># Bidirectional</span>
+            <span class="n">EdgeType</span><span class="o">.</span><span class="n">UNDIRECTED</span><span class="p">:</span> <span class="s2">"-&gt;"</span><span class="p">,</span>  <span class="c1"># Solid line, no arrowhead</span>
         <span class="p">}</span>
         <span class="k">return</span> <span class="n">arrow_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">edge_type</span><span class="p">,</span> <span class="s2">"-&gt;&gt;"</span><span class="p">)</span>
 
@@ -653,7 +655,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=7b0e4c1b"></script>
+</div><script src="../../../_static/documentation_options.js?v=d24e387d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

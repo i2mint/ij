@@ -417,6 +417,8 @@
         <span class="c1"># Determine arrow style</span>
         <span class="k">if</span> <span class="n">edge</span><span class="o">.</span><span class="n">edge_type</span> <span class="o">==</span> <span class="n">EdgeType</span><span class="o">.</span><span class="n">BIDIRECTIONAL</span><span class="p">:</span>
             <span class="n">arrow</span> <span class="o">=</span> <span class="s2">"&lt;-&gt;"</span>
+        <span class="k">elif</span> <span class="n">edge</span><span class="o">.</span><span class="n">edge_type</span> <span class="o">==</span> <span class="n">EdgeType</span><span class="o">.</span><span class="n">UNDIRECTED</span><span class="p">:</span>
+            <span class="n">arrow</span> <span class="o">=</span> <span class="s2">"--"</span>
         <span class="k">elif</span> <span class="n">edge</span><span class="o">.</span><span class="n">edge_type</span> <span class="o">==</span> <span class="n">EdgeType</span><span class="o">.</span><span class="n">CONDITIONAL</span><span class="p">:</span>
             <span class="n">arrow</span> <span class="o">=</span> <span class="s2">"-&gt;  {style.stroke-dash: 3}"</span>
         <span class="k">else</span><span class="p">:</span>
@@ -475,7 +477,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=7b0e4c1b"></script>
+</div><script src="../../../_static/documentation_options.js?v=d24e387d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

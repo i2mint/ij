@@ -1,4 +1,4 @@
-> built 2026-11-22 23:39 UTC from 00077c2 (master) · ij 0.1.16. Details: build_info.json
+> built 2026-11-24 00:21 UTC from bbca404 (master) · ij 0.1.17. Details: build_info.json
 
 # index.html.md
 
@@ -809,10 +809,10 @@ Converters between different representations.
 
 ### Classes
 
-| [`SimpleTextConverter`](_autosummary/ij.converters.html.md#ij.converters.SimpleTextConverter)()                       | Simple rule-based text to diagram converter.              |
-|----------------------------------------------------------------------------------------------|-----------------------------------------------------------|
-| [`EnhancedTextConverter`](_autosummary/ij.converters.html.md#ij.converters.EnhancedTextConverter)()                     | Enhanced text-to-diagram converter with NLP capabilities. |
-| [`LLMConverter`](_autosummary/ij.converters.html.md#ij.converters.LLMConverter)([api_key, model, temperature]) | AI-powered text to diagram converter using LLMs.          |
+| [`SimpleTextConverter`](_autosummary/ij.converters.html.md#ij.converters.SimpleTextConverter)()                            | Simple rule-based text to diagram converter.              |
+|---------------------------------------------------------------------------------------------------|-----------------------------------------------------------|
+| [`EnhancedTextConverter`](_autosummary/ij.converters.html.md#ij.converters.EnhancedTextConverter)()                          | Enhanced text-to-diagram converter with NLP capabilities. |
+| [`LLMConverter`](_autosummary/ij.converters.html.md#ij.converters.LLMConverter)([api_key, model, temperature, ...]) | AI-powered text to diagram converter using LLMs.          |
 
 ### *class* ij.converters.EnhancedTextConverter
 
@@ -850,7 +850,7 @@ Convert enhanced text to DiagramIR.
 >>> diagram = converter.convert("Start -> [parallel: Process A, Process B] -> End")
 ```
 
-### *class* ij.converters.LLMConverter(api_key=None, model='gpt-4o-mini', temperature=0.3)
+### *class* ij.converters.LLMConverter(api_key=None, model='gpt-4o-mini', temperature=0.3, , max_retries=0)
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
@@ -964,10 +964,15 @@ diagram generation (10-20x faster initial drafts).
 
 ### Classes
 
-| [`LLMConverter`](_autosummary/ij.converters.llm_converter.html.md#ij.converters.llm_converter.LLMConverter)([api_key, model, temperature])   | AI-powered text to diagram converter using LLMs.   |
-|------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| [`LLMConverter`](_autosummary/ij.converters.llm_converter.html.md#ij.converters.llm_converter.LLMConverter)([api_key, model, temperature, ...])   | AI-powered text to diagram converter using LLMs.   |
+|-----------------------------------------------------------------------------------------------------|----------------------------------------------------|
 
-### *class* ij.converters.llm_converter.LLMConverter(api_key=None, model='gpt-4o-mini', temperature=0.3)
+### Exceptions
+
+| [`UnusableDiagramError`](_autosummary/ij.converters.llm_converter.html.md#ij.converters.llm_converter.UnusableDiagramError)(message, \*, raw, ...)   | Model output that holds no usable diagram.   |
+|------------------------------------------------------------------------------------------------|----------------------------------------------|
+
+### *class* ij.converters.llm_converter.LLMConverter(api_key=None, model='gpt-4o-mini', temperature=0.3, , max_retries=0)
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
@@ -1037,6 +1042,20 @@ Refine an existing diagram based on feedback.
 ...     mermaid
 ... )
 ```
+
+### *exception* ij.converters.llm_converter.UnusableDiagramError(message, , raw, unparsed_lines)
+
+Bases: [`ValueError`](https://docs.python.org/3/builtins/exceptions.html#ValueError)
+
+Model output that holds no usable diagram.
+
+#### raw
+
+The model’s output, as returned
+
+#### unparsed_lines
+
+The lines of it the Mermaid parser could not read
 
 
 # _autosummary/ij.converters.text_to_ir.html.md
@@ -1220,6 +1239,14 @@ Additional properties for extensibility
 Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum)
 
 Types of edges connecting nodes.
+
+#### UNDIRECTED *= 'undirected'*
+
+one edge,
+never two opposite ones; `source`/`target` keep the written order.
+
+* **Type:**
+  A link with no direction (Mermaid’s open link `a --- b`)
 
 ### *class* ij.core.Node(id, label, node_type=NodeType.PROCESS, metadata=dict())
 
@@ -2305,7 +2332,7 @@ natural language, visual diagrams, and code.
 | [`HierarchicalLayout`](_autosummary/ij.html.md#ij.HierarchicalLayout)([direction, ...])              | Hierarchical layout using Sugiyama algorithm.                                |
 | [`PluginManager`](_autosummary/ij.html.md#ij.PluginManager)()                                   | Manage and execute plugins.                                                  |
 | [`ViewerServer`](_autosummary/ij.html.md#ij.ViewerServer)([port, theme])                       | Interactive web server for diagram viewing.                                  |
-| [`LLMConverter`](_autosummary/ij.html.md#ij.LLMConverter)([api_key, model, temperature])       | AI-powered text to diagram converter using LLMs.                             |
+| [`LLMConverter`](_autosummary/ij.html.md#ij.LLMConverter)([api_key, model, temperature, ...])  | AI-powered text to diagram converter using LLMs.                             |
 | [`TypeScriptAnalyzer`](_autosummary/ij.html.md#ij.TypeScriptAnalyzer)()                              | Analyze TypeScript/JavaScript code to create diagrams.                       |
 
 ### Exceptions
@@ -2910,6 +2937,14 @@ Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum)
 
 Types of edges connecting nodes.
 
+#### UNDIRECTED *= 'undirected'*
+
+one edge,
+never two opposite ones; `source`/`target` keep the written order.
+
+* **Type:**
+  A link with no direction (Mermaid’s open link `a --- b`)
+
 ### *class* ij.EnhancedTextConverter
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
@@ -3219,7 +3254,7 @@ Create sequence diagram from text description.
 >>> diagram = analyzer.from_text_description(text)
 ```
 
-### *class* ij.LLMConverter(api_key=None, model='gpt-4o-mini', temperature=0.3)
+### *class* ij.LLMConverter(api_key=None, model='gpt-4o-mini', temperature=0.3, , max_retries=0)
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
@@ -3719,6 +3754,7 @@ Maps DiagramIR concepts to sequence diagrams:
 - EdgeType.DIRECT -> Solid arrows (synchronous)
 - EdgeType.CONDITIONAL -> Dashed arrows (asynchronous/return)
 - EdgeType.BIDIRECTIONAL -> Bidirectional arrows
+- EdgeType.UNDIRECTED -> Solid line, no arrowhead
 
 #### render(diagram)
 
@@ -5713,6 +5749,7 @@ Maps DiagramIR concepts to sequence diagrams:
 - EdgeType.DIRECT -> Solid arrows (synchronous)
 - EdgeType.CONDITIONAL -> Dashed arrows (asynchronous/return)
 - EdgeType.BIDIRECTIONAL -> Bidirectional arrows
+- EdgeType.UNDIRECTED -> Solid line, no arrowhead
 
 #### render(diagram)
 
@@ -5956,6 +5993,7 @@ Maps DiagramIR concepts to sequence diagrams:
 - EdgeType.DIRECT -> Solid arrows (synchronous)
 - EdgeType.CONDITIONAL -> Dashed arrows (asynchronous/return)
 - EdgeType.BIDIRECTIONAL -> Bidirectional arrows
+- EdgeType.UNDIRECTED -> Solid line, no arrowhead
 
 #### render(diagram)
 
@@ -6502,20 +6540,18 @@ Quickly serve a diagram in browser.
 
 # About this build
 
-This documentation was built on **2026-11-22 23:39 UTC** from commit <a href="https://github.com/i2mint/ij/commit/00077c2e7d6b65b93cbd0ee0ced928bd0246d48e"><code>00077c2</code></a> on branch <code>master</code>, for **ij 0.1.16** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-11-24 00:21 UTC** from commit <a href="https://github.com/i2mint/ij/commit/bbca4048cad20f8da72f5c1c23c3b9fb355fd5f3"><code>bbca404</code></a> on branch <code>master</code>, for **ij 0.1.17** (from <code>pyproject.toml</code>).
 
-#### WARNING
-The documentation and the package may be misaligned:
-
-- The documented version (0.1.16) is ahead of the latest release on PyPI (0.1.15): these docs describe unreleased code.
+#### NOTE
+Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
 
 ## Source
 
 |                     |                                                                                                                                                  |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/i2mint/ij/commit/00077c2e7d6b65b93cbd0ee0ced928bd0246d48e"><code>00077c2e7d6b65b93cbd0ee0ced928bd0246d48e</code></a> |
+| Commit              | <a href="https://github.com/i2mint/ij/commit/bbca4048cad20f8da72f5c1c23c3b9fb355fd5f3"><code>bbca4048cad20f8da72f5c1c23c3b9fb355fd5f3</code></a> |
 | Branch              | <code>master</code>                                                                                                                              |
-| Tags at this commit | <code>0.1.16</code>                                                                                                                              |
+| Tags at this commit | <code>0.1.17</code>                                                                                                                              |
 | Working tree        | clean                                                                                                                                            |
 | Remote              | <code>https://github.com/i2mint/ij</code>                                                                                                        |
 
@@ -6524,15 +6560,15 @@ The documentation and the package may be misaligned:
 |              |                                                                                            |
 |--------------|--------------------------------------------------------------------------------------------|
 | Repository   | <code>i2mint/ij</code>                                                                     |
-| Run          | <a href="https://github.com/i2mint/ij/actions/runs/45084274575">45084274575</a>            |
+| Run          | <a href="https://github.com/i2mint/ij/actions/runs/45296232215">45296232215</a>            |
 | Ref          | <code>refs/heads/master</code>                                                             |
-| Event commit | <code>e83465e547b6a59c09837b6a0afd49a97d6dcb2d</code> (in the history of the built commit) |
+| Event commit | <code>1354a904c5d106400702efcb2981421964880421</code> (in the history of the built commit) |
 
 ## Tools
 
 |          |         |
 |----------|---------|
-| epythet  | 0.2.23  |
+| epythet  | 0.2.25  |
 | Sphinx   | 9.1.1   |
 | docutils | 0.22.4  |
 | Python   | 3.12.16 |
@@ -6551,14 +6587,14 @@ The documentation and the package may be misaligned:
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/ij/0.1.15/">0.1.15</a>, older than the documented version (0.1.16).
+Latest release: <a href="https://pypi.org/project/ij/0.1.17/">0.1.17</a>, the same as the documented version.
 
 ## Reproduce
 
 ```bash
 git clone https://github.com/i2mint/ij && cd ij
-git checkout 00077c2e7d6b65b93cbd0ee0ced928bd0246d48e
-pip install "epythet==0.2.23"
+git checkout bbca4048cad20f8da72f5c1c23c3b9fb355fd5f3
+pip install "epythet==0.2.25"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```
 

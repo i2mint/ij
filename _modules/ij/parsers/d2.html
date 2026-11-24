@@ -494,6 +494,16 @@
                 <span class="n">EdgeType</span><span class="o">.</span><span class="n">DIRECT</span><span class="p">,</span>
             <span class="p">)</span>
 
+        <span class="c1"># Undirected, optionally labelled: n1 -- n2 or n1 -- n2: "label"</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">'(\w+)\s*--\s*(\w+)(?::\s*"([^"]+)")?'</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="k">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+                <span class="k">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+                <span class="k">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+                <span class="n">EdgeType</span><span class="o">.</span><span class="n">UNDIRECTED</span><span class="p">,</span>
+            <span class="p">)</span>
+
         <span class="c1"># Bidirectional: n1 &lt;-&gt; n2</span>
         <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">"(\w+)\s*&lt;-&gt;\s*(\w+)"</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
@@ -580,7 +590,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=7b0e4c1b"></script>
+</div><script src="../../../_static/documentation_options.js?v=d24e387d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

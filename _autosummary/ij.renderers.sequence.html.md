@@ -74,6 +74,7 @@ Maps DiagramIR concepts to sequence diagrams:
 - EdgeType.DIRECT -> Solid arrows (synchronous)
 - EdgeType.CONDITIONAL -> Dashed arrows (asynchronous/return)
 - EdgeType.BIDIRECTIONAL -> Bidirectional arrows
+- EdgeType.UNDIRECTED -> Solid line, no arrowhead
 
 #### render(diagram)
 

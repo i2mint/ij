@@ -8,10 +8,15 @@ diagram generation (10-20x faster initial drafts).
 
 ### Classes
 
-| [`LLMConverter`](#ij.converters.llm_converter.LLMConverter)([api_key, model, temperature])   | AI-powered text to diagram converter using LLMs.   |
-|------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| [`LLMConverter`](#ij.converters.llm_converter.LLMConverter)([api_key, model, temperature, ...])   | AI-powered text to diagram converter using LLMs.   |
+|-----------------------------------------------------------------------------------------------------|----------------------------------------------------|
 
-### *class* ij.converters.llm_converter.LLMConverter(api_key=None, model='gpt-4o-mini', temperature=0.3)
+### Exceptions
+
+| [`UnusableDiagramError`](#ij.converters.llm_converter.UnusableDiagramError)(message, \*, raw, ...)   | Model output that holds no usable diagram.   |
+|------------------------------------------------------------------------------------------------|----------------------------------------------|
+
+### *class* ij.converters.llm_converter.LLMConverter(api_key=None, model='gpt-4o-mini', temperature=0.3, , max_retries=0)
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
@@ -81,3 +86,17 @@ Refine an existing diagram based on feedback.
 ...     mermaid
 ... )
 ```
+
+### *exception* ij.converters.llm_converter.UnusableDiagramError(message, , raw, unparsed_lines)
+
+Bases: [`ValueError`](https://docs.python.org/3/builtins/exceptions.html#ValueError)
+
+Model output that holds no usable diagram.
+
+#### raw
+
+The model’s output, as returned
+
+#### unparsed_lines
+
+The lines of it the Mermaid parser could not read

@@ -4,10 +4,10 @@ Converters between different representations.
 
 ### Classes
 
-| [`SimpleTextConverter`](#ij.converters.SimpleTextConverter)()                       | Simple rule-based text to diagram converter.              |
-|----------------------------------------------------------------------------------------------|-----------------------------------------------------------|
-| [`EnhancedTextConverter`](#ij.converters.EnhancedTextConverter)()                     | Enhanced text-to-diagram converter with NLP capabilities. |
-| [`LLMConverter`](#ij.converters.LLMConverter)([api_key, model, temperature]) | AI-powered text to diagram converter using LLMs.          |
+| [`SimpleTextConverter`](#ij.converters.SimpleTextConverter)()                            | Simple rule-based text to diagram converter.              |
+|---------------------------------------------------------------------------------------------------|-----------------------------------------------------------|
+| [`EnhancedTextConverter`](#ij.converters.EnhancedTextConverter)()                          | Enhanced text-to-diagram converter with NLP capabilities. |
+| [`LLMConverter`](#ij.converters.LLMConverter)([api_key, model, temperature, ...]) | AI-powered text to diagram converter using LLMs.          |
 
 ### *class* ij.converters.EnhancedTextConverter
 
@@ -45,7 +45,7 @@ Convert enhanced text to DiagramIR.
 >>> diagram = converter.convert("Start -> [parallel: Process A, Process B] -> End")
 ```
 
-### *class* ij.converters.LLMConverter(api_key=None, model='gpt-4o-mini', temperature=0.3)
+### *class* ij.converters.LLMConverter(api_key=None, model='gpt-4o-mini', temperature=0.3, , max_retries=0)
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 

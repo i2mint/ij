@@ -126,6 +126,14 @@ Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum)
 
 Types of edges connecting nodes.
 
+#### UNDIRECTED *= 'undirected'*
+
+one edge,
+never two opposite ones; `source`/`target` keep the written order.
+
+* **Type:**
+  A link with no direction (Mermaid’s open link `a --- b`)
+
 ### *class* ij.core.Node(id, label, node_type=NodeType.PROCESS, metadata=dict())
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)

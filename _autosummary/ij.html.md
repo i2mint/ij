@@ -53,7 +53,7 @@ natural language, visual diagrams, and code.
 | [`HierarchicalLayout`](#ij.HierarchicalLayout)([direction, ...])              | Hierarchical layout using Sugiyama algorithm.                                |
 | [`PluginManager`](#ij.PluginManager)()                                   | Manage and execute plugins.                                                  |
 | [`ViewerServer`](#ij.ViewerServer)([port, theme])                       | Interactive web server for diagram viewing.                                  |
-| [`LLMConverter`](#ij.LLMConverter)([api_key, model, temperature])       | AI-powered text to diagram converter using LLMs.                             |
+| [`LLMConverter`](#ij.LLMConverter)([api_key, model, temperature, ...])  | AI-powered text to diagram converter using LLMs.                             |
 | [`TypeScriptAnalyzer`](#ij.TypeScriptAnalyzer)()                              | Analyze TypeScript/JavaScript code to create diagrams.                       |
 
 ### Exceptions
@@ -658,6 +658,14 @@ Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum)
 
 Types of edges connecting nodes.
 
+#### UNDIRECTED *= 'undirected'*
+
+one edge,
+never two opposite ones; `source`/`target` keep the written order.
+
+* **Type:**
+  A link with no direction (Mermaid’s open link `a --- b`)
+
 ### *class* ij.EnhancedTextConverter
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
@@ -967,7 +975,7 @@ Create sequence diagram from text description.
 >>> diagram = analyzer.from_text_description(text)
 ```
 
-### *class* ij.LLMConverter(api_key=None, model='gpt-4o-mini', temperature=0.3)
+### *class* ij.LLMConverter(api_key=None, model='gpt-4o-mini', temperature=0.3, , max_retries=0)
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
@@ -1467,6 +1475,7 @@ Maps DiagramIR concepts to sequence diagrams:
 - EdgeType.DIRECT -> Solid arrows (synchronous)
 - EdgeType.CONDITIONAL -> Dashed arrows (asynchronous/return)
 - EdgeType.BIDIRECTIONAL -> Bidirectional arrows
+- EdgeType.UNDIRECTED -> Solid line, no arrowhead
 
 #### render(diagram)
 

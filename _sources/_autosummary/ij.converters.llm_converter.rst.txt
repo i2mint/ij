@@ -10,3 +10,9 @@ ij.converters.llm\_converter
    
       LLMConverter
    
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      UnusableDiagramError
+   

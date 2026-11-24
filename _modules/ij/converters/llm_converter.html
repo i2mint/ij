@@ -320,6 +320,23 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">..parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">MermaidParser</span>
 
 
+<div class="viewcode-block" id="UnusableDiagramError">
+<a class="viewcode-back" href="../../../_autosummary/ij.converters.llm_converter.html#ij.UnusableDiagramError">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">UnusableDiagramError</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Model output that holds no usable diagram.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        raw: The model's output, as returned</span>
+<span class="sd">        unparsed_lines: The lines of it the Mermaid parser could not read</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">raw</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">unparsed_lines</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">raw</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unparsed_lines</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">unparsed_lines</span><span class="p">)</span></div>
+
+
+
 <div class="viewcode-block" id="LLMConverter">
 <a class="viewcode-back" href="../../../_autosummary/ij.converters.llm_converter.html#ij.LLMConverter">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">LLMConverter</span><span class="p">:</span>
@@ -351,6 +368,8 @@
         <span class="n">api_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"gpt-4o-mini"</span><span class="p">,</span>
         <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">max_retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">"""Initialize LLM converter.</span>
 
@@ -358,10 +377,17 @@
 <span class="sd">            api_key: OpenAI API key (defaults to OPENAI_API_KEY env var)</span>
 <span class="sd">            model: Model to use (gpt-4o-mini is cheap and effective)</span>
 <span class="sd">            temperature: Sampling temperature (lower = more deterministic)</span>
+<span class="sd">            max_retries: How many more times to ask the model when its output</span>
+<span class="sd">                holds no usable diagram, each time showing it the error and the</span>
+<span class="sd">                lines the parser could not read. Each retry is a paid call, so</span>
+<span class="sd">                the default is 0: an unusable output raises at once.</span>
 <span class="sd">        """</span>
+        <span class="k">if</span> <span class="n">max_retries</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"max_retries must be 0 or more, got </span><span class="si">{</span><span class="n">max_retries</span><span class="si">!r}</span><span class="s2">"</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">api_key</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"OPENAI_API_KEY"</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span> <span class="o">=</span> <span class="n">temperature</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span> <span class="o">=</span> <span class="n">max_retries</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
@@ -406,11 +432,8 @@
         <span class="k">if</span> <span class="n">direction</span> <span class="o">!=</span> <span class="s2">"TD"</span><span class="p">:</span>
             <span class="n">user_prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"</span><span class="se">\n\n</span><span class="s2">Use direction: </span><span class="si">{</span><span class="n">direction</span><span class="si">}</span><span class="s2">"</span>
 
-        <span class="c1"># Call OpenAI API</span>
-        <span class="n">mermaid_code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_mermaid</span><span class="p">(</span><span class="n">user_prompt</span><span class="p">)</span>
-
-        <span class="c1"># Parse the generated Mermaid to DiagramIR</span>
-        <span class="n">diagram</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_mermaid</span><span class="p">(</span><span class="n">mermaid_code</span><span class="p">)</span>
+        <span class="c1"># Call the model, and parse what it returns to DiagramIR</span>
+        <span class="n">diagram</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_diagram</span><span class="p">(</span><span class="n">user_prompt</span><span class="p">)</span>
 
         <span class="c1"># Add title if provided</span>
         <span class="k">if</span> <span class="n">title</span> <span class="ow">and</span> <span class="s2">"title"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">metadata</span><span class="p">:</span>
@@ -454,11 +477,8 @@
 
 <span class="s2">Output the updated Mermaid code."""</span>
 
-        <span class="c1"># Generate refined version</span>
-        <span class="n">mermaid_code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_mermaid</span><span class="p">(</span><span class="n">user_prompt</span><span class="p">)</span>
-
-        <span class="c1"># Parse back to DiagramIR</span>
-        <span class="n">refined_diagram</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_mermaid</span><span class="p">(</span><span class="n">mermaid_code</span><span class="p">)</span>
+        <span class="c1"># Generate the refined version, parsed back to DiagramIR</span>
+        <span class="n">refined_diagram</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_diagram</span><span class="p">(</span><span class="n">user_prompt</span><span class="p">)</span>
 
         <span class="c1"># Preserve metadata</span>
         <span class="n">refined_diagram</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">diagram</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
@@ -482,18 +502,53 @@
 <span class="sd">            DiagramIR parsed from ``mermaid_code``</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            ValueError: If the output holds no valid diagram</span>
+<span class="sd">            UnusableDiagramError: If the output holds no valid diagram (a</span>
+<span class="sd">                ``ValueError``, carrying the raw output and unparsed lines)</span>
 <span class="sd">        """</span>
         <span class="n">parser</span> <span class="o">=</span> <span class="n">MermaidParser</span><span class="p">()</span>
         <span class="n">diagram</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">mermaid_code</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">diagram</span><span class="o">.</span><span class="n">nodes</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">diagram</span><span class="o">.</span><span class="n">validate</span><span class="p">():</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="k">raise</span> <span class="n">UnusableDiagramError</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2"> did not return a usable Mermaid diagram.</span><span class="se">\n</span><span class="s2">"</span>
-                <span class="sa">f</span><span class="s2">"Raw model output:</span><span class="se">\n</span><span class="si">{</span><span class="n">mermaid_code</span><span class="si">}</span><span class="s2">"</span>
+                <span class="sa">f</span><span class="s2">"Raw model output:</span><span class="se">\n</span><span class="si">{</span><span class="n">mermaid_code</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+                <span class="n">raw</span><span class="o">=</span><span class="n">mermaid_code</span><span class="p">,</span>
+                <span class="n">unparsed_lines</span><span class="o">=</span><span class="n">parser</span><span class="o">.</span><span class="n">unparsed_lines</span><span class="p">,</span>
             <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">diagram</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DiagramIR</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Ask the model for a diagram, retrying up to ``max_retries`` times.</span>
+
+<span class="sd">        A retry repeats the request with the unusable output, the error and</span>
+<span class="sd">        the lines the parser could not read appended, so the model repairs</span>
+<span class="sd">        its answer rather than drawing again from scratch.</span>
+<span class="sd">        """</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="n">user_prompt</span>
+        <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">mermaid_code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_mermaid</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_mermaid</span><span class="p">(</span><span class="n">mermaid_code</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">UnusableDiagramError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">:</span>
+                    <span class="k">raise</span>
+                <span class="n">prompt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_repair_prompt</span><span class="p">(</span><span class="n">user_prompt</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">"unreachable: the last attempt returns or raises"</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_repair_prompt</span><span class="p">(</span><span class="n">user_prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">error</span><span class="p">:</span> <span class="s2">"UnusableDiagramError"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""The original request, plus what was wrong with the last answer."""</span>
+        <span class="n">unreadable</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">unparsed_lines</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">"(none: no node or edge was found)"</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">user_prompt</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">"</span>
+            <span class="s2">"Your previous answer was not a usable Mermaid flowchart:</span><span class="se">\n</span><span class="s2">"</span>
+            <span class="sa">f</span><span class="s2">"```</span><span class="se">\n</span><span class="si">{</span><span class="n">error</span><span class="o">.</span><span class="n">raw</span><span class="si">}</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">"</span>
+            <span class="sa">f</span><span class="s2">"Lines that could not be parsed:</span><span class="se">\n</span><span class="si">{</span><span class="n">unreadable</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">"</span>
+            <span class="s2">"Answer again with valid Mermaid flowchart code only."</span>
+        <span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_generate_mermaid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Call OpenAI API to generate Mermaid code.</span>
@@ -555,8 +610,7 @@
         <span class="k">if</span> <span class="n">title</span><span class="p">:</span>
             <span class="n">user_prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"</span><span class="se">\n\n</span><span class="s2">Title: </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2">"</span>
 
-        <span class="n">mermaid_code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_mermaid</span><span class="p">(</span><span class="n">user_prompt</span><span class="p">)</span>
-        <span class="n">diagram</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_mermaid</span><span class="p">(</span><span class="n">mermaid_code</span><span class="p">)</span>
+        <span class="n">diagram</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_diagram</span><span class="p">(</span><span class="n">user_prompt</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">title</span><span class="p">:</span>
             <span class="n">diagram</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">"title"</span><span class="p">]</span> <span class="o">=</span> <span class="n">title</span>
@@ -592,7 +646,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=7b0e4c1b"></script>
+</div><script src="../../../_static/documentation_options.js?v=d24e387d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

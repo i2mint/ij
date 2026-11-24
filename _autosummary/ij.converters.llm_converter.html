@@ -318,15 +318,25 @@ diagram generation (10-20x faster initial drafts).</p>
 <div class="table-wrapper autosummary longtable docutils container">
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ij.converters.llm_converter.LLMConverter" title="ij.converters.llm_converter.LLMConverter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LLMConverter</span></code></a>([api_key, model, temperature])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ij.converters.llm_converter.LLMConverter" title="ij.converters.llm_converter.LLMConverter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LLMConverter</span></code></a>([api_key, model, temperature, ...])</p></td>
 <td><p>AI-powered text to diagram converter using LLMs.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="rubric">Exceptions</p>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ij.converters.llm_converter.UnusableDiagramError" title="ij.converters.llm_converter.UnusableDiagramError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnusableDiagramError</span></code></a>(message, *, raw, ...)</p></td>
+<td><p>Model output that holds no usable diagram.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="ij.converters.llm_converter.LLMConverter">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ij.converters.llm_converter.</span></span><span class="sig-name descname"><span class="pre">LLMConverter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gpt-4o-mini'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ij/converters/llm_converter.html#LLMConverter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.converters.llm_converter.LLMConverter" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ij.converters.llm_converter.</span></span><span class="sig-name descname"><span class="pre">LLMConverter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gpt-4o-mini'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_retries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ij/converters/llm_converter.html#LLMConverter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.converters.llm_converter.LLMConverter" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>AI-powered text to diagram converter using LLMs.</p>
 <p>Uses OpenAI API with carefully crafted prompts to generate diagrams
@@ -417,6 +427,27 @@ from natural language descriptions. Supports iterative refinement.</p>
 
 </dd></dl>
 
+<dl class="py exception">
+<dt class="sig sig-object py" id="ij.converters.llm_converter.UnusableDiagramError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ij.converters.llm_converter.</span></span><span class="sig-name descname"><span class="pre">UnusableDiagramError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unparsed_lines</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ij/converters/llm_converter.html#UnusableDiagramError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ij.converters.llm_converter.UnusableDiagramError" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a></p>
+<p>Model output that holds no usable diagram.</p>
+<dl class="field-list simple">
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ij.converters.llm_converter.UnusableDiagramError.raw">
+<span class="sig-name descname"><span class="pre">raw</span></span><a class="headerlink" href="#ij.converters.llm_converter.UnusableDiagramError.raw" title="Link to this definition">¶</a></dt>
+<dd><p>The model’s output, as returned</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ij.converters.llm_converter.UnusableDiagramError.unparsed_lines">
+<span class="sig-name descname"><span class="pre">unparsed_lines</span></span><a class="headerlink" href="#ij.converters.llm_converter.UnusableDiagramError.unparsed_lines" title="Link to this definition">¶</a></dt>
+<dd><p>The lines of it the Mermaid parser could not read</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
         </article>
@@ -477,6 +508,11 @@ from natural language descriptions. Supports iterative refinement.</p>
 <li><a class="reference internal" href="#ij.converters.llm_converter.LLMConverter.refine"><code class="docutils literal notranslate"><span class="pre">LLMConverter.refine()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#ij.converters.llm_converter.UnusableDiagramError"><code class="docutils literal notranslate"><span class="pre">UnusableDiagramError</span></code></a><ul>
+<li><a class="reference internal" href="#ij.converters.llm_converter.UnusableDiagramError.raw"><code class="docutils literal notranslate"><span class="pre">UnusableDiagramError.raw</span></code></a></li>
+<li><a class="reference internal" href="#ij.converters.llm_converter.UnusableDiagramError.unparsed_lines"><code class="docutils literal notranslate"><span class="pre">UnusableDiagramError.unparsed_lines</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -488,7 +524,7 @@ from natural language descriptions. Supports iterative refinement.</p>
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=7b0e4c1b"></script>
+</div><script src="../_static/documentation_options.js?v=d24e387d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
