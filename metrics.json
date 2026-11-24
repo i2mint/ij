@@ -1,7 +1,7 @@
 {
-  "collection_duration_seconds": 3.888641834259033,
-  "commit_message": "fix(cli): one output-format rule for convert, watch, simplify and extract\n\nresolve_output_format picks the format every rendering command writes in:\nexplicit format, else the output file's format when it has a renderer, else the\ninput's format when it has a renderer, else mermaid. A .txt file (plain text, no\nrenderer) is no longer rendered as 'text' by watch, simplify or extract.\n\nFixes #21",
-  "commit_sha": "14f3f1cd07509cab726dd5ebc8271228b343ae72",
+  "collection_duration_seconds": 4.512087345123291,
+  "commit_message": "Merge 14f3f1cd07509cab726dd5ebc8271228b343ae72 into 74e39e627ea919d535700f1403cc67eea8ae7ee9",
+  "commit_sha": "192bb58eeade22859c095a5e7f10bb86b7722a20",
   "metrics": {
     "coverage": {
       "branch_coverage": 0.0,
@@ -11,19 +11,19 @@
       "statements_total": 0
     },
     "umpyre_stats": {
-      "comment_lines": 17436,
-      "comment_lines_ratio": 0.05197065845596235,
-      "docs_lines": 77916,
-      "empty_lines": 46351,
-      "empty_lines_ratio": 0.1381562279245418,
-      "files_analyzed": 879,
-      "function_lines": 191252,
-      "function_lines_ratio": 0.570055768009848,
-      "mean_lines_per_function": 26.681361607142858,
-      "num_classes": 1490,
-      "num_functions": 7168,
+      "comment_lines": 17134,
+      "comment_lines_ratio": 0.05144094079217968,
+      "docs_lines": 73676,
+      "empty_lines": 45972,
+      "empty_lines_ratio": 0.13802048150449892,
+      "files_analyzed": 883,
+      "function_lines": 186971,
+      "function_lines_ratio": 0.5613379328151411,
+      "mean_lines_per_function": 25.31081629890348,
+      "num_classes": 1550,
+      "num_functions": 7387,
       "pypi_version": "0.1.18",
-      "total_lines": 335497
+      "total_lines": 333081
     },
     "wily": {
       "cyclomatic_avg": 0.0,
@@ -34,14 +34,14 @@
     },
     "workflow_status": {
       "last_run_status": "success",
-      "last_success_timestamp": "2026-11-24T01:18:37Z",
+      "last_success_timestamp": "2026-11-24T04:46:19Z",
       "recent_failure_count": 0,
-      "run_url": "https://github.com/i2mint/ij/actions/runs/45304024047",
+      "run_url": "https://github.com/i2mint/ij/actions/runs/45328550024",
       "total_runs_analyzed": 10
     }
   },
   "python_version": "3.10",
   "schema_version": "1.0",
-  "timestamp": "2026-11-24T04:46:12.131033Z",
+  "timestamp": "2026-11-24T04:46:27.172331Z",
   "workflow_status": {}
 }
