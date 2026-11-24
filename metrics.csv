@@ -1,6 +1,6 @@
 metric,value
 schema_version,1.0
-timestamp,2026-11-24T04:45:58.767575Z
+timestamp,2026-11-24T04:46:12.131033Z
 commit_sha,14f3f1cd07509cab726dd5ebc8271228b343ae72
 commit_message,"fix(cli): one output-format rule for convert, watch, simplify and extract
 
@@ -11,18 +11,18 @@ renderer) is no longer rendered as 'text' by watch, simplify or extract.
 
 Fixes #21"
 python_version,3.10
-metrics.umpyre_stats.num_functions,7387
-metrics.umpyre_stats.num_classes,1550
-metrics.umpyre_stats.total_lines,333081
-metrics.umpyre_stats.empty_lines,45972
-metrics.umpyre_stats.comment_lines,17134
-metrics.umpyre_stats.docs_lines,73676
-metrics.umpyre_stats.function_lines,186971
-metrics.umpyre_stats.empty_lines_ratio,0.13802048150449892
-metrics.umpyre_stats.comment_lines_ratio,0.05144094079217968
-metrics.umpyre_stats.function_lines_ratio,0.5613379328151411
-metrics.umpyre_stats.mean_lines_per_function,25.31081629890348
-metrics.umpyre_stats.files_analyzed,883
+metrics.umpyre_stats.num_functions,7168
+metrics.umpyre_stats.num_classes,1490
+metrics.umpyre_stats.total_lines,335497
+metrics.umpyre_stats.empty_lines,46351
+metrics.umpyre_stats.comment_lines,17436
+metrics.umpyre_stats.docs_lines,77916
+metrics.umpyre_stats.function_lines,191252
+metrics.umpyre_stats.empty_lines_ratio,0.1381562279245418
+metrics.umpyre_stats.comment_lines_ratio,0.05197065845596235
+metrics.umpyre_stats.function_lines_ratio,0.570055768009848
+metrics.umpyre_stats.mean_lines_per_function,26.681361607142858
+metrics.umpyre_stats.files_analyzed,879
 metrics.umpyre_stats.pypi_version,0.1.18
 metrics.workflow_status.last_run_status,success
 metrics.workflow_status.last_success_timestamp,2026-11-24T01:18:37Z
@@ -43,4 +43,4 @@ metrics.coverage.branch_coverage,0.0
 metrics.coverage.statements_covered,0
 metrics.coverage.statements_total,0
 metrics.coverage.error,No coverage file found
-collection_duration_seconds,2.692354917526245
+collection_duration_seconds,3.888641834259033
