@@ -43,18 +43,23 @@ def get_parser_for_format(format_name: str):
     raise ValueError(f"No parser available for format: {format_name}")
 
 
+_RENDERERS = {
+    "mermaid": MermaidRenderer,
+    "mmd": MermaidRenderer,
+    "d2": D2Renderer,
+    "plantuml": PlantUMLRenderer,
+    "puml": PlantUMLRenderer,
+    "graphviz": GraphvizRenderer,
+    "dot": GraphvizRenderer,
+}
+
+#: Output format of a file whose extension names no renderable format.
+DEFAULT_OUTPUT_FORMAT = "mermaid"
+
+
 def get_renderer_for_format(format_name: str, **kwargs):
     """Get renderer instance for a format."""
-    renderers = {
-        "mermaid": MermaidRenderer,
-        "mmd": MermaidRenderer,
-        "d2": D2Renderer,
-        "plantuml": PlantUMLRenderer,
-        "puml": PlantUMLRenderer,
-        "graphviz": GraphvizRenderer,
-        "dot": GraphvizRenderer,
-    }
-    renderer_class = renderers.get(format_name.lower())
+    renderer_class = _RENDERERS.get(format_name.lower())
     if renderer_class:
         return renderer_class(**kwargs)
     raise ValueError(f"No renderer available for format: {format_name}")
@@ -76,6 +81,20 @@ def detect_format(filename: str) -> str:
     return format_map.get(ext, "mermaid")
 
 
+def detect_output_format(filename: str) -> str:
+    """Detect the format to write ``filename`` in: its extension's format if there is a
+    renderer for it, else ``DEFAULT_OUTPUT_FORMAT`` (e.g. ``.txt``, read as plain text
+    but written as mermaid).
+
+    >>> detect_output_format("out.d2"), detect_output_format("out.txt")
+    ('d2', 'mermaid')
+    """
+    format_name = detect_format(filename)
+    if format_name.lower() in _RENDERERS:
+        return format_name
+    return DEFAULT_OUTPUT_FORMAT
+
+
 def cmd_convert(args):
     """Convert between diagram formats."""
     # Determine input format
@@ -88,9 +107,9 @@ def cmd_convert(args):
     if args.to_format:
         output_format = args.to_format
     elif args.output:
-        output_format = detect_format(args.output)
+        output_format = detect_output_format(args.output)
     else:
-        output_format = "mermaid"
+        output_format = DEFAULT_OUTPUT_FORMAT
 
     # Read input
     try:
