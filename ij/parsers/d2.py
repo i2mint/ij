@@ -5,9 +5,18 @@ support for the modern D2 format.
 """
 
 import re
+import warnings
 from typing import Dict, List, Optional, Tuple
 
 from ..core import DiagramIR, Edge, EdgeType, Node, NodeType
+
+
+class D2ParseWarning(UserWarning):
+    """Warns that part of a D2 line could not be interpreted and was dropped."""
+
+
+# Two links on one line (``a -- b -> c``): D2 chains them, this parser reads one
+_CHAIN_PATTERN = re.compile(r"(?:<->|->|--)\s*\w+\s*(?:<->|->|--)")
 
 
 class D2Parser:
@@ -120,6 +129,13 @@ class D2Parser:
             edge_match = self._parse_edge_line(line)
             if edge_match:
                 source, target, label, edge_type = edge_match
+                if _CHAIN_PATTERN.search(line):
+                    warnings.warn(
+                        f"D2 edge chain not supported, only the first link was "
+                        f"kept: {line!r}",
+                        D2ParseWarning,
+                        stacklevel=2,
+                    )
                 # Ensure nodes exist
                 if source not in self.nodes:
                     self.nodes[source] = Node(
