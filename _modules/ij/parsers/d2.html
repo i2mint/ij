@@ -307,9 +307,21 @@
 <span class="sd">"""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">..core</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiagramIR</span><span class="p">,</span> <span class="n">Edge</span><span class="p">,</span> <span class="n">EdgeType</span><span class="p">,</span> <span class="n">Node</span><span class="p">,</span> <span class="n">NodeType</span>
+
+
+<div class="viewcode-block" id="D2ParseWarning">
+<a class="viewcode-back" href="../../../_autosummary/ij.parsers.d2.html#ij.D2ParseWarning">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">D2ParseWarning</span><span class="p">(</span><span class="ne">UserWarning</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Warns that part of a D2 line could not be interpreted and was dropped."""</span></div>
+
+
+
+<span class="c1"># Two links on one line (``a -- b -&gt; c``): D2 chains them, this parser reads one</span>
+<span class="n">_CHAIN_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">"(?:&lt;-&gt;|-&gt;|--)\s*\w+\s*(?:&lt;-&gt;|-&gt;|--)"</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="D2Parser">
@@ -426,6 +438,13 @@
             <span class="n">edge_match</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_edge_line</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">edge_match</span><span class="p">:</span>
                 <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">edge_type</span> <span class="o">=</span> <span class="n">edge_match</span>
+                <span class="k">if</span> <span class="n">_CHAIN_PATTERN</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+                    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">"D2 edge chain not supported, only the first link was "</span>
+                        <span class="sa">f</span><span class="s2">"kept: </span><span class="si">{</span><span class="n">line</span><span class="si">!r}</span><span class="s2">"</span><span class="p">,</span>
+                        <span class="n">D2ParseWarning</span><span class="p">,</span>
+                        <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                    <span class="p">)</span>
                 <span class="c1"># Ensure nodes exist</span>
                 <span class="k">if</span> <span class="n">source</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">source</span><span class="p">]</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span>
@@ -590,7 +609,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=d979bd5c"></script>
+</div><script src="../../../_static/documentation_options.js?v=0d95f3a7"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

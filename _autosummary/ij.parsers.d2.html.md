@@ -10,6 +10,17 @@ support for the modern D2 format.
 | [`D2Parser`](#ij.parsers.d2.D2Parser)()   | Parse D2 syntax to DiagramIR.   |
 |---------------------------------------------------------------|---------------------------------|
 
+### Exceptions
+
+| [`D2ParseWarning`](#ij.parsers.d2.D2ParseWarning)   | Warns that part of a D2 line could not be interpreted and was dropped.   |
+|-------------------------------------------------------------------|--------------------------------------------------------------------------|
+
+### *exception* ij.parsers.d2.D2ParseWarning
+
+Bases: [`UserWarning`](https://docs.python.org/3/builtins/exceptions.html#UserWarning)
+
+Warns that part of a D2 line could not be interpreted and was dropped.
+
 ### *class* ij.parsers.d2.D2Parser
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)

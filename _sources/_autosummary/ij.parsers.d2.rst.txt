@@ -10,3 +10,9 @@ ij.parsers.d2
    
       D2Parser
    
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      D2ParseWarning
+   
