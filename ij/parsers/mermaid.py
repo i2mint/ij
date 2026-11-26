@@ -186,7 +186,7 @@ class MermaidParser:
                 continue
 
             # Try to parse as edge, then as node
-            if self._parse_edge(line) or self._parse_node(line):
+            if self._parse_edge(line, lineno) or self._parse_node(line):
                 continue
 
             self._report_unparsed(line, lineno)
@@ -222,27 +222,74 @@ class MermaidParser:
 
         return False
 
-    def _parse_edge(self, line: str) -> bool:
+    #: A node label: quoted text, or a bracketed run (one nesting level deep)
+    _LABEL_PATTERN = re.compile(
+        r"\"[^\"]*\"|'[^']*'|\[(?:[^\[\]]|\[[^\[\]]*\])*\]"
+        r"|\{[^{}]*\}|\((?:[^()]|\([^()]*\))*\)"
+    )
+
+    #: Delimiters that open / close a node label, and the quote characters
+    _OPENERS = "([{"
+    _CLOSERS = ")]}"
+    _QUOTES = "\"'"
+
+    def _split_links(self, line: str) -> List[str]:
+        """Split a line on link arrows that sit outside node labels.
+
+        Like ``LINK_PATTERN.split`` (``[endpoint, arrow, label, endpoint, ...]``)
+        but an arrow-looking run inside ``[...]``, ``(...)``, ``{...}`` or a
+        quoted string is label text, not a link: ``a[Load --- Save] --> b`` is
+        one edge.
+
+        Args:
+            line: A (normalized) edge line
+
+        Returns:
+            The alternating endpoint / arrow / label parts, as ``re.split`` gives
+        """
+        parts, start, i, depth, quote = [], 0, 0, 0, ""
+        while i < len(line):
+            char = line[i]
+            if quote:
+                quote = "" if char == quote else quote
+            elif char in self._QUOTES:
+                quote = char
+            elif char in self._OPENERS:
+                depth += 1
+            elif char in self._CLOSERS:
+                depth = max(depth - 1, 0)
+            elif depth == 0:
+                match = self.LINK_PATTERN.match(line, i)
+                if match and match.group(1):
+                    parts += [line[start:i], match.group(1), match.group(2)]
+                    start = i = match.end()
+                    continue
+            i += 1
+        return parts + [line[start:]]
+
+    def _parse_edge(self, line: str, lineno: int = 0) -> bool:
         """Parse an edge definition, including chains and inline node shapes.
 
         Args:
             line: Line containing one or more edge connections
+            lineno: Its 1-based position, for reporting
 
         Returns:
-            True if successfully parsed, False otherwise
+            True if the line was handled (parsed, or reported as unparseable
+            because it has a link but not valid endpoints), False if it has no
+            link at all
         """
-        # re.split on a two-group pattern alternates text and groups, giving
-        # [endpoint, arrow, label, endpoint, arrow, label, ..., endpoint]
-        parts = self.LINK_PATTERN.split(self._normalize_links(line))
+        parts = self._split_links(self._normalize_links(line))
         endpoints, arrows, labels = parts[0::3], parts[1::3], parts[2::3]
         if not arrows:
             return False
 
         endpoints = [endpoint.strip() for endpoint in endpoints]
         if not all(self.ENDPOINT_PATTERN.fullmatch(e) for e in endpoints):
-            # Something on this line is not a node reference (e.g. an arrow
-            # inside a node label); let the node parser have it instead
-            return False
+            # A real link with a malformed side: report it rather than let the
+            # node parser quietly keep half the line
+            self._report_unparsed(line, lineno)
+            return True
 
         node_ids = [self._resolve_endpoint(e) for e in endpoints]
         for source, target, arrow, label in zip(node_ids, node_ids[1:], arrows, labels):
@@ -260,15 +307,25 @@ class MermaidParser:
     def _normalize_links(self, line: str) -> str:
         """Rewrite non-canonical link spellings to the `ARROW|label|` form.
 
+        Node labels (inside brackets or quotes) are shielded first, so that
+        ``a[Load --- Save]`` is not mistaken for a ``-- L ---`` link.
+
         Args:
             line: Line to normalize
 
         Returns:
             The line with every known link-label variant canonicalized
         """
+        shielded: List[str] = []
+
+        def shield(match):
+            shielded.append(match.group(0))
+            return f"\x00{len(shielded) - 1}\x00"
+
+        line = self._LABEL_PATTERN.sub(shield, line)
         for pattern, replacement in self.LINK_NORMALIZATIONS:
             line = pattern.sub(replacement, line)
-        return line
+        return re.sub(r"\x00(\d+)\x00", lambda m: shielded[int(m.group(1))], line)
 
     def _resolve_endpoint(self, endpoint: str) -> str:
         """Resolve an edge endpoint to a node id, defining the node if needed.

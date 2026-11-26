@@ -323,3 +323,40 @@ def test_graphviz_draws_an_open_link_without_arrowheads():
     diagram.add_node(Node("b", "B"))
     diagram.add_edge(Edge("a", "b", edge_type=EdgeType.UNDIRECTED))
     assert "dir=none" in GraphvizRenderer().render(diagram)
+
+
+# --- bracket-aware link splitting (issue #20) -------------------------------
+import warnings as _warnings
+
+import pytest as _pytest
+
+from ij.parsers.d2 import D2Parser as _D2Parser, D2ParseWarning as _D2ParseWarning
+from ij.parsers.mermaid import MermaidParser as _MermaidParser
+
+
+@_pytest.mark.parametrize(
+    "line",
+    [
+        "a[foo---bar] --> b",  # the example in the issue
+        "a[Load --- Save] --> b",  # pre-existing variant
+        "a{x --> y} --> b",  # an arrow inside a decision label
+        'a["p --- q"] --> b',  # quoted label
+    ],
+)
+def test_mermaid_arrow_inside_label_keeps_edge(line):
+    diagram = _MermaidParser(strict=True).parse(f"flowchart TD\n    {line}")
+    assert [(e.source, e.target) for e in diagram.edges] == [("a", "b")]
+
+
+def test_mermaid_malformed_link_is_reported_in_strict_mode():
+    with _pytest.raises(ValueError):
+        _MermaidParser(strict=True).parse("flowchart TD\n    a[x] --> b junk")
+
+
+def test_d2_chain_warns_instead_of_silently_dropping():
+    with _pytest.warns(_D2ParseWarning):
+        diagram = _D2Parser().parse("a -- b -> c")
+    assert [(e.source, e.target) for e in diagram.edges] == [("a", "b")]
+    with _warnings.catch_warnings():
+        _warnings.simplefilter("error")
+        _D2Parser().parse("a -> b")  # a single link stays quiet
