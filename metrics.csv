@@ -1,21 +1,21 @@
 metric,value
 schema_version,1.0
-timestamp,2026-11-26T12:52:19.280369Z
+timestamp,2026-11-26T12:52:28.503325Z
 commit_sha,2b89528ab6f7359b61cbb08b32c78873976c150d
 commit_message,Mermaid: split links only outside node labels; report malformed links; warn on D2 chains (#20)
 python_version,3.10
-metrics.umpyre_stats.num_functions,7170
-metrics.umpyre_stats.num_classes,1491
-metrics.umpyre_stats.total_lines,335570
-metrics.umpyre_stats.empty_lines,46364
-metrics.umpyre_stats.comment_lines,17437
-metrics.umpyre_stats.docs_lines,77935
-metrics.umpyre_stats.function_lines,191307
-metrics.umpyre_stats.empty_lines_ratio,0.1381649134308788
-metrics.umpyre_stats.comment_lines_ratio,0.051962332747265846
-metrics.umpyre_stats.function_lines_ratio,0.5700956581339214
-metrics.umpyre_stats.mean_lines_per_function,26.681589958158995
-metrics.umpyre_stats.files_analyzed,879
+metrics.umpyre_stats.num_functions,7389
+metrics.umpyre_stats.num_classes,1551
+metrics.umpyre_stats.total_lines,333154
+metrics.umpyre_stats.empty_lines,45985
+metrics.umpyre_stats.comment_lines,17135
+metrics.umpyre_stats.docs_lines,73695
+metrics.umpyre_stats.function_lines,187026
+metrics.umpyre_stats.empty_lines_ratio,0.13802925974174104
+metrics.umpyre_stats.comment_lines_ratio,0.05143267077687796
+metrics.umpyre_stats.function_lines_ratio,0.5613800224520792
+metrics.umpyre_stats.mean_lines_per_function,25.31140885099472
+metrics.umpyre_stats.files_analyzed,883
 metrics.umpyre_stats.pypi_version,0.1.19
 metrics.workflow_status.last_run_status,success
 metrics.workflow_status.last_success_timestamp,2026-11-24T04:52:08Z
@@ -36,4 +36,4 @@ metrics.coverage.branch_coverage,0.0
 metrics.coverage.statements_covered,0
 metrics.coverage.statements_total,0
 metrics.coverage.error,No coverage file found
-collection_duration_seconds,3.0246741771698
+collection_duration_seconds,4.350042104721069
