@@ -1,33 +1,26 @@
 metric,value
 schema_version,1.0
-timestamp,2026-11-24T04:50:40.018940Z
-commit_sha,64b9155cdf56f00aef3bb538a125c7728ab0a282
-commit_message,"fix(cli): one output-format rule for convert, watch, simplify and extract (#22)
-
-resolve_output_format picks the format every rendering command writes in:
-explicit format, else the output file's format when it has a renderer, else the
-input's format when it has a renderer, else mermaid. A .txt file (plain text, no
-renderer) is no longer rendered as 'text' by watch, simplify or extract.
-
-Fixes #21"
+timestamp,2026-11-26T12:52:19.280369Z
+commit_sha,2b89528ab6f7359b61cbb08b32c78873976c150d
+commit_message,Mermaid: split links only outside node labels; report malformed links; warn on D2 chains (#20)
 python_version,3.10
-metrics.umpyre_stats.num_functions,7168
-metrics.umpyre_stats.num_classes,1490
-metrics.umpyre_stats.total_lines,335497
-metrics.umpyre_stats.empty_lines,46351
-metrics.umpyre_stats.comment_lines,17436
-metrics.umpyre_stats.docs_lines,77916
-metrics.umpyre_stats.function_lines,191252
-metrics.umpyre_stats.empty_lines_ratio,0.1381562279245418
-metrics.umpyre_stats.comment_lines_ratio,0.05197065845596235
-metrics.umpyre_stats.function_lines_ratio,0.570055768009848
-metrics.umpyre_stats.mean_lines_per_function,26.681361607142858
+metrics.umpyre_stats.num_functions,7170
+metrics.umpyre_stats.num_classes,1491
+metrics.umpyre_stats.total_lines,335570
+metrics.umpyre_stats.empty_lines,46364
+metrics.umpyre_stats.comment_lines,17437
+metrics.umpyre_stats.docs_lines,77935
+metrics.umpyre_stats.function_lines,191307
+metrics.umpyre_stats.empty_lines_ratio,0.1381649134308788
+metrics.umpyre_stats.comment_lines_ratio,0.051962332747265846
+metrics.umpyre_stats.function_lines_ratio,0.5700956581339214
+metrics.umpyre_stats.mean_lines_per_function,26.681589958158995
 metrics.umpyre_stats.files_analyzed,879
-metrics.umpyre_stats.pypi_version,0.1.18
+metrics.umpyre_stats.pypi_version,0.1.19
 metrics.workflow_status.last_run_status,success
-metrics.workflow_status.last_success_timestamp,2026-11-24T04:46:39Z
+metrics.workflow_status.last_success_timestamp,2026-11-24T04:52:08Z
 metrics.workflow_status.recent_failure_count,0
-metrics.workflow_status.run_url,https://github.com/i2mint/ij/actions/runs/45328562271
+metrics.workflow_status.run_url,https://github.com/i2mint/ij/actions/runs/45329282082
 metrics.workflow_status.total_runs_analyzed,10
 metrics.wily.cyclomatic_avg,0.0
 metrics.wily.maintainability_index,0.0
@@ -43,4 +36,4 @@ metrics.coverage.branch_coverage,0.0
 metrics.coverage.statements_covered,0
 metrics.coverage.statements_total,0
 metrics.coverage.error,No coverage file found
-collection_duration_seconds,3.158907175064087
+collection_duration_seconds,3.0246741771698
